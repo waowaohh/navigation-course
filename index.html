@@ -24,6 +24,156 @@
             --text-light: #718096;
             --border: #e2e8f0;
         }
+        /* ===== Dark Mode Variables ===== */
+        [data-theme="dark"] {
+            --primary: #63b3ed;
+            --accent: #4299e1;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --border: #334155;
+        }
+        
+        /* Dark mode specific overrides */
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #0f172a 0%, #1a202c 100%);
+        }
+        
+        [data-theme="dark"] .toc-bar {
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom-color: #334155;
+        }
+        
+        [data-theme="dark"] .chapter {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        
+        [data-theme="dark"] .chapter-body pre {
+            background: #0d1117;
+            border: 1px solid #30363d;
+        }
+        
+        [data-theme="dark"] .chapter-body blockquote {
+            background: linear-gradient(90deg, rgba(66,153,225,0.15) 0%, transparent 100%);
+            border-left-color: #4299e1;
+        }
+        
+        [data-theme="dark"] .chapter-body table th {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+        
+        [data-theme="dark"] .chapter-body tr:nth-child(even) {
+            background: rgba(255,255,255,0.03);
+        }
+        
+        [data-theme="dark"] .chapter-body :not(pre) > code {
+            background: rgba(66,153,225,0.15);
+            color: #63b3ed;
+        }
+        
+        /* Mindmap dark mode */
+        [data-theme="dark"] .mm {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        
+        [data-theme="dark"] .mm-branch-body,
+        [data-theme="dark"] .mm-col-body,
+        [data-theme="dark"] .mm-section-body {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        
+        [data-theme="dark"] .mm-item {
+            color: #cbd5e1;
+        }
+        
+        [data-theme="dark"] .mm-leaf {
+            color: #94a3b8;
+            border-color: #334155;
+        }
+        
+        [data-theme="dark"] .mm-leaf::before {
+            color: #63b3ed;
+        }
+        
+        [data-theme="dark"] .mm-flow-step {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        
+        [data-theme="dark"] .mm-note {
+            background: rgba(214,158,46,0.1);
+            color: #fbbf24;
+        }
+        
+        [data-theme="dark"] .mm-tag {
+            background: rgba(66,153,225,0.2);
+            color: #63b3ed;
+        }
+        
+        [data-theme="dark"] .mm-layer-content {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        
+        /* Smooth transition for theme switch */
+        *, *::before, *::after {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* ===== Dark Mode Toggle Button ===== */
+        .theme-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102,126,234,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 30px rgba(102,126,234,0.6);
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+        
+        [data-theme="dark"] .theme-toggle {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            box-shadow: 0 4px 20px rgba(246,211,101,0.4);
+        }
+        
+        [data-theme="dark"] .theme-toggle:hover {
+            box-shadow: 0 6px 30px rgba(246,211,101,0.6);
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 600px) {
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -545,5 +695,56 @@ R_y(90°) 使得 Z轴 和 X轴 重合
         <p>组合导航课程 · 完整讲解版</p>
         <p>哈尔滨工程大学 智能学院 | 张勇刚、李宁</p>
     </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span id="themeIcon">🌙</span>
+    </button>
+    
+    <script>
+    (function() {
+        const toggle = document.getElementById('themeToggle');
+        const icon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        // Check saved preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+            html.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
+        }
+        
+        // Toggle function
+        toggle.addEventListener('click', function() {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.textContent = '🌙';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.textContent = '☀️';
+            }
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    html.setAttribute('data-theme', 'dark');
+                    icon.textContent = '☀️';
+                } else {
+                    html.removeAttribute('data-theme');
+                    icon.textContent = '🌙';
+                }
+            }
+        });
+    })();
+    </script>
+
 </body>
 </html>
