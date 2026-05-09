@@ -447,7 +447,7 @@
 <body>
     <!-- 章节导航（可横向滚动） -->
     <nav class="toc-bar">
-        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a>
+        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a>
     </nav>
 
     <!-- 主内容 -->
@@ -689,8 +689,1642 @@ R_y(90°) 使得 Z轴 和 X轴 重合
         </div>
     </section>
     
+    <section class="chapter" id="chapter-7">
+        <div class="chapter-header" style="border-left-color:#E53E3E; background:linear-gradient(135deg, #E53E3E11 0%, #E53E3E05 100%)">
+            <h2 style="color:#E53E3E">&#x1F4DD; 基础概念与应试指南（全12讲）</h2>
+        </div>
+        <div class="chapter-body">
+            <header id="title-block-header">
+<h1 class="title">基础概念与应试指南</h1>
+</header>
+<h1 id="组合导航基础概念与应试指南第1-3讲">组合导航基础概念与应试指南（第1-3讲）</h1>
+<hr />
+<h2 id="一基础概念词典">一、基础概念词典</h2>
+<hr />
+<h3 id="第1讲-绪论">第1讲 绪论</h3>
+<hr />
+<h4 id="导航的定义">1.1 导航的定义</h4>
+<ul>
+<li><strong>定义</strong>：导航是以某种手段或方式引导航行体安全、准确、经济、便捷地在既定的时间内，按照既定的航行路线，准时地到达目的地的过程。导航要实时、连续地给出载体的位置、速度、姿态角、加速度等导航参数。</li>
+<li><strong>PPT页码</strong>：第5页</li>
+<li><strong>应试重点</strong>：导航的定义是考试高频考点，常以名词解释或简答题形式出现。需重点记忆导航的目的（“在哪里？到哪里去？怎么去？”）以及导航需要实时、连续给出的参数类型（位置、速度、姿态角、加速度）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是导航？导航需要实时、连续地给出哪些参数？ &gt; <strong>答案</strong>：导航是以某种手段或方式引导航行体安全、准确、经济、便捷地在既定时间内按照既定航行路线准时到达目的地的过程。导航需要实时、连续地给出载体的位置、速度、姿态角、加速度等导航参数。</li>
+<li><strong>（简答题）</strong> 导航的基本目的是什么？ &gt; <strong>答案</strong>：导航的基本目的是回答三个问题：“在哪里？到哪里去？怎么去？”，即确定载体当前位置，确定目标位置，并规划到达目标的路线。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="导航系统的分类">1.2 导航系统的分类</h4>
+<ul>
+<li><strong>定义</strong>：常见的导航系统可分为以下几大类：无线电导航、卫星导航、地文导航、天文导航、数据库参考导航、推位导航、惯性导航，以及由多种导航系统组合而成的组合导航系统。</li>
+<li><strong>PPT页码</strong>：第6页</li>
+<li><strong>应试重点</strong>：常以选择题或分类列举题考查。需记住各类导航系统的名称及其所属大类。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（选择题）</strong> 以下哪项不属于常见导航系统？ A. 无线电导航 B. 卫星导航 C. 超声波导航 D. 惯性导航 &gt; <strong>答案</strong>：C</li>
+<li><strong>（简答题）</strong> 列举至少6种常见的导航系统。 &gt; <strong>答案</strong>：无线电导航、卫星导航、地文导航、天文导航、数据库参考导航、推位导航、惯性导航、组合导航系统。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="组合导航系统">1.3 组合导航系统</h4>
+<ul>
+<li><strong>定义</strong>：组合导航系统是通过对两种或多种导航系统测量或输出信息进行综合处理（应用卡尔曼滤波等数据处理技术），获得更高的导航精度和可靠性，集各个子系统的优点于一身的导航系统。其目的是获得更好的精度、可靠性等。</li>
+<li><strong>PPT页码</strong>：第8页</li>
+<li><strong>应试重点</strong>：组合导航是课程核心主题，几乎必考。重点掌握组合导航的定义、目的、常见组合方式以及三大特点。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是组合导航系统？其目的是什么？ &gt; <strong>答案</strong>：组合导航系统是通过对两种或多种导航系统测量或输出信息进行综合处理（应用卡尔曼滤波等数据处理技术），获得更高的导航精度和可靠性，集各个子系统的优点于一身的导航系统。其目的是获得更好的精度、可靠性等。</li>
+<li><strong>（简答题）</strong> 列举至少3种常见的组合导航方式。 &gt; <strong>答案</strong>：推位/卫星组合导航系统、惯导/卫星组合导航系统、惯导/多普勒组合导航系统、惯导/重力组合导航系统、惯导/卫星/天文组合导航系统等。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="组合导航系统的三大特点">1.4 组合导航系统的三大特点</h4>
+<ul>
+<li><strong>定义</strong>：组合导航系统具有三大特点：（1）<strong>协合超越</strong>：利用各子系统的导航信息并作有机处理，形成单个子系统不具备的功能和精度；（2）<strong>性能互补</strong>：综合利用各子系统的信息，使各子系统取长补短，提高适用范围；（3）<strong>互为余度</strong>：各子系统观测同一信息源，测量冗余，增加了导航系统的可靠性。</li>
+<li><strong>PPT页码</strong>：第10页</li>
+<li><strong>应试重点</strong>：高频考点，常以简答题或论述题形式考查。需准确理解并能用自己的话阐述三个特点的含义。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 简述组合导航系统的三大特点。 &gt; <strong>答案</strong>：（1）协合超越：利用各子系统的导航信息并作有机处理，形成单个子系统不具备的功能和精度；（2）性能互补：综合利用各子系统的信息，使各子系统取长补短，提高适用范围；（3）互为余度：各子系统观测同一信息源，测量冗余，增加了导航系统的可靠性。</li>
+<li><strong>（概念题）</strong> 什么是“互为余度”？ &gt; <strong>答案</strong>：互为余度是指各子系统观测同一信息源，测量冗余，增加了导航系统的可靠性。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="组合导航的基本思想">1.5 组合导航的基本思想</h4>
+<ul>
+<li><strong>定义</strong>：组合导航的基本思想是：（1）将惯性导航系统的输出信号与独立测量的由其它导航系统导出的相同的量进行比较；（2）通过卡尔曼滤波器或其他滤波方法给出对导航参数或导航参数误差的实时估计；（3）通过适当的校正方式，对惯性导航系统进行修正，从而获得比单独惯性系统更高的导航精度。</li>
+<li><strong>PPT页码</strong>：第11页</li>
+<li><strong>应试重点</strong>：重点理解组合导航以惯性导航为核心，通过与其他导航系统的信息比较和滤波修正来提高精度。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 简述组合导航的基本思想。 &gt; <strong>答案</strong>：（1）将惯性导航系统的输出信号与其它导航系统导出的相同量进行比较；（2）通过卡尔曼滤波器等给出导航参数或误差的实时估计；（3）通过校正方式对惯性导航系统进行修正，获得更高导航精度。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="惯性坐标系i系">1.6 惯性坐标系（i系）</h4>
+<ul>
+<li><strong>定义</strong>：相对恒星所确定的参考系称为惯性空间，相对惯性空间静止或作匀速直线运动的参考坐标系称为惯性坐标系。地心惯性坐标系原点取在地心，Z轴与地球自转轴一致，X轴在赤道平面内指向春分点，Y轴在赤道平面内与X、Z构成右手直角坐标系。地心惯性坐标系不参与地球的自转运动，其三根坐标轴在惯性空间的方向保持不变。</li>
+<li><strong>PPT页码</strong>：第18页</li>
+<li><strong>应试重点</strong>：常以名词解释或坐标系辨析题考查。需注意地心惯性坐标系不参与地球自转。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是惯性坐标系？地心惯性坐标系的坐标轴有何特点？ &gt; <strong>答案</strong>：惯性坐标系是相对惯性空间静止或作匀速直线运动的参考坐标系。地心惯性坐标系原点在地心，Z轴与地球自转轴一致，X轴指向春分点，Y轴与X、Z构成右手系。其三根坐标轴在惯性空间的方向保持不变，不参与地球自转。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="地球坐标系e系">1.7 地球坐标系（e系）</h4>
+<ul>
+<li><strong>定义</strong>：原点取在地心，Ze轴沿极轴（地轴）方向，Xe轴在赤道平面与本初子午面的交线上，Ye轴也在赤道平面内并与Xe、Ze轴构成右手直角坐标系。地球坐标系随地球自转而变化。</li>
+<li><strong>PPT页码</strong>：第19页</li>
+<li><strong>应试重点</strong>：注意地球坐标系与惯性坐标系的区别——地球坐标系随地球自转而变化。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 简述地球坐标系的定义及其与惯性坐标系的主要区别。 &gt; <strong>答案</strong>：地球坐标系原点在地心，Ze轴沿地轴方向，Xe轴在赤道平面与本初子午面交线上，Ye轴与Xe、Ze构成右手系。与惯性坐标系的主要区别是：地球坐标系随地球自转而变化，而惯性坐标系不参与地球自转。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="地理坐标系t系最常用的导航坐标系n">1.8 地理坐标系（t系，最常用的导航坐标系n）</h4>
+<ul>
+<li><strong>定义</strong>：原点位于运载体所在的点，Xt轴沿当地纬线指东，Yt轴沿当地子午线指北，Zt轴垂直于Xt、Yt轴构成的平面（即当地水平面），构成右手直角坐标系。地理坐标系随地球自转、载体运动而变化。</li>
+<li><strong>PPT页码</strong>：第20页</li>
+<li><strong>应试重点</strong>：地理坐标系是最常用的导航坐标系（n系），常以坐标系定义题考查。注意“东-北-天”的坐标轴方向。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是地理坐标系？其三个坐标轴分别指向什么方向？ &gt; <strong>答案</strong>：地理坐标系原点位于载体所在点，Xt轴沿当地纬线指东，Yt轴沿当地子午线指北，Zt轴垂直于当地水平面指天，构成右手直角坐标系。它是导航中最常用的导航坐标系（n系）。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="载体坐标系b系">1.9 载体坐标系（b系）</h4>
+<ul>
+<li><strong>定义</strong>：原点在载体质心，zb轴垂直于甲板，yb轴沿载体纵轴，xb轴沿载体横轴，构成右手直角坐标系。载体姿态即为载体坐标系相对于地理坐标系角位移关系，用航向角（方位角）、俯仰角（纵摇角）和横滚角（横摇角）三个角度描述。</li>
+<li><strong>PPT页码</strong>：第21页</li>
+<li><strong>应试重点</strong>：载体坐标系与姿态角的定义紧密相关，需明确三个坐标轴的方向以及三个姿态角的名称。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 载体坐标系的三个坐标轴分别指向什么方向？载体姿态用什么来描述？ &gt; <strong>答案</strong>：载体坐标系原点在载体质心，zb轴垂直于甲板，yb轴沿载体纵轴，xb轴沿载体横轴。载体姿态用航向角（方位角）、俯仰角（纵摇角）和横滚角（横摇角）三个角度来描述。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="平台坐标系p系">1.10 平台坐标系（p系）</h4>
+<ul>
+<li><strong>定义</strong>：在平台式惯性导航系统里，惯性元件陀螺仪和加速度计安装在与运载体姿态运动相隔离的平台上，原点在平台质心，zp轴垂直于平台台面，yp轴指向平台北，xp轴指向平台东，构成右手坐标系。</li>
+<li><strong>PPT页码</strong>：第22页</li>
+<li><strong>应试重点</strong>：注意平台坐标系与地理坐标系的区别——理想情况下二者一致，但实际中平台坐标系可能有误差。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（思考题）</strong> 平台坐标系和地理坐标系一致吗？为什么？ &gt; <strong>答案</strong>：理想情况下平台坐标系与地理坐标系一致，但实际中由于平台存在误差，二者可能不完全一致。平台坐标系是物理平台所建立的坐标系，而地理坐标系是理想的导航参考坐标系。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="导航参数">1.11 导航参数</h4>
+<ul>
+<li><strong>定义</strong>：导航参数包括四类：（1）<strong>载体位置</strong>：由地球坐标系原点指向载体坐标系原点的三维矢量在地球坐标系下的投影，通常用大地坐标（纬度<span class="math inline">\(L\)</span>、经度<span class="math inline">\(\lambda\)</span>和高度<span class="math inline">\(h\)</span>）来表示；（2）<strong>载体速度</strong>：三维位置矢量相对于地球坐标系的变化率在导航坐标系下的坐标；（3）<strong>载体加速度</strong>：三维速度矢量相对于导航坐标系的变化率在导航坐标系下的坐标；（4）<strong>载体姿态</strong>：载体坐标系与导航坐标系的相对角位移关系，包括航向角、俯仰角和横滚角。</li>
+<li><strong>PPT页码</strong>：第23页</li>
+<li><strong>应试重点</strong>：导航参数的定义和分类是基础考点，需明确四类参数各自的含义。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 导航参数包括哪四类？分别是什么含义？ &gt; <strong>答案</strong>：（1）载体位置：用大地坐标（纬度、经度、高度）表示；（2）载体速度：位置矢量相对于地球坐标系的变化率在导航系下的坐标；（3）载体加速度：速度矢量相对于导航坐标系的变化率在导航系下的坐标；（4）载体姿态：载体坐标系与导航坐标系的相对角位移关系，包括航向角、俯仰角和横滚角。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="方向余弦矩阵坐标变换矩阵">1.12 方向余弦矩阵（坐标变换矩阵）</h4>
+<ul>
+<li><strong>定义</strong>：将两个坐标系各坐标轴之间的九个方向余弦组成一个<span class="math inline">\(3 \times 3\)</span>阶矩阵<span class="math inline">\(C_r^0\)</span>或<span class="math inline">\(C_0^r\)</span>，称为方向余弦矩阵（又称坐标变换矩阵）。利用方向余弦矩阵可以在两个坐标系之间进行坐标变换。方向余弦矩阵是正交矩阵，其转置矩阵等于逆矩阵。</li>
+<li><strong>PPT页码</strong>：第25-31页</li>
+<li><strong>应试重点</strong>：方向余弦矩阵的性质（正交性、互为转置、互为逆矩阵）是高频考点。九个方向余弦之间存在六个约束条件，只有三个独立。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 方向余弦矩阵有哪些重要性质？ &gt; <strong>答案</strong>：（1）两个方向余弦矩阵互为转置矩阵：<span class="math inline">\(C_0^r = (C_r^0)^T\)</span>；（2）两个方向余弦矩阵互为逆矩阵：<span class="math inline">\((C_0^r)^{-1} = C_r^0\)</span>；（3）方向余弦矩阵的转置矩阵与逆矩阵相等：<span class="math inline">\((C_0^r)^T = (C_0^r)^{-1}\)</span>，即<span class="math inline">\(C_0^r \cdot C_r^0 = I\)</span>。</li>
+<li><strong>（概念题）</strong> 九个方向余弦中有几个是独立的？为什么？ &gt; <strong>答案</strong>：九个方向余弦中只有三个是独立的。因为九个方向余弦之间存在六个约束条件（三行各自平方和为1，共三个；不同行之间对应元素乘积之和为0，共三个），所以只有三个独立。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="欧拉角法">1.13 欧拉角法</h4>
+<ul>
+<li><strong>定义</strong>：刚体坐标系相对参考坐标系的角位置，可以用三次独立转动的三个转角来表示，这三个独立的转角称为欧拉角。第一次旋转可绕任一轴进行，第二次旋转绕其余两轴中任一轴，第三次旋转绕除第二次外任一轴。三次旋转对应的旋转矩阵相乘，即可得到总的坐标变换矩阵。</li>
+<li><strong>PPT页码</strong>：第33-37页</li>
+<li><strong>应试重点</strong>：欧拉角法是坐标系变换的重要方法，需掌握三次旋转的基本概念以及旋转矩阵的乘法顺序。注意旋转顺序不可交换。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 什么是欧拉角？如何用欧拉角表示两个坐标系之间的变换关系？ &gt; <strong>答案</strong>：欧拉角是描述刚体坐标系相对参考坐标系角位置的三个独立转角。通过三次独立旋转（每次绕不同轴），将参考坐标系旋转到与刚体坐标系一致，三次旋转对应的旋转矩阵依次相乘，即可得到总的坐标变换矩阵<span class="math inline">\(C_0^r = C_a^r \cdot C_b^a \cdot C_0^b\)</span>。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第2讲-常见导航系统基本原理">第2讲 常见导航系统基本原理</h3>
+<hr />
+<h4 id="数据库参考导航dbrn">2.1 数据库参考导航（DBRN）</h4>
+<ul>
+<li><strong>定义</strong>：数据库参考导航利用预先测量的数据库或地图作为参考，与传感器测量信息进行比较和匹配来确定位置。其前提条件是地球的陆地上或海床上的每个点有独一无二的三维位置（经度、纬度和高度/深度），以及独一无二的磁力和重力度量值。其三大要素为：数据库（预先测量）、测量仪器（实时测量）、匹配算法（匹配定位）。</li>
+<li><strong>PPT页码</strong>：第3-4页</li>
+<li><strong>应试重点</strong>：需掌握DBRN的基本原理和三大要素。常见的DBRN包括地磁导航、重力导航和地形导航。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是数据库参考导航？其三大要素是什么？ &gt; <strong>答案</strong>：数据库参考导航利用预先测量的数据库或地图作为参考，与传感器测量信息进行比较和匹配来确定位置。三大要素为：数据库（预先测量）、测量仪器（实时测量）、匹配算法（匹配定位）。</li>
+<li><strong>（简答题）</strong> 数据库参考导航有哪些常见类型？其特点是什么？ &gt; <strong>答案</strong>：常见类型包括地磁导航、重力导航和地形导航。特点是：由于可获取的各种数据资源的条件限制，往往不能为航行体提供全程连续导航，所以通常和其他导航系统结合使用。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="推位导航dr-dead-reckoning">2.2 推位导航（DR, Dead Reckoning）</h4>
+<ul>
+<li><strong>定义</strong>：推位导航的基本原理是起始时刻的位置已知，速度的大小和方向可通过测量得到，则下一时刻的位置可通过计算得到。根据罗经的航向、计程仪速度，以及风、流要素等进行航迹绘算，求出船位的导航方法。</li>
+<li><strong>PPT页码</strong>：第6-10页</li>
+<li><strong>应试重点</strong>：推位导航的原理和特点是重要考点。需掌握其基本计算公式以及“误差随时间累积”这一关键缺点。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是推位导航？其基本原理是什么？ &gt; <strong>答案</strong>：推位导航是起始时刻位置已知，通过测量速度大小和方向，计算下一时刻位置的导航方法。其基本原理是根据罗经航向、计程仪速度以及风、流要素等进行航迹绘算求出船位。</li>
+<li><strong>（简答题）</strong> 推位导航有哪些特点和缺点？ &gt; <strong>答案</strong>：特点：原理简单，可实现连续定位并给出航迹，可以估计未来某时刻的位置。缺点：受风、流等影响；误差随时间累积。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="惯性导航ins">2.3 惯性导航（INS）</h4>
+<ul>
+<li><strong>定义</strong>：惯性导航是根据牛顿提出的相对惯性空间的力学定律，利用陀螺仪、加速度计等惯性元件感受运行体在运动过程中的加速度，然后通过计算机进行积分运算，从而得到运动体的位置与速度等导航参数。惯性导航是完全不依赖于外部声、光、电、磁传播信号的自主式导航定位手段，不受地域限制，不受自然和人为的干扰和影响，无论太空、地面、地下、水面、水下都能全天候可靠工作。</li>
+<li><strong>PPT页码</strong>：第12-17页</li>
+<li><strong>应试重点</strong>：惯性导航是课程的核心内容，必考。需重点掌握其基本原理（加速度积分得速度，速度积分得位置）、核心元器件（陀螺仪和加速度计）、优点（自主式、不受外界干扰、隐蔽性好、能测姿态）和缺点（误差随时间积累、成本高）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 简述惯性导航的基本原理。 &gt; <strong>答案</strong>：根据牛顿力学定律，利用陀螺仪和加速度计等惯性元件感受载体的加速度，通过计算机积分运算，一次积分得到速度，再一次积分得到位置，从而获得导航参数。</li>
+<li><strong>（简答题）</strong> 惯性导航系统的优点和缺点各是什么？ &gt; <strong>答案</strong>：优点：（1）自主式导航系统，不依赖外部信息；（2）不受外界干扰；（3）不向外辐射能量，隐蔽性好；（4）能同时测量姿态角。缺点：（1）位置由加速度经二次积分获得，误差随时间积累；（2）对惯性元件精度要求高，系统成本高。</li>
+<li><strong>（概念题）</strong> 惯性导航系统的基本组成元件是什么？ &gt; <strong>答案</strong>：惯性导航系统的基本组成元件为陀螺仪和加速度计。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="地文导航terrestrial-navigation">2.4 地文导航（Terrestrial Navigation）</h4>
+<ul>
+<li><strong>定义</strong>：地文导航又称为陆标定位，是通过观测陆标与载体之间的某种相互位置关系进行定位的方法。陆标是指地图上标有准确位置可供目视或雷达观测的固定物标（如山头、岛屿、灯塔等）。利用罗经、测距仪和六分仪等观测仪器，观测陆标的方位、距离和水平角，按一定法则确定船位。定位原理是：在同一时刻测得两条或两条以上的船位线，它们的交点即为观测时的船位。</li>
+<li><strong>PPT页码</strong>：第19-23页</li>
+<li><strong>应试重点</strong>：需掌握地文导航的基本原理（船位线交叉定位）和特点。船位线（位置线）的三种类型：方位船位线、距离船位线和水平角船位线。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是地文导航？其定位原理是什么？ &gt; <strong>答案</strong>：地文导航是通过观测陆标与载体之间的位置关系进行定位的方法。定位原理是在同一时刻测得两条或两条以上的船位线，它们的交点即为观测时的船位。</li>
+<li><strong>（简答题）</strong> 地文导航有哪些特点？ &gt; <strong>答案</strong>：简单、可靠；但受气象条件影响严重，能见度低时很难测到目标；在无物标的大海、沙漠中利用困难。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="无线电导航radio-navigation">2.5 无线电导航（Radio Navigation）</h4>
+<ul>
+<li><strong>定义</strong>：无线电导航利用无线电波的三个基本特性（直线传播、恒速传播、反射性）来实现导航定位。主要有三种方法：测量方位法（测向法）、测量距离法（测距法）和测量距离差法（双曲线法）。</li>
+<li><strong>PPT页码</strong>：第25-29页</li>
+<li><strong>应试重点</strong>：需掌握无线电导航的三种基本方法及其原理，特别是双曲线定位的原理。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 无线电导航利用了无线电波的哪些基本特性？有哪三种主要方法？ &gt; <strong>答案</strong>：利用了三个基本特性：（1）直线传播；（2）恒速传播（速度为常数）；（3）反射性。三种主要方法：测量方位法、测量距离法、测量距离差法。</li>
+<li><strong>（概念题）</strong> 简述无线电导航中测距离差法的基本原理。 &gt; <strong>答案</strong>：根据载体与两个无线电发射台的距离之差为常数，确定载体所处的位置线——以导航台为焦点的双曲线，再由不同导航台测出两条或两条以上的位置线，从而确定载体位置。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="卫星导航satellite-navigation">2.6 卫星导航（Satellite Navigation）</h4>
+<ul>
+<li><strong>定义</strong>：卫星定位系统利用在空间飞行的卫星不断向地面广播发送某种频率并加载了特殊定位信息的无线电信号来实现定位测量。通过测量GPS卫星发射的测距码信号到达用户接收机天线的电波传播时间（伪距观测量），利用至少4颗卫星的观测信息求解载体位置。</li>
+<li><strong>PPT页码</strong>：第31-33页</li>
+<li><strong>应试重点</strong>：卫星导航的优缺点是重要考点。注意其无法实现水下导航、战时易受干扰的缺点。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 卫星导航系统的优点和缺点各是什么？ &gt; <strong>答案</strong>：优点：（1）全球性连续覆盖，全天候工作，可提供连续、实时、高精度的三维位置、三维速度和时间信息；（2）定位精度高，观测时间短；（3）功能多，用途广。缺点：无法实现水下导航，且战时易受干扰。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="天文导航celestial-navigation">2.7 天文导航（Celestial Navigation）</h4>
+<ul>
+<li><strong>定义</strong>：天文导航是根据天上星座的运行规律对地面目标进行定位的方法。通过观测星体相对地球的位置参数（如仰角）以及观测时间，即可确定观测者在地球上的位置。天文船位圆法是天文导航的核心原理：每测量一个天体的高度和顶距，必位于以该天体投影点为圆心、以顶距为半径的等高圆上。观测两个天体可得两个等高圆，其交点之一即为测者位置（双星定位原理）。</li>
+<li><strong>PPT页码</strong>：第35-38页</li>
+<li><strong>应试重点</strong>：天文船位圆原理和双星定位原理是重要考点。需掌握天文导航的优缺点。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是天文船位圆原理？ &gt; <strong>答案</strong>：每测量一个天体的高度和顶距时，测者必位于以该天体投影点为圆心、以顶距为半径的等高圆（天文船位圆）上。观测两个天体得到两个等高圆，其交点之一（靠近推算船位的）即为测者位置，这就是天文船位圆原理。</li>
+<li><strong>（简答题）</strong> 天文导航系统的优点和缺点各是什么？ &gt; <strong>答案</strong>：优点：（1）自主式系统，不需要其他地面设备；（2）不受电磁场干扰；（3）不向外辐射电磁波，隐蔽性好；（4）定向、定位精度高，定位误差不随时间累积。缺点：受天气影响；只能定位，无法测姿；需要水平平台作观测平台。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第3讲-惯导系统基本原理">第3讲 惯导系统基本原理</h3>
+<hr />
+<h4 id="惯性导航基本原理积分关系">3.1 惯性导航基本原理（积分关系）</h4>
+<ul>
+<li><strong>定义</strong>：惯性导航以牛顿力学定律为基础，利用一组加速度计连续测量运动载体在某一选定导航坐标系下的加速度信息，一次积分得到载体的即时速度，再一次积分得到位置。基本关系为：<span class="math inline">\(\dot{V} = a\)</span>，<span class="math inline">\(\dot{S} = V\)</span>，即<span class="math inline">\(V = V_0 + \int_0^t a \, dt\)</span>，<span class="math inline">\(S = S_0 + \int_0^t V \, dt\)</span>。</li>
+<li><strong>PPT页码</strong>：第3页、第8页</li>
+<li><strong>应试重点</strong>：加速度-速度-位置的积分关系是惯导最基本的原理，必考。需能写出积分公式并理解其物理意义。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出惯性导航中加速度、速度和位置之间的基本关系式。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{V} = a\)</span>，<span class="math inline">\(\dot{S} = V\)</span>，因此 <span class="math inline">\(V(t) = V_0 + \int_0^t a \, dt\)</span>，<span class="math inline">\(S(t) = S_0 + \int_0^t V \, dt\)</span>。即对加速度一次积分得速度，对速度一次积分得位置。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="平台式惯导系统与捷联式惯导系统">3.2 平台式惯导系统与捷联式惯导系统</h4>
+<ul>
+<li><strong>定义</strong>：惯导系统按平台类型划分为两类。<strong>平台式惯导系统</strong>：物理平台，加速度计和陀螺仪安装在稳定平台上，平台能够直接建立导航坐标系。<strong>捷联式惯导系统</strong>：数学平台，加速度计和陀螺仪直接安装在运载体上，通过数学计算（姿态矩阵）来等效实现平台功能。</li>
+<li><strong>PPT页码</strong>：第4页、第11-13页</li>
+<li><strong>应试重点</strong>：两种系统的对比是高频考点。需从结构、工作条件、精度、计算复杂度等方面进行对比。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（对比题）</strong> 比较平台式惯导系统和捷联式惯导系统的优缺点。 &gt; <strong>答案</strong>：平台式惯导系统：结构复杂、尺寸大、价格昂贵；但惯性平台能隔离载体角振动，为惯性仪表提供较好工作条件；平台直接建立导航坐标系，计算方便。捷联式惯导系统：省去物理平台，结构简单、体积小、维护方便、初始对准快、应用更广泛；但陀螺仪和加速度计直接安装在载体上，工作条件不好，影响测量精度；需要通过数学计算导航坐标系。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="惯导系统的分类">3.3 惯导系统的分类</h4>
+<ul>
+<li><strong>定义</strong>：平台式惯导系统可分为空间稳定惯导系统（惯性平台稳定在惯性坐标系内，又称解析式惯导系统）和当地水平惯导系统。当地水平惯导系统又可分为固定指北惯导系统（平台跟踪地理坐标系）、游动方位惯导系统（平台水平轴稳定在水平面内，方位不加控制）和自由方位惯导系统（平台水平轴稳定在水平面内，方位利用<span class="math inline">\(\omega_{ie}\sin L\)</span>控制）。</li>
+<li><strong>PPT页码</strong>：第5页</li>
+<li><strong>应试重点</strong>：需掌握惯导系统的分类层次结构，特别是当地水平惯导系统的三种类型。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 平台式惯导系统可分为哪几类？ &gt; <strong>答案</strong>：平台式惯导系统可分为：（1）空间稳定惯导系统（解析式），平台稳定在惯性系内；（2）当地水平惯导系统，又分为固定指北、游动方位和自由方位三种。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="惯导系统基本原理涉及的四大问题">3.4 惯导系统基本原理涉及的四大问题</h4>
+<ul>
+<li><strong>定义</strong>：惯导系统基本原理涉及四个核心问题：（1）如何获得载体相对运动的加速度？——比力方程；（2）如何获得加速度在导航坐标系下的投影？——导航坐标系的旋转；（3）有了导航坐标系下加速度，如何求速度和位置？——惯导系统计算方程；（4）如何获得载体的姿态？——姿态矩阵定义与更新。</li>
+<li><strong>PPT页码</strong>：第10页、第15页</li>
+<li><strong>应试重点</strong>：这四个问题是整个惯导部分的框架，考试中常以综述题或框架题出现。需准确对应每个问题及其解决方案。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 惯导系统基本原理涉及哪四大问题？分别如何解决？ &gt; <strong>答案</strong>：（1）如何获得载体相对运动的加速度？——比力方程；（2）如何获得加速度在导航坐标系下的投影？——导航坐标系的旋转（<span class="math inline">\(\omega_{in}\)</span>）；（3）如何求速度和位置？——惯导系统计算方程；（4）如何获得载体姿态？——姿态矩阵定义与更新。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="导航坐标系相对惯性坐标系的旋转角速度-omega_in">3.5 导航坐标系相对惯性坐标系的旋转角速度 <span class="math inline">\(\omega_{in}\)</span></h4>
+<ul>
+<li><strong>定义</strong>：导航坐标系相对惯性坐标系的旋转角速度<span class="math inline">\(\omega_{in}\)</span>由两部分组成：<span class="math inline">\(\omega_{in} = \omega_{ie} + \omega_{en}\)</span>。其中<span class="math inline">\(\omega_{ie}\)</span>是地球自转引起的（地球坐标系相对惯性坐标系的旋转），<span class="math inline">\(\omega_{en}\)</span>是载体运动引起的（导航坐标系相对地球坐标系的旋转）。</li>
+<li><strong>PPT页码</strong>：第18页</li>
+<li><strong>应试重点</strong>：<span class="math inline">\(\omega_{in}\)</span>的分解是重要考点。需掌握<span class="math inline">\(\omega_{ie}\)</span>和<span class="math inline">\(\omega_{en}\)</span>在导航坐标系中的投影表达式。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 导航坐标系相对惯性坐标系的旋转角速度<span class="math inline">\(\omega_{in}\)</span>由哪两部分组成？分别是什么原因引起的？ &gt; <strong>答案</strong>：<span class="math inline">\(\omega_{in} = \omega_{ie} + \omega_{en}\)</span>。<span class="math inline">\(\omega_{ie}\)</span>是地球自转引起的（地球坐标系相对惯性坐标系的旋转），<span class="math inline">\(\omega_{en}\)</span>是载体运动引起的（导航坐标系相对地球坐标系的旋转）。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="地球自转角速度在导航坐标系的投影-omega_ien">3.6 地球自转角速度在导航坐标系的投影 <span class="math inline">\(\omega_{ie}^n\)</span></h4>
+<ul>
+<li><strong>定义</strong>：地球自转角速度<span class="math inline">\(\omega_{ie}\)</span>沿极轴方向，投影到导航坐标系（地理坐标系）的三个轴上为： <span class="math display">\[\omega_{ie}^n = \begin{bmatrix} 0 \\ \omega_{ie}\cos L \\ \omega_{ie}\sin L \end{bmatrix}\]</span> 其中<span class="math inline">\(L\)</span>为当地纬度。</li>
+<li><strong>PPT页码</strong>：第19页</li>
+<li><strong>应试重点</strong>：需记住<span class="math inline">\(\omega_{ie}^n\)</span>的三个分量表达式，特别是东向分量为0，北向分量为<span class="math inline">\(\omega_{ie}\cos L\)</span>，天向分量为<span class="math inline">\(\omega_{ie}\sin L\)</span>。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（计算题）</strong> 写出地球自转角速度在导航坐标系中的投影表达式，并说明各分量的物理意义。 &gt; <strong>答案</strong>：<span class="math inline">\(\omega_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span>。东向分量为0（地球自转轴在子午面内，无东向分量），北向分量为<span class="math inline">\(\omega_{ie}\cos L\)</span>（自转角速度在水平面的投影），天向分量为<span class="math inline">\(\omega_{ie}\sin L\)</span>（自转角速度在天向的投影）。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="载体运动引起的角速度-omega_enn">3.7 载体运动引起的角速度 <span class="math inline">\(\omega_{en}^n\)</span></h4>
+<ul>
+<li><strong>定义</strong>：载体运动引起的导航坐标系相对地球坐标系的角速度在导航坐标系中的投影为： <span class="math display">\[\omega_{en}^n = \begin{bmatrix} -\frac{V_N}{R_M+h} \\ \frac{V_E}{R_N+h} \\ \frac{V_E}{R_N+h}\tan L \end{bmatrix}\]</span> 其中<span class="math inline">\(V_E\)</span>为东向速度，<span class="math inline">\(V_N\)</span>为北向速度，<span class="math inline">\(R_M\)</span>为子午圈曲率半径，<span class="math inline">\(R_N\)</span>为卯酉圈曲率半径，<span class="math inline">\(h\)</span>为高度，<span class="math inline">\(L\)</span>为纬度。</li>
+<li><strong>PPT页码</strong>：第20-21页</li>
+<li><strong>应试重点</strong>：需理解每个分量的物理含义：北向速度引起绕x轴（负向）的旋转（纬度变化），东向速度引起绕y轴的旋转和绕极轴的旋转（经度变化）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（简答题）</strong> 载体运动引起的<span class="math inline">\(\omega_{en}^n\)</span>的三个分量分别由什么速度引起？物理含义是什么？ &gt; <strong>答案</strong>：x轴分量<span class="math inline">\(-V_N/(R_M+h)\)</span>由北向速度引起，表示纬度变化导致的绕x轴负向旋转；y轴分量<span class="math inline">\(V_E/(R_N+h)\)</span>由东向速度引起，表示经度变化导致的绕y轴旋转；z轴分量<span class="math inline">\(V_E\tan L/(R_N+h)\)</span>由东向速度引起，表示经度变化导致的绕极轴旋转在导航系z轴的投影。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="导航坐标系旋转角速度的完整表达式-omega_inn">3.8 导航坐标系旋转角速度的完整表达式 <span class="math inline">\(\omega_{in}^n\)</span></h4>
+<ul>
+<li><strong>定义</strong>：将<span class="math inline">\(\omega_{ie}^n\)</span>和<span class="math inline">\(\omega_{en}^n\)</span>相加，得到导航坐标系相对惯性坐标系的旋转角速度在导航坐标系中的完整投影： <span class="math display">\[\omega_{in}^n = \begin{bmatrix} -\frac{V_N}{R_M+h} \\ \omega_{ie}\cos L + \frac{V_E}{R_N+h} \\ \omega_{ie}\sin L + \frac{V_E}{R_N+h}\tan L \end{bmatrix}\]</span></li>
+<li><strong>PPT页码</strong>：第22页</li>
+<li><strong>应试重点</strong>：这是平台式和捷联式惯导系统中控制平台/计算姿态矩阵的关键量，考试中常要求写出完整表达式。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 推导<span class="math inline">\(\omega_{in}^n\)</span>的完整表达式。 &gt; <strong>答案</strong>：<span class="math inline">\(\omega_{in}^n = \omega_{ie}^n + \omega_{en}^n\)</span>，将<span class="math inline">\(\omega_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span>和<span class="math inline">\(\omega_{en}^n = [-V_N/(R_M+h), V_E/(R_N+h), V_E\tan L/(R_N+h)]^T\)</span>逐项相加即可得到完整表达式。</li>
+</ol></li>
+</ul>
+<hr />
+<h4 id="物理平台与数学平台">3.9 物理平台与数学平台</h4>
+<ul>
+<li><strong>定义</strong>：<strong>物理平台</strong>（平台式惯导系统）：加速度计和陀螺仪安装在稳定平台上，利用<span class="math inline">\(\omega_{in}\)</span>控制平台跟踪导航坐标系，此时沿平台坐标系正交放置的加速度计的输出即投影在导航坐标系上。<strong>数学平台</strong>（捷联式惯导系统）：加速度计和陀螺仪安装在运载体上，通过姿态矩阵<span class="math inline">\(C_b^n\)</span>把加速度计输出从载体系变换到导航坐标系（<span class="math inline">\(f^n = C_b^n f^b\)</span>），利用数学变换实现等效于物理平台的功能。</li>
+<li><strong>PPT页码</strong>：第16-17页、第23页</li>
+<li><strong>应试重点</strong>：物理平台和数学平台的概念对比是重要考点，需理解二者实现相同功能（将加速度投影到导航系）的不同方式。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（对比题）</strong> 平台式惯导系统和捷联式惯导系统分别如何将加速度计输出投影到导航坐标系？ &gt; <strong>答案</strong>：平台式惯导系统利用<span class="math inline">\(\omega_{in}\)</span>控制物理平台跟踪导航坐标系，加速度计直接安装在平台上，输出即为导航系下的加速度。捷联式惯导系统中加速度计安装在载体上，通过姿态矩阵<span class="math inline">\(C_b^n\)</span>将载体系下的加速度变换到导航系：<span class="math inline">\(f^n = C_b^n f^b\)</span>。</li>
+</ol></li>
+</ul>
+<hr />
+<h2 id="二核心公式速查卡">二、核心公式速查卡</h2>
+<h3 id="惯性导航基本积分关系">1. 惯性导航基本积分关系</h3>
+<p><span class="math display">\[V(t) = V_0 + \int_0^t a \, dt\]</span></p>
+<p><span class="math display">\[S(t) = S_0 + \int_0^t V \, dt\]</span></p>
+<h3 id="方向余弦矩阵性质">2. 方向余弦矩阵性质</h3>
+<p><span class="math display">\[C_0^r \cdot C_r^0 = I\]</span></p>
+<p><span class="math display">\[C_0^r = (C_r^0)^T = (C_r^0)^{-1}\]</span></p>
+<h3 id="欧拉角旋转矩阵">3. 欧拉角旋转矩阵</h3>
+<p>绕Z轴旋转<span class="math inline">\(\psi\)</span>： <span class="math display">\[C_\psi = \begin{bmatrix} \cos\psi &amp; \sin\psi &amp; 0 \\ -\sin\psi &amp; \cos\psi &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</span></p>
+<p>绕X轴旋转<span class="math inline">\(\theta\)</span>： <span class="math display">\[C_\theta = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; \cos\theta &amp; \sin\theta \\ 0 &amp; -\sin\theta &amp; \cos\theta \end{bmatrix}\]</span></p>
+<p>绕Y轴旋转<span class="math inline">\(\gamma\)</span>： <span class="math display">\[C_\gamma = \begin{bmatrix} \cos\gamma &amp; 0 &amp; -\sin\gamma \\ 0 &amp; 1 &amp; 0 \\ \sin\gamma &amp; 0 &amp; \cos\gamma \end{bmatrix}\]</span></p>
+<h3 id="导航坐标系旋转角速度">4. 导航坐标系旋转角速度</h3>
+<p><span class="math display">\[\omega_{in}^n = \omega_{ie}^n + \omega_{en}^n\]</span></p>
+<p>其中： <span class="math display">\[\omega_{ie}^n = \begin{bmatrix} 0 \\ \omega_{ie}\cos L \\ \omega_{ie}\sin L \end{bmatrix}, \quad \omega_{en}^n = \begin{bmatrix} -\frac{V_N}{R_M+h} \\ \frac{V_E}{R_N+h} \\ \frac{V_E}{R_N+h}\tan L \end{bmatrix}\]</span></p>
+<p>完整表达式： <span class="math display">\[\omega_{in}^n = \begin{bmatrix} -\frac{V_N}{R_M+h} \\ \omega_{ie}\cos L + \frac{V_E}{R_N+h} \\ \omega_{ie}\sin L + \frac{V_E}{R_N+h}\tan L \end{bmatrix}\]</span></p>
+<h3 id="推位导航位置计算">5. 推位导航位置计算</h3>
+<p><span class="math display">\[x_n = x_0 + \sum_{i=0}^{n-1} d_i \sin\theta_i\]</span></p>
+<p><span class="math display">\[y_n = y_0 + \sum_{i=0}^{n-1} d_i \cos\theta_i\]</span></p>
+<hr />
+<h2 id="三易错点汇总">三、易错点汇总</h2>
+<h3 id="坐标系方向混淆">1. 坐标系方向混淆</h3>
+<ul>
+<li><strong>易错点</strong>：地理坐标系（t系/n系）的三个轴方向是“东-北-天”（Xt指东，Yt指北，Zt指天），而非“北-东-天”。载体坐标系的yb轴沿载体纵轴（前方），xb轴沿载体横轴，zb轴垂直于甲板（向上）。</li>
+<li><strong>纠正</strong>：牢记“东-北-天”顺序，载体系“右-前-上”顺序。</li>
+</ul>
+<h3 id="惯性坐标系与地球坐标系的区别">2. 惯性坐标系与地球坐标系的区别</h3>
+<ul>
+<li><strong>易错点</strong>：容易混淆惯性坐标系和地球坐标系。惯性坐标系不参与地球自转，坐标轴方向在惯性空间保持不变；地球坐标系随地球自转而变化。</li>
+<li><strong>纠正</strong>：惯性系——不随地球转；地球系——随地球转。</li>
+</ul>
+<h3 id="方向余弦矩阵的转置与逆">3. 方向余弦矩阵的转置与逆</h3>
+<ul>
+<li><strong>易错点</strong>：方向余弦矩阵<span class="math inline">\(C_r^0\)</span>表示从0系到r系的变换，<span class="math inline">\(C_0^r\)</span>表示从r系到0系的变换。容易搞混上下标顺序。</li>
+<li><strong>纠正</strong>：<span class="math inline">\(C_r^0\)</span>中上标0是源坐标系，下标r是目标坐标系。<span class="math inline">\(C_0^r = (C_r^0)^T\)</span>。</li>
+</ul>
+<h3 id="omega_enn的x轴分量符号">4. <span class="math inline">\(\omega_{en}^n\)</span>的x轴分量符号</h3>
+<ul>
+<li><strong>易错点</strong>：<span class="math inline">\(\omega_{en}^n\)</span>的x轴分量为<span class="math inline">\(-V_N/(R_M+h)\)</span>，容易遗漏负号。北向速度引起的是绕x轴<strong>负向</strong>的旋转。</li>
+<li><strong>纠正</strong>：北向速度增大（向北走），纬度增大，地理坐标系绕x轴负向旋转。</li>
+</ul>
+<h3 id="欧拉角旋转顺序不可交换">5. 欧拉角旋转顺序不可交换</h3>
+<ul>
+<li><strong>易错点</strong>：三次旋转的矩阵乘法顺序不可交换。总的变换矩阵<span class="math inline">\(C_0^r = C_a^r \cdot C_b^a \cdot C_0^b\)</span>，旋转顺序不同结果不同。</li>
+<li><strong>纠正</strong>：矩阵乘法从右到左依次对应第一次、第二次、第三次旋转。</li>
+</ul>
+<h3 id="惯导误差累积特性">6. 惯导误差累积特性</h3>
+<ul>
+<li><strong>易错点</strong>：容易将惯性导航与卫星导航的误差特性混淆。惯性导航的误差随时间<strong>累积</strong>（因为位置是加速度的二次积分），而天文导航的误差<strong>不随时间累积</strong>。</li>
+<li><strong>纠正</strong>：惯导——误差随时间累积；天文导航——误差不随时间累积。</li>
+</ul>
+<h3 id="平台坐标系与地理坐标系的关系">7. 平台坐标系与地理坐标系的关系</h3>
+<ul>
+<li><strong>易错点</strong>：平台坐标系不一定与地理坐标系完全一致。理想情况下二者一致，但实际中平台存在误差角。</li>
+<li><strong>纠正</strong>：平台坐标系是物理平台建立的坐标系，地理坐标系是理想的导航参考系，二者在理想情况下一致。</li>
+</ul>
+<h3 id="omega_ien的东向分量为0">8. <span class="math inline">\(\omega_{ie}^n\)</span>的东向分量为0</h3>
+<ul>
+<li><strong>易错点</strong>：容易认为<span class="math inline">\(\omega_{ie}^n\)</span>在三个轴上都有非零分量。实际上由于地球自转轴在子午面内，东向分量为0。</li>
+<li><strong>纠正</strong>：<span class="math inline">\(\omega_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span>，东向（x轴）分量为0。</li>
+</ul>
+<hr />
+<h2 id="四应试练习题综合">四、应试练习题（综合）</h2>
+<h3 id="一名词解释每题5分">一、名词解释（每题5分）</h3>
+<ol type="1">
+<li><p><strong>导航</strong> &gt; 以某种手段或方式引导航行体安全、准确、经济、便捷地在既定时间内按照既定航行路线准时到达目的地的过程。导航要实时、连续地给出载体的位置、速度、姿态角、加速度等导航参数。</p></li>
+<li><p><strong>组合导航系统</strong> &gt; 通过对两种或多种导航系统测量或输出信息进行综合处理（应用卡尔曼滤波等数据处理技术），获得更高的导航精度和可靠性，集各个子系统的优点于一身的导航系统。</p></li>
+<li><p><strong>惯性导航</strong> &gt; 根据牛顿力学定律，利用陀螺仪、加速度计等惯性元件感受载体加速度，通过计算机积分运算得到载体位置与速度等导航参数的自主式导航方式。</p></li>
+<li><p><strong>地理坐标系（导航坐标系）</strong> &gt; 原点位于载体所在点，X轴沿当地纬线指东，Y轴沿当地子午线指北，Z轴垂直于当地水平面指天，构成右手直角坐标系。是最常用的导航坐标系。</p></li>
+<li><p><strong>方向余弦矩阵</strong> &gt; 将两个坐标系各坐标轴之间的九个方向余弦组成的<span class="math inline">\(3 \times 3\)</span>阶矩阵，用于在两个坐标系之间进行坐标变换，又称坐标变换矩阵。</p></li>
+</ol>
+<h3 id="二简答题每题10分">二、简答题（每题10分）</h3>
+<ol type="1">
+<li><p><strong>简述组合导航系统的三大特点，并分别解释其含义。</strong> &gt; （1）协合超越：利用各子系统信息并作有机处理，形成单个子系统不具备的功能和精度；（2）性能互补：综合利用各子系统信息，取长补短，提高适用范围；（3）互为余度：各子系统观测同一信息源，测量冗余，增加可靠性。</p></li>
+<li><p><strong>比较平台式惯导系统和捷联式惯导系统的异同。</strong> &gt; 相同点：都是利用陀螺仪和加速度计进行导航，基本原理相同。不同点：平台式使用物理平台，结构复杂但仪表工作条件好；捷联式使用数学平台（姿态矩阵），结构简单、体积小但仪表工作条件差。平台式直接建立导航坐标系，计算方便；捷联式需要数学计算导航坐标系，初始对准快，应用更广泛。</p></li>
+<li><p><strong>惯导系统基本原理涉及哪四大问题？分别用什么方法解决？</strong> &gt; （1）如何获得载体相对运动的加速度？——比力方程；（2）如何获得加速度在导航坐标系下的投影？——导航坐标系的旋转（<span class="math inline">\(\omega_{in}\)</span>）；（3）如何求速度和位置？——惯导系统计算方程；（4）如何获得载体姿态？——姿态矩阵定义与更新。</p></li>
+<li><p><strong>列举至少4种导航系统，并分别简述其优缺点。</strong> &gt; （1）惯性导航：优点是自主式、不受干扰、隐蔽性好、能测姿；缺点是误差随时间累积、成本高。（2）卫星导航：优点是全球覆盖、精度高、全天候；缺点是无法水下导航、易受干扰。（3）天文导航：优点是自主式、不受电磁干扰、误差不累积；缺点是受天气影响、无法测姿。（4）无线电导航：优点是不受时间天气限制、精度高、作用距离远；缺点是易被发现和干扰、需要外部导航台支持。</p></li>
+</ol>
+<h3 id="三推导与计算题每题15分">三、推导与计算题（每题15分）</h3>
+<ol type="1">
+<li><p><strong>推导导航坐标系相对惯性坐标系的旋转角速度<span class="math inline">\(\omega_{in}^n\)</span>在导航坐标系中的投影表达式。</strong> &gt; <strong>解答</strong>： &gt; <span class="math inline">\(\omega_{in}^n = \omega_{ie}^n + \omega_{en}^n\)</span> &gt; &gt; 地球自转角速度<span class="math inline">\(\omega_{ie}\)</span>沿极轴方向，投影到导航系： &gt; <span class="math display">\[\omega_{ie}^n = \begin{bmatrix} 0 \\ \omega_{ie}\cos L \\ \omega_{ie}\sin L \end{bmatrix}\]</span> &gt; &gt; 载体运动引起的角速度： &gt; - 北向速度<span class="math inline">\(V_N\)</span>引起纬度变化，绕x轴负向旋转：<span class="math inline">\(-V_N/(R_M+h)\)</span> &gt; - 东向速度<span class="math inline">\(V_E\)</span>引起经度变化，绕y轴旋转：<span class="math inline">\(V_E/(R_N+h)\)</span> &gt; - 东向速度<span class="math inline">\(V_E\)</span>引起绕极轴旋转在z轴的投影：<span class="math inline">\(V_E\tan L/(R_N+h)\)</span> &gt; &gt; 因此： &gt; <span class="math display">\[\omega_{en}^n = \begin{bmatrix} -\frac{V_N}{R_M+h} \\ \frac{V_E}{R_N+h} \\ \frac{V_E}{R_N+h}\tan L \end{bmatrix}\]</span> &gt; &gt; 合并得： &gt; <span class="math display">\[\omega_{in}^n = \begin{bmatrix} -\frac{V_N}{R_M+h} \\ \omega_{ie}\cos L + \frac{V_E}{R_N+h} \\ \omega_{ie}\sin L + \frac{V_E}{R_N+h}\tan L \end{bmatrix}\]</span></p></li>
+<li><p><strong>已知载体在某地（纬度<span class="math inline">\(L=45^\circ\)</span>）以速度<span class="math inline">\(V=10\)</span> m/s向正北方向行驶，地球自转角速度<span class="math inline">\(\omega_{ie}=15^\circ/h\)</span>，忽略高度和载体运动引起的角速度，求地球自转角速度在导航坐标系三个轴上的投影值。</strong> &gt; <strong>解答</strong>： &gt; <span class="math inline">\(\omega_{ie} = 15^\circ/\text{h} = 15 \times \pi/180 / 3600 \approx 7.272 \times 10^{-5}\)</span> rad/s &gt; &gt; <span class="math inline">\(\omega_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span> &gt; &gt; 东向分量：<span class="math inline">\(0\)</span> &gt; &gt; 北向分量：<span class="math inline">\(\omega_{ie}\cos 45^\circ = 7.272 \times 10^{-5} \times \frac{\sqrt{2}}{2} \approx 5.142 \times 10^{-5}\)</span> rad/s &gt; &gt; 天向分量：<span class="math inline">\(\omega_{ie}\sin 45^\circ = 7.272 \times 10^{-5} \times \frac{\sqrt{2}}{2} \approx 5.142 \times 10^{-5}\)</span> rad/s</p></li>
+<li><p><strong>说明方向余弦矩阵的正交性，并证明<span class="math inline">\(C_0^r \cdot C_r^0 = I\)</span>。</strong> &gt; <strong>解答</strong>： &gt; 方向余弦矩阵的正交性来源于九个方向余弦之间的六个约束条件： &gt; - 三行各自元素平方和为1：<span class="math inline">\(C_{11}^2+C_{12}^2+C_{13}^2=1\)</span>等 &gt; - 不同行之间对应元素乘积之和为0：<span class="math inline">\(C_{11}C_{21}+C_{12}C_{22}+C_{13}C_{23}=0\)</span>等 &gt; &gt; 这些约束条件等价于<span class="math inline">\(C_0^r \cdot C_r^0 = I\)</span>，即方向余弦矩阵的转置等于其逆矩阵，这正是正交矩阵的定义。物理意义上，先从0系变换到r系，再从r系变换回0系，结果应等于单位矩阵（不变换）。</p></li>
+</ol>
+<h3 id="四选择题每题3分">四、选择题（每题3分）</h3>
+<ol type="1">
+<li><p>以下哪种导航方式的误差不随时间累积？ A. 惯性导航 B. 推位导航 C. 天文导航 D. 以上都不对 &gt; <strong>答案</strong>：C</p></li>
+<li><p>地理坐标系中，X轴指向的方向是： A. 北 B. 东 C. 天 D. 南 &gt; <strong>答案</strong>：B</p></li>
+<li><p>惯性导航系统的核心元器件是： A. 陀螺仪和加速度计 B. GPS接收机和天线 C. 磁罗经和计程仪 D. 六分仪和星历表 &gt; <strong>答案</strong>：A</p></li>
+<li><p>组合导航系统中，“互为余度”的含义是： A. 各子系统性能互补 B. 测量冗余，增加可靠性 C. 形成新的功能 D. 降低系统成本 &gt; <strong>答案</strong>：B</p></li>
+<li><p>地球自转角速度在导航坐标系东向轴上的投影为： A. <span class="math inline">\(\omega_{ie}\)</span> B. <span class="math inline">\(\omega_{ie}\cos L\)</span> C. <span class="math inline">\(\omega_{ie}\sin L\)</span> D. <span class="math inline">\(0\)</span> &gt; <strong>答案</strong>：D</p></li>
+<li><p>方向余弦矩阵中，九个方向余弦中有几个是独立的？ A. 9个 B. 6个 C. 3个 D. 1个 &gt; <strong>答案</strong>：C</p></li>
+<li><p>捷联式惯导系统中，将加速度从载体系变换到导航系使用的是： A. 陀螺仪 B. 加速度计 C. 姿态矩阵<span class="math inline">\(C_b^n\)</span> D. 卡尔曼滤波器 &gt; <strong>答案</strong>：C</p></li>
+<li><p>以下哪种不是当地水平惯导系统的类型？ A. 固定指北 B. 游动方位 C. 自由方位 D. 空间稳定 &gt; <strong>答案</strong>：D</p></li>
+</ol>
+<hr />
+<blockquote>
+<p><strong>说明</strong>：本指南严格基于第1-3讲PPT内容整理，所有概念、公式和试题均来源于PPT原文。考核方式为过程考核20%+闭卷考试80%，请重点关注概念理解、公式推导和系统对比分析。 # 组合导航基础概念与应试指南（第4-6讲）</p>
+</blockquote>
+<hr />
+<h2 id="一基础概念词典-1">一、基础概念词典</h2>
+<hr />
+<h3 id="第4讲-惯导系统计算方程">第4讲 惯导系统计算方程</h3>
+<h4 id="哥氏定理coriolis-theorem">4.1 哥氏定理（Coriolis Theorem）</h4>
+<ul>
+<li><strong>定义</strong>：哥氏定理描述了绝对变化率与相对变化率之间的关系。设有矢量 <span class="math inline">\(\mathbf{r}\)</span>，<span class="math inline">\(m\)</span> 和 <span class="math inline">\(n\)</span> 是两个作相对旋转的坐标系，则哥氏定理可表示为 <span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{m} = \left.\frac{d\mathbf{r}}{dt}\right|_{n} + \boldsymbol{\omega}_{mn} \times \mathbf{r}\)</span>，其中 <span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{m}\)</span> 和 <span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{n}\)</span> 分别是在坐标系 <span class="math inline">\(m\)</span> 和 <span class="math inline">\(n\)</span> 内观察到的 <span class="math inline">\(\mathbf{r}\)</span> 的时间变化率，<span class="math inline">\(\boldsymbol{\omega}_{mn}\)</span> 是坐标系 <span class="math inline">\(n\)</span> 相对坐标系 <span class="math inline">\(m\)</span> 的旋转角速度。</li>
+<li><strong>PPT页码</strong>：第3页</li>
+<li><strong>应试重点</strong>：哥氏定理是推导比力方程的基础，必须熟记其数学表达式及物理含义。理解绝对变化率、相对变化率和牵连变化率三者的关系。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 简述哥氏定理的内容及其物理意义。 &gt; <strong>答案</strong>：哥氏定理描述了一个矢量在两个相对旋转的坐标系中变化率之间的关系。绝对变化率等于相对变化率加上牵连角速度与该矢量的叉乘。物理意义在于：在旋转参考系中观察到的矢量变化率，与在惯性系中观察到的不同，需要额外考虑旋转效应。</li>
+<li><strong>（推导题）</strong> 写出哥氏定理的数学表达式，并说明各符号的含义。 &gt; <strong>答案</strong>：<span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{m} = \left.\frac{d\mathbf{r}}{dt}\right|_{n} + \boldsymbol{\omega}_{mn} \times \mathbf{r}\)</span>。其中 <span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{m}\)</span> 为在 <span class="math inline">\(m\)</span> 坐标系中观察到的 <span class="math inline">\(\mathbf{r}\)</span> 的时间变化率，<span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{n}\)</span> 为在 <span class="math inline">\(n\)</span> 坐标系中观察到的 <span class="math inline">\(\mathbf{r}\)</span> 的时间变化率，<span class="math inline">\(\boldsymbol{\omega}_{mn}\)</span> 为坐标系 <span class="math inline">\(n\)</span> 相对 <span class="math inline">\(m\)</span> 的旋转角速度。</li>
+</ol></li>
+</ul>
+<h4 id="哥氏加速度">4.2 哥氏加速度</h4>
+<ul>
+<li><strong>定义</strong>：哥氏加速度是点的复合运动中，由相对运动和牵连运动相互影响而产生的加速度，其大小为 <span class="math inline">\(a_{哥氏} = 2\boldsymbol{\omega}_e \times \mathbf{v}_r\)</span>。在惯性导航中，哥氏加速度是由地球自转（牵连转动）和运载体相对地球的运动（相对运动）共同引起的。</li>
+<li><strong>PPT页码</strong>：第5页</li>
+<li><strong>应试重点</strong>：理解哥氏加速度的产生原因——相对运动与牵连运动的相互影响。在比力方程中，哥氏加速度是需要被补偿的“有害加速度”的一部分。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是哥氏加速度？它是如何产生的？ &gt; <strong>答案</strong>：哥氏加速度是当载体在旋转的参考系（如地球）中运动时，由载体相对运动和参考系旋转（牵连运动）相互影响而产生的加速度，大小为 <span class="math inline">\(2\boldsymbol{\omega}_e \times \mathbf{v}_r\)</span>。它是点的复合运动中相对运动和牵连运动耦合的结果。</li>
+<li><strong>（概念题）</strong> 在惯导系统中，哥氏加速度属于有害加速度还是有效加速度？为什么？ &gt; <strong>答案</strong>：哥氏加速度属于有害加速度。因为惯导系统需要测量的是载体相对地球的运动加速度，而哥氏加速度并非由载体实际受力产生，而是由地球自转和载体运动的耦合效应引起的，必须从加速度计输出中去除。</li>
+</ol></li>
+</ul>
+<h4 id="比力specific-force">4.3 比力（Specific Force）</h4>
+<ul>
+<li><strong>定义</strong>：比力是单位质量上的非引力外力，即 <span class="math inline">\(\mathbf{f} = \frac{\mathbf{F}_{外}}{m}\)</span>。根据牛顿第二定律，合外力 <span class="math inline">\(\mathbf{F}_{外} = m\mathbf{a} = -m\mathbf{J} + \mathbf{F}_{外}\)</span>，其中 <span class="math inline">\(\mathbf{J}\)</span> 为引力加速度。比力等于引力加速度的负值加上绝对加速度，即 <span class="math inline">\(\mathbf{f} = -\mathbf{J} + \ddot{\mathbf{r}}^i\)</span>。</li>
+<li><strong>PPT页码</strong>：第7页</li>
+<li><strong>应试重点</strong>：比力是加速度计实际测量的物理量，理解比力与加速度的区别至关重要。加速度计测量的是比力而非加速度，比力中包含了重力信息。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是比力？加速度计测量的是比力还是加速度？ &gt; <strong>答案</strong>：比力是单位质量上的非引力外力，<span class="math inline">\(\mathbf{f} = \frac{\mathbf{F}_{外}}{m}\)</span>。加速度计测量的是比力，而非单纯的加速度。比力中包含了重力的影响，因此加速度计在静止时也会输出与重力加速度大小相等、方向相反的值。</li>
+<li><strong>（计算题）</strong> 若载体静止于地球表面，加速度计的输出为多少？ &gt; <strong>答案</strong>：载体静止时，绝对加速度为零，由 <span class="math inline">\(\mathbf{f} = -\mathbf{J} + \ddot{\mathbf{r}}^i\)</span>，得 <span class="math inline">\(\mathbf{f} = -\mathbf{J}\)</span>。又因重力 <span class="math inline">\(\mathbf{g} = \mathbf{J} - \boldsymbol{\omega}_{ie} \times (\boldsymbol{\omega}_{ie} \times \mathbf{r})\)</span>，所以加速度计输出大小约为 <span class="math inline">\(g\)</span>（重力加速度），方向与重力方向相反（即向上）。</li>
+</ol></li>
+</ul>
+<h4 id="比力方程">4.4 比力方程</h4>
+<ul>
+<li><strong>定义</strong>：比力方程是惯性导航的核心方程，描述了载体相对地球的运动加速度与比力之间的关系。其基本形式为： <span class="math display">\[\dot{\mathbf{V}}^e = \mathbf{f} + \mathbf{g} - (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\]</span> 其中 <span class="math inline">\(\dot{\mathbf{V}}^e\)</span> 为载体相对地球运动速度的变化率，<span class="math inline">\(\mathbf{f}\)</span> 为比力，<span class="math inline">\(\mathbf{g}\)</span> 为重力加速度，<span class="math inline">\((2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span> 为有害加速度。</li>
+<li><strong>PPT页码</strong>：第11-12页</li>
+<li><strong>应试重点</strong>：比力方程是惯导系统最核心的方程，必须能够完整写出。理解方程中各项的物理含义：比力、重力、哥氏加速度项、向心加速度项。有害加速度 <span class="math inline">\(a_B = (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span> 需要从加速度计输出中去除。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出比力方程的完整形式，并解释方程中每一项的物理含义。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{\mathbf{V}}^e = \mathbf{f} + \mathbf{g} - (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span>。 &gt; - <span class="math inline">\(\dot{\mathbf{V}}^e\)</span>：载体相对地球运动速度的变化率（即相对加速度） &gt; - <span class="math inline">\(\mathbf{f}\)</span>：加速度计测量的比力 &gt; - <span class="math inline">\(\mathbf{g}\)</span>：重力加速度 &gt; - <span class="math inline">\(2\boldsymbol{\omega}_{ie} \times \mathbf{V}^e\)</span>：哥氏加速度（有害加速度的一部分） &gt; - <span class="math inline">\(\boldsymbol{\omega}_{en} \times \mathbf{V}^e\)</span>：向心加速度（有害加速度的一部分）</li>
+<li><strong>（概念题）</strong> 什么是“有害加速度”？它由哪两部分组成？ &gt; <strong>答案</strong>：有害加速度是比力方程中需要被补偿的加速度项，<span class="math inline">\(a_B = (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span>。它由两部分组成：（1）哥氏加速度 <span class="math inline">\(2\boldsymbol{\omega}_{ie} \times \mathbf{V}^e\)</span>，由地球自转和载体运动耦合产生；（2）向心加速度 <span class="math inline">\(\boldsymbol{\omega}_{en} \times \mathbf{V}^e\)</span>，由载体在地球表面运动产生的向心效应。</li>
+</ol></li>
+</ul>
+<h4 id="重力与引力的关系">4.5 重力与引力的关系</h4>
+<ul>
+<li><strong>定义</strong>：重力加速度 <span class="math inline">\(\mathbf{g}\)</span> 等于地球引力加速度 <span class="math inline">\(\mathbf{J}\)</span> 减去地球自转引起的向心加速度，即 <span class="math inline">\(\mathbf{g} = \mathbf{J} - \boldsymbol{\omega}_{ie} \times (\boldsymbol{\omega}_{ie} \times \mathbf{r})\)</span>。重力是引力与向心力的合力效果。</li>
+<li><strong>PPT页码</strong>：第11页</li>
+<li><strong>应试重点</strong>：区分引力加速度 <span class="math inline">\(\mathbf{J}\)</span> 和重力加速度 <span class="math inline">\(\mathbf{g}\)</span>，两者之差为地球自转引起的向心加速度。在导航坐标系（地理坐标系）中，重力方向指向地心附近（铅垂方向）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 写出重力加速度与地球引力加速度之间的关系式，并解释其物理含义。 &gt; <strong>答案</strong>：<span class="math inline">\(\mathbf{g} = \mathbf{J} - \boldsymbol{\omega}_{ie} \times (\boldsymbol{\omega}_{ie} \times \mathbf{r})\)</span>。重力加速度等于引力加速度减去地球自转引起的向心加速度。这意味着重力并不严格指向地心，而是由于地球自转效应略有偏移。</li>
+</ol></li>
+</ul>
+<h4 id="惯导系统速度计算方程">4.6 惯导系统速度计算方程</h4>
+<ul>
+<li><strong>定义</strong>：在导航坐标系（地理坐标系）下，将比力方程展开得到的速度计算方程为： <span class="math display">\[\dot{V}_x = f_x + (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_y \cdot \tan L + (2\omega_{ie} + \frac{V_x}{R+h})V_z \cdot \cos L\]</span> <span class="math display">\[\dot{V}_y = f_y - (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_x - (2\omega_{ie} + \frac{V_x}{R+h})V_z \cdot \sin L\]</span> <span class="math display">\[\dot{V}_z = f_z + (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_x - (2\omega_{ie}\sin L + \frac{V_y}{R+h})V_y + \frac{V_y^2}{R+h} - g\]</span></li>
+<li><strong>PPT页码</strong>：第16-17页</li>
+<li><strong>应试重点</strong>：速度方程是比力方程在导航坐标系下的分量形式。当忽略垂向运动时（<span class="math inline">\(V_z \approx 0\)</span>），方程可简化。注意方程中各角速度项的来源（地球自转角速度和位置角速度）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出忽略垂向运动时的惯导系统速度计算方程（简化形式）。 &gt; <strong>答案</strong>：忽略 <span class="math inline">\(V_z\)</span> 后： &gt; <span class="math inline">\(\dot{V}_x = f_x + (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_y \tan L\)</span> &gt; <span class="math inline">\(\dot{V}_y = f_y - (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_x\)</span> &gt; <span class="math inline">\(\dot{V}_z = f_z - g + \frac{V_x^2 + V_y^2}{R+h}\)</span>（天向通道）</li>
+<li><strong>（概念题）</strong> 速度方程中 <span class="math inline">\(2\omega_{ie}\cos L \cdot V_y\)</span> 项的物理意义是什么？ &gt; <strong>答案</strong>：该项是哥氏加速度在东向的投影分量，由地球自转角速度的北向分量（<span class="math inline">\(\omega_{ie}\cos L\)</span>）与载体北向速度 <span class="math inline">\(V_y\)</span> 的叉乘产生，体现了地球自转对东向加速度的影响。</li>
+</ol></li>
+</ul>
+<h4 id="惯导系统位置计算方程">4.7 惯导系统位置计算方程</h4>
+<ul>
+<li><strong>定义</strong>：位置计算方程通过速度积分获得载体的纬度、经度和高度： <span class="math display">\[\dot{L} = \frac{V_y}{R_M + h}, \quad \dot{\lambda} = \frac{V_x}{(R_N + h)\cos L}, \quad \dot{h} = V_z\]</span> 其中 <span class="math inline">\(R_M\)</span> 为子午圈曲率半径，<span class="math inline">\(R_N\)</span> 为卯酉圈曲率半径。</li>
+<li><strong>PPT页码</strong>：第18页</li>
+<li><strong>应试重点</strong>：理解北向速度引起纬度变化、东向速度引起经度变化、天向速度引起高度变化。注意经度方程中 <span class="math inline">\(\cos L\)</span> 在极区趋近于零会导致计算发散的问题。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 写出惯导系统位置计算方程，并说明各速度分量分别影响哪个位置参数。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{L} = \frac{V_y}{R_M + h}\)</span>（北向速度引起纬度变化），<span class="math inline">\(\dot{\lambda} = \frac{V_x}{(R_N + h)\cos L}\)</span>（东向速度引起经度变化），<span class="math inline">\(\dot{h} = V_z\)</span>（天向速度引起高度变化）。</li>
+<li><strong>（计算题）</strong> 若载体在赤道上以速度 <span class="math inline">\(V_x = 300 \text{m/s}\)</span> 向东运动，<span class="math inline">\(h = 0\)</span>，<span class="math inline">\(R_N \approx 6378\text{km}\)</span>，求经度变化率。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{\lambda} = \frac{300}{(6378000 + 0) \times \cos 0°} = \frac{300}{6378000} \approx 4.70 \times 10^{-5} \text{ rad/s}\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="惯导系统陀螺控制方程">4.8 惯导系统陀螺控制方程</h4>
+<ul>
+<li><strong>定义</strong>：陀螺控制方程描述了导航坐标系相对惯性空间的角速度在导航坐标系下的分量： <span class="math display">\[\omega_x = -\frac{V_y}{R_M + h}, \quad \omega_y = \omega_{ie}\cos L + \frac{V_x}{R_N + h}, \quad \omega_z = \omega_{ie}\sin L + \frac{V_x}{R_N + h}\tan L\]</span> 该方程用于控制陀螺仪，使平台（物理或数学）跟踪导航坐标系。</li>
+<li><strong>PPT页码</strong>：第20页</li>
+<li><strong>应试重点</strong>：陀螺控制方程给出了导航坐标系的旋转角速度，是平台式惯导系统中施矩指令的基础，也是捷联惯导系统中计算姿态矩阵更新的必要输入。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 陀螺控制方程中 <span class="math inline">\(\omega_y\)</span> 包含哪两项？分别代表什么物理含义？ &gt; <strong>答案</strong>：<span class="math inline">\(\omega_y = \omega_{ie}\cos L + \frac{V_x}{R_N + h}\)</span>。第一项 <span class="math inline">\(\omega_{ie}\cos L\)</span> 是地球自转角速度在导航系北向的投影；第二项 <span class="math inline">\(\frac{V_x}{R_N + h}\)</span> 是载体东向运动引起的导航系绕北向轴的旋转角速度。</li>
+</ol></li>
+</ul>
+<h4 id="导航坐标系角速度">4.9 导航坐标系角速度</h4>
+<ul>
+<li><strong>定义</strong>：导航坐标系相对惯性空间的角速度 <span class="math inline">\(\boldsymbol{\omega}_{in}^n\)</span> 由地球自转角速度 <span class="math inline">\(\boldsymbol{\omega}_{ie}^n\)</span> 和位置角速度 <span class="math inline">\(\boldsymbol{\omega}_{en}^n\)</span> 组成： <span class="math display">\[\boldsymbol{\omega}_{in}^n = \boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n\]</span> 其中 <span class="math inline">\(\boldsymbol{\omega}_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span>，<span class="math inline">\(\boldsymbol{\omega}_{en}^n\)</span> 与载体速度和位置有关。</li>
+<li><strong>PPT页码</strong>：第16页</li>
+<li><strong>应试重点</strong>：理解导航坐标系旋转的两个来源：地球自转和载体运动。在静基座条件下，<span class="math inline">\(\boldsymbol{\omega}_{en}^n = \mathbf{0}\)</span>，导航系仅由地球自转引起旋转。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 导航坐标系相对惯性空间的角速度由哪两部分组成？在静基座条件下有何简化？ &gt; <strong>答案</strong>：<span class="math inline">\(\boldsymbol{\omega}_{in}^n = \boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n\)</span>，由地球自转角速度和位置角速度（由载体运动引起）组成。在静基座条件下，载体速度为零，<span class="math inline">\(\boldsymbol{\omega}_{en}^n = \mathbf{0}\)</span>，因此 <span class="math inline">\(\boldsymbol{\omega}_{in}^n = \boldsymbol{\omega}_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span>。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第5讲-姿态矩阵定义与更新">第5讲 姿态矩阵定义与更新</h3>
+<h4 id="姿态与姿态角">5.1 姿态与姿态角</h4>
+<ul>
+<li><strong>定义</strong>：姿态是指载体坐标系与导航坐标系的相对角位移关系。在导航中，姿态通常用三个欧拉角来描述：航向角 <span class="math inline">\(\psi\)</span>（方位角）、俯仰角 <span class="math inline">\(\theta\)</span>（纵摇角）和横滚角 <span class="math inline">\(\gamma\)</span>（横摇角）。平台式惯导通过物理测量获取姿态角，捷联式惯导通过数学计算从姿态矩阵元素中提取姿态角。</li>
+<li><strong>PPT页码</strong>：第4-5页</li>
+<li><strong>应试重点</strong>：明确三种姿态角的定义和旋转顺序（航向-俯仰-横滚）。理解平台式和捷联式获取姿态角的不同方式。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是载体的姿态？通常用哪三个角度来描述？ &gt; <strong>答案</strong>：姿态是载体坐标系与导航坐标系的相对角位移关系。通常用航向角 <span class="math inline">\(\psi\)</span>、俯仰角 <span class="math inline">\(\theta\)</span> 和横滚角 <span class="math inline">\(\gamma\)</span> 三个欧拉角来描述。</li>
+<li><strong>（概念题）</strong> 平台式惯导和捷联式惯导获取姿态角的方式有何不同？ &gt; <strong>答案</strong>：平台式惯导通过物理测量，从平台框架轴上的角度传感器直接提取姿态角；捷联式惯导通过数学计算，从姿态矩阵的元素中计算出姿态角。</li>
+</ol></li>
+</ul>
+<h4 id="姿态矩阵方向余弦矩阵">5.2 姿态矩阵（方向余弦矩阵）</h4>
+<ul>
+<li><strong>定义</strong>：姿态矩阵 <span class="math inline">\(C_n^b\)</span>（或 <span class="math inline">\(C_b^n\)</span>）是载体坐标系与导航坐标系之间的方向余弦矩阵，描述了两个坐标系之间的旋转变换关系。通过三次欧拉旋转（航向 <span class="math inline">\(\psi\)</span>、俯仰 <span class="math inline">\(\theta\)</span>、横滚 <span class="math inline">\(\gamma\)</span>）得到： <span class="math display">\[C_n^b = \begin{bmatrix} \cos\gamma\cos\psi + \sin\gamma\sin\theta\sin\psi &amp; \sin\gamma\sin\theta\cos\psi - \cos\gamma\sin\psi &amp; -\sin\gamma\cos\theta \\ \cos\theta\sin\psi &amp; \cos\theta\cos\psi &amp; \sin\theta \\ \sin\gamma\cos\psi - \cos\gamma\sin\theta\sin\psi &amp; -\cos\gamma\sin\theta\cos\psi - \sin\gamma\sin\psi &amp; \cos\gamma\cos\theta \end{bmatrix}\]</span></li>
+<li><strong>PPT页码</strong>：第9-11页</li>
+<li><strong>应试重点</strong>：姿态矩阵是捷联惯导系统的核心。掌握两个作用：（1）将加速度计输出从载体系变换到导航系 <span class="math inline">\(\mathbf{f}^n = C_b^n \mathbf{f}^b\)</span>；（2）从矩阵元素中提取姿态角。掌握从矩阵元素反解姿态角的公式。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出姿态矩阵 <span class="math inline">\(C_n^b\)</span> 的完整表达式，并说明从矩阵元素提取俯仰角 <span class="math inline">\(\theta\)</span> 的公式。 &gt; <strong>答案</strong>：<span class="math inline">\(\theta = \arcsin(C_{32})\)</span>（即矩阵第3行第2列元素）。当 <span class="math inline">\(\cos\theta \neq 0\)</span> 时，<span class="math inline">\(\gamma = \arctan(-C_{31}/C_{33})\)</span>，<span class="math inline">\(\psi = \arctan(-C_{12}/C_{22})\)</span>。</li>
+<li><strong>（概念题）</strong> 姿态矩阵在捷联惯导系统中有哪两个主要作用？ &gt; <strong>答案</strong>：（1）将加速度计输出从载体坐标系变换到导航坐标系，即 <span class="math inline">\(\mathbf{f}^n = C_b^n \mathbf{f}^b\)</span>，用于速度和位置计算；（2）从姿态矩阵的元素中提取载体的姿态角（航向角、俯仰角、横滚角）。</li>
+</ol></li>
+</ul>
+<h4 id="数学平台">5.3 数学平台</h4>
+<ul>
+<li><strong>定义</strong>：在捷联式惯导系统中，姿态矩阵 <span class="math inline">\(C_b^n\)</span> 起到等效于平台式惯导系统中实体平台的功能，因此称为“数学平台”。通过姿态矩阵将加速度计输出从载体系变换到导航系，利用数学变换替代物理平台实现坐标系的隔离。</li>
+<li><strong>PPT页码</strong>：第7页</li>
+<li><strong>应试重点</strong>：理解“数学平台”概念的由来——用数学计算代替物理平台。姿态矩阵是数学平台的核心。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 为什么说姿态矩阵是捷联惯导系统的“数学平台”？ &gt; <strong>答案</strong>：在平台式惯导中，实体平台将惯性元件与载体角运动隔离，使加速度计在导航系中测量；在捷联式惯导中，没有实体平台，而是通过姿态矩阵 <span class="math inline">\(C_b^n\)</span> 将加速度计输出从载体系数学变换到导航系，等效实现了平台的功能，因此称为“数学平台”。</li>
+</ol></li>
+</ul>
+<h4 id="四元数quaternion">5.4 四元数（Quaternion）</h4>
+<ul>
+<li><strong>定义</strong>：四元数是一种超复数，定义为 <span class="math inline">\(Q = q_0 + q_1\mathbf{i} + q_2\mathbf{j} + q_3\mathbf{k}\)</span>，也可用三角表示法 <span class="math inline">\(Q = \cos\frac{\theta}{2} + \mathbf{u}\sin\frac{\theta}{2}\)</span>，其中 <span class="math inline">\(\mathbf{u}\)</span> 为旋转轴单位矢量，<span class="math inline">\(\theta\)</span> 为旋转角度。物理意义：<span class="math inline">\(b\)</span> 系是由 <span class="math inline">\(n\)</span> 系经过无中间过程的一次性旋转形成的，<span class="math inline">\(Q\)</span> 包含了这次旋转的全部信息。</li>
+<li><strong>PPT页码</strong>：第16页</li>
+<li><strong>应试重点</strong>：四元数是姿态更新的重要数学工具。掌握四元数的定义、规范四元数条件 <span class="math inline">\(q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1\)</span>、以及四元数与姿态矩阵之间的转换关系。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 写出四元数的定义式和规范四元数的约束条件。 &gt; <strong>答案</strong>：<span class="math inline">\(Q = q_0 + q_1\mathbf{i} + q_2\mathbf{j} + q_3\mathbf{k}\)</span>，规范四元数满足 <span class="math inline">\(q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1\)</span>。</li>
+<li><strong>（概念题）</strong> 四元数的三角表示法中，<span class="math inline">\(\mathbf{u}\)</span> 和 <span class="math inline">\(\theta\)</span> 分别代表什么？ &gt; <strong>答案</strong>：<span class="math inline">\(\mathbf{u}\)</span> 为旋转轴的单位方向矢量，<span class="math inline">\(\theta\)</span> 为绕该轴旋转的角度。四元数 <span class="math inline">\(Q = \cos\frac{\theta}{2} + \mathbf{u}\sin\frac{\theta}{2}\)</span> 描述了从一个坐标系到另一个坐标系的一次性旋转。</li>
+</ol></li>
+</ul>
+<h4 id="四元数与姿态矩阵的关系">5.5 四元数与姿态矩阵的关系</h4>
+<ul>
+<li><strong>定义</strong>：姿态矩阵可以用四元数表示为： <span class="math display">\[C_b^n = \begin{bmatrix} q_0^2+q_1^2-q_2^2-q_3^2 &amp; 2(q_1q_2-q_0q_3) &amp; 2(q_1q_3+q_0q_2) \\ 2(q_1q_2+q_0q_3) &amp; q_0^2-q_1^2+q_2^2-q_3^2 &amp; 2(q_2q_3-q_0q_1) \\ 2(q_1q_3-q_0q_2) &amp; 2(q_2q_3+q_0q_1) &amp; q_0^2-q_1^2-q_2^2+q_3^2 \end{bmatrix}\]</span> 该关系通过转动四元数 <span class="math inline">\(R&#39; = Q^{-1} \otimes R \otimes Q\)</span> 推导得到。</li>
+<li><strong>PPT页码</strong>：第17-18页</li>
+<li><strong>应试重点</strong>：掌握四元数到姿态矩阵的转换公式。理解转动四元数的原理：存在一个四元数 <span class="math inline">\(Q\)</span>，使得 <span class="math inline">\(R&#39; = Q^{-1} \otimes R \otimes Q\)</span>，其中 <span class="math inline">\(R\)</span> 绕 <span class="math inline">\(\mathbf{u}\)</span> 轴转过 <span class="math inline">\(\theta\)</span> 到 <span class="math inline">\(R&#39;\)</span>。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出用四元数元素表示的姿态矩阵 <span class="math inline">\(C_b^n\)</span> 中 <span class="math inline">\(C_{11}\)</span> 和 <span class="math inline">\(C_{22}\)</span> 元素的表达式。 &gt; <strong>答案</strong>：<span class="math inline">\(C_{11} = q_0^2 + q_1^2 - q_2^2 - q_3^2\)</span>，<span class="math inline">\(C_{22} = q_0^2 - q_1^2 + q_2^2 - q_3^2\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="四元数微分方程">5.6 四元数微分方程</h4>
+<ul>
+<li><strong>定义</strong>：四元数微分方程描述了四元数随时间的变化规律： <span class="math display">\[\dot{Q}(t) = \frac{1}{2}Q(t) \otimes \boldsymbol{\omega}_{nb}^b(t)\]</span> 其中 <span class="math inline">\(\boldsymbol{\omega}_{nb}^b\)</span> 为载体系相对导航系的角速度在载体系下的投影。展开为矩阵形式： <span class="math display">\[\begin{bmatrix} \dot{q}_0 \\ \dot{q}_1 \\ \dot{q}_2 \\ \dot{q}_3 \end{bmatrix} = \frac{1}{2}\begin{bmatrix} 0 &amp; -\omega_{nbx}^b &amp; -\omega_{nby}^b &amp; -\omega_{nbz}^b \\ \omega_{nbx}^b &amp; 0 &amp; \omega_{nbz}^b &amp; -\omega_{nby}^b \\ \omega_{nby}^b &amp; -\omega_{nbz}^b &amp; 0 &amp; \omega_{nbx}^b \\ \omega_{nbz}^b &amp; \omega_{nby}^b &amp; -\omega_{nbx}^b &amp; 0 \end{bmatrix} \begin{bmatrix} q_0 \\ q_1 \\ q_2 \\ q_3 \end{bmatrix}\]</span></li>
+<li><strong>PPT页码</strong>：第19页</li>
+<li><strong>应试重点</strong>：四元数微分方程是姿态更新的核心方程。掌握 <span class="math inline">\(\boldsymbol{\omega}_{nb}^b\)</span> 的计算方法：<span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span>。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出四元数微分方程的矩阵形式，并说明 <span class="math inline">\(\boldsymbol{\omega}_{nb}^b\)</span> 如何计算。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{Q}(t) = \frac{1}{2}Q(t) \otimes \boldsymbol{\omega}_{nb}^b(t)\)</span>。<span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span>，其中 <span class="math inline">\(\boldsymbol{\omega}_{ib}^b\)</span> 由陀螺仪测量，<span class="math inline">\(\boldsymbol{\omega}_{ie}^n\)</span> 和 <span class="math inline">\(\boldsymbol{\omega}_{en}^n\)</span> 由导航计算得到。</li>
+</ol></li>
+</ul>
+<h4 id="欧拉角法-1">5.7 欧拉角法</h4>
+<ul>
+<li><strong>定义</strong>：欧拉角法通过直接求解三个欧拉角的微分方程来更新姿态。欧拉角微分方程为： <span class="math display">\[\begin{bmatrix} \omega_{nbx}^b \\ \omega_{nby}^b \\ \omega_{nbz}^b \end{bmatrix} = \begin{bmatrix} \cos\gamma &amp; 0 &amp; \sin\gamma \\ \sin\gamma\sin\theta &amp; \cos\theta &amp; -\cos\gamma\sin\theta \\ -\sin\gamma\cos\theta &amp; \sin\theta &amp; \cos\gamma\cos\theta \end{bmatrix} \begin{bmatrix} 0 \\ \dot{\theta} \\ \dot{\psi} \end{bmatrix} + \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; \cos\gamma &amp; \sin\gamma \\ 0 &amp; -\sin\gamma &amp; \cos\gamma \end{bmatrix} \begin{bmatrix} \dot{\gamma} \\ 0 \\ 0 \end{bmatrix}\]</span></li>
+<li><strong>PPT页码</strong>：第22页</li>
+<li><strong>应试重点</strong>：欧拉角法的优点是直接得到姿态角，缺点是当 <span class="math inline">\(\theta = 90°\)</span> 时出现奇点（万向锁），且需要大量超越函数运算。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 欧拉角法的主要缺点是什么？ &gt; <strong>答案</strong>：欧拉角法的主要缺点是当俯仰角 <span class="math inline">\(\theta = 90°\)</span> 时出现奇点（万向锁），方程退化无法求解；此外，求解过程中需要进行大量超越函数运算，计算量大。</li>
+</ol></li>
+</ul>
+<h4 id="方向余弦法">5.8 方向余弦法</h4>
+<ul>
+<li><strong>定义</strong>：方向余弦法直接求解姿态矩阵的微分方程来更新姿态矩阵。方向余弦微分方程为： <span class="math display">\[\dot{C}_n^b = C_n^b \boldsymbol{\Omega}_{nb}^b\]</span> 其中 <span class="math inline">\(\boldsymbol{\Omega}_{nb}^b\)</span> 为反对称矩阵： <span class="math display">\[\boldsymbol{\Omega}_{nb}^b = \begin{bmatrix} 0 &amp; -\omega_{nbz}^b &amp; \omega_{nby}^b \\ \omega_{nbz}^b &amp; 0 &amp; -\omega_{nbx}^b \\ -\omega_{nby}^b &amp; \omega_{nbx}^b &amp; 0 \end{bmatrix}\]</span></li>
+<li><strong>PPT页码</strong>：第23-24页</li>
+<li><strong>应试重点</strong>：方向余弦法直接求解9个微分方程，只有加减法和乘法，但计算量大、实时性差。理解 <span class="math inline">\(\dot{C}_n^b = C_n^b \boldsymbol{\Omega}_{nb}^b\)</span> 的推导过程。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 方向余弦法需要求解几个微分方程？有何优缺点？ &gt; <strong>答案</strong>：方向余弦法需要求解9个微分方程。优点是只有加减法和乘法运算，不涉及超越函数；缺点是计算量大、实时性差。可直接求出姿态矩阵。</li>
+</ol></li>
+</ul>
+<h4 id="三种姿态更新方法比较">5.9 三种姿态更新方法比较</h4>
+<ul>
+<li><strong>定义</strong>：姿态矩阵更新有三种方法：欧拉角法、四元数法和方向余弦法。
+<ul>
+<li><strong>欧拉角法</strong>：解3个微分方程，需超越函数运算，计算量大，<span class="math inline">\(\theta = 90°\)</span> 时有奇点，可直接得到姿态角。</li>
+<li><strong>方向余弦法</strong>：解9个微分方程，只有加减乘法，计算量大、实时性差，可直接求出姿态矩阵。</li>
+<li><strong>四元数法</strong>：解4个微分方程，只需加减乘法，计算量小，无奇点问题，是最常用的方法。</li>
+</ul></li>
+<li><strong>PPT页码</strong>：第25页</li>
+<li><strong>应试重点</strong>：三种方法的比较是常考内容。重点掌握四元数法的优势：计算量最小、无奇点。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 比较欧拉角法、四元数法和方向余弦法三种姿态更新方法的优缺点。 &gt; <strong>答案</strong>： &gt; | 方法 | 微分方程数 | 运算类型 | 奇点 | 特点 | &gt; |——|———–|———|——|——| &gt; | 欧拉角法 | 3个 | 含超越函数 | <span class="math inline">\(\theta=90°\)</span> | 直接得姿态角 | &gt; | 方向余弦法 | 9个 | 加减乘法 | 无 | 直接得姿态矩阵 | &gt; | 四元数法 | 4个 | 加减乘法 | 无 | 计算量最小 |</li>
+</ol></li>
+</ul>
+<h4 id="捷联惯导系统解算流程">5.10 捷联惯导系统解算流程</h4>
+<ul>
+<li><strong>定义</strong>：捷联惯导系统中计算机执行的主要任务包括四个更新过程：
+<ol type="1">
+<li><strong>姿态更新</strong>：计算姿态矩阵和姿态角</li>
+<li><strong>速度更新</strong>：比力通过姿态矩阵变换到导航坐标系下</li>
+<li><strong>位置更新</strong>：速度积分完成速度到位置的计算</li>
+<li><strong>陀螺旋转角速度更新</strong>：用于计算姿态矩阵</li>
+</ol></li>
+<li><strong>PPT页码</strong>：第28-32页</li>
+<li><strong>应试重点</strong>：掌握捷联惯导系统的完整解算流程和数据流图。理解各更新步骤之间的依赖关系。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 简述捷联惯导系统中计算机执行的四个主要更新任务。 &gt; <strong>答案</strong>：（1）姿态更新：通过四元数微分方程等计算姿态矩阵，进而提取姿态角；（2）速度更新：利用姿态矩阵将加速度计测量的比力从载体系变换到导航系，再通过比力方程计算速度；（3）位置更新：对速度进行积分得到纬度、经度和高度；（4）陀螺旋转角速度更新：计算 <span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span>，用于姿态矩阵更新。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第6讲-惯导系统误差建模">第6讲 惯导系统误差建模</h3>
+<h4 id="惯导系统误差来源">6.1 惯导系统误差来源</h4>
+<ul>
+<li><strong>定义</strong>：惯导系统的误差来源主要包括四类：
+<ol type="1">
+<li><strong>器件误差</strong>：陀螺漂移、标度因数误差、加速度计零位误差</li>
+<li><strong>安装误差</strong>：惯性仪表安装误差</li>
+<li><strong>初始值误差</strong>：惯性平台初始误差角、初始速度和初始位置的误差</li>
+<li><strong>解算误差</strong>：近似误差、计算误差</li>
+</ol></li>
+<li><strong>PPT页码</strong>：第3页</li>
+<li><strong>应试重点</strong>：理解四类误差来源及其对系统精度的影响。器件误差（尤其是陀螺漂移）是影响惯导系统精度的最主要因素。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 列举惯导系统的主要误差来源，并简要说明。 &gt; <strong>答案</strong>：（1）器件误差：陀螺漂移、标度因数误差、加速度计零偏等；（2）安装误差：惯性仪表安装不准引起的误差；（3）初始值误差：初始对准不准确，包括初始姿态角误差、初始速度误差和初始位置误差；（4）解算误差：算法近似和有限字长计算带来的误差。</li>
+</ol></li>
+</ul>
+<h4 id="姿态误差速度误差与位置误差">6.2 姿态误差、速度误差与位置误差</h4>
+<ul>
+<li><strong>定义</strong>：惯导系统的三类基本误差定义为测量值与真实值之差：
+<ul>
+<li>姿态误差：<span class="math inline">\(\dot{\boldsymbol{\Phi}} = \boldsymbol{\omega}_{iP} - \boldsymbol{\omega}_{in}\)</span></li>
+<li>速度误差：<span class="math inline">\(\delta\dot{\mathbf{V}} = \dot{\mathbf{V}}_c - \dot{\mathbf{V}}\)</span></li>
+<li>位置误差：<span class="math inline">\(\delta\dot{\mathbf{P}} = \dot{\mathbf{P}}_c - \dot{\mathbf{P}}\)</span></li>
+</ul></li>
+<li><strong>PPT页码</strong>：第4页</li>
+<li><strong>应试重点</strong>：理解误差的定义方式（计算值减去真实值），以及误差之间的传递关系：器件误差通过交叉耦合产生姿态误差，姿态误差通过积分产生速度误差，速度误差通过积分产生位置误差。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 惯导系统中姿态误差、速度误差和位置误差是如何定义的？它们之间的传递关系是什么？ &gt; <strong>答案</strong>：姿态误差 <span class="math inline">\(\dot{\boldsymbol{\Phi}} = \boldsymbol{\omega}_{iP} - \boldsymbol{\omega}_{in}\)</span>，速度误差 <span class="math inline">\(\delta\dot{\mathbf{V}} = \dot{\mathbf{V}}_c - \dot{\mathbf{V}}\)</span>，位置误差 <span class="math inline">\(\delta\dot{\mathbf{P}} = \dot{\mathbf{P}}_c - \dot{\mathbf{P}}\)</span>。传递关系为：器件误差（陀螺漂移、加速度计零偏）通过交叉耦合产生姿态误差，姿态误差影响速度解算产生速度误差，速度误差积分后产生位置误差。</li>
+</ol></li>
+</ul>
+<h4 id="平台误差角">6.3 平台误差角</h4>
+<ul>
+<li><strong>定义</strong>：平台误差角是指陀螺稳定平台（或数学平台）建立的导航坐标系 <span class="math inline">\(P\)</span> 与理想的导航坐标系 <span class="math inline">\(n\)</span> 之间的误差角 <span class="math inline">\(\boldsymbol{\Phi}\)</span>。理想情况下 <span class="math inline">\(P\)</span> 系与 <span class="math inline">\(n\)</span> 系重合，但由于计算误差和陀螺漂移，两者之间存在偏差。平台误差角的变化率为 <span class="math inline">\(\dot{\boldsymbol{\Phi}} = \boldsymbol{\omega}_{iP} - \boldsymbol{\omega}_{in}\)</span>。</li>
+<li><strong>PPT页码</strong>：第7页</li>
+<li><strong>应试重点</strong>：平台误差角是姿态误差的核心概念。理解其产生原因：计算 <span class="math inline">\(\boldsymbol{\omega}_{in}^n\)</span> 时有误差，同时陀螺有陀螺漂移。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 什么是平台误差角？它是由什么原因引起的？ &gt; <strong>答案</strong>：平台误差角是数学平台建立的导航坐标系 <span class="math inline">\(P\)</span> 与理想导航坐标系 <span class="math inline">\(n\)</span> 之间的误差角。引起原因有两个：（1）计算导航坐标系角速度 <span class="math inline">\(\boldsymbol{\omega}_{in}^n\)</span> 时存在误差（由速度误差和位置误差引起）；（2）陀螺仪存在漂移误差 <span class="math inline">\(\boldsymbol{\varepsilon}\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="姿态误差方程">6.4 姿态误差方程</h4>
+<ul>
+<li><strong>定义</strong>：姿态误差方程描述了平台误差角的变化规律： <span class="math display">\[\dot{\boldsymbol{\Phi}}^n = \boldsymbol{\Phi}^n \times (\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n) + \delta\boldsymbol{\omega}_{ie}^n + \delta\boldsymbol{\omega}_{en}^n - C_b^n\boldsymbol{\varepsilon}^b\]</span> 展开后包含 <span class="math inline">\(\phi_x\)</span>、<span class="math inline">\(\phi_y\)</span>、<span class="math inline">\(\phi_z\)</span> 三个分量方程，涉及地球自转角速度、载体速度、位置（纬度）等参数。</li>
+<li><strong>PPT页码</strong>：第8-11页</li>
+<li><strong>应试重点</strong>：姿态误差方程是误差分析的核心方程之一。理解方程中各项的物理含义：交叉耦合项、角速度误差项和陀螺漂移项。掌握静基座条件下的简化形式。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出姿态误差方程的向量形式，并说明各项的含义。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{\boldsymbol{\Phi}}^n = \boldsymbol{\Phi}^n \times (\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n) + \delta\boldsymbol{\omega}_{ie}^n + \delta\boldsymbol{\omega}_{en}^n - C_b^n\boldsymbol{\varepsilon}^b\)</span>。 &gt; - <span class="math inline">\(\boldsymbol{\Phi}^n \times (\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span>：误差角与导航系角速度的交叉耦合项 &gt; - <span class="math inline">\(\delta\boldsymbol{\omega}_{ie}^n\)</span>：地球自转角速度计算误差 &gt; - <span class="math inline">\(\delta\boldsymbol{\omega}_{en}^n\)</span>：位置角速度计算误差 &gt; - <span class="math inline">\(C_b^n\boldsymbol{\varepsilon}^b\)</span>：陀螺漂移引起的误差</li>
+</ol></li>
+</ul>
+<h4 id="速度误差方程">6.5 速度误差方程</h4>
+<ul>
+<li><strong>定义</strong>：速度误差方程描述了速度误差的变化规律： <span class="math display">\[\delta\dot{\mathbf{V}}^n = \mathbf{f}^n \times \boldsymbol{\Phi} + (2\delta\boldsymbol{\omega}_{ie}^n + \delta\boldsymbol{\omega}_{en}^n) \times \mathbf{V}^n - (2\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n) \times \delta\mathbf{V}^n + \nabla^n\]</span> 其中 <span class="math inline">\(\nabla^n\)</span> 为加速度计零偏在导航系下的投影。</li>
+<li><strong>PPT页码</strong>：第13-15页</li>
+<li><strong>应试重点</strong>：速度误差方程中各误差源的影响路径：姿态误差通过比力叉乘影响速度，角速度误差通过速度叉乘影响速度，陀螺和加速度计误差直接作为驱动项。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 速度误差方程中 <span class="math inline">\(\mathbf{f}^n \times \boldsymbol{\Phi}\)</span> 项的物理意义是什么？ &gt; <strong>答案</strong>：该项表示姿态误差（平台误差角）对比力测量的影响。由于平台存在误差角，加速度计测量的比力在错误的坐标系中被投影，导致速度计算出现误差。<span class="math inline">\(\mathbf{f}^n \times \boldsymbol{\Phi}\)</span> 是姿态误差与比力的叉乘，反映了姿态误差对速度解算的耦合影响。</li>
+</ol></li>
+</ul>
+<h4 id="位置误差方程">6.6 位置误差方程</h4>
+<ul>
+<li><strong>定义</strong>：位置误差方程由位置计算方程两边求微分得到： <span class="math display">\[\delta\dot{L} = \frac{\delta V_y}{R_M + h} - \frac{V_y}{(R_M + h)^2}\delta h\]</span> <span class="math display">\[\delta\dot{\lambda} = \frac{\delta V_x}{(R_N + h)\cos L} + \frac{V_x \sin L}{(R_N + h)\cos^2 L}\delta L - \frac{V_x}{(R_N + h)^2 \cos L}\delta h\]</span> <span class="math display">\[\delta\dot{h} = \delta V_z\]</span></li>
+<li><strong>PPT页码</strong>：第17页</li>
+<li><strong>应试重点</strong>：位置误差由速度误差和位置误差自身共同引起。注意经度误差方程中 <span class="math inline">\(\delta L\)</span> 项的系数含有 <span class="math inline">\(\sec L \tan L\)</span>，在极区会放大。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出忽略垂向运动时的位置误差方程。 &gt; <strong>答案</strong>：忽略垂向运动（<span class="math inline">\(V_z = 0\)</span>，<span class="math inline">\(\delta h = 0\)</span>）时： &gt; <span class="math inline">\(\delta\dot{L} = \frac{\delta V_y}{R_M + h}\)</span> &gt; <span class="math inline">\(\delta\dot{\lambda} = \frac{\sec L}{R_N + h}\delta V_x + \frac{V_x \sec L \tan L}{R_N + h}\delta L\)</span></li>
+</ol></li>
+</ul>
+<h4 id="静基座条件下的误差方程">6.7 静基座条件下的误差方程</h4>
+<ul>
+<li><strong>定义</strong>：在静基座条件下（载体静止，<span class="math inline">\(V_x = V_y = V_z = 0\)</span>），误差方程大幅简化。以 <span class="math inline">\(\delta V_x\)</span>、<span class="math inline">\(\delta V_y\)</span>、<span class="math inline">\(\delta L\)</span>、<span class="math inline">\(\phi_x\)</span>、<span class="math inline">\(\phi_y\)</span>、<span class="math inline">\(\phi_z\)</span> 为状态变量，写成矩阵形式 <span class="math inline">\(\dot{\mathbf{X}} = \mathbf{F}\mathbf{X} + \mathbf{W}\)</span>： <span class="math display">\[\mathbf{X} = [\delta V_x, \delta V_y, \delta L, \phi_x, \phi_y, \phi_z]^T\]</span> <span class="math display">\[\mathbf{F} = \begin{bmatrix} 0 &amp; 2\omega_{ie}\sin L &amp; 0 &amp; 0 &amp; -g &amp; 0 \\ -2\omega_{ie}\sin L &amp; 0 &amp; 0 &amp; g &amp; 0 &amp; 0 \\ 0 &amp; \frac{1}{R} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; \frac{1}{R} &amp; 0 &amp; 0 &amp; \omega_{ie}\sin L &amp; -\omega_{ie}\cos L \\ \frac{1}{R} &amp; 0 &amp; -\omega_{ie}\sin L &amp; -\omega_{ie}\sin L &amp; 0 &amp; 0 \\ \frac{\tan L}{R} &amp; 0 &amp; \omega_{ie}\cos L &amp; \omega_{ie}\cos L &amp; 0 &amp; 0 \end{bmatrix}\]</span> <span class="math display">\[\mathbf{W} = [\nabla_x, \nabla_y, 0, \varepsilon_x, \varepsilon_y, \varepsilon_z]^T\]</span></li>
+<li><strong>PPT页码</strong>：第21-22页</li>
+<li><strong>应试重点</strong>：静基座误差方程是考试重点。掌握状态向量的选取、系统矩阵 <span class="math inline">\(\mathbf{F}\)</span> 的结构和各元素的物理含义。理解傅科振荡（周期约84.4分钟）和舒勒振荡（周期约84.4分钟）在误差传播中的作用。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（推导题）</strong> 写出静基座条件下以 <span class="math inline">\(\delta V_x, \delta V_y, \delta L, \phi_x, \phi_y, \phi_z\)</span> 为状态变量的误差状态方程 <span class="math inline">\(\dot{\mathbf{X}} = \mathbf{F}\mathbf{X} + \mathbf{W}\)</span>，给出 <span class="math inline">\(\mathbf{F}\)</span> 矩阵和 <span class="math inline">\(\mathbf{W}\)</span> 向量。 &gt; <strong>答案</strong>：见定义中的完整矩阵形式。<span class="math inline">\(\mathbf{F}\)</span> 矩阵为 <span class="math inline">\(6 \times 6\)</span> 矩阵，<span class="math inline">\(\mathbf{W} = [\nabla_x, \nabla_y, 0, \varepsilon_x, \varepsilon_y, \varepsilon_z]^T\)</span>。</li>
+<li><strong>（概念题）</strong> 静基座误差方程中，<span class="math inline">\(\mathbf{F}\)</span> 矩阵中 <span class="math inline">\(2\omega_{ie}\sin L\)</span> 项出现在哪些位置？代表什么物理效应？ &gt; <strong>答案</strong>：<span class="math inline">\(2\omega_{ie}\sin L\)</span> 出现在 <span class="math inline">\(\mathbf{F}\)</span> 矩阵的 <span class="math inline">\((1,2)\)</span> 和 <span class="math inline">\((2,1)\)</span> 位置，代表地球自转引起的哥氏耦合效应。它使得东向和北向速度误差之间存在耦合，是产生傅科振荡（周期约 <span class="math inline">\(2\pi/(\omega_{ie}\sin L)\)</span>，在纬度45°处约34小时）的原因之一。</li>
+</ol></li>
+</ul>
+<h4 id="误差传递特性">6.8 误差传递特性</h4>
+<ul>
+<li><strong>定义</strong>：惯导系统误差的传递路径为：器件误差（陀螺漂移 <span class="math inline">\(\varepsilon\)</span>、加速度计零偏 <span class="math inline">\(\nabla\)</span>）通过交叉耦合产生姿态误差，姿态误差通过积分产生速度误差，速度误差通过积分产生位置误差。整个误差传播过程包含三种典型振荡：舒勒振荡（周期84.4分钟）、地球自转振荡（周期24小时）和傅科振荡。</li>
+<li><strong>PPT页码</strong>：第5页</li>
+<li><strong>应试重点</strong>：理解误差从器件到位置逐级传递的过程。掌握三种振荡的周期及其物理原因。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>（概念题）</strong> 简述惯导系统误差的传递路径，并说明舒勒振荡的周期和物理原因。 &gt; <strong>答案</strong>：误差传递路径为：陀螺漂移和加速度计零偏 <span class="math inline">\(\rightarrow\)</span> 姿态误差 <span class="math inline">\(\rightarrow\)</span> 速度误差 <span class="math inline">\(\rightarrow\)</span> 位置误差。舒勒振荡周期为84.4分钟，其物理原因是惯导系统本质上是一个舒勒摆系统，当系统满足舒勒调谐条件时，加速度计误差引起的水平姿态误差以84.4分钟为周期振荡。</li>
+</ol></li>
+</ul>
+<hr />
+<h2 id="二核心公式速查卡-1">二、核心公式速查卡</h2>
+<h3 id="第4讲核心公式">2.1 第4讲核心公式</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>哥氏定理</td>
+<td><span class="math inline">\(\left.\frac{d\mathbf{r}}{dt}\right|_{m} = \left.\frac{d\mathbf{r}}{dt}\right|_{n} + \boldsymbol{\omega}_{mn} \times \mathbf{r}\)</span></td>
+<td>绝对=相对+牵连</td>
+</tr>
+<tr class="even">
+<td>比力定义</td>
+<td><span class="math inline">\(\mathbf{f} = \frac{\mathbf{F}_{外}}{m} = -\mathbf{J} + \ddot{\mathbf{r}}^i\)</span></td>
+<td>加速度计测量值</td>
+</tr>
+<tr class="odd">
+<td>重力与引力</td>
+<td><span class="math inline">\(\mathbf{g} = \mathbf{J} - \boldsymbol{\omega}_{ie} \times (\boldsymbol{\omega}_{ie} \times \mathbf{r})\)</span></td>
+<td>重力=引力-向心力</td>
+</tr>
+<tr class="even">
+<td>比力方程</td>
+<td><span class="math inline">\(\dot{\mathbf{V}}^e = \mathbf{f} + \mathbf{g} - (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span></td>
+<td>惯导核心方程</td>
+</tr>
+<tr class="odd">
+<td>速度方程(简化)</td>
+<td><span class="math inline">\(\dot{V}_x = f_x + (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_y\tan L\)</span></td>
+<td>忽略<span class="math inline">\(V_z\)</span></td>
+</tr>
+<tr class="even">
+<td>速度方程(简化)</td>
+<td><span class="math inline">\(\dot{V}_y = f_y - (2\omega_{ie}\cos L + \frac{V_x}{R+h})V_x\)</span></td>
+<td>忽略<span class="math inline">\(V_z\)</span></td>
+</tr>
+<tr class="odd">
+<td>位置方程</td>
+<td><span class="math inline">\(\dot{L} = \frac{V_y}{R_M+h}\)</span>, <span class="math inline">\(\dot{\lambda} = \frac{V_x}{(R_N+h)\cos L}\)</span>, <span class="math inline">\(\dot{h} = V_z\)</span></td>
+<td>速度积分</td>
+</tr>
+<tr class="even">
+<td>陀螺控制方程</td>
+<td><span class="math inline">\(\omega_x = -\frac{V_y}{R_M+h}\)</span>, <span class="math inline">\(\omega_y = \omega_{ie}\cos L + \frac{V_x}{R_N+h}\)</span>, <span class="math inline">\(\omega_z = \omega_{ie}\sin L + \frac{V_x}{R_N+h}\tan L\)</span></td>
+<td>平台跟踪指令</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\omega_{ie}^n\)</span></td>
+<td><span class="math inline">\(\boldsymbol{\omega}_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span></td>
+<td>地球自转在导航系投影</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第5讲核心公式">2.2 第5讲核心公式</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>姿态矩阵<span class="math inline">\(C_n^b\)</span></td>
+<td><span class="math inline">\(3 \times 3\)</span>方向余弦矩阵（含<span class="math inline">\(\psi, \theta, \gamma\)</span>）</td>
+<td>见5.2节</td>
+</tr>
+<tr class="even">
+<td>俯仰角提取</td>
+<td><span class="math inline">\(\theta = \arcsin(C_{32})\)</span></td>
+<td>矩阵元素反解</td>
+</tr>
+<tr class="odd">
+<td>横滚角提取</td>
+<td><span class="math inline">\(\gamma = \arctan(-C_{31}/C_{33})\)</span></td>
+<td>需<span class="math inline">\(\cos\theta \neq 0\)</span></td>
+</tr>
+<tr class="even">
+<td>航向角提取</td>
+<td><span class="math inline">\(\psi = \arctan(-C_{12}/C_{22})\)</span></td>
+<td>需<span class="math inline">\(\cos\theta \neq 0\)</span></td>
+</tr>
+<tr class="odd">
+<td>四元数定义</td>
+<td><span class="math inline">\(Q = q_0 + q_1\mathbf{i} + q_2\mathbf{j} + q_3\mathbf{k}\)</span></td>
+<td>规范化: <span class="math inline">\(\sum q_i^2 = 1\)</span></td>
+</tr>
+<tr class="even">
+<td>四元数微分方程</td>
+<td><span class="math inline">\(\dot{Q} = \frac{1}{2}Q \otimes \boldsymbol{\omega}_{nb}^b\)</span></td>
+<td>姿态更新核心</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\omega_{nb}^b\)</span>计算</td>
+<td><span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span></td>
+<td>陀螺输出-补偿</td>
+</tr>
+<tr class="even">
+<td>方向余弦微分方程</td>
+<td><span class="math inline">\(\dot{C}_n^b = C_n^b \boldsymbol{\Omega}_{nb}^b\)</span></td>
+<td>9个微分方程</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第6讲核心公式">2.3 第6讲核心公式</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>姿态误差方程</td>
+<td><span class="math inline">\(\dot{\boldsymbol{\Phi}}^n = \boldsymbol{\Phi}^n \times (\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n) + \delta\boldsymbol{\omega}_{ie}^n + \delta\boldsymbol{\omega}_{en}^n - C_b^n\boldsymbol{\varepsilon}^b\)</span></td>
+<td>向量形式</td>
+</tr>
+<tr class="even">
+<td>速度误差方程</td>
+<td><span class="math inline">\(\delta\dot{\mathbf{V}}^n = \mathbf{f}^n \times \boldsymbol{\Phi} + (2\delta\boldsymbol{\omega}_{ie}^n + \delta\boldsymbol{\omega}_{en}^n) \times \mathbf{V}^n - (2\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n) \times \delta\mathbf{V}^n + \nabla^n\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>位置误差方程</td>
+<td><span class="math inline">\(\delta\dot{L} = \frac{\delta V_y}{R_M+h}\)</span>, <span class="math inline">\(\delta\dot{\lambda} = \frac{\sec L}{R_N+h}\delta V_x + \frac{V_x \sec L \tan L}{R_N+h}\delta L\)</span></td>
+<td>忽略<span class="math inline">\(V_z\)</span></td>
+</tr>
+<tr class="even">
+<td>静基座误差方程</td>
+<td><span class="math inline">\(\dot{\mathbf{X}} = \mathbf{F}\mathbf{X} + \mathbf{W}\)</span></td>
+<td><span class="math inline">\(\mathbf{X}\)</span>为6维状态向量</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三易错点汇总-1">三、易错点汇总</h2>
+<h3 id="概念易错点">3.1 概念易错点</h3>
+<ol type="1">
+<li><p><strong>比力 vs 加速度</strong>：加速度计测量的是比力（单位质量上的非引力外力），不是加速度。在静止状态下，加速度计输出大小为 <span class="math inline">\(g\)</span>，方向向上。</p></li>
+<li><p><strong>引力 vs 重力</strong>：引力 <span class="math inline">\(\mathbf{J}\)</span> 指向地心，重力 <span class="math inline">\(\mathbf{g}\)</span> 是引力减去向心加速度后的结果，不严格指向地心。两者关系为 <span class="math inline">\(\mathbf{g} = \mathbf{J} - \boldsymbol{\omega}_{ie} \times (\boldsymbol{\omega}_{ie} \times \mathbf{r})\)</span>。</p></li>
+<li><p><strong>有害加速度的方向</strong>：有害加速度 <span class="math inline">\(a_B = (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span> 需要从比力中<strong>减去</strong>才能得到载体相对加速度，即 <span class="math inline">\(\dot{\mathbf{V}}^e = \mathbf{f} + \mathbf{g} - a_B\)</span>。注意符号是减号。</p></li>
+<li><p><strong>姿态矩阵的上下标</strong>：<span class="math inline">\(C_n^b\)</span> 表示从 <span class="math inline">\(n\)</span> 系到 <span class="math inline">\(b\)</span> 系的变换，<span class="math inline">\(C_b^n\)</span> 表示从 <span class="math inline">\(b\)</span> 系到 <span class="math inline">\(n\)</span> 系的变换，<span class="math inline">\(C_b^n = (C_n^b)^T\)</span>。注意比力变换使用的是 <span class="math inline">\(C_b^n\)</span>：<span class="math inline">\(\mathbf{f}^n = C_b^n \mathbf{f}^b\)</span>。</p></li>
+<li><p><strong>欧拉角旋转顺序</strong>：标准旋转顺序为航向 <span class="math inline">\(\psi\)</span>（绕 <span class="math inline">\(o z_n\)</span>）<span class="math inline">\(\to\)</span> 俯仰 <span class="math inline">\(\theta\)</span>（绕 <span class="math inline">\(o x_1\)</span>）<span class="math inline">\(\to\)</span> 横滚 <span class="math inline">\(\gamma\)</span>（绕 <span class="math inline">\(o y_2\)</span>），顺序不可颠倒。</p></li>
+<li><p><strong>欧拉角法奇点</strong>：当俯仰角 <span class="math inline">\(\theta = \pm 90°\)</span> 时，欧拉角法出现奇点（万向锁），此时航向角和横滚角无法区分。四元数法无此问题。</p></li>
+</ol>
+<h3 id="公式易错点">3.2 公式易错点</h3>
+<ol type="1">
+<li><p><strong>速度方程中角速度项的符号</strong>：东向速度方程中 <span class="math inline">\(2\omega_{ie}\cos L \cdot V_y \tan L\)</span> 为正号，北向速度方程中 <span class="math inline">\(2\omega_{ie}\cos L \cdot V_x\)</span> 为负号。符号容易混淆。</p></li>
+<li><p><strong>位置方程中 <span class="math inline">\(\cos L\)</span> 的位置</strong>：经度变化率 <span class="math inline">\(\dot{\lambda} = \frac{V_x}{(R_N+h)\cos L}\)</span>，<span class="math inline">\(\cos L\)</span> 在分母。在高纬度地区 <span class="math inline">\(\cos L\)</span> 趋近于零，导致经度计算发散。</p></li>
+<li><p><strong><span class="math inline">\(\boldsymbol{\omega}_{nb}^b\)</span> 的计算</strong>：<span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span>，注意这里是 <span class="math inline">\(C_n^b\)</span>（不是 <span class="math inline">\(C_b^n\)</span>），因为 <span class="math inline">\(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n\)</span> 在导航系下，需要变换到载体系。</p></li>
+<li><p><strong>误差方程中的叉乘顺序</strong>：姿态误差方程中 <span class="math inline">\(\boldsymbol{\Phi}^n \times (\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span>，是误差角叉乘角速度，顺序不可颠倒。速度误差方程中 <span class="math inline">\(\mathbf{f}^n \times \boldsymbol{\Phi}\)</span>，是比力叉乘误差角。</p></li>
+<li><p><strong>静基座<span class="math inline">\(\mathbf{F}\)</span>矩阵中<span class="math inline">\(g\)</span>的位置</strong>：<span class="math inline">\(\mathbf{F}\)</span> 矩阵中 <span class="math inline">\(g\)</span> 出现在速度误差与姿态误差的耦合项中，<span class="math inline">\(\phi_y\)</span> 对 <span class="math inline">\(\delta V_x\)</span> 的耦合系数为 <span class="math inline">\(-g\)</span>，<span class="math inline">\(\phi_x\)</span> 对 <span class="math inline">\(\delta V_y\)</span> 的耦合系数为 <span class="math inline">\(g\)</span>。</p></li>
+</ol>
+<h3 id="计算易错点">3.3 计算易错点</h3>
+<ol type="1">
+<li><p><strong>四元数规范化</strong>：在迭代过程中，四元数可能因计算误差偏离规范化条件，需要定期进行归一化处理 <span class="math inline">\(Q = Q / |Q|\)</span>。</p></li>
+<li><p><strong>航向角的象限判断</strong>：从姿态矩阵提取航向角时，需要根据 <span class="math inline">\(C_{22}\)</span> 的符号判断象限：<span class="math inline">\(C_{22} &gt; 0\)</span> 时 <span class="math inline">\(\psi\)</span> 在第一或第四象限，<span class="math inline">\(C_{22} &lt; 0\)</span> 时需要加减 <span class="math inline">\(180°\)</span>。</p></li>
+<li><p><strong>忽略垂向运动的适用条件</strong>：简化方程仅在垂向速度远小于水平速度时适用，对于高动态飞行器不适用。</p></li>
+</ol>
+<hr />
+<h2 id="四应试练习题综合-1">四、应试练习题（综合）</h2>
+<h3 id="一概念题">一、概念题</h3>
+<p><strong>1.</strong> 简述惯导系统的基本工作原理，并说明需要解决哪四个核心问题。</p>
+<blockquote>
+<p><strong>答案</strong>：惯导系统通过惯性元件（加速度计和陀螺仪）测量载体的比力和角速度，利用牛顿运动定律进行导航参数（位置、速度、姿态）的解算。需要解决四个核心问题： （1）如何获得载体相对运动的加速度？——比力方程 （2）如何获得加速度在导航坐标系下的投影？——姿态矩阵 （3）如何由加速度求速度和位置？——惯导系统计算方程 （4）如何获得载体的姿态？——姿态矩阵定义与更新</p>
+</blockquote>
+<p><strong>2.</strong> 什么是“数学平台”？它与平台式惯导中的物理平台有何异同？</p>
+<blockquote>
+<p><strong>答案</strong>：数学平台是捷联惯导系统中的概念，指通过姿态矩阵 <span class="math inline">\(C_b^n\)</span> 的数学运算来实现等效于物理平台的功能。相同点：都能将加速度计输出变换到导航坐标系下；不同点：物理平台是实际的机电装置，通过陀螺控制实现平台跟踪导航系；数学平台是通过计算机中的姿态矩阵运算来实现坐标变换，没有实体平台。</p>
+</blockquote>
+<p><strong>3.</strong> 列举惯导系统的误差来源，并说明哪些误差会导致姿态误差。</p>
+<blockquote>
+<p><strong>答案</strong>：误差来源包括：（1）器件误差：陀螺漂移、加速度计零偏、标度因数误差；（2）安装误差；（3）初始值误差：初始姿态角、速度、位置误差；（4）解算误差。导致姿态误差的主要有：陀螺漂移（直接驱动项）、初始姿态误差、以及由速度误差和位置误差引起的角速度计算误差。</p>
+</blockquote>
+<h3 id="二推导题">二、推导题</h3>
+<p><strong>4.</strong> 从哥氏定理出发，推导比力方程 <span class="math inline">\(\dot{\mathbf{V}}^e = \mathbf{f} + \mathbf{g} - (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span>。</p>
+<blockquote>
+<p><strong>答案</strong>： （1）由牛顿第二定律：<span class="math inline">\(m\ddot{\mathbf{r}}^i = \mathbf{F}_{外} + \mathbf{F}_{引}\)</span>，比力 <span class="math inline">\(\mathbf{f} = \frac{\mathbf{F}_{外}}{m}\)</span>，引力加速度 <span class="math inline">\(\mathbf{J} = \frac{\mathbf{F}_{引}}{m}\)</span> （2）定义 <span class="math inline">\(\mathbf{V}^e = \dot{\mathbf{r}}^e\)</span>（载体相对地球速度） （3）对 <span class="math inline">\(\mathbf{V}^e\)</span> 在惯性系求导，应用哥氏定理： <span class="math inline">\(\ddot{\mathbf{r}}^i = \frac{d\mathbf{V}^e}{dt}\big|_i = \dot{\mathbf{V}}^e + \boldsymbol{\omega}_{ie} \times \mathbf{V}^e\)</span> （4）再对 <span class="math inline">\(\mathbf{V}^e\)</span> 应用哥氏定理（从 <span class="math inline">\(e\)</span> 系到 <span class="math inline">\(n\)</span> 系）： <span class="math inline">\(\dot{\mathbf{V}}^e = \frac{d\mathbf{V}^e}{dt}\big|_n + \boldsymbol{\omega}_{en} \times \mathbf{V}^e\)</span> （5）代入得：<span class="math inline">\(\ddot{\mathbf{r}}^i = \dot{\mathbf{V}}^e + (\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span> （6）由 <span class="math inline">\(\ddot{\mathbf{r}}^i = \mathbf{f} + \mathbf{J}\)</span>，且 <span class="math inline">\(\mathbf{g} = \mathbf{J} - \boldsymbol{\omega}_{ie} \times (\boldsymbol{\omega}_{ie} \times \mathbf{r})\)</span> （7）整理得：<span class="math inline">\(\dot{\mathbf{V}}^e = \mathbf{f} + \mathbf{g} - (2\boldsymbol{\omega}_{ie} + \boldsymbol{\omega}_{en}) \times \mathbf{V}^e\)</span></p>
+</blockquote>
+<p><strong>5.</strong> 推导静基座条件下，北向速度误差方程 <span class="math inline">\(\delta\dot{V}_y = -2\omega_{ie}\sin L \cdot \delta V_x + g\phi_x + \nabla_y\)</span>。</p>
+<blockquote>
+<p><strong>答案</strong>：在静基座条件下，<span class="math inline">\(V_x = V_y = V_z = 0\)</span>，速度误差方程简化为： <span class="math inline">\(\delta\dot{V}_y = f_y\phi_x - f_x\phi_z - (2\omega_{ie}\sin L)\delta V_x + \nabla_y\)</span> 静止时 <span class="math inline">\(f_x = 0\)</span>，<span class="math inline">\(f_y = -g\)</span>（北向加速度计感受重力），<span class="math inline">\(f_z = 0\)</span>。 代入得：<span class="math inline">\(\delta\dot{V}_y = (-g)\phi_x - 0 - 2\omega_{ie}\sin L \cdot \delta V_x + \nabla_y\)</span> 即：<span class="math inline">\(\delta\dot{V}_y = -2\omega_{ie}\sin L \cdot \delta V_x - g\phi_x + \nabla_y\)</span></p>
+<p>注意：根据PPT中的静基座误差方程矩阵形式，<span class="math inline">\(\mathbf{F}\)</span> 矩阵中 <span class="math inline">\((2,4)\)</span> 位置为 <span class="math inline">\(g\)</span>（即 <span class="math inline">\(\phi_x\)</span> 对 <span class="math inline">\(\delta\dot{V}_y\)</span> 的系数），因此 <span class="math inline">\(\delta\dot{V}_y = -2\omega_{ie}\sin L \cdot \delta V_x + g\phi_x + \nabla_y\)</span>。此处符号取决于误差角和比力叉乘的具体定义约定。</p>
+</blockquote>
+<h3 id="三计算题">三、计算题</h3>
+<p><strong>6.</strong> 已知载体在纬度 <span class="math inline">\(L = 45°\text{N}\)</span> 处静止，地球自转角速度 <span class="math inline">\(\omega_{ie} = 15°/\text{h}\)</span>，重力加速度 <span class="math inline">\(g = 9.8\text{m/s}^2\)</span>，地球半径 <span class="math inline">\(R = 6371\text{km}\)</span>。 &gt; （1）求导航坐标系下地球自转角速度的三个分量； &gt; （2）求加速度计在三个轴向上的输出。</p>
+<blockquote>
+<p><strong>答案</strong>： （1）<span class="math inline">\(\omega_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span> <span class="math inline">\(\omega_{ie}\cos 45° = 15 \times 0.7071 = 10.607°/\text{h}\)</span> <span class="math inline">\(\omega_{ie}\sin 45° = 15 \times 0.7071 = 10.607°/\text{h}\)</span> 即 <span class="math inline">\(\omega_{ie}^n = [0, 10.607, 10.607]^T °/\text{h}\)</span></p>
+<p>（2）载体静止时，加速度计输出等于负重力在载体系上的投影（假设载体系与导航系重合）： <span class="math inline">\(f_x^b = 0\)</span>，<span class="math inline">\(f_y^b = 0\)</span>，<span class="math inline">\(f_z^b = g = 9.8\text{m/s}^2\)</span></p>
+</blockquote>
+<p><strong>7.</strong> 某捷联惯导系统中，陀螺仪测量的角速度为 <span class="math inline">\(\boldsymbol{\omega}_{ib}^b = [0.01, 0.02, 0.03]^T \text{rad/s}\)</span>，已知当前姿态矩阵 <span class="math inline">\(C_n^b\)</span>、<span class="math inline">\(\boldsymbol{\omega}_{ie}^n = [0, 10.607, 10.607]^T °/\text{h}\)</span>，<span class="math inline">\(\boldsymbol{\omega}_{en}^n = [0, 0, 0]^T\)</span>（静基座）。求 <span class="math inline">\(\boldsymbol{\omega}_{nb}^b\)</span>。</p>
+<blockquote>
+<p><strong>答案</strong>：<span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b(\boldsymbol{\omega}_{ie}^n + \boldsymbol{\omega}_{en}^n)\)</span> 由于 <span class="math inline">\(\boldsymbol{\omega}_{en}^n = \mathbf{0}\)</span>，<span class="math inline">\(\boldsymbol{\omega}_{nb}^b = \boldsymbol{\omega}_{ib}^b - C_n^b \boldsymbol{\omega}_{ie}^n\)</span>。 需要知道 <span class="math inline">\(C_n^b\)</span> 的具体数值才能计算。假设 <span class="math inline">\(C_n^b = I\)</span>（载体系与导航系重合），则： <span class="math inline">\(\boldsymbol{\omega}_{nb}^b = [0.01, 0.02, 0.03]^T - [0, 10.607 \times \frac{\pi}{180 \times 3600}, 10.607 \times \frac{\pi}{180 \times 3600}]^T\)</span> <span class="math inline">\(= [0.01, 0.02, 0.03]^T - [0, 5.145 \times 10^{-5}, 5.145 \times 10^{-5}]^T\)</span> <span class="math inline">\(\approx [0.01, 0.0199, 0.0299]^T \text{ rad/s}\)</span></p>
+</blockquote>
+<h3 id="四综合分析题">四、综合分析题</h3>
+<p><strong>8.</strong> 分析在静基座对准过程中，东向陀螺漂移 <span class="math inline">\(\varepsilon_x\)</span> 对各导航参数（姿态、速度、位置）误差的影响规律。</p>
+<blockquote>
+<p><strong>答案</strong>：东向陀螺漂移 <span class="math inline">\(\varepsilon_x\)</span> 作为误差驱动项，直接影响方位误差角 <span class="math inline">\(\phi_z\)</span> 和北向水平误差角 <span class="math inline">\(\phi_y\)</span> 的变化率。通过误差方程矩阵 <span class="math inline">\(\mathbf{F}\)</span> 的耦合关系： （1）<span class="math inline">\(\varepsilon_x\)</span> 直接驱动 <span class="math inline">\(\phi_y\)</span> 和 <span class="math inline">\(\phi_z\)</span> 的变化； （2）<span class="math inline">\(\phi_y\)</span> 通过与 <span class="math inline">\(g\)</span> 的耦合影响 <span class="math inline">\(\delta V_x\)</span>（<span class="math inline">\(\delta\dot{V}_x\)</span> 含 <span class="math inline">\(-g\phi_y\)</span> 项）； （3）<span class="math inline">\(\phi_z\)</span> 通过与 <span class="math inline">\(\omega_{ie}\cos L\)</span> 的耦合影响 <span class="math inline">\(\phi_x\)</span> 和 <span class="math inline">\(\phi_y\)</span>； （4）速度误差通过积分产生位置误差。 因此，东向陀螺漂移会导致水平姿态误差、方位误差、速度误差和位置误差的振荡性增长，振荡周期包含舒勒周期（84.4分钟）和傅科周期。</p>
+</blockquote>
+<p><strong>9.</strong> 比较平台式惯导系统和捷联式惯导系统在误差方程方面的异同。</p>
+<blockquote>
+<p><strong>答案</strong>： <strong>相同点</strong>： - 误差来源相同（器件误差、初始误差、解算误差） - 误差方程的基本形式相同（姿态误差方程、速度误差方程、位置误差方程） - 误差传递路径相同（器件误差<span class="math inline">\(\to\)</span>姿态误差<span class="math inline">\(\to\)</span>速度误差<span class="math inline">\(\to\)</span>位置误差）</p>
+<p><strong>不同点</strong>： - 平台式惯导中，平台误差角直接对应物理平台的偏转角；捷联式惯导中，平台误差角是数学平台（计算导航坐标系）与理想导航系的偏差 - 捷联式惯导中，陀螺漂移和加速度计零偏直接在载体系上，需要通过 <span class="math inline">\(C_b^n\)</span> 变换到导航系；平台式惯导中，这些误差直接在平台系（即导航系）上 - 捷联式惯导的误差方程中多出姿态矩阵计算误差的影响</p>
+</blockquote>
+<p><strong>10.</strong> 为什么说四元数法是捷联惯导系统中最常用的姿态更新方法？请从计算量和奇点两个方面进行分析。</p>
+<blockquote>
+<p><strong>答案</strong>： （1）<strong>计算量方面</strong>：四元数法只需解4个微分方程，且只涉及加减法和乘法运算，计算量最小。相比之下，欧拉角法虽只解3个方程但需要大量超越函数运算，方向余弦法需解9个方程计算量最大。 （2）<strong>奇点方面</strong>：四元数法全程无奇点，适用于任意姿态。欧拉角法在 <span class="math inline">\(\theta = 90°\)</span> 时出现万向锁奇点，无法正常工作。方向余弦法虽无奇点但计算量大。 综合考虑计算效率和全姿态适用性，四元数法是最优选择。 # 组合导航基础概念与应试指南（第7-15讲）</p>
+</blockquote>
+<hr />
+<h2 id="一基础概念词典-2">一、基础概念词典</h2>
+<hr />
+<h3 id="第7讲-卫星导航系统">第7讲 卫星导航系统</h3>
+<h4 id="卫星导航系统">7.1 卫星导航系统</h4>
+<ul>
+<li><strong>定义</strong>：卫星定位系统是利用在空间飞行的卫星不断向地面广播发送某种频率并加载了某些特殊定位信息的无线电信号来实现定位测量的定位系统。全球四大卫星导航系统包括：GPS（美国）、GLONASS（俄罗斯）、GALILEO（欧盟）和北斗（中国）。</li>
+<li><strong>PPT页码</strong>：第3-4页</li>
+<li><strong>应试重点</strong>：掌握四大卫星导航系统的名称、所属国家/地区及基本特点；理解卫星导航系统的优缺点（全球覆盖、全天候、高精度 vs 易受干扰、无法水下导航）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：简述卫星导航系统的工作原理。 &gt; <strong>答案</strong>：卫星定位系统利用空间卫星向地面广播加载了定位信息的无线电信号，用户接收机接收信号后进行处理，获取导航电文和观测量，从而实现定位。</li>
+<li><strong>概念题</strong>：北斗三号全球系统何时正式开通？其核心器部件国产化率是多少？ &gt; <strong>答案</strong>：2020年7月31日正式开通，核心器部件国产化率100%。</li>
+<li><strong>简答题</strong>：卫星导航系统的优点和缺点各有哪些？ &gt; <strong>答案</strong>：优点：全球性覆盖、全天候工作、实时高精度三维位置/速度/时间信息、定位精度高、观测时间短、功能多用途广。缺点：GPS政策可能改变、无法水下导航、战时易受干扰。</li>
+</ol></li>
+</ul>
+<h4 id="gps系统组成">7.2 GPS系统组成</h4>
+<ul>
+<li><strong>定义</strong>：GPS定位系统由三个部分组成：（1）空间部分（GPS卫星星座，24颗卫星）；（2）地面控制部分（主控站、监测站、注入站）；（3）用户设备部分（GPS接收机及天线）。卫星星座保证地球上任何地点任何时刻至少可同时观测到4颗卫星。</li>
+<li><strong>PPT页码</strong>：第11-17页</li>
+<li><strong>应试重点</strong>：掌握GPS三大组成部分及其功能；主控站负责推算编制星历、钟差和大气修正参数；注入站负责将数据注入卫星；监测站负责持续跟踪测量卫星。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：GPS系统由哪三大部分组成？各自的功能是什么？ &gt; <strong>答案</strong>：空间部分（24颗卫星星座，广播定位信号）、地面控制部分（主控站推算星历/钟差，注入站注入数据，监测站跟踪测量）、用户设备部分（GPS接收机接收信号并处理获取导航信息）。</li>
+<li><strong>概念题</strong>：GPS卫星星座由多少颗卫星组成？设计要求是什么？ &gt; <strong>答案</strong>：24颗卫星；保证地球上任何地点任何时刻至少可同时观测到4颗卫星。</li>
+</ol></li>
+</ul>
+<h4 id="gps信号结构">7.3 GPS信号结构</h4>
+<ul>
+<li><strong>定义</strong>：GPS信号由载波（L1: 1575.42MHz/波长19.03cm, L2: 1227.60MHz/波长24.42cm）、测距码（C/A码和P码）和导航电文（数据码，50Hz）组成。基准频率为10.23MHz。C/A码码率1.023MHz，周期1ms，1023个码元；P码码率10.23MHz，周期7天。</li>
+<li><strong>PPT页码</strong>：第19-27页</li>
+<li><strong>应试重点</strong>：掌握L1/L2载波频率和波长；C/A码（粗码/捕获码）和P码（精码）的区别；导航电文的基本参数（1500比特/帧，50bit/s，30s/帧）；信号的两级调制过程。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>计算题</strong>：GPS的L1载波频率为1575.42MHz，求其波长（光速 <span class="math inline">\(c = 3 \times 10^8\)</span> m/s）。 &gt; <strong>答案</strong>：<span class="math inline">\(\lambda = c/f = 3 \times 10^8 / 1575.42 \times 10^6 \approx 0.1903\)</span> m = 19.03 cm。</li>
+<li><strong>概念题</strong>：C/A码和P码各有什么特点？为什么P码称为精码？ &gt; <strong>答案</strong>：C/A码码率1.023MHz，周期1ms，码元宽293.05m，易于捕获，精度较低（粗码）；P码码率10.23MHz，周期7天，码元宽29.30m，难以捕获但精度高（精码），测距误差约为C/A码的1/10。</li>
+</ol></li>
+</ul>
+<h4 id="伪随机噪声码prn">7.4 伪随机噪声码（PRN）</h4>
+<ul>
+<li><strong>定义</strong>：伪随机噪声码是具有随机码良好自相关性，又具有某种确定编码规则的周期性码序列，容易复制。GPS采用的C/A码和P码均属于伪随机码。对齐的同一组码间相关系数为1，不同码或未对齐码间相关系数为0或<span class="math inline">\(1/n\)</span>。</li>
+<li><strong>PPT页码</strong>：第21-24页</li>
+<li><strong>应试重点</strong>：理解自相关性和互相关性的概念；掌握伪随机码的定义和特点；理解码元、码率、数码率的概念。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：什么是伪随机噪声码？它与随机噪声码有什么区别？ &gt; <strong>答案</strong>：伪随机噪声码具有随机码的良好自相关性，同时具有确定编码规则，是周期性的、容易复制的。而随机噪声码虽然自相关性好，但是非周期序列，不服从编码规则，无法复制和利用。</li>
+</ol></li>
+</ul>
+<h4 id="gps信号调制">7.5 GPS信号调制</h4>
+<ul>
+<li><strong>定义</strong>：GPS卫星信号经过两级调制：第一级是将导航电文D(t)分别调制到C/A码和P码上（模2和运算/扩频调制）；第二级是将组合码再分别调制到L1和L2载波上（调相PM）。在L1上正交调制C/A码和P码，在L2上只调制P码。</li>
+<li><strong>PPT页码</strong>：第28-33页</li>
+<li><strong>应试重点</strong>：掌握两级调制的过程；理解调相（PM）、调频（FM）、调幅（AM）的区别；GPS使用调相技术。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>简答题</strong>：简述GPS卫星信号的两级调制过程。 &gt; <strong>答案</strong>：第一级调制（扩频调制）：将低频导航电文D(t)与高频C/A码和P码进行模2和运算；第二级调制（载波调制）：将一级调制的组合码通过调相(PM)技术调制到L1和L2载波上。</li>
+</ol></li>
+</ul>
+<h4 id="gps定位原理伪距定位">7.6 GPS定位原理——伪距定位</h4>
+<ul>
+<li><strong>定义</strong>：伪距是GPS到用户的观测距离，由于各种误差源的影响并非真实几何距离。测码伪距通过测量卫星发射的测距码信号到达接收机的传播时间来确定。同时观测4颗卫星可解算出用户的三维位置和接收机钟差共4个未知数。伪距方程为 <span class="math inline">\(\rho_j = \sqrt{(X_j-x)^2+(Y_j-y)^2+(Z_j-z)^2} + c \cdot \delta t + \varepsilon_j\)</span>。</li>
+<li><strong>PPT页码</strong>：第35-41页</li>
+<li><strong>应试重点</strong>：掌握伪距的定义；理解为什么需要至少4颗卫星；掌握伪距观测线性化方程和矩阵形式 <span class="math inline">\(V = GX + L\)</span>；理解卫星测速的三种方法。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：为什么GPS定位至少需要同时观测4颗卫星？ &gt; <strong>答案</strong>：因为需要求解4个未知数（用户三维坐标x, y, z和接收机钟差<span class="math inline">\(\delta t\)</span>），每颗卫星提供一个伪距方程，至少需要4个方程才能求解。</li>
+<li><strong>推导题</strong>：写出GPS伪距基本方程，并说明各项含义。 &gt; <strong>答案</strong>：<span class="math inline">\(\rho_j = \sqrt{(X_j-x)^2+(Y_j-y)^2+(Z_j-z)^2} + c \cdot \delta t + \varepsilon_j\)</span>，其中<span class="math inline">\((X_j,Y_j,Z_j)\)</span>为卫星坐标，<span class="math inline">\((x,y,z)\)</span>为用户坐标，<span class="math inline">\(\delta t\)</span>为接收机钟差，<span class="math inline">\(\varepsilon_j\)</span>为其他误差。</li>
+</ol></li>
+</ul>
+<h4 id="gps误差模型">7.7 GPS误差模型</h4>
+<ul>
+<li><strong>定义</strong>：GPS定位误差来源包括：卫星时钟误差、卫星星历误差、电离层/对流层/多路径误差、接收机时钟误差等。GPS位置/速度观测模型用于松组合（含白噪声），GPS伪距观测模型用于紧组合（含钟差等效距离误差和白噪声）。</li>
+<li><strong>PPT页码</strong>：第44-46页</li>
+<li><strong>应试重点</strong>：掌握GPS误差来源分类；掌握松组合和紧组合的GPS观测模型形式及区别。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：GPS定位的主要误差来源有哪些？ &gt; <strong>答案</strong>：卫星时钟误差、卫星星历误差、电离层折射误差、对流层折射误差、多路径误差、接收机时钟误差等。</li>
+<li><strong>概念题</strong>：写出GPS伪距观测模型，并说明用于哪种组合导航方式。 &gt; <strong>答案</strong>：<span class="math inline">\(\rho_i^G = \sqrt{(x_i^s-x)^2+(y_i^s-y)^2+(z_i^s-z)^2} + \delta t_u + v_i\)</span>，其中<span class="math inline">\(\delta t_u\)</span>为接收机钟差等效距离误差，<span class="math inline">\(v_i\)</span>为零均值高斯白噪声。用于INS/GPS紧组合导航建模。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第8-9讲-估计理论基础">第8-9讲 估计理论基础</h3>
+<h4 id="估计的基本概念">8.1 估计的基本概念</h4>
+<ul>
+<li><strong>定义</strong>：所谓“估计”，就是对受到随机干扰和随机测量误差作用的物理系统，按照某种性能指标为最优的原则，从具有随机误差的测量数据中提取信息，解算出系统的某些参数或状态变量。基本思路为：建立模型 <span class="math inline">\(\to\)</span> 设定准则（代价函数）<span class="math inline">\(\to\)</span> 最优 化代价函数求取估计值。</li>
+<li><strong>PPT页码</strong>：第5-7页</li>
+<li><strong>应试重点</strong>：理解估计的基本定义和三个步骤；掌握量测模型 <span class="math inline">\(Z(t) = h[X(t)] + V(t)\)</span>。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：什么是估计？估计的基本步骤是什么？ &gt; <strong>答案</strong>：估计是从含随机误差的测量数据中按最优准则提取系统参数或状态变量的过程。步骤：（1）建立模型；（2）设定准则（代价函数）；（3）最大化或最小化代价函数求取估计值。</li>
+</ol></li>
+</ul>
+<h4 id="估计的分类">8.2 估计的分类</h4>
+<ul>
+<li><strong>定义</strong>：根据观测时刻k与待估状态时刻i的关系，估计分为三类：预测（<span class="math inline">\(i &gt; k\)</span>，外推）、滤波（<span class="math inline">\(i = k\)</span>）和平滑（<span class="math inline">\(i &lt; k\)</span>，内插）。卡尔曼滤波属于滤波类估计。</li>
+<li><strong>PPT页码</strong>：第8页</li>
+<li><strong>应试重点</strong>：掌握预测、滤波、平滑三种估计的区别和适用场景。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：估计分为哪三类？卡尔曼滤波属于哪一类？ &gt; <strong>答案</strong>：预测（i&gt;k，利用当前及过去观测估计未来状态）、滤波（i=k，利用当前及过去观测估计当前状态）、平滑（i&lt;k，利用所有观测估计过去状态）。卡尔曼滤波属于滤波。</li>
+</ol></li>
+</ul>
+<h4 id="估计的性能指标">8.3 估计的性能指标</h4>
+<ul>
+<li><strong>定义</strong>：估计的性能指标包括：（1）无偏性：估计误差的均值为零，即 <span class="math inline">\(E[\tilde{X}] = 0\)</span>；（2）有效性：估计误差的均方误差最小，即 <span class="math inline">\(\min E[\tilde{X}^T \tilde{X}]\)</span> 或 <span class="math inline">\(\min Tr(E[\tilde{X}\tilde{X}^T])\)</span>。好的估计应同时满足无偏且方差最小。</li>
+<li><strong>PPT页码</strong>：第9-11页</li>
+<li><strong>应试重点</strong>：理解无偏性和最小方差两个性能指标的含义和判断标准。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：估计的两个性能指标是什么？分别如何定义？ &gt; <strong>答案</strong>：（1）无偏性：<span class="math inline">\(E[\hat{X}-X] = 0\)</span>，估计误差均值为零；（2）最小方差：<span class="math inline">\(E[(\hat{X}-X)(\hat{X}-X)^T]\)</span> 的迹最小，即估计误差的均方误差最小。</li>
+</ol></li>
+</ul>
+<h4 id="最小二乘估计一般最小二乘">8.4 最小二乘估计（一般最小二乘）</h4>
+<ul>
+<li><strong>定义</strong>：最小二乘估计以量测估计偏差的平方和达到最小为指标，即 <span class="math inline">\(J(\hat{X}) = (Z-H\hat{X})^T(Z-H\hat{X}) = \min\)</span>。量测模型为 <span class="math inline">\(Z = HX + V\)</span>，解为 <span class="math inline">\(\hat{X}_{LS} = (H^T H)^{-1} H^T Z\)</span>。当量测噪声V为零均值时，最小二乘估计是无偏的，均方误差阵为 <span class="math inline">\((H^T H)^{-1} H^T R H (H^T H)^{-1}\)</span>。</li>
+<li><strong>PPT页码</strong>：第13-23页</li>
+<li><strong>应试重点</strong>：掌握最小二乘估计的准则、求解公式和性质（无偏性）；理解其局限性——认为所有观测值影响相同，无法区分精度差异。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>推导题</strong>：推导一般最小二乘估计的求解公式。 &gt; <strong>答案</strong>：令 <span class="math inline">\(J = (Z-H\hat{X})^T(Z-H\hat{X})\)</span>，对<span class="math inline">\(\hat{X}\)</span>求导并令其为零：<span class="math inline">\(\frac{\partial J}{\partial \hat{X}} = -2H^T(Z-H\hat{X}) = 0\)</span>，解得 <span class="math inline">\(\hat{X}_{LS} = (H^TH)^{-1}H^TZ\)</span>。</li>
+<li><strong>计算题</strong>：用万用表对某电阻测量3次，读数分别为<span class="math inline">\(Z_1, Z_2, Z_3\)</span>，量测模型为<span class="math inline">\(Z_i = X + V_i\)</span>，用最小二乘法估计电阻值X。 &gt; <strong>答案</strong>：<span class="math inline">\(H = [1,1,1]^T\)</span>，<span class="math inline">\(\hat{X}_{LS} = (H^TH)^{-1}H^TZ = \frac{1}{3}(Z_1+Z_2+Z_3)\)</span>，即三次测量的算术平均值。</li>
+</ol></li>
+</ul>
+<h4 id="加权最小二乘估计">8.5 加权最小二乘估计</h4>
+<ul>
+<li><strong>定义</strong>：加权最小二乘引入加权矩阵W，以 <span class="math inline">\(J(\hat{X}) = (Z-H\hat{X})^T W(Z-H\hat{X}) = \min\)</span> 为指标。解为 <span class="math inline">\(\hat{X}_{LSW} = (H^TWH)^{-1}H^TWZ\)</span>。当取 <span class="math inline">\(W = R^{-1}\)</span>（R为量测噪声方差阵）时，估计均方误差达到最小，为 <span class="math inline">\((H^TR^{-1}H)^{-1}\)</span>。</li>
+<li><strong>PPT页码</strong>：第24-28页</li>
+<li><strong>应试重点</strong>：掌握加权最小二乘与一般最小二乘的区别；理解最优加权矩阵 <span class="math inline">\(W = R^{-1}\)</span> 的含义（精度高的量测赋予更大权重）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：加权最小二乘估计中，最优加权矩阵取什么？其物理意义是什么？ &gt; <strong>答案</strong>：最优加权矩阵取 <span class="math inline">\(W = R^{-1}\)</span>，其中R为量测噪声方差阵。物理意义是量测精度越高（方差越小），权重越大，对估计结果的贡献越大。</li>
+<li><strong>计算题</strong>：两个万用表测量同一电阻，误差方差分别为r和4r，用加权最小二乘估计电阻值。 &gt; <strong>答案</strong>：<span class="math inline">\(W = R^{-1} = \text{diag}(1/r, 1/(4r))\)</span>，<span class="math inline">\(\hat{X} = \frac{1 \cdot Z_1/r + 1 \cdot Z_2/(4r)}{1/r + 1/(4r)} = \frac{4Z_1 + Z_2}{5}\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="递推最小二乘估计">8.6 递推最小二乘估计</h4>
+<ul>
+<li><strong>定义</strong>：递推最小二乘从每次量测中提取信息修正上一步估计，公式为 <span class="math inline">\(\hat{X}_{k+1} = \hat{X}_k + P_{k+1}H_{k+1}^T W_{k+1}(Z_{k+1} - H_{k+1}\hat{X}_k)\)</span>，其中 <span class="math inline">\(P_{k+1}^{-1} = P_k^{-1} + H_{k+1}^T W_{k+1} H_{k+1}\)</span>。不需要存储所有量测值，适合实时处理。</li>
+<li><strong>PPT页码</strong>：第29-31页</li>
+<li><strong>应试重点</strong>：掌握递推最小二乘的基本思想（新息修正）；理解其优缺点（实时性好但精度不高，只能估计确定性常量）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：递推最小二乘估计相比批处理最小二乘有什么优势？有什么局限？ &gt; <strong>答案</strong>：优势：不必存储所有量测值，适合实时递推处理，获得量测次数越多估计精度越高。局限：算法简单但精度不高，只能估计确定性常量，无法估计时变动态随机状态。</li>
+</ol></li>
+</ul>
+<h4 id="线性最小方差估计">8.7 线性最小方差估计</h4>
+<ul>
+<li><strong>定义</strong>：将估值规定为量测矢量Z的线性函数 <span class="math inline">\(\hat{X}(Z) = a + BZ\)</span>，以均方误差最小为指标求取系数a和B。解为 <span class="math inline">\(\hat{X}_L = E[X] + \text{Cov}(X,Z)\text{Var}(Z)^{-1}(Z - E[Z])\)</span>。当X和Z都服从正态分布时，线性最小方差估计与最小方差估计等同。</li>
+<li><strong>PPT页码</strong>：第33-40页</li>
+<li><strong>应试重点</strong>：掌握线性最小方差估计的公式结构（均值 + 增益 x 新息）；理解其在正态分布下与最小方差估计等价的性质。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：写出线性最小方差估计的公式，并解释各部分的含义。 &gt; <strong>答案</strong>：<span class="math inline">\(\hat{X}_L = E[X] + \text{Cov}(X,Z)\text{Var}(Z)^{-1}(Z-E[Z])\)</span>。其中<span class="math inline">\(E[X]\)</span>为X的均值，<span class="math inline">\(\text{Cov}(X,Z)\text{Var}(Z)^{-1}\)</span>为增益系数，<span class="math inline">\((Z-E[Z])\)</span>为观测新息。</li>
+<li><strong>概念题</strong>：在什么条件下线性最小方差估计与最小方差估计等同？ &gt; <strong>答案</strong>：当被估向量X与量测向量Z都服从正态分布时，二者等同，此时在所有估计（包括非线性估计）中也是最优的。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第10讲-卡尔曼滤波">第10讲 卡尔曼滤波</h3>
+<h4 id="离散系统的数学描述">10.1 离散系统的数学描述</h4>
+<ul>
+<li><strong>定义</strong>：离散系统状态方程 <span class="math inline">\(X_k = \Phi_{k,k-1} X_{k-1} + \Gamma_{k-1} W_{k-1}\)</span>，量测方程 <span class="math inline">\(Z_k = H_k X_k + V_k\)</span>。其中<span class="math inline">\(X_k\)</span>为n维状态向量，<span class="math inline">\(Z_k\)</span>为m维量测向量，<span class="math inline">\(\Phi_{k,k-1}\)</span>为状态转移矩阵，<span class="math inline">\(W_k\)</span>和<span class="math inline">\(V_k\)</span>为互不相关的零均值白噪声序列，方差分别为<span class="math inline">\(Q_k\)</span>（非负定）和<span class="math inline">\(R_k\)</span>（正定）。初始状态<span class="math inline">\(X_0\)</span>与噪声不相关。</li>
+<li><strong>PPT页码</strong>：第4-6页</li>
+<li><strong>应试重点</strong>：掌握离散系统状态方程和量测方程中各变量的含义、维数和统计特性。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：写出离散卡尔曼滤波的系统状态方程和量测方程，并说明各变量含义。 &gt; <strong>答案</strong>：状态方程 <span class="math inline">\(X_k = \Phi_{k,k-1}X_{k-1} + \Gamma_{k-1}W_{k-1}\)</span>，量测方程 <span class="math inline">\(Z_k = H_kX_k + V_k\)</span>。<span class="math inline">\(X_k\)</span>为状态向量，<span class="math inline">\(Z_k\)</span>为量测向量，<span class="math inline">\(\Phi\)</span>为状态转移矩阵，<span class="math inline">\(\Gamma\)</span>为噪声驱动矩阵，<span class="math inline">\(H\)</span>为量测矩阵，<span class="math inline">\(W_k\)</span>为系统噪声，<span class="math inline">\(V_k\)</span>为量测噪声。</li>
+</ol></li>
+</ul>
+<h4 id="卡尔曼滤波基本方程五个核心方程">10.2 卡尔曼滤波基本方程（五个核心方程）</h4>
+<ul>
+<li><strong>定义</strong>：卡尔曼滤波是一种递推线性最小方差估计，包含五个核心方程：
+<ol type="1">
+<li><strong>状态一步预测</strong>：<span class="math inline">\(\hat{X}_{k|k-1} = \Phi_{k,k-1}\hat{X}_{k-1}\)</span></li>
+<li><strong>一步预测均方差</strong>：<span class="math inline">\(P_{k|k-1} = \Phi_{k,k-1}P_{k-1}\Phi_{k,k-1}^T + \Gamma_{k-1}Q_{k-1}\Gamma_{k-1}^T\)</span></li>
+<li><strong>滤波增益</strong>：<span class="math inline">\(K_k = P_{k|k-1}H_k^T(H_kP_{k|k-1}H_k^T + R_k)^{-1}\)</span></li>
+<li><strong>状态估值</strong>：<span class="math inline">\(\hat{X}_k = \hat{X}_{k|k-1} + K_k(Z_k - H_k\hat{X}_{k|k-1})\)</span></li>
+<li><strong>估计均方差</strong>：<span class="math inline">\(P_k = (I - K_kH_k)P_{k|k-1}\)</span> 或 <span class="math inline">\(P_k = (I-K_kH_k)P_{k|k-1}(I-K_kH_k)^T + K_kR_kK_k^T\)</span></li>
+</ol></li>
+<li><strong>PPT页码</strong>：第8-22页</li>
+<li><strong>应试重点</strong>：<strong>这是最核心的考点</strong>。必须熟记五个方程的完整形式、计算顺序和各变量含义；理解“预测+修正”的基本思想；掌握新息 <span class="math inline">\(Z_k - H_k\hat{X}_{k|k-1}\)</span> 的概念。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>默写题</strong>：写出离散卡尔曼滤波的五个基本方程。 &gt; <strong>答案</strong>：见上述五个方程。</li>
+<li><strong>概念题</strong>：解释卡尔曼滤波“预测+修正”的基本思想。 &gt; <strong>答案</strong>：预测：利用系统模型和上一时刻状态估值对当前状态作出预估计；修正：获得当前观测后，利用新息（观测与预测之差）对预估计进行修正，得到当前最优估计。<span class="math inline">\(\hat{X}_k = \hat{X}_{k|k-1} + K_k(Z_k - \hat{Z}_{k|k-1})\)</span>。</li>
+<li><strong>推导题</strong>：由无偏性条件 <span class="math inline">\(E[\tilde{X}_k] = 0\)</span>，推导 <span class="math inline">\(F_{k,k-1} = \Phi_{k,k-1} - K_kH_k\Phi_{k,k-1}\)</span>，进而得到状态估值方程。 &gt; <strong>答案</strong>：由 <span class="math inline">\(E[\hat{X}_k] = F_{k,k-1}E[\hat{X}_{k-1}] + K_kE[Z_k]\)</span>，代入 <span class="math inline">\(E[Z_k] = H_k\Phi_{k,k-1}E[X_{k-1}]\)</span> 和 <span class="math inline">\(E[X_k] = \Phi_{k,k-1}E[X_{k-1}]\)</span>，令 <span class="math inline">\(E[\hat{X}_k] = E[X_k]\)</span>，得 <span class="math inline">\(F_{k,k-1}\Phi_{k,k-1}^{-1} + K_kH_k = I\)</span>，即 <span class="math inline">\(F_{k,k-1} = (I-K_kH_k)\Phi_{k,k-1}\)</span>，代入估值方程即得 <span class="math inline">\(\hat{X}_k = \hat{X}_{k|k-1} + K_k(Z_k - H_k\hat{X}_{k|k-1})\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="卡尔曼增益的物理意义">10.3 卡尔曼增益的物理意义</h4>
+<ul>
+<li><strong>定义</strong>：卡尔曼增益 <span class="math inline">\(K_k = P_{k|k-1}H_k^T(H_kP_{k|k-1}H_k^T + R_k)^{-1}\)</span> 决定了当前估计利用一步预测和量测的权重。若量测精度差（<span class="math inline">\(R_k\)</span>大），则<span class="math inline">\(K_k\)</span>小，更依赖预测；若预测精度差（<span class="math inline">\(P_{k|k-1}\)</span>大），则<span class="math inline">\(K_k\)</span>大，更依赖量测。</li>
+<li><strong>PPT页码</strong>：第27页</li>
+<li><strong>应试重点</strong>：理解增益矩阵Kk如何随Rk和<span class="math inline">\(P_{k|k-1}\)</span>变化；理解定常系统中Kk逐渐收敛到稳态值的现象。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：卡尔曼增益矩阵Kk的物理意义是什么？当量测噪声方差Rk增大时，Kk如何变化？ &gt; <strong>答案</strong>：Kk决定了当前估计利用预测和量测的权重分配。Rk增大时Kk减小，意味着对量测的信任度降低，更依赖预测。</li>
+</ol></li>
+</ul>
+<h4 id="卡尔曼滤波的特点与定常系统滤波">10.4 卡尔曼滤波的特点与定常系统滤波</h4>
+<ul>
+<li><strong>定义</strong>：对定常系统，随着时间递增，增益Kk逐渐减小并趋于稳定。滤波刚开始时估计依赖量测，量测修正不断改善精度使Pk减小，当时间更新和量测更新趋于平衡时滤波达到稳态。卡尔曼滤波的实际应用中需处理连续模型离散化、有色噪声白化、非线性系统等问题。</li>
+<li><strong>PPT页码</strong>：第28-29页</li>
+<li><strong>应试重点</strong>：理解滤波收敛过程；了解卡尔曼滤波的扩展形式（EKF、UKF、粒子滤波等）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：对定常系统，卡尔曼滤波的增益Kk随时间如何变化？说明原因。 &gt; <strong>答案</strong>：Kk逐渐减小并趋于稳定。因为随着滤波进行，量测修正不断改善估计精度使Pk减小，预测精度提高后量测更新作用减弱，最终两者平衡达到稳态。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第11-12讲-卡尔曼滤波的应用">第11-12讲 卡尔曼滤波的应用</h3>
+<h4 id="连续系统离散化">11.1 连续系统离散化</h4>
+<ul>
+<li><strong>定义</strong>：连续系统 <span class="math inline">\(\dot{X}(t) = F(t)X(t) + G(t)w(t)\)</span>，<span class="math inline">\(Z(t) = H(t)X(t) + v(t)\)</span> 离散化为 <span class="math inline">\(X_k = \Phi_{k,k-1}X_{k-1} + \Gamma_{k-1}w_{k-1}\)</span>，<span class="math inline">\(Z_k = H_kX_k + v_k\)</span>。离散化公式：<span class="math inline">\(\Phi_{k,k-1} \approx I + F(t_k)T + \frac{1}{2!}F^2(t_k)T^2 + \cdots\)</span>，<span class="math inline">\(\Gamma_{k,k-1} \approx \int_0^T \Phi(t_k, t_k+\tau)G(t_k+\tau)d\tau\)</span>，<span class="math inline">\(Q_k \approx \int_0^T \Phi(\tau)G(t_k+\tau)q(t_k+\tau)G^T(t_k+\tau)\Phi^T(\tau)d\tau\)</span>，<span class="math inline">\(R_k = r(t_k)/T\)</span>。</li>
+<li><strong>PPT页码</strong>：第3页</li>
+<li><strong>应试重点</strong>：掌握连续系统离散化的方法和各矩阵的计算公式；注意离散化过程中Qk和Rk的转换。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：写出连续系统离散化的基本公式，说明<span class="math inline">\(\Phi\)</span>、<span class="math inline">\(\Gamma\)</span>、<span class="math inline">\(Q_k\)</span>、<span class="math inline">\(R_k\)</span>如何从连续系统参数得到。 &gt; <strong>答案</strong>：<span class="math inline">\(\Phi \approx I + FT + \frac{1}{2!}F^2T^2 + \cdots\)</span>，<span class="math inline">\(\Gamma = \int_0^T \Phi(\tau)G d\tau\)</span>，<span class="math inline">\(Q_k = \int_0^T \Phi(\tau)GqG^T\Phi^T(\tau)d\tau\)</span>，<span class="math inline">\(R_k = r(t_k)/T\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="alpha-beta-gamma滤波">11.2 alpha-beta-gamma滤波</h4>
+<ul>
+<li><strong>定义</strong>：对匀加速直线运动，选取状态<span class="math inline">\(X = [s, v, a]^T\)</span>（位移、速度、加速度），通过离散化得到状态转移矩阵和噪声驱动矩阵，应用卡尔曼滤波。当滤波达到稳态时，增益矩阵为常数，对应的滤波称为<span class="math inline">\(\alpha\)</span>-<span class="math inline">\(\beta\)</span>-<span class="math inline">\(\gamma\)</span>滤波，其中<span class="math inline">\(\alpha\)</span>、<span class="math inline">\(\beta\)</span>、<span class="math inline">\(\gamma\)</span>分别为位置、速度、加速度的稳态增益。</li>
+<li><strong>PPT页码</strong>：第5-11页</li>
+<li><strong>应试重点</strong>：掌握状态方程的建立方法；理解稳态滤波的概念；会推导<span class="math inline">\(\alpha\)</span>-<span class="math inline">\(\beta\)</span>-<span class="math inline">\(\gamma\)</span>滤波的稳态增益。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>推导题</strong>：对匀加速直线运动，选取状态<span class="math inline">\(X = [s, v, a]^T\)</span>，列写连续状态方程并离散化。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{X} = FX + Gj(t)\)</span>，其中 <span class="math inline">\(F = \begin{bmatrix} 0&amp;1&amp;0\\0&amp;0&amp;1\\0&amp;0&amp;0\end{bmatrix}\)</span>，<span class="math inline">\(G = \begin{bmatrix}0\\0\\1\end{bmatrix}\)</span>。离散化：<span class="math inline">\(\Phi = \begin{bmatrix}1&amp;T&amp;T^2/2\\0&amp;1&amp;T\\0&amp;0&amp;1\end{bmatrix}\)</span>，<span class="math inline">\(\Gamma = \begin{bmatrix}T^3/6\\T^2/2\\T\end{bmatrix}\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="直接法与间接法">11.3 直接法与间接法</h4>
+<ul>
+<li><strong>定义</strong>：直接法以各导航子系统的导航输出参数作为状态，非线性且状态量级差异大；间接法以各子系统的误差量作为状态，可近似视为线性方程，各状态量级相近。间接法在组合导航中更为常用。</li>
+<li><strong>PPT页码</strong>：第20-22页</li>
+<li><strong>应试重点</strong>：掌握直接法和间接法的定义、优缺点对比；理解为什么组合导航中多采用间接法。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>比较题</strong>：比较直接法和间接法的优缺点。 &gt; <strong>答案</strong>：直接法：较准确反映真实状态演变，但方程非线性，状态量级差异大。间接法：按一阶近似推导有一定近似性，但可近似为线性方程，各误差状态量级相近，更适合卡尔曼滤波处理。</li>
+</ol></li>
+</ul>
+<h4 id="输出校正与反馈校正">11.4 输出校正与反馈校正</h4>
+<ul>
+<li><strong>定义</strong>：输出校正（开环法）将卡尔曼滤波的估计值作为导航参数的输出或校正量，不反馈到系统内部。反馈校正（闭环法）将估计值反馈到惯性导航系统中，将误差从系统内部校正掉。输出校正结构简单但误差继续积累，反馈校正能从内部消除误差但设计更复杂。</li>
+<li><strong>PPT页码</strong>：第23-25页</li>
+<li><strong>应试重点</strong>：掌握两种校正方式的区别和特点；理解反馈校正如何将误差从系统内部消除。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：比较输出校正和反馈校正的优缺点。 &gt; <strong>答案</strong>：输出校正：结构简单，滤波器与导航系统独立，但惯导误差继续积累。反馈校正：将估计误差反馈到惯导系统内部校正，能有效抑制误差增长，但系统设计更复杂，滤波器与系统耦合。</li>
+</ol></li>
+</ul>
+<h4 id="有色噪声条件下的卡尔曼滤波">11.5 有色噪声条件下的卡尔曼滤波</h4>
+<ul>
+<li><strong>定义</strong>：当系统噪声或量测噪声为有色噪声时，标准卡尔曼滤波不再适用。处理方法：（1）有色噪声白化——用一阶马尔可夫过程建模有色噪声；（2）增广状态向量——将噪声项扩展为状态的一部分；（3）对增广系统应用标准卡尔曼滤波。一阶马尔可夫过程：<span class="math inline">\(\dot{N}(t) = -\frac{1}{T}N(t) + w(t)\)</span>，离散化：<span class="math inline">\(w_k = \pi w_{k-1} + \xi_k\)</span>。</li>
+<li><strong>PPT页码</strong>：第27-29页</li>
+<li><strong>应试重点</strong>：掌握有色噪声白化的方法；理解增广状态法的基本思想；掌握一阶马尔可夫过程的建模。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：当系统噪声为有色噪声时，如何应用卡尔曼滤波？ &gt; <strong>答案</strong>：采用增广状态法：（1）用一阶马尔可夫过程对有色噪声建模；（2）将噪声状态扩充到系统状态向量中；（3）对增广后的系统应用标准卡尔曼滤波。</li>
+</ol></li>
+</ul>
+<h4 id="组合导航系统的工作模式">11.6 组合导航系统的工作模式</h4>
+<ul>
+<li><strong>定义</strong>：组合导航系统有三种工作模式：（1）重调法——直接以卫星导航参数代替惯导参数；（2）松组合——各子系统独立运行输出完整导航参数，通过卡尔曼滤波融合位置/速度差值；（3）紧组合——融合原始测量数据（伪距、伪距率），GPS不需要独立导航解算，可见卫星少于4颗时仍可工作。</li>
+<li><strong>PPT页码</strong>：第31-36页</li>
+<li><strong>应试重点</strong>：掌握三种工作模式的定义和区别；理解紧组合相比松组合的优势。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>比较题</strong>：比较松组合和紧组合的工作原理和优缺点。 &gt; <strong>答案</strong>：松组合：各子系统独立工作，融合位置/速度差值，实现简单但需要至少4颗可见卫星。紧组合：融合伪距/伪距率原始数据，GPS不需独立解算，可见卫星少于4颗时仍可工作，组合程度更深但设计更复杂。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第13-15讲-insgps组合导航系统">第13-15讲 INS/GPS组合导航系统</h3>
+<h4 id="insgps松组合系统设计状态方程">13.1 INS/GPS松组合系统设计——状态方程</h4>
+<ul>
+<li><strong>定义</strong>：松组合采用间接法，选取15维状态向量 <span class="math inline">\(X = [\phi_x, \phi_y, \phi_z, \delta V_x, \delta V_y, \delta V_z, \delta L, \delta\lambda, \delta h, \varepsilon_x, \varepsilon_y, \varepsilon_z, \nabla_x, \nabla_y, \nabla_z]^T\)</span>（姿态误差、速度误差、位置误差、陀螺漂移、加速度计零偏）。陀螺漂移和加速度计零偏采用一阶马尔可夫过程建模。系统矩阵<span class="math inline">\(F(t)\)</span>由惯导误差方程和马尔可夫过程组成。</li>
+<li><strong>PPT页码</strong>：第5-11页（13-15讲PPT）</li>
+<li><strong>应试重点</strong>：掌握15维状态向量的定义顺序；掌握<span class="math inline">\(F(t)\)</span>矩阵的分块结构（<span class="math inline">\(F_{INS}\)</span>、<span class="math inline">\(F_S\)</span>、<span class="math inline">\(F_M\)</span>）；理解陀螺和加速度计误差的一阶马尔可夫建模。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：INS/GPS松组合中，间接法的15维状态向量包含哪些状态？ &gt; <strong>答案</strong>：3个姿态误差角、3个速度误差、3个位置误差（纬度、经度、高度）、3个陀螺随机漂移、3个加速度计零偏，共15维。</li>
+<li><strong>概念题</strong>：写出陀螺随机漂移的一阶马尔可夫过程模型。 &gt; <strong>答案</strong>：<span class="math inline">\(\dot{\varepsilon}_{bx} = -\frac{1}{T_{gx}}\varepsilon_{bx} + w_{gx}\)</span>，其中<span class="math inline">\(T_{gx}\)</span>为相关时间，<span class="math inline">\(w_{gx}\)</span>为零均值高斯白噪声。</li>
+</ol></li>
+</ul>
+<h4 id="insgps松组合系统设计量测方程">13.2 INS/GPS松组合系统设计——量测方程</h4>
+<ul>
+<li><strong>定义</strong>：松组合的量测量为INS和GPS输出的位置和速度之差：<span class="math inline">\(Z = [V_{Ix}-V_{Gx}, V_{Iy}-V_{Gy}, V_{Iz}-V_{Gz}, L_I-L_G, \lambda_I-\lambda_G, h_I-h_G]^T\)</span>。量测方程 <span class="math inline">\(Z(t) = H(t)X(t) + V(t)\)</span>，其中<span class="math inline">\(H = [-I_{3\times3}\ 0_{3\times3}\ I_{3\times3}\ 0_{6\times6}]\)</span>（速度观测部分）或包含位置观测部分。</li>
+<li><strong>PPT页码</strong>：第12-13页（13-15讲PPT）</li>
+<li><strong>应试重点</strong>：掌握量测量的选取方法（两个系统同一导航参数的差值）；掌握H矩阵的构造方法；注意量测要写成关于状态变量的方程。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>推导题</strong>：推导INS/GPS松组合的量测方程，写出H矩阵。 &gt; <strong>答案</strong>：<span class="math inline">\(Z = [V_I - V_G; L_I - L_G; \lambda_I - \lambda_G; h_I - h_G]\)</span>，由于<span class="math inline">\(V_I = V + \delta V\)</span>，<span class="math inline">\(V_G = V + n_v\)</span>，则<span class="math inline">\(Z_{vi} = \delta V_i - n_{vi}\)</span>。同理<span class="math inline">\(Z_{Li} = \delta L_i - n_{Li}\)</span>。H矩阵中对应速度误差和位置误差的位置为<span class="math inline">\(-I\)</span>或<span class="math inline">\(I\)</span>（取决于符号定义），其余为零。</li>
+</ol></li>
+</ul>
+<h4 id="insgps松组合仿真示例">13.3 INS/GPS松组合仿真示例</h4>
+<ul>
+<li><strong>定义</strong>：仿真中考虑更复杂的噪声模型：陀螺漂移由随机常数、一阶马尔可夫和白噪声组成，加速度计误差视为一阶马尔可夫过程。状态向量扩展为18维（增加3个陀螺随机常值漂移<span class="math inline">\(\varepsilon_r\)</span>）。仿真结果表明卡尔曼滤波能有效抑制INS误差增长。</li>
+<li><strong>PPT页码</strong>：第19-23页（13-15讲PPT）</li>
+<li><strong>应试重点</strong>：理解不同噪声假设下状态维数的变化；掌握状态方程F矩阵和G矩阵随状态定义变化的调整方法。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：当陀螺漂移视为由随机常数、一阶马尔可夫和白噪声组成时，状态向量如何变化？ &gt; <strong>答案</strong>：状态向量从15维扩展为18维，增加3个陀螺随机常值漂移状态<span class="math inline">\(\varepsilon_{rx}, \varepsilon_{ry}, \varepsilon_{rz}\)</span>。随机常值漂移模型为<span class="math inline">\(\dot{\varepsilon}_r = 0\)</span>，一阶马尔可夫漂移模型为<span class="math inline">\(\dot{\varepsilon}_b = -\frac{1}{T_g}\varepsilon_b + w_g\)</span>。</li>
+</ol></li>
+</ul>
+<h4 id="insgps紧组合系统设计">13.4 INS/GPS紧组合系统设计</h4>
+<ul>
+<li><strong>定义</strong>：紧组合以伪距差作为量测量，需对GPS接收机时钟偏差进行估计。状态向量扩展为17维（增加GPS时钟差<span class="math inline">\(\delta t_u\)</span>和时钟频率误差<span class="math inline">\(\delta t_{ru}\)</span>）。量测方程涉及从大地坐标到笛卡尔坐标的转换矩阵C。紧组合在可见卫星少于4颗时仍可工作。</li>
+<li><strong>PPT页码</strong>：第25-38页（13-15讲PPT）</li>
+<li><strong>应试重点</strong>：掌握紧组合状态向量（17维）与松组合（15维）的区别；掌握伪距量测方程的推导；理解大地坐标与笛卡尔坐标转换矩阵C的作用。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：INS/GPS紧组合相比松组合，状态向量增加了哪些状态？为什么？ &gt; <strong>答案</strong>：增加了GPS接收机时钟差等效距离误差<span class="math inline">\(\delta t_u\)</span>和时钟频率误差等效距离误差<span class="math inline">\(\delta t_{ru}\)</span>。因为紧组合使用伪距作为观测量，伪距中包含接收机钟差，需要对其进行估计。</li>
+<li><strong>概念题</strong>：紧组合的量测量是什么？写出伪距误差方程。 &gt; <strong>答案</strong>：量测量为INS计算的等效伪距与GPS实测伪距之差。伪距误差方程：<span class="math inline">\(\delta\rho_i = e_x^i\delta x + e_y^i\delta y + e_z^i\delta z - c\delta t_u + v_i\)</span>，其中<span class="math inline">\((e_x^i, e_y^i, e_z^i)\)</span>为用户到第i颗卫星的方向余弦。</li>
+</ol></li>
+</ul>
+<hr />
+<h3 id="第15讲-insdvl组合导航系统">第15讲 INS/DVL组合导航系统</h3>
+<h4 id="电磁计程仪">15.1 电磁计程仪</h4>
+<ul>
+<li><strong>定义</strong>：利用海水水流切割磁力线感应出电势的原理来测量船速，是一种相对计程仪（测量船相对于水的速度）。感应电势 <span class="math inline">\(E = B \cdot L \cdot V\)</span>，其中B为磁感应强度，L为电极间距，V为船速。</li>
+<li><strong>PPT页码</strong>：第3页（第15讲INSDVL PPT）</li>
+<li><strong>应试重点</strong>：理解电磁计程仪的工作原理；注意它是相对计程仪（测相对于水的速度）。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：电磁计程仪的工作原理是什么？它是相对计程仪还是绝对计程仪？ &gt; <strong>答案</strong>：利用海水切割磁力线感应电势的原理测速，<span class="math inline">\(E = BLV\)</span>。它是相对计程仪，测量的是船相对于水的速度。</li>
+</ol></li>
+</ul>
+<h4 id="多普勒效应与多普勒计程仪">15.2 多普勒效应与多普勒计程仪</h4>
+<ul>
+<li><strong>定义</strong>：多普勒效应是指波源和接收者间有相对运动时，接收频率与发射频率不同的现象。多普勒频移 <span class="math inline">\(\Delta f = f_r - f_0\)</span>。收发一体的多普勒频移为 <span class="math inline">\(\Delta f = \frac{2v}{c-v}f_0 \approx \frac{2v}{c}f_0\)</span>（<span class="math inline">\(v \ll c\)</span>时）。多普勒计程仪利用此原理测量船舶相对海底的绝对速度，<span class="math inline">\(v = \frac{\Delta f \cdot c}{2f_0\cos\theta}\)</span>。</li>
+<li><strong>PPT页码</strong>：第5-10页（第15讲INSDVL PPT）</li>
+<li><strong>应试重点</strong>：掌握多普勒频移公式的推导；理解多普勒计程仪能测绝对速度（相对海底）；掌握刻度系数的概念。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>推导题</strong>：推导收发一体情况下的多普勒频移公式。 &gt; <strong>答案</strong>：发射信号经海底反射后被接收，声波往返两次多普勒效应。<span class="math inline">\(\Delta f = \frac{2v}{c}f_0\)</span>（当<span class="math inline">\(v \ll c\)</span>时），其中v为载体速度，c为声速，<span class="math inline">\(f_0\)</span>为发射频率，<span class="math inline">\(\theta\)</span>为波束与水平面夹角。</li>
+<li><strong>计算题</strong>：多普勒计程仪发射频率<span class="math inline">\(f_0 = 120\)</span>kHz，声速<span class="math inline">\(c = 1500\)</span>m/s，波束与水平面夹角<span class="math inline">\(\theta = 60°\)</span>，测得多普勒频移<span class="math inline">\(\Delta f = 40\)</span>Hz，求载体速度。 &gt; <strong>答案</strong>：<span class="math inline">\(v = \frac{\Delta f \cdot c}{2f_0\cos\theta} = \frac{40 \times 1500}{2 \times 120000 \times \cos 60°} = \frac{60000}{120000} = 0.5\)</span> m/s。</li>
+</ol></li>
+</ul>
+<h4 id="多波束多普勒计程仪">15.3 多波束多普勒计程仪</h4>
+<ul>
+<li><strong>定义</strong>：单波束多普勒计程仪受船舶颠簸和纵摇影响产生测速误差。双波束（Janus配置）通过前后对称波束的频差消除垂直运动影响。四波束多普勒计程仪采用四个波束（通常十字形配置），能消除颠簸和摇摆影响，且某一波束失去信号时仍可测速。四波束速度解算：<span class="math inline">\(v_x = \frac{c_0}{4f_0\cos\alpha\cos\beta}(\Delta f_2 - \Delta f_1)\)</span>，<span class="math inline">\(v_y = \frac{c_0}{4f_0\cos\alpha\cos\beta}(\Delta f_2 - \Delta f_3)\)</span>，<span class="math inline">\(v_z = -\frac{c_0}{4f_0\sin\alpha}(\Delta f_1 + \Delta f_3)\)</span>。</li>
+<li><strong>PPT页码</strong>：第12-21页（第15讲INSDVL PPT）</li>
+<li><strong>应试重点</strong>：理解单波束的缺点和双波束的改进原理；掌握四波束的优点；了解偏流角的概念。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：双波束多普勒计程仪相比单波束有什么优势？ &gt; <strong>答案</strong>：双波束通过前后对称波束的频差，能有效消除船舶垂直方向运动（颠簸）和纵摇引起的测速误差，使测量值更准确地反映水平速度。</li>
+<li><strong>概念题</strong>：四波束多普勒计程仪有哪些优点？ &gt; <strong>答案</strong>：（1）某一波束失去信号时仍可测速；（2）增加信息量，提高精度；（3）对称性设计能有效消除船只颠簸及摇摆引起的测速误差。</li>
+</ol></li>
+</ul>
+<h4 id="多普勒计程仪误差建模">15.4 多普勒计程仪误差建模</h4>
+<ul>
+<li><strong>定义</strong>：多普勒计程仪主要误差包括：测速误差<span class="math inline">\(\delta V_d\)</span>、刻度系数误差<span class="math inline">\(\delta K\)</span>、偏流角误差<span class="math inline">\(\delta\Delta\)</span>。测速误差和偏流角误差建模为一阶马尔可夫过程，刻度系数误差可建模为随机常数或一阶马尔可夫过程。</li>
+<li><strong>PPT页码</strong>：第23-24页（第15讲INSDVL PPT）</li>
+<li><strong>应试重点</strong>：掌握三种误差类型及其建模方法；理解一阶马尔可夫过程在误差建模中的广泛应用。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：多普勒计程仪的主要误差有哪些？分别如何建模？ &gt; <strong>答案</strong>：测速误差<span class="math inline">\(\delta V_d\)</span>（一阶马尔可夫过程）、刻度系数误差<span class="math inline">\(\delta K\)</span>（随机常数或一阶马尔可夫过程）、偏流角误差<span class="math inline">\(\delta\Delta\)</span>（一阶马尔可夫过程）。</li>
+</ol></li>
+</ul>
+<h4 id="insdvl组合导航系统设计">15.5 INS/DVL组合导航系统设计</h4>
+<ul>
+<li><strong>定义</strong>：INS/DVL组合采用间接法，状态向量包含INS的15个误差状态和DVL的6个误差状态（3个测速误差+3个刻度系数误差），共21维。量测量为INS和DVL在导航坐标系下的速度之差。量测方程中包含姿态误差角耦合项和DVL误差项。</li>
+<li><strong>PPT页码</strong>：第26-37页（第15讲INSDVL PPT）</li>
+<li><strong>应试重点</strong>：掌握21维状态向量的组成；理解量测方程中姿态误差角如何耦合到速度观测中；掌握完整的组合导航系统设计五步骤。</li>
+<li><strong>练习题</strong>：
+<ol type="1">
+<li><strong>概念题</strong>：INS/DVL组合导航系统中，状态向量共多少维？包含哪些状态？ &gt; <strong>答案</strong>：21维。包含INS的15个误差状态（3姿态+3速度+3位置+3陀螺漂移+3加速度计零偏）和DVL的6个误差状态（3个测速误差+3个刻度系数误差）。</li>
+<li><strong>简答题</strong>：简述利用卡尔曼滤波解决组合导航问题的五个基本步骤。 &gt; <strong>答案</strong>：（1）选取状态量（直接法/间接法），列写状态方程；（2）选取量测量，列写量测方程；（3）连续系统离散化；（4）利用卡尔曼滤波递推估计状态；（5）利用估计状态修正导航参数（输出校正/反馈校正）。</li>
+</ol></li>
+</ul>
+<hr />
+<h2 id="二核心公式速查卡-2">二、核心公式速查卡</h2>
+<h3 id="gps定位">1. GPS定位</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>伪距方程</td>
+<td><span class="math inline">\(\rho_j = \sqrt{(X_j-x)^2+(Y_j-y)^2+(Z_j-z)^2} + c\delta t + \varepsilon_j\)</span></td>
+<td>j=1,2,3,4</td>
+</tr>
+<tr class="even">
+<td>GPS伪距观测模型</td>
+<td><span class="math inline">\(\rho_i^G = \sqrt{(x_i^s-x)^2+(y_i^s-y)^2+(z_i^s-z)^2} + \delta t_u + v_i\)</span></td>
+<td>紧组合用</td>
+</tr>
+<tr class="odd">
+<td>GPS位置/速度观测</td>
+<td><span class="math inline">\(L_G = L + n_L\)</span>，<span class="math inline">\(V_{Gx} = V_x + n_{vx}\)</span></td>
+<td>松组合用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="估计理论">2. 估计理论</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>一般最小二乘</td>
+<td><span class="math inline">\(\hat{X}_{LS} = (H^TH)^{-1}H^TZ\)</span></td>
+<td>等权</td>
+</tr>
+<tr class="even">
+<td>加权最小二乘</td>
+<td><span class="math inline">\(\hat{X}_{LSW} = (H^TWH)^{-1}H^TWZ\)</span></td>
+<td>最优<span class="math inline">\(W=R^{-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>线性最小方差估计</td>
+<td><span class="math inline">\(\hat{X}_L = E[X] + \text{Cov}(X,Z)\text{Var}(Z)^{-1}(Z-E[Z])\)</span></td>
+<td>正态下最优</td>
+</tr>
+</tbody>
+</table>
+<h3 id="卡尔曼滤波五个核心方程">3. 卡尔曼滤波五个核心方程</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>方程</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>状态一步预测</td>
+<td><span class="math inline">\(\hat{X}_{k\|k-1} = \Phi_{k,k-1}\hat{X}_{k-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>一步预测均方差</td>
+<td><span class="math inline">\(P_{k\|k-1} = \Phi_{k,k-1}P_{k-1}\Phi_{k,k-1}^T + \Gamma_{k-1}Q_{k-1}\Gamma_{k-1}^T\)</span></td>
+</tr>
+<tr class="odd">
+<td>滤波增益</td>
+<td><span class="math inline">\(K_k = P_{k\|k-1}H_k^T(H_kP_{k\|k-1}H_k^T + R_k)^{-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>状态估值</td>
+<td><span class="math inline">\(\hat{X}_k = \hat{X}_{k\|k-1} + K_k(Z_k - H_k\hat{X}_{k\|k-1})\)</span></td>
+</tr>
+<tr class="odd">
+<td>估计均方差</td>
+<td><span class="math inline">\(P_k = (I - K_kH_k)P_{k\|k-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="连续系统离散化-1">4. 连续系统离散化</h3>
+<table>
+<thead>
+<tr class="header">
+<th>公式</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>状态转移矩阵</td>
+<td><span class="math inline">\(\Phi_{k,k-1} \approx I + FT + \frac{1}{2!}F^2T^2 + \cdots\)</span></td>
+</tr>
+<tr class="even">
+<td>噪声驱动矩阵</td>
+<td><span class="math inline">\(\Gamma_{k,k-1} = \int_0^T \Phi(\tau)G(t_k+\tau)d\tau\)</span></td>
+</tr>
+<tr class="odd">
+<td>离散系统噪声方差</td>
+<td><span class="math inline">\(Q_k = \int_0^T \Phi(\tau)GqG^T\Phi^T(\tau)d\tau\)</span></td>
+</tr>
+<tr class="even">
+<td>离散量测噪声方差</td>
+<td><span class="math inline">\(R_k = r(t_k)/T\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="一阶马尔可夫过程">5. 一阶马尔可夫过程</h3>
+<table>
+<thead>
+<tr class="header">
+<th>公式</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>连续形式</td>
+<td><span class="math inline">\(\dot{N}(t) = -\frac{1}{T_c}N(t) + w(t)\)</span></td>
+</tr>
+<tr class="even">
+<td>离散形式</td>
+<td><span class="math inline">\(w_k = \pi w_{k-1} + \xi_k\)</span>，<span class="math inline">\(\pi = e^{-T/T_c}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="多普勒频移">6. 多普勒频移</h3>
+<table>
+<thead>
+<tr class="header">
+<th>公式</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>收发一体多普勒频移</td>
+<td><span class="math inline">\(\Delta f = \frac{2v\cos\theta}{c}f_0\)</span></td>
+</tr>
+<tr class="even">
+<td>速度解算</td>
+<td><span class="math inline">\(v = \frac{\Delta f \cdot c}{2f_0\cos\theta}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="组合导航系统状态维数">7. 组合导航系统状态维数</h3>
+<table>
+<thead>
+<tr class="header">
+<th>组合方式</th>
+<th>状态维数</th>
+<th>状态组成</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>INS/GPS松组合（基本）</td>
+<td>15维</td>
+<td>3姿态+3速度+3位置+3陀螺+3加计</td>
+</tr>
+<tr class="even">
+<td>INS/GPS松组合（扩展）</td>
+<td>18维</td>
+<td>15维+3陀螺随机常值漂移</td>
+</tr>
+<tr class="odd">
+<td>INS/GPS紧组合</td>
+<td>17维</td>
+<td>15维+GPS钟差+钟频差</td>
+</tr>
+<tr class="even">
+<td>INS/DVL组合</td>
+<td>21维</td>
+<td>15维+3DVL测速误差+3刻度系数误差</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三易错点汇总-2">三、易错点汇总</h2>
+<h3 id="卡尔曼滤波相关">1. 卡尔曼滤波相关</h3>
+<ol type="1">
+<li><strong>计算顺序错误</strong>：卡尔曼滤波五个方程必须按正确顺序计算——先预测（<span class="math inline">\(\hat{X}_{k\|k-1}\)</span>和<span class="math inline">\(P_{k\|k-1}\)</span>），再计算增益<span class="math inline">\(K_k\)</span>，最后更新估值<span class="math inline">\(\hat{X}_k\)</span>和<span class="math inline">\(P_k\)</span>。</li>
+<li><strong>增益矩阵Kk的另一种形式混淆</strong>：<span class="math inline">\(K_k = P_{k\|k-1}H_k^T(H_kP_{k\|k-1}H_k^T + R_k)^{-1}\)</span> 与 <span class="math inline">\(K_k = P_kH_k^TR_k^{-1}\)</span> 是等价的（利用矩阵求逆原理），但前者更常用。</li>
+<li><strong>估计均方差方程的两种形式</strong>：<span class="math inline">\(P_k = (I-K_kH_k)P_{k\|k-1}\)</span> 仅在最优增益下成立；<span class="math inline">\(P_k = (I-K_kH_k)P_{k\|k-1}(I-K_kH_k)^T + K_kR_kK_k^T\)</span> 对任意增益都成立，数值计算更稳定。</li>
+<li><strong>遗忘<span class="math inline">\(P_k\)</span>是对称矩阵</strong>：实际计算中由于舍入误差，<span class="math inline">\(P_k\)</span>可能失去对称性，应取 <span class="math inline">\(P_k = (P_k + P_k^T)/2\)</span>。</li>
+</ol>
+<h3 id="组合导航相关">2. 组合导航相关</h3>
+<ol start="5" type="1">
+<li><strong>状态变量定义顺序不统一</strong>：不同教材和题目中状态向量定义顺序可能不同，写F矩阵和H矩阵时必须根据具体的状态定义顺序来确定。</li>
+<li><strong>间接法量测方程的符号问题</strong>：<span class="math inline">\(Z = X_{INS} - X_{GPS}\)</span> 还是 <span class="math inline">\(Z = X_{GPS} - X_{INS}\)</span> 会影响H矩阵中对应元素的符号，需特别注意。</li>
+<li><strong>噪声假设不唯一</strong>：陀螺漂移可以建模为随机常数、一阶马尔可夫过程或二者的组合，不同的噪声假设导致状态维数和F矩阵不同。</li>
+<li><strong>离散化过程中Rk的转换</strong>：<span class="math inline">\(R_k = r(t_k)/T\)</span>，注意是除以T而不是乘以T。连续白噪声的谱密度与离散白噪声方差之间的转换容易出错。</li>
+<li><strong>量测方程必须写成关于状态变量的方程</strong>：这是组合导航设计的关键，H矩阵的构造必须与状态向量X的定义严格对应。</li>
+<li><strong>紧组合中需要坐标转换</strong>：紧组合的量测方程涉及从大地坐标<span class="math inline">\((L, \lambda, h)\)</span>到笛卡尔坐标<span class="math inline">\((x, y, z)\)</span>的转换，需要计算转换矩阵C。</li>
+</ol>
+<h3 id="估计理论相关">3. 估计理论相关</h3>
+<ol start="11" type="1">
+<li><strong>最小二乘 vs 加权最小二乘</strong>：一般最小二乘<span class="math inline">\(W=I\)</span>，所有观测等权；加权最小二乘最优权为<span class="math inline">\(W=R^{-1}\)</span>，精度高的观测权重大。</li>
+<li><strong>无偏性不等于最优</strong>：无偏估计(<span class="math inline">\(E[\tilde{X}]=0\)</span>)只是好估计的必要条件，还需要方差最小才最优。</li>
+<li><strong>最小二乘只能估计常量</strong>：经典最小二乘只能估计确定性常值向量，无法处理时变动态系统，这是其根本局限。</li>
+</ol>
+<h3 id="卫星导航相关">4. 卫星导航相关</h3>
+<ol start="14" type="1">
+<li><strong>伪距不是真实距离</strong>：伪距包含卫星钟差、接收机钟差、电离层延迟等各种误差，是“带有误差的观测距离”。</li>
+<li><strong>C/A码 vs P码混淆</strong>：C/A码是粗码/捕获码（码率低、周期短、易捕获、精度低），P码是精码（码率高、周期长、难捕获、精度高）。</li>
+<li><strong>L1和L2载波上调制内容不同</strong>：L1上调制了C/A码和P码（正交方式），L2上只调制了P码。</li>
+</ol>
+<hr />
+<h2 id="四应试练习题综合-2">四、应试练习题（综合）</h2>
+<h3 id="一概念题-1">一、概念题</h3>
+<p><strong>1.</strong> 简述卡尔曼滤波的基本思想，并写出五个核心方程。</p>
+<blockquote>
+<p><strong>答案</strong>：卡尔曼滤波的基本思想是“预测+修正”。先利用系统模型和上一时刻估值预测当前状态，再利用当前量测新息对预测进行修正。五个方程：（1）状态一步预测 <span class="math inline">\(\hat{X}_{k|k-1} = \Phi_{k,k-1}\hat{X}_{k-1}\)</span>；（2）一步预测均方差 <span class="math inline">\(P_{k|k-1} = \Phi_{k,k-1}P_{k-1}\Phi_{k,k-1}^T + \Gamma_{k-1}Q_{k-1}\Gamma_{k-1}^T\)</span>；（3）滤波增益 <span class="math inline">\(K_k = P_{k|k-1}H_k^T(H_kP_{k|k-1}H_k^T + R_k)^{-1}\)</span>；（4）状态估值 <span class="math inline">\(\hat{X}_k = \hat{X}_{k|k-1} + K_k(Z_k - H_k\hat{X}_{k|k-1})\)</span>；（5）估计均方差 <span class="math inline">\(P_k = (I-K_kH_k)P_{k|k-1}\)</span>。</p>
+</blockquote>
+<p><strong>2.</strong> 比较直接法和间接法在组合导航中的应用特点。</p>
+<blockquote>
+<p><strong>答案</strong>：直接法以导航参数本身为状态，能准确反映真实状态演变，但方程非线性、状态量级差异大；间接法以误差量为状态，可近似为线性方程，各状态量级相近，更适合卡尔曼滤波处理，但有一定近似性。组合导航中多采用间接法。</p>
+</blockquote>
+<p><strong>3.</strong> 比较松组合和紧组合的工作原理。</p>
+<blockquote>
+<p><strong>答案</strong>：松组合中各子系统独立运行并输出完整导航参数，通过卡尔曼滤波融合位置/速度之差，需要至少4颗可见卫星。紧组合融合原始伪距/伪距率数据，GPS不需要独立导航解算，可见卫星少于4颗时仍可工作，组合程度更深。</p>
+</blockquote>
+<p><strong>4.</strong> 什么是有色噪声？在卡尔曼滤波中如何处理有色噪声？</p>
+<blockquote>
+<p><strong>答案</strong>：有色噪声是时间上相关的噪声序列，不满足白噪声的条件。处理方法：（1）用一阶马尔可夫过程对有色噪声建模；（2）将噪声状态扩充到系统状态向量中（增广状态法）；（3）对增广后的系统应用标准卡尔曼滤波。</p>
+</blockquote>
+<h3 id="二推导题-1">二、推导题</h3>
+<p><strong>5.</strong> 已知系统状态方程 <span class="math inline">\(\dot{X}(t) = FX(t) + Gw(t)\)</span>，量测方程 <span class="math inline">\(Z(t) = HX(t) + v(t)\)</span>，其中<span class="math inline">\(w(t)\)</span>为白噪声，谱密度为<span class="math inline">\(q\)</span>，<span class="math inline">\(v(t)\)</span>为白噪声，谱密度为<span class="math inline">\(r\)</span>。写出离散化后的状态方程和量测方程，并给出<span class="math inline">\(\Phi_{k,k-1}\)</span>、<span class="math inline">\(\Gamma_{k,k-1}\)</span>、<span class="math inline">\(Q_k\)</span>、<span class="math inline">\(R_k\)</span>的计算公式。</p>
+<blockquote>
+<p><strong>答案</strong>：离散化：<span class="math inline">\(X_k = \Phi_{k,k-1}X_{k-1} + \Gamma_{k-1}w_{k-1}\)</span>，<span class="math inline">\(Z_k = HX_k + v_k\)</span>。 <span class="math inline">\(\Phi_{k,k-1} = e^{FT} \approx I + FT + \frac{1}{2!}F^2T^2 + \cdots\)</span> <span class="math inline">\(\Gamma_{k,k-1} = \int_0^T e^{F\tau}Gd\tau\)</span> <span class="math inline">\(Q_k = \int_0^T e^{F\tau}GqG^Te^{F^T\tau}d\tau\)</span> <span class="math inline">\(R_k = r/T\)</span></p>
+</blockquote>
+<p><strong>6.</strong> 对匀速直线运动，选取状态<span class="math inline">\(X = [s, v]^T\)</span>（位移和速度），量测为位移<span class="math inline">\(Z = s + V\)</span>。系统噪声为加速度的随机扰动。（1）列写连续状态方程；（2）离散化（采样周期T）；（3）写出量测方程。</p>
+<blockquote>
+<p><strong>答案</strong>： （1）<span class="math inline">\(\dot{X} = \begin{bmatrix}0&amp;1\\0&amp;0\end{bmatrix}X + \begin{bmatrix}0\\1\end{bmatrix}w(t)\)</span>，即<span class="math inline">\(\dot{s}=v\)</span>，<span class="math inline">\(\dot{v}=w(t)\)</span>。 （2）<span class="math inline">\(\Phi = e^{FT} = \begin{bmatrix}1&amp;T\\0&amp;1\end{bmatrix}\)</span>，<span class="math inline">\(\Gamma = \int_0^T\begin{bmatrix}\tau\\1\end{bmatrix}d\tau = \begin{bmatrix}T^2/2\\T\end{bmatrix}\)</span>。 离散状态方程：<span class="math inline">\(X_k = \Phi X_{k-1} + \Gamma w_{k-1}\)</span>。 （3）<span class="math inline">\(Z_k = HX_k + V_k\)</span>，<span class="math inline">\(H = [1, 0]\)</span>，<span class="math inline">\(R = E[V_k^2]\)</span>。</p>
+</blockquote>
+<h3 id="三计算题-1">三、计算题</h3>
+<p><strong>7.</strong> 设一维系统的状态方程和量测方程为： <span class="math inline">\(X_k = 0.9X_{k-1} + w_{k-1}\)</span>，<span class="math inline">\(Z_k = X_k + v_k\)</span> 其中<span class="math inline">\(Q = 1\)</span>，<span class="math inline">\(R = 4\)</span>，初始估计<span class="math inline">\(\hat{X}_0 = 0\)</span>，<span class="math inline">\(P_0 = 10\)</span>。 求第1步的<span class="math inline">\(\hat{X}_{1|0}\)</span>、<span class="math inline">\(P_{1|0}\)</span>、<span class="math inline">\(K_1\)</span>、<span class="math inline">\(\hat{X}_1\)</span>、<span class="math inline">\(P_1\)</span>（设<span class="math inline">\(Z_1 = 5\)</span>）。</p>
+<blockquote>
+<p><strong>答案</strong>： <span class="math inline">\(\hat{X}_{1|0} = 0.9 \times 0 = 0\)</span> <span class="math inline">\(P_{1|0} = 0.9^2 \times 10 + 1 = 8.1 + 1 = 9.1\)</span> <span class="math inline">\(K_1 = 9.1 \times 1 \times (1 \times 9.1 \times 1 + 4)^{-1} = 9.1/13.1 \approx 0.6947\)</span> <span class="math inline">\(\hat{X}_1 = 0 + 0.6947 \times (5 - 0) = 3.473\)</span> <span class="math inline">\(P_1 = (1 - 0.6947) \times 9.1 = 0.3053 \times 9.1 \approx 2.778\)</span></p>
+</blockquote>
+<p><strong>8.</strong> 用两个传感器测量某物理量X，量测模型为<span class="math inline">\(Z_1 = X + V_1\)</span>，<span class="math inline">\(Z_2 = X + V_2\)</span>。<span class="math inline">\(V_1\)</span>、<span class="math inline">\(V_2\)</span>为零均值不相关噪声，方差分别为<span class="math inline">\(r_1 = 1\)</span>和<span class="math inline">\(r_2 = 4\)</span>。用加权最小二乘法估计X，并求估计误差方差。</p>
+<blockquote>
+<p><strong>答案</strong>： <span class="math inline">\(H = [1, 1]^T\)</span>，<span class="math inline">\(R = \text{diag}(1, 4)\)</span>，<span class="math inline">\(W = R^{-1} = \text{diag}(1, 1/4)\)</span>。 <span class="math inline">\(\hat{X} = (H^TWH)^{-1}H^TWZ = (1 + 1/4)^{-1}(Z_1 + Z_2/4) = \frac{4Z_1 + Z_2}{5}\)</span> <span class="math inline">\(\text{Var}(\tilde{X}) = (H^TR^{-1}H)^{-1} = (1 + 1/4)^{-1} = 4/5 = 0.8\)</span></p>
+</blockquote>
+<h3 id="四设计题">四、设计题</h3>
+<p><strong>9.</strong> 设计一个INS/GPS松组合导航系统（间接法），要求： （1）给出状态向量定义（假设陀螺漂移和加速度计零偏均为一阶马尔可夫过程）； （2）写出系统状态方程的一般形式； （3）给出量测方程和H矩阵； （4）说明离散化过程。</p>
+<blockquote>
+<p><strong>答案</strong>： （1）<span class="math inline">\(X = [\phi_x, \phi_y, \phi_z, \delta V_x, \delta V_y, \delta V_z, \delta L, \delta\lambda, \delta h, \varepsilon_x, \varepsilon_y, \varepsilon_z, \nabla_x, \nabla_y, \nabla_z]^T\)</span>，15维。 （2）<span class="math inline">\(\dot{X}(t) = F(t)X(t) + G(t)w(t)\)</span>，其中<span class="math inline">\(F(t) = \begin{bmatrix}F_{INS}&amp;F_S\\0&amp;F_M\end{bmatrix}\)</span>，<span class="math inline">\(F_{INS}\)</span>为9x9惯导误差方程矩阵，<span class="math inline">\(F_S\)</span>为9x6器件误差耦合矩阵，<span class="math inline">\(F_M = \text{diag}(-1/T_{gx}, -1/T_{gy}, -1/T_{gz}, -1/T_{ax}, -1/T_{ay}, -1/T_{az})\)</span>。 （3）<span class="math inline">\(Z = HX + V\)</span>，<span class="math inline">\(H = \begin{bmatrix}0_{3\times3}&amp;-I_{3\times3}&amp;0_{3\times3}&amp;0_{6\times6}\\0_{3\times3}&amp;0_{3\times3}&amp;I_{3\times3}&amp;0_{6\times6}\end{bmatrix}\)</span>（位置和速度观测）。 （4）利用<span class="math inline">\(\Phi \approx I+FT+\frac{1}{2}F^2T^2\)</span>等公式离散化，计算<span class="math inline">\(Q_k\)</span>和<span class="math inline">\(R_k\)</span>，然后应用离散卡尔曼滤波。</p>
+</blockquote>
+<p><strong>10.</strong> 某多普勒计程仪发射频率<span class="math inline">\(f_0 = 200\)</span>kHz，声速<span class="math inline">\(c = 1500\)</span>m/s，波束与水平面夹角<span class="math inline">\(\theta = 60°\)</span>。 （1）求刻度系数； （2）若测得多普勒频移<span class="math inline">\(\Delta f = 80\)</span>Hz，求载体水平速度； （3）说明双波束配置相比单波束的优势。</p>
+<blockquote>
+<p><strong>答案</strong>： （1）刻度系数 <span class="math inline">\(K = \frac{c}{2f_0\cos\theta} = \frac{1500}{2 \times 200000 \times \cos 60°} = \frac{1500}{200000} = 0.0075\)</span> m/(Hz)。 （2）<span class="math inline">\(v = K \cdot \Delta f = 0.0075 \times 80 = 0.6\)</span> m/s。 （3）双波束通过前后对称波束频差消除垂直运动（颠簸）和纵摇引起的测速误差。</p>
+</blockquote>
+<hr />
+<p><em>本指南严格基于第7-15讲PPT内容整理，涵盖卫星导航系统、估计理论基础、卡尔曼滤波及其在组合导航中的应用等核心知识点。</em></p>
+        </div>
+    </section>
+    
     </main>
-
     <footer class="footer">
         <p>组合导航课程 · 完整讲解版</p>
         <p>哈尔滨工程大学 智能学院 | 张勇刚、李宁</p>
