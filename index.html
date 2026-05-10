@@ -492,6 +492,95 @@
 .mm-dep-row{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-left:20px}
 @media(max-width:600px){.mm-cols2,.mm-cols3{flex-direction:column}.mm-cols2 .mm-col,.mm-cols3 .mm-col{min-width:100%}.mm-dep-row{margin-left:0}}
 
+/* ===== Mindmap v3 - Glassmorphism + Animations ===== */
+@keyframes mmFadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mmPulse{0%,100%{box-shadow:0 0 0 0 rgba(102,126,234,.3)}50%{box-shadow:0 0 0 8px rgba(102,126,234,0)}}
+@keyframes mmGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.15)}}
+@keyframes mmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.mm{animation:mmFadeUp .6s ease-out both;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.mm:nth-child(2){animation-delay:.1s}
+.mm:nth-child(3){animation-delay:.2s}
+.mm:nth-child(4){animation-delay:.3s}
+.mm-root-card{animation:mmFloat 4s ease-in-out infinite}
+.mm-root-card:hover{animation:mmPulse 1.5s ease-in-out infinite}
+.mm-branch{animation:mmFadeUp .5s ease-out both}
+.mm-branch:nth-child(1){animation-delay:.15s}
+.mm-branch:nth-child(2){animation-delay:.25s}
+.mm-branch:nth-child(3){animation-delay:.35s}
+.mm-col{animation:mmFadeUp .5s ease-out both}
+.mm-col:nth-child(1){animation-delay:.15s}
+.mm-col:nth-child(2){animation-delay:.25s}
+.mm-col:nth-child(3){animation-delay:.35s}
+.mm-flow-step{animation:mmFadeUp .4s ease-out both}
+.mm-flow-step:nth-child(odd){animation-delay:.1s}
+.mm-flow-step:nth-child(even){animation-delay:.2s}
+.mm-chain-node{animation:mmFadeUp .4s ease-out both}
+.mm-chain-node:nth-child(odd){animation-delay:.1s}
+.mm-chain-node:nth-child(even){animation-delay:.15s}
+.mm-layer{animation:mmFadeUp .5s ease-out both}
+.mm-section{animation:mmFadeUp .5s ease-out both}
+.mm-grid-item{animation:mmFadeUp .3s ease-out both}
+.mm-grid-item:nth-child(1){animation-delay:.05s}
+.mm-grid-item:nth-child(2){animation-delay:.1s}
+.mm-grid-item:nth-child(3){animation-delay:.15s}
+.mm-grid-item:nth-child(4){animation-delay:.2s}
+.mm-grid-item:nth-child(5){animation-delay:.25s}
+.mm-grid-item:nth-child(6){animation-delay:.3s}
+.mm-dep-node{animation:mmFadeUp .3s ease-out both}
+.mm-dep-node:nth-child(odd){animation-delay:.1s}
+.mm-dep-node:nth-child(even){animation-delay:.15s}
+.mm-system-box{animation:mmFadeUp .4s ease-out both}
+
+/* Glassmorphism card upgrades */
+.mm-body{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.mm-branch-body{background:rgba(255,255,255,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 16px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.8)}
+.mm-col-body{background:rgba(255,255,255,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 16px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.8)}
+.mm-section-body{background:rgba(255,255,255,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 16px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.8)}
+.mm-layer-content{background:rgba(255,255,255,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.6);box-shadow:0 4px 16px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.8)}
+.mm-flow-step{background:rgba(255,255,255,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1.5px solid rgba(226,232,240,.6);box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.mm-grid-item{background:rgba(255,255,255,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid rgba(226,232,240,.5)}
+.mm-note{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+
+/* Enhanced arrow connectors */
+.mm-arrow{position:relative}
+.mm-arrow::before{content:'';position:absolute;left:50%;top:0;width:2px;height:6px;background:linear-gradient(180deg,transparent,#94a3b8);transform:translateX(-50%)}
+.mm-arrow::after{content:'';position:absolute;left:50%;bottom:0;width:2px;height:6px;background:linear-gradient(180deg,#94a3b8,transparent);transform:translateX(-50%)}
+.mm-flow-arrow{position:relative}
+.mm-flow-arrow::before{content:'';position:absolute;left:50%;width:2px;height:16px;background:linear-gradient(180deg,#cbd5e1,#94a3b8);transform:translateX(-50%);top:-8px}
+.mm-flow-arrow::after{content:'';position:absolute;left:50%;width:2px;height:4px;background:linear-gradient(180deg,#94a3b8,#cbd5e1);transform:translateX(-50%);bottom:-4px}
+.mm-chain-link{position:relative}
+.mm-chain-link::before{content:'';position:absolute;left:50%;width:2px;height:10px;background:linear-gradient(180deg,#94a3b8,#cbd5e1);transform:translateX(-50%);top:-5px}
+.mm-chain-link::after{content:'';position:absolute;left:50%;width:2px;height:4px;background:linear-gradient(180deg,#cbd5e1,#94a3b8);transform:translateX(-50%);bottom:-4px}
+
+/* Enhanced hover glow effects */
+.mm-branch:hover .mm-branch-body{box-shadow:0 8px 32px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.9)}
+.mm-flow-step:hover{border-color:#667eea;box-shadow:0 8px 32px rgba(102,126,234,.12)}
+.mm-chain-node:hover{box-shadow:0 8px 28px rgba(0,0,0,.2)}
+.mm-grid-item:hover{border-color:#667eea;box-shadow:0 6px 20px rgba(102,126,234,.1)}
+
+/* Dark mode glassmorphism */
+[data-theme="dark"] .mm-branch-body,
+[data-theme="dark"] .mm-col-body,
+[data-theme="dark"] .mm-section-body{background:rgba(10,10,10,.6);border-color:rgba(255,255,255,.08);box-shadow:0 4px 16px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.05)}
+[data-theme="dark"] .mm-layer-content{background:rgba(0,0,0,.5);border-color:rgba(255,255,255,.06)}
+[data-theme="dark"] .mm-flow-step{background:rgba(10,10,10,.6);border-color:rgba(255,255,255,.08)}
+[data-theme="dark"] .mm-grid-item{background:rgba(10,10,10,.5);border-color:rgba(255,255,255,.06)}
+[data-theme="dark"] .mm-branch:hover .mm-branch-body{box-shadow:0 8px 32px rgba(0,0,0,.4)}
+[data-theme="dark"] .mm-flow-step:hover{border-color:rgba(102,126,234,.5);box-shadow:0 8px 32px rgba(102,126,234,.15)}
+
+/* Responsive improvements */
+@media(max-width:768px){
+.mm{margin:16px -4px;border-radius:14px}
+.mm-body{padding:14px}
+.mm-root-card{padding:10px 20px;font-size:14px}
+.mm-branch-header{padding:8px 10px;font-size:12px}
+.mm-branch-body,.mm-col-body,.mm-section-body{padding:8px 10px}
+.mm-flow-step{padding:10px 16px;font-size:12px}
+.mm-chain-node{padding:8px 16px;font-size:12px}
+.mm-layer-content{padding:10px 12px}
+.mm-note{padding:10px 12px;font-size:12px}
+}
+
     </style>
 </head>
 <body>
