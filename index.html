@@ -73,16 +73,25 @@
             color: #63b3ed;
         }
         
-        /* Mindmap dark mode */
+        /* Mindmap dark mode - Premium */
         [data-theme="dark"] .mm {
-            background: #0a0a0a;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            background: linear-gradient(145deg, #0a0a0a 0%, #000000 100%);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03);
+        }
+        [data-theme="dark"] .mm::before {
+            opacity: 0.5;
+        }
+        [data-theme="dark"] .mm-body {
+            background: linear-gradient(180deg, rgba(10,10,10,0.8) 0%, rgba(0,0,0,0.6) 100%);
+        }
+        [data-theme="dark"] .mm-root-card {
+            box-shadow: 0 8px 24px rgba(102,126,234,0.2);
         }
         
         [data-theme="dark"] .mm-branch-body,
         [data-theme="dark"] .mm-col-body,
         [data-theme="dark"] .mm-section-body {
-            background: #000000;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
             border-color: #222222;
         }
         
@@ -96,26 +105,52 @@
         }
         
         [data-theme="dark"] .mm-leaf::before {
-            color: #63b3ed;
+            color: #a78bfa;
         }
         
         [data-theme="dark"] .mm-flow-step {
-            background: #0a0a0a;
+            background: linear-gradient(145deg, #0a0a0a 0%, #000000 100%);
             border-color: #222222;
         }
         
         [data-theme="dark"] .mm-note {
-            background: rgba(214,158,46,0.08);
+            background: linear-gradient(90deg, rgba(245,158,11,0.08) 0%, rgba(251,191,36,0.05) 100%);
             color: #fbbf24;
         }
         
         [data-theme="dark"] .mm-tag {
-            background: rgba(66,153,225,0.15);
-            color: #63b3ed;
+            background: linear-gradient(135deg, rgba(102,126,234,0.15) 0%, rgba(118,75,162,0.1) 100%);
+            color: #a78bfa;
         }
         
         [data-theme="dark"] .mm-layer-content {
             background: #000000;
+            border-color: #222222;
+        }
+        [data-theme="dark"] .mm-layer::before {
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+        [data-theme="dark"] .mm-badge {
+            background: linear-gradient(135deg, rgba(102,126,234,0.12) 0%, rgba(118,75,162,0.08) 100%);
+            color: #a78bfa;
+        }
+        [data-theme="dark"] .mm-badge.accent {
+            background: linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(251,191,36,0.08) 100%);
+            color: #fbbf24;
+        }
+        [data-theme="dark"] .mm-badge.green {
+            background: linear-gradient(135deg, rgba(56,161,105,0.12) 0%, rgba(72,187,120,0.08) 100%);
+            color: #68d391;
+        }
+        [data-theme="dark"] .mm-badge.red {
+            background: linear-gradient(135deg, rgba(229,62,62,0.12) 0%, rgba(245,101,101,0.08) 100%);
+            color: #fc8181;
+        }
+        [data-theme="dark"] .mm-chain-node {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        [data-theme="dark"] .mm-grid-item {
+            background: linear-gradient(145deg, #0a0a0a 0%, #000000 100%);
             border-color: #222222;
         }
         
@@ -380,41 +415,56 @@
             font-size: 13px;
         }
     
-/* ===== Mindmap / Flowchart Components ===== */
-.mm{margin:16px 0;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-.mm-title{padding:12px 16px;font-weight:700;font-size:15px;color:#fff}
-.mm-body{padding:16px}
-.mm-root{text-align:center;margin-bottom:12px}
-.mm-root-card{display:inline-block;padding:8px 20px;border-radius:8px;background:linear-gradient(135deg,#1a365d,#2b6cb0);color:#fff;font-weight:600;font-size:14px}
-.mm-branches{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.mm-branch{flex:1;min-width:140px;max-width:280px}
-.mm-branch-header{padding:8px 12px;border-radius:8px 8px 0 0;font-weight:600;font-size:13px;color:#fff;text-align:center}
-.mm-branch-body{padding:10px 12px;border-radius:0 0 8px 8px;background:#f7fafc;border:1.5px solid #e2e8f0;border-top:none}
-.mm-leaf{padding:4px 0;font-size:13px;color:#4a5568;border-bottom:1px dashed #e2e8f0}
+/* ===== Mindmap / Flowchart Components - Premium Design ===== */
+.mm{margin:24px 0;border-radius:16px;overflow:hidden;background:linear-gradient(145deg,#ffffff 0%,#f8fafc 100%);box-shadow:0 4px 24px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.03);position:relative}
+.mm::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#667eea,#764ba2,#f093fb);opacity:.8}
+.mm-title{padding:16px 20px;font-weight:700;font-size:16px;color:#fff;letter-spacing:.5px;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.mm-body{padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.8) 0%,rgba(248,250,252,.6) 100%)}
+.mm-root{text-align:center;margin-bottom:16px;position:relative}
+.mm-root-card{display:inline-block;padding:12px 28px;border-radius:12px;background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);color:#fff;font-weight:700;font-size:15px;box-shadow:0 8px 24px rgba(102,126,234,.35);position:relative;overflow:hidden}
+.mm-root-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);animation:shimmer 3s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%) rotate(45deg)}100%{transform:translateX(100%) rotate(45deg)}}
+.mm-branches{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.mm-branch{flex:1;min-width:150px;max-width:300px;transition:transform .3s ease}
+.mm-branch:hover{transform:translateY(-4px)}
+.mm-branch-header{padding:10px 14px;border-radius:10px 10px 0 0;font-weight:700;font-size:13px;color:#fff;text-align:center;letter-spacing:.3px}
+.mm-branch-body{padding:12px 14px;border-radius:0 0 10px 10px;background:linear-gradient(180deg,#fff 0%,#f7fafc 100%);border:1.5px solid #e2e8f0;border-top:none;box-shadow:inset 0 2px 4px rgba(0,0,0,.02)}
+.mm-leaf{padding:5px 0;font-size:13px;color:#4a5568;border-bottom:1px dashed #e2e8f0;transition:color .2s,padding-left .2s}
 .mm-leaf:last-child{border-bottom:none}
-.mm-leaf::before{content:"\2022";color:#2b6cb0;margin-right:6px;font-weight:700}
-.mm-arrow{text-align:center;color:#a0aec0;font-size:18px;margin:6px 0}
-.mm-flow{display:flex;flex-direction:column;align-items:center;gap:0}
-.mm-flow-step{padding:10px 20px;border-radius:8px;background:#fff;border:2px solid;text-align:center;font-size:13px;font-weight:500;width:100%;max-width:360px;transition:transform .2s,box-shadow .2s}
-.mm-flow-step:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.mm-flow-arrow{color:#a0aec0;font-size:16px;line-height:1}
-.mm-layer{margin-bottom:12px}
-.mm-layer-label{display:inline-block;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:600;color:#fff;margin-bottom:6px}
-.mm-layer-content{padding:10px 14px;border-radius:8px;background:#f7fafc;border-left:4px solid}
-.mm-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;margin:2px;background:#ebf8ff;color:#2b6cb0}
-.mm-badge.accent{background:#fef3c7;color:#d69e2e}
-.mm-badge.green{background:#f0fff4;color:#38a169}
-.mm-badge.red{background:#fff5f5;color:#e53e3e}
-.mm-note{margin-top:10px;padding:8px 12px;background:#fffff0;border-left:3px solid #d69e2e;border-radius:0 6px 6px 0;font-size:13px;color:#744210}
-.mm-system{display:flex;flex-direction:column;align-items:center;gap:0}
-.mm-system-box{padding:10px 16px;border-radius:8px;text-align:center;font-size:13px;font-weight:500;min-width:200px}
-.mm-system-arrow{color:#a0aec0;font-size:16px;line-height:1}
-.mm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
-.mm-grid-item{padding:8px;border-radius:6px;text-align:center;font-size:12px;background:#f7fafc;border:1px solid #e2e8f0}
-.mm-chain{display:flex;flex-direction:column;align-items:center;gap:0}
-.mm-chain-node{padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;color:#fff}
-.mm-chain-link{color:#cbd5e0;font-size:14px}
-@media(max-width:600px){.mm-branches{flex-direction:column;align-items:center}.mm-branch{max-width:100%}.mm-flow-step{max-width:100%}}
+.mm-leaf:hover{color:#2b6cb0;padding-left:4px}
+.mm-leaf::before{content:"▸";color:#667eea;margin-right:8px;font-size:10px;transition:transform .2s}
+.mm-leaf:hover::before{transform:translateX(2px)}
+.mm-arrow{text-align:center;color:#94a3b8;font-size:20px;margin:10px 0;position:relative}
+.mm-arrow::after{content:'';position:absolute;left:50%;top:100%;width:2px;height:8px;background:linear-gradient(180deg,#94a3b8,transparent);transform:translateX(-50%)}
+.mm-flow{display:flex;flex-direction:column;align-items:center;gap:2px}
+.mm-flow-step{padding:14px 24px;border-radius:12px;background:linear-gradient(145deg,#fff 0%,#f8fafc 100%);border:2px solid #e2e8f0;text-align:center;font-size:13px;font-weight:600;width:100%;max-width:380px;transition:all .3s ease;position:relative}
+.mm-flow-step:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mm-flow-step::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
+.mm-flow-arrow{color:#94a3b8;font-size:18px;line-height:1;position:relative}
+.mm-flow-arrow::before{content:'';position:absolute;left:50%;width:2px;height:16px;background:linear-gradient(180deg,#94a3b8,#cbd5e1);transform:translateX(-50%);top:-8px}
+.mm-layer{margin-bottom:14px;position:relative;padding-left:12px}
+.mm-layer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#667eea,#764ba2);border-radius:3px}
+.mm-layer-label{display:inline-block;padding:4px 14px;border-radius:6px;font-size:12px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:.3px}
+.mm-layer-content{padding:14px 18px;border-radius:10px;background:linear-gradient(145deg,#fff 0%,#f7fafc 100%);border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.mm-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;margin:3px;font-weight:600;letter-spacing:.2px}
+.mm-badge{background:linear-gradient(135deg,#ebf8ff 0%,#bee3f8 100%);color:#2b6cb0}
+.mm-badge.accent{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:#b45309}
+.mm-badge.green{background:linear-gradient(135deg,#f0fff4 0%,#c6f6d5 100%);color:#276749}
+.mm-badge.red{background:linear-gradient(135deg,#fff5f5 0%,#fed7d7 100%);color:#c53030}
+.mm-note{margin-top:14px;padding:12px 16px;background:linear-gradient(90deg,#fffbeb 0%,#fef3c7 100%);border-left:4px solid #f59e0b;border-radius:0 10px 10px 0;font-size:13px;color:#92400e;box-shadow:0 2px 8px rgba(245,158,11,.1)}
+.mm-system{display:flex;flex-direction:column;align-items:center;gap:4px}
+.mm-system-box{padding:12px 20px;border-radius:10px;text-align:center;font-size:13px;font-weight:600;min-width:220px;transition:all .3s ease}
+.mm-system-box:hover{transform:scale(1.02)}
+.mm-system-arrow{color:#94a3b8;font-size:18px;line-height:1}
+.mm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.mm-grid-item{padding:10px;border-radius:8px;text-align:center;font-size:12px;background:linear-gradient(145deg,#fff 0%,#f7fafc 100%);border:1px solid #e2e8f0;transition:all .2s}
+.mm-grid-item:hover{box-shadow:0 4px 12px rgba(0,0,0,.06);transform:translateY(-2px)}
+.mm-chain{display:flex;flex-direction:column;align-items:center;gap:2px}
+.mm-chain-node{padding:10px 20px;border-radius:25px;font-size:13px;font-weight:600;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:all .3s ease}
+.mm-chain-node:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.mm-chain-link{color:#94a3b8;font-size:16px;position:relative}
+.mm-chain-link::before{content:'';position:absolute;left:50%;width:2px;height:10px;background:linear-gradient(180deg,#94a3b8,#cbd5e1);transform:translateX(-50%);top:-5px}
+@media(max-width:600px){.mm-branches{flex-direction:column;align-items:center}.mm-branch{max-width:100%}.mm-flow-step{max-width:100%}.mm{margin:16px -8px;border-radius:12px}}
 
     
 /* ===== Additional Mindmap CSS (v2 hand-crafted) ===== */
