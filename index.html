@@ -497,7 +497,7 @@
 <body>
     <!-- 章节导航（可横向滚动） -->
     <nav class="toc-bar">
-        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a>
+        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a><a href="#chapter-9" style="border-color:#D69E2E">📊 第六讲 误差建模</a>
     </nav>
 
     <!-- 主内容 -->
@@ -2840,6 +2840,698 @@ R_y(90°) 使得 Z轴 和 X轴 重合
         </div>
     </section>
     
+    <section class="chapter" id="chapter-9">
+        <div class="chapter-header" style="border-left-color:#D69E2E; background:linear-gradient(135deg, #D69E2E11 0%, #D69E2E05 100%)">
+            <h2 style="color:#D69E2E">📊 第六讲 惯导系统误差建模</h2>
+        </div>
+        <div class="chapter-body">
+<blockquote>
+<p><strong>主讲人</strong>：张勇刚、李宁（哈尔滨工程大学 智能学院） <strong>课程地位</strong>：⭐⭐⭐⭐⭐ 本讲是惯导系统分析的核心，建立误差传播的数学模型，为卡尔曼滤波组合导航奠定基础 <strong>内容来源</strong>：第6讲（惯导系统误差建模）PPT 1-23页</p>
+</blockquote>
+<hr />
+<h2 id="本章思维导图">🗺️ 本章思维导图</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│                    第六讲 惯导系统误差建模 知识架构                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│                              【核心问题】                                    │
+│                    惯导系统的误差如何产生、传递和建模？                       │
+│                              ╱    |    ╲                                    │
+│                             ╱     |     ╲                                   │
+│                            ▼      ▼      ▼                                  │
+│                   【§1 误差产生】 【§2 姿态误差】 【§3 速度误差】            │
+│                   误差源分类      平台误差角方程   速度误差方程               │
+│                        │              │               │                     │
+│                        │              │               │                     │
+│                        └──────┬───────┘───────┬───────┘                     │
+│                               │               │                             │
+│                               ▼               ▼                             │
+│                        【§4 位置误差】   【§5 误差方程总结】                 │
+│                        位置误差方程     状态空间形式 + 静基座简化             │
+│                              │               │                              │
+│                              └───────┬───────┘                              │
+│                                      │                                      │
+│                                      ▼                                      │
+│                              【最终目标】                                    │
+│                        Ẋ = FX + W 状态方程                                 │
+│                        为卡尔曼滤波提供基础                                  │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr />
+<h2 id="本章重点分析">📊 本章重点分析</h2>
+<h3 id="五大核心板块">五大核心板块</h3>
+<table>
+<thead>
+<tr class="header">
+<th>板块</th>
+<th>核心内容</th>
+<th>在课程中的地位</th>
+<th>考试权重</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>板块一：误差的产生与传递</strong></td>
+<td>误差源分类、误差传递机理</td>
+<td><strong>基础概念</strong></td>
+<td>15%</td>
+</tr>
+<tr class="even">
+<td><strong>板块二：姿态误差方程</strong></td>
+<td>平台误差角定义、姿态误差微分方程推导</td>
+<td><strong>核心推导</strong></td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td><strong>板块三：速度误差方程</strong></td>
+<td>速度误差方程推导与各项物理意义</td>
+<td><strong>重点方程</strong></td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td><strong>板块四：位置误差方程</strong></td>
+<td>经纬度误差微分方程</td>
+<td><strong>基础方程</strong></td>
+<td>10%</td>
+</tr>
+<tr class="odd">
+<td><strong>板块五：误差方程总结</strong></td>
+<td>状态空间形式、静基座F矩阵</td>
+<td><strong>综合应用</strong></td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="重点知识关系图">重点知识关系图</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    重点知识逻辑关系                          │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   【起点】惯导系统存在各种误差源                             │
+│   ┌─────────────────────────────────────────────────────┐  │
+│   │  器件误差 + 安装误差 + 初始误差 + 解算误差           │  │
+│   └────────────────────────┬────────────────────────────┘  │
+│                            │                                │
+│                            ▼                                │
+│   【第一层】三类误差变量                                   │
+│   ┌─────────────────────────────────────────────────────┐  │
+│   │  姿态误差 Φ（平台误差角）                            │  │
+│   │  速度误差 δV                                         │  │
+│   │  位置误差 δP                                         │  │
+│   └────────────────────────┬────────────────────────────┘  │
+│                            │                                │
+│                            ▼                                │
+│   【第二层】误差微分方程                                   │
+│   ┌─────────────────────────────────────────────────────┐  │
+│   │  Φ̇ = -ω×Φ + δω + Cε     （姿态误差方程）           │  │
+│   │  δV̇ = -Φ×f + C∇ + ...    （速度误差方程）           │  │
+│   │  δṖ = f(δV, δL)          （位置误差方程）           │  │
+│   └────────────────────────┬────────────────────────────┘  │
+│                            │                                │
+│                            ▼                                │
+│   【第三层】状态空间形式                                   │
+│   ┌─────────────────────────────────────────────────────┐  │
+│   │  Ẋ = FX + W                                        │  │
+│   │  X = [φx, φy, φz, δVx, δVy, δL]^T                  │  │
+│   │  → 直接用于卡尔曼滤波                                │  │
+│   └─────────────────────────────────────────────────────┘  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="核心公式脉络">核心公式脉络</h3>
+<pre><code>【起点】惯导系统误差源
+    │
+    ├──→ 【姿态误差方程】（PPT 7-11）
+    │       Φ̇ⁿ = -ωⁿin × Φ + δωⁿin + CⁿP εP
+    │       其中：ωⁿin = ωⁿie + ωⁿen
+    │
+    ├──→ 【速度误差方程】（PPT 13-15）
+    │       δV̇ⁿ = -Φ × fⁿ + Cⁿb ∇ + δωⁿie × Vⁿ
+    │             + δωⁿen × Vⁿ - (2ωⁿie + ωⁿen) × δVⁿ + δgⁿ
+    │
+    ├──→ 【位置误差方程】（PPT 17）
+    │       δL̇ = δVy/(RM+h)
+    │       δλ̇ = δVx·secL/(RN+h) - Vx·secL·tanL·δL/(RN+h)
+    │
+    └──→ 【状态空间形式】（PPT 19-22）
+            Ẋ = FX + W
+            静基座条件：V=0, ωⁿen=0 → F矩阵简化</code></pre>
+<hr />
+<h2 id="第一节-误差的产生与传递ppt-3-5">📖 第一节 误差的产生与传递（PPT 3-5）</h2>
+<h3 id="误差源分类">1.1 误差源分类</h3>
+<p>惯导系统的误差来源可以分为以下四大类：</p>
+<h4 id="器件误差最主要的误差源">（1）器件误差（最主要的误差源）</h4>
+<table>
+<thead>
+<tr class="header">
+<th>误差类型</th>
+<th>具体内容</th>
+<th>物理意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>陀螺漂移</strong> <span class="math inline">\(\varepsilon\)</span></td>
+<td>常值漂移 + 随机漂移</td>
+<td>陀螺仪输出的角速度偏差，直接导致姿态误差</td>
+</tr>
+<tr class="even">
+<td><strong>标度因数误差</strong> <span class="math inline">\(\delta K_g\)</span></td>
+<td>陀螺/加速度计的比例系数偏差</td>
+<td>输入输出不成正比，高速运动时影响显著</td>
+</tr>
+<tr class="odd">
+<td><strong>加速度计零位误差</strong> <span class="math inline">\(\nabla\)</span></td>
+<td>加速度计的零偏</td>
+<td>无加速度输入时仍有输出，等效于重力测量偏差</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>考试提示</strong>：器件误差是惯导系统误差的<strong>根本来源</strong>，陀螺漂移影响姿态，加速度计零偏影响速度和位置。</p>
+</blockquote>
+<h4 id="安装误差">（2）安装误差</h4>
+<ul>
+<li>陀螺仪和加速度计的安装方向不可能与载体系完全一致</li>
+<li>存在小的安装角度偏差，通常用小角度矩阵描述</li>
+<li>安装误差在系统标定中可以部分补偿</li>
+</ul>
+<h4 id="初始值误差">（3）初始值误差</h4>
+<ul>
+<li>初始对准不准确引入的误差</li>
+<li>初始姿态误差 <span class="math inline">\(\Phi_0\)</span>、初始速度误差 <span class="math inline">\(\delta V_0\)</span>、初始位置误差 <span class="math inline">\(\delta P_0\)</span></li>
+<li>初始误差会通过系统动力学方程传播和放大</li>
+</ul>
+<h4 id="解算误差">（4）解算误差</h4>
+<ul>
+<li>数值积分算法的截断误差和舍入误差</li>
+<li>有限频率采样导致的不可交换性误差（圆锥误差、划桨误差）</li>
+<li>计算机字长有限导致的量化误差</li>
+</ul>
+<h3 id="误差传递机理ppt-4-5">1.2 误差传递机理（PPT 4-5）</h3>
+<p>惯导系统的误差传递遵循<strong>“由内向外”</strong>的规律：</p>
+<pre><code>┌──────────────────────────────────────────────────────────┐
+│                    误差传递链                              │
+│                                                          │
+│  陀螺漂移 ε ──→ 姿态误差 Φ ──→ 姿态矩阵误差 ──┐         │
+│                                              │          │
+│                                              ▼          │
+│                                     比力变换误差          │
+│                                              │          │
+│  加速度计零偏 ∇ ──────────────────────────→ 速度误差 δV   │
+│                                              │          │
+│                                              ▼          │
+│                                          位置误差 δP     │
+│                                                          │
+│  ★ 关键：姿态误差通过&quot;交叉耦合&quot;影响速度和位置            │
+└──────────────────────────────────────────────────────────┘</code></pre>
+<p><strong>核心传递路径</strong>：</p>
+<ol type="1">
+<li><strong>陀螺漂移 → 姿态误差</strong>：陀螺测量有误差，姿态解算产生偏差</li>
+<li><strong>姿态误差 → 速度误差</strong>：姿态矩阵不准确，比力从载体系到导航系的投影产生误差，即 <span class="math inline">\(-\Phi \times f^n\)</span> 项</li>
+<li><strong>速度误差 → 位置误差</strong>：速度积分得到位置，速度有误差则位置误差不断累积</li>
+<li><strong>位置误差 → 姿态误差</strong>：位置误差导致导航系定义不准确（<span class="math inline">\(\omega_{en}\)</span> 计算有误），反过来影响姿态解算</li>
+</ol>
+<blockquote>
+<p><strong>重要结论</strong>：惯导误差是一个<strong>耦合系统</strong>，各误差相互影响、相互传递，必须用<strong>统一的微分方程组</strong>来描述。</p>
+</blockquote>
+<h3 id="三类误差变量">1.3 三类误差变量</h3>
+<table>
+<thead>
+<tr class="header">
+<th>误差变量</th>
+<th>符号</th>
+<th>维度</th>
+<th>物理意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>姿态误差（平台误差角）</td>
+<td><span class="math inline">\(\Phi = [\phi_x, \phi_y, \phi_z]^T\)</span></td>
+<td>3</td>
+<td>计算平台系 <span class="math inline">\(P\)</span> 与理想导航系 <span class="math inline">\(n\)</span> 之间的偏差角</td>
+</tr>
+<tr class="even">
+<td>速度误差</td>
+<td><span class="math inline">\(\delta V^n = [\delta V_x, \delta V_y, \delta V_z]^T\)</span></td>
+<td>3</td>
+<td>计算速度与真实速度之差</td>
+</tr>
+<tr class="odd">
+<td>位置误差</td>
+<td><span class="math inline">\(\delta P = [\delta L, \delta \lambda, \delta h]^T\)</span></td>
+<td>3</td>
+<td>计算位置与真实位置之差</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="第二节-姿态误差方程ppt-7-11">📖 第二节 姿态误差方程（PPT 7-11）</h2>
+<h3 id="平台误差角的定义ppt-7">2.1 平台误差角的定义（PPT 7）</h3>
+<h4 id="理想导航系-n-与计算平台系-p">理想导航系 <span class="math inline">\(n\)</span> 与计算平台系 <span class="math inline">\(P\)</span></h4>
+<p>在实际惯导系统中，由于各种误差的存在，计算机建立的“数学平台”（即计算导航系 <span class="math inline">\(P\)</span>）与理想的地理导航系 <span class="math inline">\(n\)</span> 之间存在偏差。</p>
+<p><strong>定义</strong>：平台误差角 <span class="math inline">\(\Phi\)</span> 描述的是 <span class="math inline">\(P\)</span> 系相对于 <span class="math inline">\(n\)</span> 系的小角度偏差。</p>
+<p><span class="math display">\[C_n^P = I - [\Phi \times]\]</span></p>
+<p>其中 <span class="math inline">\([\Phi \times]\)</span> 为 <span class="math inline">\(\Phi\)</span> 的反对称矩阵：</p>
+<p><span class="math display">\[[\Phi \times] = \begin{bmatrix} 0 &amp; -\phi_z &amp; \phi_y \\ \phi_z &amp; 0 &amp; -\phi_x \\ -\phi_y &amp; \phi_x &amp; 0 \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>理解要点</strong>：当 <span class="math inline">\(\Phi\)</span> 为小角度时，从 <span class="math inline">\(n\)</span> 系到 <span class="math inline">\(P\)</span> 系的方向余弦矩阵可以近似为 <span class="math inline">\(I - [\Phi \times]\)</span>。这是后续所有推导的基础。</p>
+</blockquote>
+<h4 id="平台误差角的物理意义ppt-7-8">平台误差角的物理意义（PPT 7-8）</h4>
+<p>平台误差角 <span class="math inline">\(\Phi = [\phi_x, \phi_y, \phi_z]^T\)</span> 的三个分量分别对应：</p>
+<table>
+<thead>
+<tr class="header">
+<th>分量</th>
+<th>名称</th>
+<th>物理意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\phi_x\)</span></td>
+<td>东向平台误差角</td>
+<td><span class="math inline">\(P\)</span> 系绕东向轴相对于 <span class="math inline">\(n\)</span> 系的旋转角</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\phi_y\)</span></td>
+<td>北向平台误差角</td>
+<td><span class="math inline">\(P\)</span> 系绕北向轴相对于 <span class="math inline">\(n\)</span> 系的旋转角</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\phi_z\)</span></td>
+<td>天向平台误差角</td>
+<td><span class="math inline">\(P\)</span> 系绕天向轴相对于 <span class="math inline">\(n\)</span> 系的旋转角</td>
+</tr>
+</tbody>
+</table>
+<h3 id="姿态误差方程的推导ppt-9-11">2.2 姿态误差方程的推导（PPT 9-11）</h3>
+<h4 id="推导思路">推导思路</h4>
+<p>姿态误差方程的推导基于以下核心关系：</p>
+<p><span class="math display">\[\dot{\Phi}^n = \omega_{iP}^n - \omega_{in}^n\]</span></p>
+<p>其中： - <span class="math inline">\(\omega_{iP}^n\)</span>：计算平台系 <span class="math inline">\(P\)</span> 相对惯性系 <span class="math inline">\(i\)</span> 的角速度在 <span class="math inline">\(n\)</span> 系中的投影 - <span class="math inline">\(\omega_{in}^n\)</span>：理想导航系 <span class="math inline">\(n\)</span> 相对惯性系 <span class="math inline">\(i\)</span> 的角速度在 <span class="math inline">\(n\)</span> 系中的投影</p>
+<h4 id="详细推导">详细推导</h4>
+<p><strong>Step 1</strong>：写出 <span class="math inline">\(\omega_{in}^n\)</span> 的表达式</p>
+<p><span class="math display">\[\omega_{in}^n = \omega_{ie}^n + \omega_{en}^n\]</span></p>
+<p>其中： - <span class="math inline">\(\omega_{ie}^n\)</span>：地球自转角速度在导航系中的投影 - <span class="math inline">\(\omega_{en}^n\)</span>：导航系相对地球系的角速度（位置角速度）</p>
+<p><strong>Step 2</strong>：地球自转角速度在导航系中的分量（PPT 9）</p>
+<p><span class="math display">\[\omega_{ie}^n = \begin{bmatrix} 0 \\ \omega_{ie} \cos L \\ \omega_{ie} \sin L \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>记忆技巧</strong>：地球自转角速度在东向（<span class="math inline">\(x\)</span>轴）没有分量，在北向和天向分别有 <span class="math inline">\(\cos L\)</span> 和 <span class="math inline">\(\sin L\)</span> 分量。这是因为导航系的 <span class="math inline">\(x\)</span> 轴指东，地球自转轴在北-天平面内。</p>
+</blockquote>
+<p><strong>Step 3</strong>：位置角速度的表达式（PPT 9）</p>
+<p><span class="math display">\[\omega_{en}^n = \begin{bmatrix} -\dfrac{V_y}{R_M + h} \\[6pt] \dfrac{V_x}{R_N + h} \\[6pt] \dfrac{V_x \tan L}{R_N + h} \end{bmatrix}\]</span></p>
+<p>其中 <span class="math inline">\(R_M\)</span> 为子午圈曲率半径，<span class="math inline">\(R_N\)</span> 为卯酉圈曲率半径。</p>
+<blockquote>
+<p><strong>物理意义</strong>： - 东向角速度分量由北向速度 <span class="math inline">\(V_y\)</span> 引起（向北运动导致经度变化） - 北向角速度分量由东向速度 <span class="math inline">\(V_x\)</span> 引起（向东运动导致纬度变化） - 天向角速度分量由东向速度和纬度共同引起（在高纬度地区，向东运动的“扭转”效应更强）</p>
+</blockquote>
+<p><strong>Step 4</strong>：计算平台系的角速度</p>
+<p>计算机实际计算的平台角速度为：</p>
+<p><span class="math display">\[\omega_{iP}^n = \hat{\omega}_{in}^n + C_P^n \hat{\omega}_{ib}^b\]</span></p>
+<p>由于计算中存在误差：</p>
+<p><span class="math display">\[\hat{\omega}_{in}^n = \omega_{in}^n + \delta\omega_{in}^n\]</span></p>
+<p><span class="math display">\[\hat{\omega}_{ib}^b = \omega_{ib}^b + \varepsilon^b \quad \text{（陀螺测量误差）}\]</span></p>
+<p><strong>Step 5</strong>：综合得到姿态误差方程（PPT 10-11）</p>
+<p>经过推导（利用小角度近似 <span class="math inline">\(C_n^P \approx I + [\Phi \times]\)</span>），最终得到：</p>
+<p><span class="math display">\[\boxed{\dot{\Phi}^n = -\omega_{in}^n \times \Phi + \delta\omega_{in}^n + C_P^n \varepsilon^P}\]</span></p>
+<blockquote>
+<p><strong>公式解读</strong>： - <strong>第一项</strong> <span class="math inline">\(-\omega_{in}^n \times \Phi\)</span>：误差的<strong>耦合项</strong>，表示现有平台误差在角速度作用下的发展变化 - <strong>第二项</strong> <span class="math inline">\(\delta\omega_{in}^n\)</span>：由<strong>计算参数误差</strong>（速度误差、位置误差）引起的角速度误差 - <strong>第三项</strong> <span class="math inline">\(C_P^n \varepsilon^P\)</span>：<strong>陀螺漂移</strong>在导航系中的投影，是误差的主要驱动源</p>
+</blockquote>
+<h3 id="deltaomega_inn-的展开">2.3 <span class="math inline">\(\delta\omega_{in}^n\)</span> 的展开</h3>
+<p>由于 <span class="math inline">\(\omega_{in}^n = \omega_{ie}^n + \omega_{en}^n\)</span>，所以：</p>
+<p><span class="math display">\[\delta\omega_{in}^n = \delta\omega_{ie}^n + \delta\omega_{en}^n\]</span></p>
+<h4 id="deltaomega_ien-的计算"><span class="math inline">\(\delta\omega_{ie}^n\)</span> 的计算</h4>
+<p>对 <span class="math inline">\(\omega_{ie}^n = [0, \omega_{ie}\cos L, \omega_{ie}\sin L]^T\)</span> 求变分：</p>
+<p><span class="math display">\[\delta\omega_{ie}^n = \begin{bmatrix} 0 \\ -\omega_{ie} \sin L \cdot \delta L \\ \omega_{ie} \cos L \cdot \delta L \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>注意</strong>：<span class="math inline">\(\delta\omega_{ie}^n\)</span> 只依赖于纬度误差 <span class="math inline">\(\delta L\)</span>，不依赖于速度误差。</p>
+</blockquote>
+<h4 id="deltaomega_enn-的计算ppt-11"><span class="math inline">\(\delta\omega_{en}^n\)</span> 的计算（PPT 11）</h4>
+<p><span class="math inline">\(\delta\omega_{en}^n\)</span> 既依赖于速度误差 <span class="math inline">\(\delta V\)</span>，也依赖于位置误差 <span class="math inline">\(\delta L\)</span>：</p>
+<p><span class="math display">\[\delta\omega_{en}^n = \begin{bmatrix} -\dfrac{\delta V_y}{R_M + h} \\[6pt] \dfrac{\delta V_x}{R_N + h} \\[6pt] \dfrac{\delta V_x \tan L}{R_N + h} + \dfrac{V_x \sec^2 L \cdot \delta L}{R_N + h} \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>考试重点</strong>：<span class="math inline">\(\delta\omega_{en}^n\)</span> 中天向分量有两部分：一部分由 <span class="math inline">\(\delta V_x\)</span> 引起，另一部分由 <span class="math inline">\(\delta L\)</span> 引起（通过 <span class="math inline">\(\sec^2 L\)</span> 系数）。</p>
+</blockquote>
+<hr />
+<h2 id="第三节-速度误差方程ppt-13-15">📖 第三节 速度误差方程（PPT 13-15）</h2>
+<h3 id="速度误差方程的推导">3.1 速度误差方程的推导</h3>
+<h4 id="推导起点">推导起点</h4>
+<p>理想的速度方程为：</p>
+<p><span class="math display">\[\dot{V}^n = C_b^n f^b - (2\omega_{ie}^n + \omega_{en}^n) \times V^n + g^n\]</span></p>
+<p>实际计算的速度方程为：</p>
+<p><span class="math display">\[\dot{\hat{V}}^n = C_P^n \hat{f}^P - (2\hat{\omega}_{ie}^n + \hat{\omega}_{en}^n) \times \hat{V}^n + \hat{g}^n\]</span></p>
+<h4 id="推导过程">推导过程</h4>
+<p><strong>Step 1</strong>：比力变换误差</p>
+<p>由于平台系 <span class="math inline">\(P\)</span> 与导航系 <span class="math inline">\(n\)</span> 之间存在偏差角 <span class="math inline">\(\Phi\)</span>：</p>
+<p><span class="math display">\[C_P^n \hat{f}^P \approx (I + [\Phi \times]) C_b^n (f^b + \nabla^b)\]</span></p>
+<p><span class="math display">\[\approx C_b^n f^b + [\Phi \times] C_b^n f^b + C_b^n \nabla^b\]</span></p>
+<p><span class="math display">\[= f^n + \Phi \times f^n + C_b^n \nabla^b\]</span></p>
+<blockquote>
+<p><strong>关键结果</strong>：比力变换误差为 <span class="math inline">\(\Phi \times f^n\)</span>，即姿态误差与比力的叉乘。这意味着<strong>水平姿态误差会将重力分量引入速度误差</strong>。</p>
+</blockquote>
+<p><strong>Step 2</strong>：有害加速度项的误差</p>
+<p><span class="math display">\[-(2\hat{\omega}_{ie}^n + \hat{\omega}_{en}^n) \times \hat{V}^n \approx -(2\omega_{ie}^n + \omega_{en}^n) \times V^n - (2\omega_{ie}^n + \omega_{en}^n) \times \delta V^n - (2\delta\omega_{ie}^n + \delta\omega_{en}^n) \times V^n\]</span></p>
+<p><strong>Step 3</strong>：综合得到速度误差方程（PPT 14-15）</p>
+<p><span class="math display">\[\boxed{\delta\dot{V}^n = -\Phi \times f^n + C_b^n \nabla^b + \delta\omega_{ie}^n \times V^n + \delta\omega_{en}^n \times V^n - (2\omega_{ie}^n + \omega_{en}^n) \times \delta V^n + \delta g^n}\]</span></p>
+<h3 id="各项物理意义详解">3.2 各项物理意义详解</h3>
+<table>
+<thead>
+<tr class="header">
+<th>项</th>
+<th>表达式</th>
+<th>物理意义</th>
+<th>重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>第1项</strong></td>
+<td><span class="math inline">\(-\Phi \times f^n\)</span></td>
+<td>姿态误差导致的比力投影误差</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr class="even">
+<td><strong>第2项</strong></td>
+<td><span class="math inline">\(C_b^n \nabla^b\)</span></td>
+<td>加速度计零偏在导航系的投影</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr class="odd">
+<td><strong>第3项</strong></td>
+<td><span class="math inline">\(\delta\omega_{ie}^n \times V^n\)</span></td>
+<td>地球自转角速度误差与速度的耦合</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr class="even">
+<td><strong>第4项</strong></td>
+<td><span class="math inline">\(\delta\omega_{en}^n \times V^n\)</span></td>
+<td>位置角速度误差与速度的耦合</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr class="odd">
+<td><strong>第5项</strong></td>
+<td><span class="math inline">\(-(2\omega_{ie}^n + \omega_{en}^n) \times \delta V^n\)</span></td>
+<td>科里奥利加速度对速度误差的耦合</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr class="even">
+<td><strong>第6项</strong></td>
+<td><span class="math inline">\(\delta g^n\)</span></td>
+<td>重力计算误差</td>
+<td>⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>核心洞察</strong>：第1项 <span class="math inline">\(-\Phi \times f^n\)</span> 是最重要的耦合项。当载体静止时，<span class="math inline">\(f^n \approx g^n\)</span>，此时水平姿态误差 <span class="math inline">\(\phi_x, \phi_y\)</span> 会将重力分量错误地引入水平速度通道，产生严重的速度误差。</p>
+</blockquote>
+<h3 id="静基座条件下的简化ppt-15">3.3 静基座条件下的简化（PPT 15）</h3>
+<p>在<strong>静基座</strong>条件下： - <span class="math inline">\(V = 0\)</span>（载体静止） - <span class="math inline">\(\omega_{en}^n = 0\)</span>（无位置变化）</p>
+<p>速度误差方程简化为：</p>
+<p><span class="math display">\[\delta\dot{V}^n = -\Phi \times g^n + C_b^n \nabla^b\]</span></p>
+<p>展开写：</p>
+<p><span class="math display">\[\begin{cases} \delta\dot{V}_x = \phi_y \cdot g + \nabla_x \\ \delta\dot{V}_y = -\phi_x \cdot g + \nabla_y \\ \delta\dot{V}_z = 0 + \nabla_z \end{cases}\]</span></p>
+<blockquote>
+<p><strong>重要结论</strong>：在静基座下，北向平台误差角 <span class="math inline">\(\phi_y\)</span> 产生东向速度误差，东向平台误差角 <span class="math inline">\(\phi_x\)</span> 产生北向速度误差。这是因为 <span class="math inline">\(g\)</span> 沿天向，<span class="math inline">\(\Phi \times g\)</span> 的水平分量由水平姿态误差决定。</p>
+</blockquote>
+<hr />
+<h2 id="第四节-位置误差方程ppt-17">📖 第四节 位置误差方程（PPT 17）</h2>
+<h3 id="位置微分方程回顾">4.1 位置微分方程回顾</h3>
+<p>理想的位置微分方程为：</p>
+<p><span class="math display">\[\dot{L} = \frac{V_y}{R_M + h}, \quad \dot{\lambda} = \frac{V_x \sec L}{R_N + h}\]</span></p>
+<h3 id="位置误差方程的推导">4.2 位置误差方程的推导</h3>
+<p>对位置微分方程取变分（扰动），得到位置误差方程：</p>
+<p><span class="math display">\[\boxed{\delta\dot{L} = \frac{\delta V_y}{R_M + h}}\]</span></p>
+<p><span class="math display">\[\boxed{\delta\dot{\lambda} = \frac{\delta V_x \sec L}{R_N + h} - \frac{V_x \sec L \tan L \cdot \delta L}{R_N + h}}\]</span></p>
+<blockquote>
+<p><strong>公式解读</strong>： - <strong>纬度误差方程</strong>：纬度误差仅由北向速度误差引起，形式简单 - <strong>经度误差方程</strong>：经度误差由两部分引起： 1. <span class="math inline">\(\dfrac{\delta V_x \sec L}{R_N + h}\)</span>：东向速度误差的直接贡献 2. <span class="math inline">\(-\dfrac{V_x \sec L \tan L \cdot \delta L}{R_N + h}\)</span>：纬度误差的间接贡献（通过 <span class="math inline">\(\sec L \tan L\)</span> 系数）</p>
+</blockquote>
+<h3 id="静基座条件下的简化">4.3 静基座条件下的简化</h3>
+<p>在静基座条件下（<span class="math inline">\(V = 0\)</span>）：</p>
+<p><span class="math display">\[\delta\dot{L} = \frac{\delta V_y}{R_M}, \quad \delta\dot{\lambda} = \frac{\delta V_x}{R_N \cos L}\]</span></p>
+<blockquote>
+<p><strong>注意</strong>：静基座下经度误差方程的第二项消失（因为 <span class="math inline">\(V_x = 0\)</span>），只剩下速度误差的直接贡献。</p>
+</blockquote>
+<hr />
+<h2 id="第五节-误差方程总结ppt-19-22">📖 第五节 误差方程总结（PPT 19-22）</h2>
+<h3 id="状态空间形式的建立ppt-19">5.1 状态空间形式的建立（PPT 19）</h3>
+<p>将姿态误差方程、速度误差方程和位置误差方程联立，写成矩阵形式：</p>
+<p><span class="math display">\[\boxed{\dot{X} = FX + W}\]</span></p>
+<p>其中： - <span class="math inline">\(X\)</span> 为<strong>状态向量</strong> - <span class="math inline">\(F\)</span> 为<strong>系统矩阵</strong>（或称状态转移矩阵） - <span class="math inline">\(W\)</span> 为<strong>系统噪声向量</strong>（白噪声驱动）</p>
+<h3 id="状态向量的选取ppt-20">5.2 状态向量的选取（PPT 20）</h3>
+<p>对于<strong>静基座</strong>条件，选取6维状态向量：</p>
+<p><span class="math display">\[X = [\phi_x, \phi_y, \phi_z, \delta V_x, \delta V_y, \delta L]^T\]</span></p>
+<blockquote>
+<p><strong>说明</strong>：静基座下 <span class="math inline">\(V = 0\)</span>，<span class="math inline">\(\omega_{en}^n = 0\)</span>，系统简化为6个状态。天向速度误差和经度误差不与其他状态耦合，可以单独分析。</p>
+</blockquote>
+<h3 id="静基座条件下的系统矩阵-fppt-21-22">5.3 静基座条件下的系统矩阵 F（PPT 21-22）</h3>
+<p>在静基座条件下（<span class="math inline">\(V = 0\)</span>，<span class="math inline">\(\omega_{en} = 0\)</span>），系统矩阵 <span class="math inline">\(F\)</span> 为 <span class="math inline">\(6 \times 6\)</span> 矩阵：</p>
+<p><span class="math display">\[F = \begin{bmatrix} 0 &amp; \omega_{ie}\sin L &amp; -\omega_{ie}\cos L &amp; 0 &amp; \dfrac{1}{R_M} &amp; 0 \\[6pt] -\omega_{ie}\sin L &amp; 0 &amp; 0 &amp; -\dfrac{1}{R_N} &amp; 0 &amp; 0 \\[6pt] \omega_{ie}\cos L &amp; 0 &amp; 0 &amp; 0 &amp; \dfrac{\tan L}{R_N} &amp; 0 \\[6pt] 0 &amp; -g &amp; 0 &amp; 0 &amp; 2\omega_{ie}\sin L &amp; 0 \\[6pt] g &amp; 0 &amp; 0 &amp; -2\omega_{ie}\sin L &amp; 0 &amp; 0 \\[6pt] 0 &amp; 0 &amp; 0 &amp; 0 &amp; \dfrac{1}{R_M} &amp; 0 \end{bmatrix}\]</span></p>
+<h4 id="f-矩阵各元素的物理意义">F 矩阵各元素的物理意义</h4>
+<p><strong>姿态误差部分（左上 <span class="math inline">\(3 \times 3\)</span>）</strong>：</p>
+<p><span class="math display">\[F_{11} \sim F_{33} = \begin{bmatrix} 0 &amp; \omega_{ie}\sin L &amp; -\omega_{ie}\cos L \\ -\omega_{ie}\sin L &amp; 0 &amp; 0 \\ \omega_{ie}\cos L &amp; 0 &amp; 0 \end{bmatrix}\]</span></p>
+<ul>
+<li>这是 <span class="math inline">\(-\omega_{ie}^n \times\)</span> 的矩阵形式（反对称矩阵）</li>
+<li>表示地球自转对姿态误差的耦合作用</li>
+<li><span class="math inline">\(\omega_{ie}\sin L\)</span> 项是<strong>傅科效应</strong>（Foucault effect）的体现</li>
+</ul>
+<p><strong>姿态-速度耦合（中间 <span class="math inline">\(3 \times 3\)</span>）</strong>：</p>
+<p><span class="math display">\[F_{14} \sim F_{26} = \begin{bmatrix} 0 &amp; \dfrac{1}{R_M} &amp; 0 \\ -\dfrac{1}{R_N} &amp; 0 &amp; 0 \\ 0 &amp; \dfrac{\tan L}{R_N} &amp; 0 \end{bmatrix}\]</span></p>
+<ul>
+<li>这是 <span class="math inline">\(\delta\omega_{en}^n\)</span> 对姿态误差的影响</li>
+<li><span class="math inline">\(\dfrac{1}{R_M}\)</span> 和 <span class="math inline">\(\dfrac{1}{R_N}\)</span> 反映了速度误差通过位置角速度影响姿态</li>
+</ul>
+<p><strong>速度-姿态耦合（左下 <span class="math inline">\(3 \times 3\)</span>）</strong>：</p>
+<p><span class="math display">\[F_{41} \sim F_{53} = \begin{bmatrix} 0 &amp; -g &amp; 0 \\ g &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\]</span></p>
+<ul>
+<li>这是 <span class="math inline">\(-g^n \times\)</span> 的矩阵形式</li>
+<li><span class="math inline">\(\pm g\)</span> 项表示<strong>重力与姿态误差的交叉耦合</strong>——这是惯导误差传播中最关键的耦合</li>
+</ul>
+<p><strong>速度误差部分（中间 <span class="math inline">\(3 \times 3\)</span>）</strong>：</p>
+<p><span class="math display">\[F_{44} \sim F_{56} = \begin{bmatrix} 0 &amp; 2\omega_{ie}\sin L &amp; 0 \\ -2\omega_{ie}\sin L &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\]</span></p>
+<ul>
+<li>这是 <span class="math inline">\(-(2\omega_{ie}^n) \times\)</span> 的矩阵形式</li>
+<li><span class="math inline">\(2\omega_{ie}\sin L\)</span> 项是<strong>科里奥利效应</strong>对速度误差的耦合</li>
+</ul>
+<p><strong>位置误差部分（右下部分）</strong>：</p>
+<p><span class="math display">\[F_{65} = \frac{1}{R_M}\]</span></p>
+<ul>
+<li>纬度误差由北向速度误差直接积分得到</li>
+</ul>
+<h3 id="系统噪声向量ppt-22">5.4 系统噪声向量（PPT 22）</h3>
+<p><span class="math display">\[\boxed{W = [\varepsilon_x, \varepsilon_y, \nabla_x, \nabla_y, 0]^T}\]</span></p>
+<blockquote>
+<p><strong>注意</strong>： - <span class="math inline">\(\varepsilon_x, \varepsilon_y\)</span>：东向和北向陀螺漂移（驱动姿态误差） - <span class="math inline">\(\nabla_x, \nabla_y\)</span>：东向和北向加速度计零偏（驱动速度误差） - 第5个分量为0，因为纬度误差方程没有直接的白噪声驱动项 - 天向通道（<span class="math inline">\(\phi_z, \delta V_z, \delta \lambda\)</span>）在静基座下与其他通道解耦，通常不纳入核心分析</p>
+</blockquote>
+<h3 id="误差传播特性分析">5.5 误差传播特性分析</h3>
+<p>从 F 矩阵的结构可以分析惯导误差的传播特性：</p>
+<h4 id="三种典型振荡">（1）三种典型振荡</h4>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 25%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>振荡类型</th>
+<th>频率</th>
+<th>物理原因</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>舒勒振荡</strong></td>
+<td><span class="math inline">\(\omega_s = \sqrt{g/R} \approx 1.24 \times 10^{-3}\)</span> rad/s（周期84.4分钟）</td>
+<td>重力与水平加速度的反馈</td>
+</tr>
+<tr class="even">
+<td><strong>地球振荡</strong></td>
+<td><span class="math inline">\(\omega_{ie} \approx 7.29 \times 10^{-5}\)</span> rad/s（周期24小时）</td>
+<td>地球自转</td>
+</tr>
+<tr class="odd">
+<td><strong>傅科振荡</strong></td>
+<td><span class="math inline">\(\omega_{ie}\sin L\)</span></td>
+<td>地球自转的垂直分量</td>
+</tr>
+</tbody>
+</table>
+<h4 id="误差传播规律">（2）误差传播规律</h4>
+<ul>
+<li><strong>陀螺漂移</strong>：引起常值姿态误差，进而通过 <span class="math inline">\(-\Phi \times g\)</span> 产生随时间增长的<strong>振荡型</strong>速度误差和位置误差</li>
+<li><strong>加速度计零偏</strong>：引起随时间增长的<strong>线性</strong>速度误差和<strong>二次方</strong>位置误差</li>
+<li><strong>初始姿态误差</strong>：产生振荡型速度误差（以舒勒周期振荡）</li>
+<li><strong>初始速度误差</strong>：产生振荡型位置误差</li>
+</ul>
+<blockquote>
+<p><strong>考试重点</strong>：理解“84.4分钟舒勒振荡”是惯导系统的基本特征，它来源于重力与惯性的平衡。</p>
+</blockquote>
+<hr />
+<h2 id="重点公式与原理分析">🔑 重点公式与原理分析</h2>
+<h3 id="公式1姿态误差方程核心公式">公式1：姿态误差方程（核心公式）</h3>
+<p><span class="math display">\[\dot{\Phi}^n = -\omega_{in}^n \times \Phi + \delta\omega_{in}^n + C_P^n \varepsilon^P\]</span></p>
+<p><strong>推导要点</strong>： 1. 从 <span class="math inline">\(\dot{\Phi} = \omega_{iP} - \omega_{in}\)</span> 出发 2. 将 <span class="math inline">\(\omega_{iP}\)</span> 用计算值表示，引入误差项 3. 利用小角度近似 <span class="math inline">\(C_n^P \approx I + [\Phi \times]\)</span> 4. 忽略二阶小量</p>
+<h3 id="公式2速度误差方程核心公式">公式2：速度误差方程（核心公式）</h3>
+<p><span class="math display">\[\delta\dot{V}^n = -\Phi \times f^n + C_b^n \nabla^b + (2\omega_{ie}^n + \omega_{en}^n) \times \delta V^n + \delta\omega_{ie}^n \times V^n + \delta\omega_{en}^n \times V^n + \delta g^n\]</span></p>
+<p><strong>推导要点</strong>： 1. 对理想速度方程取变分 2. 比力项产生 <span class="math inline">\(\Phi \times f^n\)</span> 的耦合误差 3. 有害加速度项产生 <span class="math inline">\(\delta V\)</span> 和 <span class="math inline">\(\delta\omega\)</span> 的耦合</p>
+<h3 id="公式3静基座-f-矩阵考试重点">公式3：静基座 F 矩阵（考试重点）</h3>
+<p><span class="math display">\[F = \begin{bmatrix} 0 &amp; \Omega_z &amp; -\Omega_y &amp; 0 &amp; 1/R_M &amp; 0 \\ -\Omega_z &amp; 0 &amp; 0 &amp; -1/R_N &amp; 0 &amp; 0 \\ \Omega_y &amp; 0 &amp; 0 &amp; 0 &amp; \tan L/R_N &amp; 0 \\ 0 &amp; -g &amp; 0 &amp; 0 &amp; 2\Omega_z &amp; 0 \\ g &amp; 0 &amp; 0 &amp; -2\Omega_z &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1/R_M &amp; 0 \end{bmatrix}\]</span></p>
+<p>其中 <span class="math inline">\(\Omega_x = 0\)</span>，<span class="math inline">\(\Omega_y = \omega_{ie}\cos L\)</span>，<span class="math inline">\(\Omega_z = \omega_{ie}\sin L\)</span>。</p>
+<p><strong>记忆方法</strong>： - 左上 <span class="math inline">\(3 \times 3\)</span>：<span class="math inline">\(-\omega_{ie}^n \times\)</span> 的反对称矩阵 - 中间 <span class="math inline">\(3 \times 3\)</span>（姿态→速度）：<span class="math inline">\(\delta\omega_{en}\)</span> 的系数 - 左下 <span class="math inline">\(3 \times 3\)</span>（速度→姿态）：<span class="math inline">\(-g \times\)</span> 的反对称矩阵 - 中间 <span class="math inline">\(3 \times 3\)</span>（速度→速度）：<span class="math inline">\(-2\omega_{ie}^n \times\)</span> 的反对称矩阵</p>
+<hr />
+<h2 id="易错点与应试技巧">⚠️ 易错点与应试技巧</h2>
+<h3 id="易错点1叉乘的符号与顺序">易错点1：叉乘的符号与顺序</h3>
+<p><span class="math display">\[\dot{\Phi}^n = -\omega_{in}^n \times \Phi + \cdots\]</span></p>
+<p><strong>易错</strong>：将叉乘顺序写反为 <span class="math inline">\(\Phi \times \omega_{in}^n\)</span>，导致符号错误。</p>
+<p><strong>技巧</strong>：记住叉乘满足 <span class="math inline">\(\omega \times \Phi = -\Phi \times \omega\)</span>，注意负号的位置。</p>
+<h3 id="易错点2速度误差方程中各项的符号">易错点2：速度误差方程中各项的符号</h3>
+<p><span class="math display">\[\delta\dot{V}^n = \underbrace{-\Phi \times f^n}_{\text{比力误差}} + \underbrace{C_b^n \nabla^b}_{\text{零偏}} + \cdots\]</span></p>
+<p><strong>易错</strong>：漏掉 <span class="math inline">\(-\Phi \times f^n\)</span> 前面的负号。</p>
+<p><strong>技巧</strong>：理解物理意义——当北向平台误差角 <span class="math inline">\(\phi_y &gt; 0\)</span>（平台北端上仰），会将一部分重力投影到东向，产生正的东向速度误差，即 <span class="math inline">\(\delta\dot{V}_x = \phi_y \cdot g &gt; 0\)</span>，验证了 <span class="math inline">\(-\Phi \times f^n\)</span> 中 <span class="math inline">\(f^n \approx [0, 0, -g]^T\)</span> 时的符号。</p>
+<h3 id="易错点3deltaomega_enn-的天向分量">易错点3：<span class="math inline">\(\delta\omega_{en}^n\)</span> 的天向分量</h3>
+<p><span class="math display">\[\delta\omega_{en,z}^n = \frac{\delta V_x \tan L}{R_N + h} + \frac{V_x \sec^2 L \cdot \delta L}{R_N + h}\]</span></p>
+<p><strong>易错</strong>：漏掉第二项（纬度误差的贡献），或者将 <span class="math inline">\(\sec^2 L\)</span> 写成 <span class="math inline">\(\tan L\)</span>。</p>
+<p><strong>技巧</strong>：对 <span class="math inline">\(\omega_{en,z} = \dfrac{V_x \tan L}{R_N}\)</span> 求全微分，<span class="math inline">\(\tan L\)</span> 的导数是 <span class="math inline">\(\sec^2 L\)</span>。</p>
+<h3 id="易错点4f-矩阵中-g-的位置">易错点4：F 矩阵中 <span class="math inline">\(g\)</span> 的位置</h3>
+<p>在 F 矩阵中，<span class="math inline">\(g\)</span> 出现在第4-5行、第1-2列（速度-姿态耦合部分）：</p>
+<p><span class="math display">\[F_{42} = -g, \quad F_{51} = g\]</span></p>
+<p><strong>易错</strong>：将 <span class="math inline">\(g\)</span> 的位置放错，或符号搞反。</p>
+<p><strong>技巧</strong>：从 <span class="math inline">\(\delta\dot{V}_x = \phi_y g\)</span> 和 <span class="math inline">\(\delta\dot{V}_y = -\phi_x g\)</span> 出发，确认 <span class="math inline">\(F_{42} = -g\)</span>（第4行第2列）和 <span class="math inline">\(F_{51} = g\)</span>（第5行第1列）。</p>
+<h3 id="易错点5静基座条件的理解">易错点5：静基座条件的理解</h3>
+<p><strong>易错</strong>：认为静基座下 <span class="math inline">\(\omega_{ie}^n = 0\)</span>。</p>
+<p><strong>纠正</strong>：静基座下 <span class="math inline">\(\omega_{en}^n = 0\)</span>（因为 <span class="math inline">\(V = 0\)</span>），但 <span class="math inline">\(\omega_{ie}^n \neq 0\)</span>（地球始终在自转）。因此 F 矩阵中仍有 <span class="math inline">\(\omega_{ie}\)</span> 相关项。</p>
+<hr />
+<h2 id="应试练习题">📝 应试练习题</h2>
+<h3 id="基础题1ppt-3-5">【基础题1】（PPT 3-5）</h3>
+<p><strong>题目</strong>：简述惯导系统的主要误差源，并说明陀螺漂移和加速度计零偏分别主要影响哪些导航参数。</p>
+<p><strong>答案</strong>：</p>
+<p>惯导系统的主要误差源包括四大类：</p>
+<ol type="1">
+<li><strong>器件误差</strong>：陀螺漂移 <span class="math inline">\(\varepsilon\)</span>、标度因数误差、加速度计零偏 <span class="math inline">\(\nabla\)</span></li>
+<li><strong>安装误差</strong>：传感器安装方向偏差</li>
+<li><strong>初始值误差</strong>：初始对准不准确</li>
+<li><strong>解算误差</strong>：数值积分误差、不可交换性误差</li>
+</ol>
+<p>陀螺漂移 <span class="math inline">\(\varepsilon\)</span> 主要影响<strong>姿态</strong>（平台误差角 <span class="math inline">\(\Phi\)</span>），进而通过耦合影响速度和位置。</p>
+<p>加速度计零偏 <span class="math inline">\(\nabla\)</span> 主要影响<strong>速度</strong>（速度误差 <span class="math inline">\(\delta V\)</span>），进而通过积分影响位置。</p>
+<hr />
+<h3 id="基础题2ppt-7-8">【基础题2】（PPT 7-8）</h3>
+<p><strong>题目</strong>：什么是平台误差角 <span class="math inline">\(\Phi\)</span>？它与姿态误差角有什么关系？</p>
+<p><strong>答案</strong>：</p>
+<p>平台误差角 <span class="math inline">\(\Phi\)</span> 定义为<strong>计算平台系 <span class="math inline">\(P\)</span></strong> 与<strong>理想导航系 <span class="math inline">\(n\)</span></strong> 之间的偏差角，即 <span class="math inline">\(P\)</span> 系相对于 <span class="math inline">\(n\)</span> 系的旋转角。</p>
+<p>当 <span class="math inline">\(\Phi\)</span> 为小角度时，两个坐标系之间的方向余弦矩阵近似为：</p>
+<p><span class="math display">\[C_n^P = I - [\Phi \times]\]</span></p>
+<p>平台误差角就是姿态误差角。在指北方位惯导系统中，<span class="math inline">\(\Phi = [\phi_E, \phi_N, \phi_U]^T\)</span> 分别表示东向、北向和天向的平台误差角。</p>
+<hr />
+<h3 id="中等题3ppt-9-11">【中等题3】（PPT 9-11）</h3>
+<p><strong>题目</strong>：推导静基座条件下的姿态误差方程。</p>
+<p><strong>答案</strong>：</p>
+<p>在静基座条件下，<span class="math inline">\(V = 0\)</span>，<span class="math inline">\(\omega_{en}^n = 0\)</span>，因此 <span class="math inline">\(\omega_{in}^n = \omega_{ie}^n\)</span>。</p>
+<p>姿态误差方程为：</p>
+<p><span class="math display">\[\dot{\Phi}^n = -\omega_{ie}^n \times \Phi + \delta\omega_{ie}^n + C_P^n \varepsilon^P\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[\omega_{ie}^n = \begin{bmatrix} 0 \\ \omega_{ie}\cos L \\ \omega_{ie}\sin L \end{bmatrix}, \quad \delta\omega_{ie}^n = \begin{bmatrix} 0 \\ -\omega_{ie}\sin L \cdot \delta L \\ \omega_{ie}\cos L \cdot \delta L \end{bmatrix}\]</span></p>
+<p>展开写：</p>
+<p><span class="math display">\[\begin{cases} \dot{\phi}_x = \omega_{ie}\sin L \cdot \phi_y - \omega_{ie}\cos L \cdot \phi_z + \varepsilon_x \\ \dot{\phi}_y = -\omega_{ie}\sin L \cdot \phi_x - \omega_{ie}\sin L \cdot \delta L + \varepsilon_y \\ \dot{\phi}_z = \omega_{ie}\cos L \cdot \phi_x + \omega_{ie}\cos L \cdot \delta L + \varepsilon_z \end{cases}\]</span></p>
+<hr />
+<h3 id="中等题4ppt-13-15">【中等题4】（PPT 13-15）</h3>
+<p><strong>题目</strong>：写出完整的速度误差方程，并解释各项的物理意义。在静基座条件下，速度误差方程如何简化？</p>
+<p><strong>答案</strong>：</p>
+<p>完整速度误差方程：</p>
+<p><span class="math display">\[\delta\dot{V}^n = -\Phi \times f^n + C_b^n \nabla^b + \delta\omega_{ie}^n \times V^n + \delta\omega_{en}^n \times V^n - (2\omega_{ie}^n + \omega_{en}^n) \times \delta V^n + \delta g^n\]</span></p>
+<p>各项物理意义： 1. <span class="math inline">\(-\Phi \times f^n\)</span>：姿态误差导致的比力投影误差 2. <span class="math inline">\(C_b^n \nabla^b\)</span>：加速度计零偏 3. <span class="math inline">\(\delta\omega_{ie}^n \times V^n\)</span>：地球自转角速度计算误差的影响 4. <span class="math inline">\(\delta\omega_{en}^n \times V^n\)</span>：位置角速度计算误差的影响 5. <span class="math inline">\(-(2\omega_{ie}^n + \omega_{en}^n) \times \delta V^n\)</span>：科里奥利加速度对速度误差的耦合 6. <span class="math inline">\(\delta g^n\)</span>：重力计算误差</p>
+<p><strong>静基座简化</strong>（<span class="math inline">\(V = 0\)</span>，<span class="math inline">\(\omega_{en}^n = 0\)</span>）：</p>
+<p><span class="math display">\[\delta\dot{V}^n = -\Phi \times g^n + C_b^n \nabla^b\]</span></p>
+<hr />
+<h3 id="难题5ppt-19-22">【难题5】（PPT 19-22）</h3>
+<p><strong>题目</strong>：写出静基座条件下惯导误差的状态方程 <span class="math inline">\(\dot{X} = FX + W\)</span>，给出状态向量 <span class="math inline">\(X\)</span>、系统矩阵 <span class="math inline">\(F\)</span> 和噪声向量 <span class="math inline">\(W\)</span> 的具体形式，并说明 F 矩阵中各非零元素的来源。</p>
+<p><strong>答案</strong>：</p>
+<p>状态向量：<span class="math inline">\(X = [\phi_x, \phi_y, \phi_z, \delta V_x, \delta V_y, \delta L]^T\)</span></p>
+<p>系统矩阵 <span class="math inline">\(F\)</span>（<span class="math inline">\(6 \times 6\)</span>）：</p>
+<p><span class="math display">\[F = \begin{bmatrix} 0 &amp; \omega_{ie}\sin L &amp; -\omega_{ie}\cos L &amp; 0 &amp; \dfrac{1}{R_M} &amp; 0 \\[6pt] -\omega_{ie}\sin L &amp; 0 &amp; 0 &amp; -\dfrac{1}{R_N} &amp; 0 &amp; 0 \\[6pt] \omega_{ie}\cos L &amp; 0 &amp; 0 &amp; 0 &amp; \dfrac{\tan L}{R_N} &amp; 0 \\[6pt] 0 &amp; -g &amp; 0 &amp; 0 &amp; 2\omega_{ie}\sin L &amp; 0 \\[6pt] g &amp; 0 &amp; 0 &amp; -2\omega_{ie}\sin L &amp; 0 &amp; 0 \\[6pt] 0 &amp; 0 &amp; 0 &amp; 0 &amp; \dfrac{1}{R_M} &amp; 0 \end{bmatrix}\]</span></p>
+<p>各非零元素来源：</p>
+<table>
+<thead>
+<tr class="header">
+<th>元素</th>
+<th>来源</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(F_{12}, F_{21}, F_{13}, F_{31}\)</span></td>
+<td><span class="math inline">\(-\omega_{ie}^n \times\)</span></td>
+<td>地球自转对姿态误差的耦合</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(F_{25}, F_{35}\)</span></td>
+<td><span class="math inline">\(\delta\omega_{en}^n\)</span> 中 <span class="math inline">\(\delta V\)</span> 的系数</td>
+<td>速度误差通过位置角速度影响姿态</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(F_{42}, F_{51}\)</span></td>
+<td><span class="math inline">\(-\Phi \times g^n\)</span></td>
+<td>重力与姿态误差的交叉耦合</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(F_{45}, F_{54}\)</span></td>
+<td><span class="math inline">\(-2\omega_{ie}^n \times\)</span></td>
+<td>科里奥利加速度对速度误差的耦合</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(F_{65}\)</span></td>
+<td><span class="math inline">\(\delta\dot{L} = \delta V_y / R_M\)</span></td>
+<td>纬度误差由北向速度误差积分得到</td>
+</tr>
+</tbody>
+</table>
+<p>噪声向量：<span class="math inline">\(W = [\varepsilon_x, \varepsilon_y, \nabla_x, \nabla_y, 0]^T\)</span></p>
+<hr />
+<h3 id="难题6综合题">【难题6】（综合题）</h3>
+<p><strong>题目</strong>：在静基座条件下，已知东向陀螺常值漂移为 <span class="math inline">\(\varepsilon_x\)</span>，其他误差源为零。试分析该漂移引起的各状态变量的稳态响应特性（说明振荡频率和幅值关系）。</p>
+<p><strong>答案</strong>：</p>
+<p>仅有 <span class="math inline">\(\varepsilon_x\)</span> 时，系统受迫响应包含以下频率成分：</p>
+<ol type="1">
+<li><strong>舒勒振荡</strong>（频率 <span class="math inline">\(\omega_s = \sqrt{g/R}\)</span>，周期约84.4分钟）：
+<ul>
+<li>这是惯导系统的基本振荡模式，由重力与惯性的反馈产生</li>
+<li>陀螺漂移 <span class="math inline">\(\varepsilon_x\)</span> 通过姿态误差方程产生 <span class="math inline">\(\phi_x\)</span> 的常值分量</li>
+<li><span class="math inline">\(\phi_x\)</span> 通过 <span class="math inline">\(-\Phi \times g\)</span> 耦合产生 <span class="math inline">\(\delta V_y\)</span> 的舒勒振荡</li>
+<li><span class="math inline">\(\delta V_y\)</span> 通过位置误差方程产生 <span class="math inline">\(\delta L\)</span> 的舒勒振荡</li>
+</ul></li>
+<li><strong>地球振荡</strong>（频率 <span class="math inline">\(\omega_{ie}\)</span>，周期24小时）：
+<ul>
+<li>由地球自转角速度 <span class="math inline">\(\omega_{ie}\)</span> 的耦合产生</li>
+<li>在傅科频率 <span class="math inline">\(\omega_{ie}\sin L\)</span> 处产生调制</li>
+</ul></li>
+<li><strong>幅值关系</strong>：
+<ul>
+<li>常值陀螺漂移 <span class="math inline">\(\varepsilon_x\)</span> 产生常值姿态误差 <span class="math inline">\(\phi_x \sim \varepsilon_x / \omega_{ie}\)</span>（地球振荡周期量级）</li>
+<li>速度误差幅值 <span class="math inline">\(\delta V \sim R \cdot \varepsilon_x\)</span>（舒勒振荡）</li>
+<li>位置误差幅值 <span class="math inline">\(\delta P \sim R^2 \varepsilon_x / g\)</span>（舒勒振荡）</li>
+</ul></li>
+</ol>
+<blockquote>
+<p><strong>核心结论</strong>：陀螺漂移引起的速度误差以舒勒周期振荡，幅值与地球半径和漂移量成正比。这就是为什么高精度惯导需要极低漂移的陀螺仪。</p>
+</blockquote>
+<hr />
+<h2 id="本章小结">📚 本章小结</h2>
+<p><strong>核心要点</strong>：</p>
+<ol type="1">
+<li><strong>误差源</strong>：器件误差（陀螺漂移、加速度计零偏）是最主要的误差源，通过姿态误差耦合影响速度和位置</li>
+<li><strong>姿态误差方程</strong>：<span class="math inline">\(\dot{\Phi}^n = -\omega_{in}^n \times \Phi + \delta\omega_{in}^n + C_P^n \varepsilon^P\)</span>，描述平台误差角的动态变化</li>
+<li><strong>速度误差方程</strong>：<span class="math inline">\(\delta\dot{V}^n = -\Phi \times f^n + C_b^n \nabla^b + \cdots\)</span>，核心耦合项为 <span class="math inline">\(-\Phi \times f^n\)</span></li>
+<li><strong>位置误差方程</strong>：<span class="math inline">\(\delta\dot{L} = \delta V_y / R_M\)</span>，<span class="math inline">\(\delta\dot{\lambda} = \delta V_x \sec L / R_N - \cdots\)</span></li>
+<li><strong>状态空间形式</strong>：<span class="math inline">\(\dot{X} = FX + W\)</span>，静基座下为6维系统，F矩阵包含舒勒、地球和傅科三种振荡频率</li>
+</ol>
+<p><strong>应试重点</strong>： - 姿态误差方程的推导过程和各项物理意义 - 速度误差方程中 <span class="math inline">\(-\Phi \times f^n\)</span> 项的重要性 - 静基座 F 矩阵的结构和各元素来源 - 误差传播的三种振荡（舒勒、地球、傅科） - 静基座条件（<span class="math inline">\(V=0, \omega_{en}=0\)</span>）下各方程的简化</p>
+<hr />
+<p><em>本讲内容基于哈尔滨工程大学组合导航课程PPT，由张勇刚、李宁教授主讲。</em></p>
+        </div>
+    </section>
+
     </main>
     <footer class="footer">
         <p>组合导航课程 · 完整讲解版</p>
