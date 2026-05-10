@@ -447,7 +447,7 @@
 <body>
     <!-- 章节导航（可横向滚动） -->
     <nav class="toc-bar">
-        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a>
+        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a>
     </nav>
 
     <!-- 主内容 -->
@@ -2321,6 +2321,472 @@ R_y(90°) 使得 Z轴 和 X轴 重合
 </blockquote>
 <hr />
 <p><em>本指南严格基于第7-15讲PPT内容整理，涵盖卫星导航系统、估计理论基础、卡尔曼滤波及其在组合导航中的应用等核心知识点。</em></p>
+        </div>
+    </section>
+    
+    <section class="chapter" id="chapter-8">
+        <div class="chapter-header" style="border-left-color:#3182CE; background:linear-gradient(135deg, #3182CE11 0%, #3182CE05 100%)">
+            <h2 style="color:#3182CE">🛰️ 第七讲 卫星导航系统</h2>
+        </div>
+        <div class="chapter-body">
+<header id="title-block-header">
+<h1 class="title">第七讲 卫星导航系统</h1>
+</header>
+<h1 id="第七讲-卫星导航系统-详细讲解版">第七讲 卫星导航系统 —— 详细讲解版</h1>
+<blockquote>
+<p><strong>主讲人</strong>：张勇刚、李宁（哈尔滨工程大学 智能学院） <strong>课程地位</strong>：⭐⭐⭐⭐⭐ 本讲是组合导航系统的关键外部信息源，GPS与INS组合是最常见的组合导航方案 <strong>内容来源</strong>：第7讲 PPT（共47页，五大板块）</p>
+</blockquote>
+<hr />
+<h2 id="本章思维导图">🗺️ 本章思维导图</h2>
+<pre><code>                        ┌──────────────────────────────────────────────────────────────┐
+                        │                    第七讲 卫星导航系统                          │
+                        │                       全景知识架构                              │
+                        └──────────────────────────────────────────────────────────────┘
+                                                    │
+                                                    ▼
+                        ┌──────────────────────────────────────────────────────────────┐
+                        │                     【核心问题】                               │
+                        │           GPS如何实现全球定位？信号如何传递？                    │
+                        └──────────────────────────────────────────────────────────────┘
+                                                    │
+                ┌───────────────────┬───────────────┼───────────────┬───────────────────┐
+                │                   │               │               │                   │
+                ▼                   ▼               ▼               ▼                   ▼
+        ┌─────────────┐     ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+        │  板块一      │     │  板块二      │  │  板块三      │  │  板块四      │  │  板块五      │
+        │ 卫星导航简介 │     │ GPS系统组成  │  │ 信号结构    │  │  定位原理    │  │  误差模型    │
+        │ (PPT 3-9页) │     │(PPT 11-17页)│  │(PPT 19-33页)│  │(PPT 35-42页)│  │(PPT 44-46页)│
+        └──────┬──────┘     └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
+               │                   │                │                │                │
+               ▼                   ▼                ▼                ▼                ▼
+        ┌─────────────┐     ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+        │·工作原理    │     │·空间部分    │  │·载波L1/L2  │  │·伪距测量    │  │·卫星钟差    │
+        │·四大系统    │     │·地面监控    │  │·测距码     │  │·定位方程    │  │·星历误差    │
+        │·北斗发展    │     │·用户设备    │  │·导航电文    │  │·线性化求解  │  │·电离层延迟  │
+        │·优缺点      │     │             │  │·信号调制    │  │·测速方法    │  │·观测模型    │
+        └─────────────┘     └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
+
+        【逻辑主线】
+        是什么(简介) → 由什么组成(系统) → 信号如何传递(信号结构) → 如何定位(原理) → 精度如何(误差)</code></pre>
+<hr />
+<h2 id="本章重点分析">📊 本章重点分析</h2>
+<h3 id="重点一卫星导航系统的工作原理ppt第3页">重点一：卫星导航系统的工作原理（PPT第3页）</h3>
+<p><strong>【教授讲解】</strong></p>
+<p>卫星定位系统的核心思想是：<strong>利用空间飞行的卫星向地面广播无线电信号，通过测量信号传播时间来确定距离，进而实现定位。</strong></p>
+<p><strong>关键理解</strong>： - 卫星是"空中的灯塔"，不断发射带有位置和时间信息的信号 - 用户接收机通过测量信号传播时间，计算到卫星的距离 - 已知到多颗卫星的距离，通过几何交会确定自身位置</p>
+<p><strong>类比理解</strong>：想象你在一片大雾中迷路了，但周围有几座灯塔。如果你知道每座灯塔的精确位置，并且能测量到每座灯塔的距离，你就能确定自己的位置。卫星就是"太空中的灯塔"。</p>
+<hr />
+<h3 id="重点二gps系统组成ppt第11-17页">重点二：GPS系统组成（PPT第11-17页）</h3>
+<p><strong>【教授讲解】</strong></p>
+<p>GPS系统由三大部分组成，缺一不可：</p>
+<table>
+<thead>
+<tr class="header">
+<th>组成部分</th>
+<th>功能</th>
+<th>关键设备</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>空间部分</strong></td>
+<td>发射定位信号</td>
+<td>24颗卫星 + 铯原子钟</td>
+</tr>
+<tr class="even">
+<td><strong>地面监控部分</strong></td>
+<td>监控卫星状态、注入导航信息</td>
+<td>主控站、监测站、注入站</td>
+</tr>
+<tr class="odd">
+<td><strong>用户设备部分</strong></td>
+<td>接收信号、解算位置</td>
+<td>GPS接收机 + 天线</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键问题：为什么需要24颗卫星？</strong></p>
+<p><strong>逐步引导</strong>： 1. 定位需要知道几个未知量？答：位置<span class="math inline">\((x, y, z)\)</span> + 时间偏差<span class="math inline">\(\delta t\)</span> = <strong>4个未知量</strong> 2. 每颗卫星提供一个距离方程，需要几个方程？答：<strong>4个方程</strong> 3. 所以需要同时观测几颗卫星？答：<strong>至少4颗</strong> 4. 为了保证全球任何地点、任何时刻都能看到至少4颗卫星，需要多少颗卫星组网？答：<strong>24颗卫星</strong></p>
+<hr />
+<h3 id="重点三gps信号结构ppt第19-33页-难点">重点三：GPS信号结构（PPT第19-33页）⭐ 难点</h3>
+<p><strong>【教授讲解】</strong></p>
+<p>这是本讲的核心难点。GPS信号是一个"三层结构"：</p>
+<pre><code>                    GPS信号结构（三层蛋糕模型）
+                    
+                    ┌─────────────────────────────┐
+                    │      第三层：载波 L1/L2      │  ← 运载工具
+                    │    1575.42MHz / 1227.60MHz  │
+                    ├─────────────────────────────┤
+                    │     第二层：测距码 C/A、P码   │  ← 测距工具
+                    │   1.023MHz / 10.23MHz       │
+                    ├─────────────────────────────┤
+                    │    第一层：导航电文 D码       │  ← 信息内容
+                    │        50Hz                  │
+                    └─────────────────────────────┘</code></pre>
+<h4 id="载波carrier">3.1 载波（Carrier）</h4>
+<p><strong>作用</strong>：搭载其他调制信号，类似于"运输车"</p>
+<table>
+<thead>
+<tr class="header">
+<th>载波</th>
+<th>频率</th>
+<th>波长</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1</td>
+<td>1575.42 MHz</td>
+<td>19.03 cm</td>
+<td>调制C/A码和P码</td>
+</tr>
+<tr class="even">
+<td>L2</td>
+<td>1227.60 MHz</td>
+<td>24.42 cm</td>
+<td>只调制P码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么选择这两个频率？</strong> 1. 有利于测定多普勒频移（测速） 2. 有利于减弱电离层折射影响 3. 双频可以消除电离层延迟（延迟与频率相关）</p>
+<h4 id="测距码ranging-code-核心概念">3.2 测距码（Ranging Code）⭐ 核心概念</h4>
+<p><strong>什么是伪随机噪声码（PRN）？</strong></p>
+<p><strong>逐步引导</strong>：</p>
+<p><strong>问题1</strong>：如何测量到卫星的距离？</p>
+<p>答：测量信号从卫星到接收机的传播时间，乘以光速得到距离。</p>
+<p><strong>问题2</strong>：如何测量传播时间？</p>
+<p>答：卫星发射一个"标记"，接收机识别这个"标记"，测量时间差。</p>
+<p><strong>问题3</strong>：什么样的"标记"最好？</p>
+<p>答：需要满足两个条件： - <strong>自相关性</strong>：同一码序列对齐时相关系数为1，不对齐时接近0 - <strong>可复制性</strong>：接收机能够复制相同的码序列</p>
+<p>这就是<strong>伪随机噪声码（PRN）</strong>！</p>
+<p><strong>C/A码 vs P码对比</strong>：</p>
+<table>
+<thead>
+<tr class="header">
+<th>特性</th>
+<th>C/A码（粗码）</th>
+<th>P码（精码）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>码率</td>
+<td>1.023 MHz</td>
+<td>10.23 MHz</td>
+</tr>
+<tr class="even">
+<td>周期</td>
+<td>1 ms</td>
+<td>7 天</td>
+</tr>
+<tr class="odd">
+<td>码元数</td>
+<td>1023</td>
+<td>约6.2万亿</td>
+</tr>
+<tr class="even">
+<td>码元宽度</td>
+<td>293.05 m</td>
+<td>29.30 m</td>
+</tr>
+<tr class="odd">
+<td>测距精度</td>
+<td>2.93~29.3 m</td>
+<td>0.29~2.93 m</td>
+</tr>
+<tr class="even">
+<td>用途</td>
+<td>民用、捕获</td>
+<td>军用、精测</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键理解</strong>：码元宽度越窄，测距精度越高。P码的码元宽度是C/A码的1/10，所以精度也是C/A码的1/10。</p>
+<h4 id="信号调制过程">3.3 信号调制过程</h4>
+<p><strong>两级调制</strong>：</p>
+<pre><code>第一级：扩频调制（数据码 ⊕ 测距码）
+    D(t) ⊕ C/A(t) 或 D(t) ⊕ P(t)
+    
+第二级：载波调制（调相PM）
+    将扩频后的信号调制到L1/L2载波上</code></pre>
+<p><strong>为什么需要扩频？</strong> - 抗干扰能力强 - 保密性好 - 可实现码分多址（CDMA）</p>
+<hr />
+<h3 id="重点四gps定位原理ppt第35-42页-核心重点">重点四：GPS定位原理（PPT第35-42页）⭐⭐ 核心重点</h3>
+<p><strong>【教授讲解】</strong></p>
+<h4 id="伪距的概念">4.1 伪距的概念</h4>
+<p><strong>伪距</strong> = 含有误差的观测距离 ≠ 真实几何距离</p>
+<p><span class="math display">\[\rho' = c \cdot \Delta t = c \cdot \tau\]</span></p>
+<p>其中： - <span class="math inline">\(\rho'\)</span>：伪距（观测值） - <span class="math inline">\(c\)</span>：光速 - <span class="math inline">\(\Delta t\)</span>：信号传播时间</p>
+<h4 id="伪距测量原理">4.2 伪距测量原理</h4>
+<p><strong>逐步引导</strong>：</p>
+<p><strong>Step 1</strong>：卫星发射测距码信号 <strong>Step 2</strong>：接收机复制相同的测距码 <strong>Step 3</strong>：通过时间延迟器调整本地码，使其与接收到的卫星码对齐 <strong>Step 4</strong>：当相关系数为1时，延迟量就是传播时间</p>
+<p><span class="math display">\[R(\tau) = \frac{1}{T_p} \int_0^{T_p} x(t) \cdot x(t-\tau) dt\]</span></p>
+<p>当 <span class="math inline">\(R(\tau) = 1\)</span> 时，<span class="math inline">\(\tau\)</span> 即为传播时间。</p>
+<h4 id="定位方程ppt第39-41页">4.3 定位方程（PPT第39-41页）</h4>
+<p><strong>基本方程</strong>： <span class="math display">\[\rho'_k = \sqrt{(X_k - x)^2 + (Y_k - y)^2 + (Z_k - z)^2} + c \cdot \delta t + \varepsilon_k\]</span></p>
+<p><strong>未知量</strong>：<span class="math inline">\((x, y, z, \delta t)\)</span> — 位置 + 接收机钟差</p>
+<p><strong>线性化处理</strong>：</p>
+<p>在概略位置 <span class="math inline">\((\hat{x}, \hat{y}, \hat{z})\)</span> 处展开，忽略高阶项：</p>
+<p><span class="math display">\[\Delta \rho_k = a_{kx} \Delta x + a_{ky} \Delta y + a_{kz} \Delta z + c \cdot \Delta t + \varepsilon_k\]</span></p>
+<p>其中方向余弦： <span class="math display">\[a_{kx} = \frac{\hat{x} - X_k}{\hat{\rho}_k}, \quad a_{ky} = \frac{\hat{y} - Y_k}{\hat{\rho}_k}, \quad a_{kz} = \frac{\hat{z} - Z_k}{\hat{\rho}_k}\]</span></p>
+<p><strong>矩阵形式</strong>： <span class="math display">\[V = GX - L\]</span></p>
+<p>其中： <span class="math display">\[G = \begin{bmatrix} a_{1x} &amp; a_{1y} &amp; a_{1z} &amp; 1 \\ a_{2x} &amp; a_{2y} &amp; a_{2z} &amp; 1 \\ a_{3x} &amp; a_{3y} &amp; a_{3z} &amp; 1 \\ a_{4x} &amp; a_{4y} &amp; a_{4z} &amp; 1 \end{bmatrix}, \quad X = \begin{bmatrix} \Delta x \\ \Delta y \\ \Delta z \\ c \cdot \Delta t \end{bmatrix}, \quad L = \begin{bmatrix} \Delta \rho_1 \\ \Delta \rho_2 \\ \Delta \rho_3 \\ \Delta \rho_4 \end{bmatrix}\]</span></p>
+<p><strong>最小二乘解</strong>： <span class="math display">\[X = (G^T G)^{-1} G^T L\]</span></p>
+<hr />
+<h3 id="重点五gps误差模型ppt第44-46页">重点五：GPS误差模型（PPT第44-46页）</h3>
+<p><strong>【教授讲解】</strong></p>
+<h4 id="误差来源">5.1 误差来源</h4>
+<table>
+<thead>
+<tr class="header">
+<th>误差类型</th>
+<th>来源</th>
+<th>影响量级</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>卫星钟差</td>
+<td>卫星原子钟与GPS时间不同步</td>
+<td>~1-2 m</td>
+</tr>
+<tr class="even">
+<td>星历误差</td>
+<td>卫星位置预报不准确</td>
+<td>~1-3 m</td>
+</tr>
+<tr class="odd">
+<td>电离层延迟</td>
+<td>信号穿过电离层时折射</td>
+<td>~5-20 m</td>
+</tr>
+<tr class="even">
+<td>对流层延迟</td>
+<td>信号穿过对流层时折射</td>
+<td>~2-20 m</td>
+</tr>
+<tr class="odd">
+<td>多路径效应</td>
+<td>信号经反射后到达接收机</td>
+<td>~0.5-5 m</td>
+</tr>
+<tr class="even">
+<td>接收机钟差</td>
+<td>接收机时钟不准确</td>
+<td>不定</td>
+</tr>
+</tbody>
+</table>
+<h4 id="gps观测模型用于组合导航">5.2 GPS观测模型（用于组合导航）</h4>
+<p><strong>位置/速度观测模型（松组合）</strong>：</p>
+<p><span class="math display">\[\begin{cases} L_G = L + v_L \\ \lambda_G = \lambda + v_\lambda \\ h_G = h + v_h \\ v_{xG} = v_x + v_{vx} \\ v_{yG} = v_y + v_{vy} \\ v_{zG} = v_z + v_{vz} \end{cases}\]</span></p>
+<p><strong>伪距观测模型（紧组合）</strong>：</p>
+<p><span class="math display">\[\rho_i = \sqrt{(x - X_i)^2 + (y - Y_i)^2 + (z - Z_i)^2} + \delta t_u + v_i\]</span></p>
+<hr />
+<h2 id="易错点与应试技巧">⚠️ 易错点与应试技巧</h2>
+<h3 id="易错点1伪距-真实距离">易错点1：伪距 ≠ 真实距离</h3>
+<p><strong>错误理解</strong>：伪距就是卫星到接收机的真实距离。</p>
+<p><strong>正确理解</strong>：伪距是含有误差的观测距离，包括： - 卫星钟差 - 接收机钟差 - 电离层延迟 - 对流层延迟 - 多路径效应</p>
+<p><strong>应试技巧</strong>：题目问"伪距"时，必须考虑各种误差项。</p>
+<hr />
+<h3 id="易错点2为什么需要4颗卫星">易错点2：为什么需要4颗卫星？</h3>
+<p><strong>错误理解</strong>：三维定位需要3颗卫星。</p>
+<p><strong>正确理解</strong>： - 三维位置 <span class="math inline">\((x, y, z)\)</span> = 3个未知量 - 接收机钟差 <span class="math inline">\(\delta t\)</span> = 1个未知量 - 共4个未知量，需要4个方程 - 所以需要4颗卫星</p>
+<hr />
+<h3 id="易错点3ca码和p码的区别">易错点3：C/A码和P码的区别</h3>
+<table>
+<thead>
+<tr class="header">
+<th>特性</th>
+<th>C/A码</th>
+<th>P码</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>码率</td>
+<td>低（1.023 MHz）</td>
+<td>高（10.23 MHz）</td>
+</tr>
+<tr class="even">
+<td>精度</td>
+<td>低（~10 m）</td>
+<td>高（~1 m）</td>
+</tr>
+<tr class="odd">
+<td>周期</td>
+<td>短（1 ms）</td>
+<td>长（7 天）</td>
+</tr>
+<tr class="even">
+<td>捕获</td>
+<td>容易</td>
+<td>困难</td>
+</tr>
+<tr class="odd">
+<td>用途</td>
+<td>民用</td>
+<td>军用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>记忆技巧</strong>：C/A = Coarse/Acquisition = 粗/捕获；P = Precise = 精确</p>
+<hr />
+<h3 id="易错点4双频载波的作用">易错点4：双频载波的作用</h3>
+<p><strong>错误理解</strong>：双频是为了提高信号强度。</p>
+<p><strong>正确理解</strong>：双频是为了<strong>消除电离层延迟</strong>！</p>
+<p>电离层延迟与频率相关： <span class="math display">\[\Delta t_{iono} \propto \frac{1}{f^2}\]</span></p>
+<p>通过L1和L2两个频率的观测值，可以计算并消除电离层延迟。</p>
+<hr />
+<h2 id="应试练习题">✍️ 应试练习题</h2>
+<h3 id="基础题难度">基础题（难度：★）</h3>
+<p><strong>题目1</strong>：GPS系统由哪三部分组成？各部分的主要功能是什么？</p>
+<p><strong>答案</strong>： 1. <strong>空间部分</strong>：24颗GPS卫星，发射定位信号，提供精密时间标准 2. <strong>地面监控部分</strong>：主控站、监测站、注入站，监控卫星状态，注入导航信息 3. <strong>用户设备部分</strong>：GPS接收机，接收信号，解算位置</p>
+<hr />
+<p><strong>题目2</strong>：什么是伪距？为什么叫"伪"距？</p>
+<p><strong>答案</strong>： 伪距是GPS卫星到用户接收机的观测距离。之所以叫"伪"距，是因为它不是真实的几何距离，而是含有各种误差（卫星钟差、接收机钟差、电离层延迟、对流层延迟等）的距离观测值。</p>
+<hr />
+<h3 id="中等题难度">中等题（难度：★★）</h3>
+<p><strong>题目3</strong>：GPS定位为什么至少需要4颗卫星？</p>
+<p><strong>答案</strong>： GPS定位需要求解4个未知量： - 三维位置 <span class="math inline">\((x, y, z)\)</span> — 3个未知量 - 接收机钟差 <span class="math inline">\(\delta t\)</span> — 1个未知量</p>
+<p>每颗卫星提供一个伪距方程，4个未知量需要4个方程，因此至少需要4颗卫星。</p>
+<hr />
+<p><strong>题目4</strong>：简述C/A码和P码的主要区别。</p>
+<p><strong>答案</strong>：</p>
+<table>
+<thead>
+<tr class="header">
+<th>特性</th>
+<th>C/A码</th>
+<th>P码</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>全称</td>
+<td>Coarse/Acquisition</td>
+<td>Precise</td>
+</tr>
+<tr class="even">
+<td>码率</td>
+<td>1.023 MHz</td>
+<td>10.23 MHz</td>
+</tr>
+<tr class="odd">
+<td>码元宽度</td>
+<td>293.05 m</td>
+<td>29.30 m</td>
+</tr>
+<tr class="even">
+<td>测距精度</td>
+<td>2.93~29.3 m</td>
+<td>0.29~2.93 m</td>
+</tr>
+<tr class="odd">
+<td>周期</td>
+<td>1 ms</td>
+<td>7 天</td>
+</tr>
+<tr class="even">
+<td>捕获难度</td>
+<td>容易</td>
+<td>困难</td>
+</tr>
+<tr class="odd">
+<td>用途</td>
+<td>民用、捕获</td>
+<td>军用、精测</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="难题难度">难题（难度：★★★）</h3>
+<p><strong>题目5</strong>：写出GPS伪距观测方程，并说明线性化过程。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>原始方程</strong>： <span class="math display">\[\rho'_k = \sqrt{(X_k - x)^2 + (Y_k - y)^2 + (Z_k - z)^2} + c \cdot \delta t + \varepsilon_k\]</span></p>
+<p><strong>线性化过程</strong>： 1. 设概略位置为 <span class="math inline">\((\hat{x}, \hat{y}, \hat{z})\)</span>，概略钟差为 <span class="math inline">\(\hat{\delta t}\)</span> 2. 在概略值处进行泰勒展开，忽略二阶及以上项 3. 得到线性化方程： <span class="math display">\[\Delta \rho_k = a_{kx} \Delta x + a_{ky} \Delta y + a_{kz} \Delta z + c \cdot \Delta t + \varepsilon_k\]</span></p>
+<p>其中方向余弦： <span class="math display">\[a_{kx} = \frac{\hat{x} - X_k}{\hat{\rho}_k}, \quad a_{ky} = \frac{\hat{y} - Y_k}{\hat{\rho}_k}, \quad a_{kz} = \frac{\hat{z} - Z_k}{\hat{\rho}_k}\]</span></p>
+<ol start="4" type="1">
+<li>矩阵形式：<span class="math inline">\(V = GX - L\)</span></li>
+<li>最小二乘解：<span class="math inline">\(X = (G^T G)^{-1} G^T L\)</span></li>
+</ol>
+<hr />
+<p><strong>题目6</strong>：GPS信号为什么要采用双频载波（L1和L2）？有什么好处？</p>
+<p><strong>答案</strong>：</p>
+<p>双频载波的主要作用是<strong>消除电离层延迟</strong>。</p>
+<p><strong>原理</strong>： - 电离层延迟与信号频率相关：<span class="math inline">\(\Delta t_{iono} \propto \frac{1}{f^2}\)</span> - L1和L2频率不同，电离层延迟也不同 - 通过两个频率的伪距观测值，可以计算电离层延迟并消除</p>
+<p><strong>其他好处</strong>： 1. 有利于测定多普勒频移（测速） 2. 提供冗余观测，提高可靠性 3. P码在L1和L2上都调制，双频接收机可以获得更高精度</p>
+<hr />
+<h2 id="核心公式速查卡">📐 核心公式速查卡</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>伪距定义</td>
+<td><span class="math inline">\(\rho' = c \cdot \Delta t\)</span></td>
+<td>光速 × 传播时间</td>
+</tr>
+<tr class="even">
+<td>定位方程</td>
+<td><span class="math inline">\(\rho'_k = \sqrt{(X_k-x)^2+(Y_k-y)^2+(Z_k-z)^2} + c\delta t + \varepsilon_k\)</span></td>
+<td>4个未知量</td>
+</tr>
+<tr class="odd">
+<td>方向余弦</td>
+<td><span class="math inline">\(a_{kx} = \frac{\hat{x}-X_k}{\hat{\rho}_k}\)</span></td>
+<td>线性化系数</td>
+</tr>
+<tr class="even">
+<td>矩阵形式</td>
+<td><span class="math inline">\(V = GX - L\)</span></td>
+<td>最小二乘求解</td>
+</tr>
+<tr class="odd">
+<td>自相关函数</td>
+<td><span class="math inline">\(R(\tau) = \frac{1}{T_p}\int_0^{T_p} x(t) \cdot x(t-\tau) dt\)</span></td>
+<td>码对齐判断</td>
+</tr>
+<tr class="even">
+<td>L1载波频率</td>
+<td><span class="math inline">\(f_{L1} = 154 \times f_0 = 1575.42\)</span> MHz</td>
+<td><span class="math inline">\(f_0 = 10.23\)</span> MHz</td>
+</tr>
+<tr class="odd">
+<td>L2载波频率</td>
+<td><span class="math inline">\(f_{L2} = 120 \times f_0 = 1227.60\)</span> MHz</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="本章与其他章节的联系">🔗 本章与其他章节的联系</h2>
+<pre><code>                    第7讲 卫星导航系统
+                          │
+          ┌───────────────┼───────────────┐
+          │               │               │
+          ▼               ▼               ▼
+    第1-6讲          第8-9讲          第13-15讲
+    惯导基础         估计理论         INS/GPS组合
+    （提供误差模型）  （提供滤波工具）  （松/紧组合）</code></pre>
+<p><strong>关键联系</strong>： 1. GPS误差模型 → 第8-9讲估计理论 → 卡尔曼滤波 2. GPS位置/伪距观测 → 第13-15讲 → INS/GPS松/紧组合导航 3. GPS与INS互补：INS自主但误差累积，GPS精度高但易受干扰</p>
+<hr />
+<h2 id="本章小结">📝 本章小结</h2>
+<p><strong>核心要点</strong>： 1. <strong>卫星导航原理</strong>：测量信号传播时间，通过几何交会定位 2. <strong>GPS组成</strong>：空间部分 + 地面监控 + 用户设备 3. <strong>信号结构</strong>：载波 + 测距码 + 导航电文（三层结构） 4. <strong>定位原理</strong>：伪距测量 → 定位方程 → 线性化 → 最小二乘求解 5. <strong>误差模型</strong>：卫星钟差、星历误差、电离层延迟、对流层延迟、多路径</p>
+<p><strong>应试重点</strong>： - 为什么需要4颗卫星？（4个未知量） - C/A码与P码的区别（码率、精度、周期、用途） - 双频载波的作用（消除电离层延迟） - 伪距观测方程及线性化</p>
+<hr />
+<p><em>本讲内容基于哈尔滨工程大学组合导航课程PPT，由张勇刚、李宁教授主讲。</em></p>
         </div>
     </section>
     
