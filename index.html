@@ -589,6 +589,7 @@
         <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a><a href="#chapter-9" style="border-color:#D69E2E">📊 第六讲 误差建模</a>
     
         <a href="#chapter-10" style="border-color:#38A169">📊 第十讲 卡尔曼滤波</a>
+        <a href="#chapter-11" style="border-color:#E53E3E">🎯 课程总结冲刺</a>
     </nav>
 
     <!-- 主内容 -->
@@ -4482,7 +4483,865 @@ R_y(90°) 使得 Z轴 和 X轴 重合
 
 
 
-    </main>
+    
+    <section class="chapter" id="chapter-11">
+        <div class="chapter-header" style="border-left-color:#E53E3E; background:linear-gradient(135deg, #E53E3E11 0%, #E53E3E05 100%)">
+            <h2 style="color:#E53E3E">🎯 课程总结与应试冲刺</h2>
+        </div>
+        <div class="chapter-body">
+
+
+<h1 id="组合导航课程总结-应试冲刺版">组合导航课程总结 · 应试冲刺版</h1>
+<blockquote>
+<p><strong>适用范围</strong>：哈尔滨工程大学 智能学院 | 张勇刚、李宁 <strong>PPT页数</strong>：92页 | <strong>四大模块</strong>：惯导系统、导航系统原理、状态估计、组合导航设计</p>
+</blockquote>
+<hr />
+<h2 id="一课程全景思维导图">一、课程全景思维导图</h2>
+<pre><code>                        ┌─────────────────────────────────────────────────────────────┐
+                        │                    组合导航课程体系                           │
+                        └─────────────────────────────────────────────────────────────┘
+                                                    │
+            ┌───────────────────────────────────────┼───────────────────────────────────────┐
+            │                                       │                                       │
+            ▼                                       ▼                                       ▼
+┌───────────────────────┐           ┌───────────────────────┐           ┌───────────────────────┐
+│   第一部分：惯导系统    │           │   第二部分：导航系统    │           │   第三部分：状态估计    │
+│   基本原理 (P1-44)     │           │   原理及建模 (P35-58)  │           │   理论 (P45-58)       │
+└───────────────────────┘           └───────────────────────┘           └───────────────────────┘
+            │                                       │                                       │
+    ┌───────┼───────┐                       ┌───────┴───────┐                       │
+    │       │       │                       │               │                       │
+    ▼       ▼       ▼                       ▼               ▼                       ▼
+┌───────┐ ┌───────┐ ┌───────┐         ┌───────┐     ┌───────┐               ┌───────────┐
+│坐标系  │ │基本方程│ │计算方程│         │GPS导航│     │DVL导航│               │卡尔曼滤波 │
+│与变换  │ │       │ │       │         │       │     │       │               │           │
+└───────┘ └───────┘ └───────┘         └───────┘     └───────┘               └───────────┘
+    │           │           │               │             │                       │
+    ▼           ▼           ▼               ▼             ▼                       ▼
+┌───────┐ ┌───────┐ ┌───────┐         ┌───────┐     ┌───────┐               ┌───────────┐
+│i系/e系│ │比力方程│ │姿态更新│         │伪距定位│     │多普勒  │               │五方程    │
+│n系/b系│ │速度方程│ │速度更新│         │误差模型│     │误差建模│               │有色噪声  │
+│转换矩阵│ │位置方程│ │位置更新│         │       │     │       │               │           │
+└───────┘ └───────┘ └───────┘         └───────┘     └───────┘               └───────────┘
+    │           │           │
+    ▼           ▼           ▼
+┌─────────────────────────────────┐
+│      姿态矩阵定义与更新          │
+│  - 方向余弦矩阵 C_b^n           │
+│  - 四元数更新                    │
+│  - 欧拉角与DCM转换               │
+└─────────────────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────┐
+│      惯导系统误差建模            │
+│  - 误差源分析                    │
+│  - 误差传播方程                  │
+│  - 误差状态方程                  │
+└─────────────────────────────────┘
+                                                    │
+                                                    ▼
+                        ┌─────────────────────────────────────────────────────────────┐
+                        │              第四部分：组合导航系统设计 (P59-91)              │
+                        └─────────────────────────────────────────────────────────────┘
+                                                    │
+            ┌───────────────────────────────────────┼───────────────────────────────────────┐
+            │                                       │                                       │
+            ▼                                       ▼                                       ▼
+    ┌───────────────┐                   ┌───────────────┐                           ┌───────────────┐
+    │ 组合方式分类   │                   │ INS/GPS组合   │                           │ INS/DVL组合   │
+    │               │                   │               │                           │               │
+    │ ·直接法/间接法│                   │ ·松组合(15维) │                           │ ·速度组合     │
+    │ ·输出/反馈校正│                   │ ·紧组合(17维) │                           │ ·误差建模     │
+    │ ·松组合/紧组合│                   │               │                           │               │
+    └───────────────┘                   └───────────────┘                           └───────────────┘</code></pre>
+<hr />
+<h2 id="二各部分核心知识点速查表">二、各部分核心知识点速查表</h2>
+<h3 id="第一部分惯导系统基本原理-ppt-1-44">第一部分：惯导系统基本原理 (PPT 1-44)</h3>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 27%" />
+<col style="width: 24%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>知识点</th>
+<th>核心内容</th>
+<th>PPT页码</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>坐标系定义</strong></td>
+<td>i系(惯性系)、e系(地心系)、n系(导航系)、b系(载体系)</td>
+<td>P3-6</td>
+<td>★★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>坐标变换矩阵</strong></td>
+<td><span class="math inline">\(C_b^n\)</span>：从b系到n系的变换，正交矩阵性质</td>
+<td>P7-10</td>
+<td>★★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>比力方程</strong></td>
+<td><span class="math inline">\(\dot{v}^n = C_b^n f^b - (2\omega_{ie}^n + \omega_{en}^n) \times v^n + g^n\)</span></td>
+<td>P15-18</td>
+<td>★★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>速度方程</strong></td>
+<td>考虑哥氏加速度和向心加速度的速度更新</td>
+<td>P19-22</td>
+<td>★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>位置方程</strong></td>
+<td>经纬度高度更新方程</td>
+<td>P23-25</td>
+<td>★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>姿态矩阵</strong></td>
+<td>方向余弦矩阵DCM、四元数、欧拉角三种表示</td>
+<td>P26-32</td>
+<td>★★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>姿态更新</strong></td>
+<td><span class="math inline">\(C_b^n\)</span>的微分方程：<span class="math inline">\(\dot{C}_b^n = C_b^n(\omega_{nb}^b \times)\)</span></td>
+<td>P33-36</td>
+<td>★★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>误差源</strong></td>
+<td>陀螺漂移、加速度计零偏、刻度因子误差</td>
+<td>P37-40</td>
+<td>★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>误差传播</strong></td>
+<td>误差状态方程的建立与传播特性</td>
+<td>P41-44</td>
+<td>★★★★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第二部分导航系统原理及建模-ppt-35-58">第二部分：导航系统原理及建模 (PPT 35-58)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>知识点</th>
+<th>核心内容</th>
+<th>PPT页码</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>GPS组成</strong></td>
+<td>空间段、控制段、用户段</td>
+<td>P35-38</td>
+<td>★★★</td>
+</tr>
+<tr class="even">
+<td><strong>伪距定位原理</strong></td>
+<td><span class="math inline">\(\rho = r + c \cdot \delta t\)</span>，四星定位</td>
+<td>P39-42</td>
+<td>★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>GPS误差源</strong></td>
+<td>卫星钟差、电离层延迟、对流层延迟、多路径</td>
+<td>P43-46</td>
+<td>★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>DVL原理</strong></td>
+<td>多普勒效应：<span class="math inline">\(f_d = \frac{2f_0 v \cos\theta}{c}\)</span></td>
+<td>P47-50</td>
+<td>★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>DVL误差模型</strong></td>
+<td>刻度因子误差、波束指向误差、速度偏差</td>
+<td>P51-54</td>
+<td>★★★★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第三部分状态估计理论-ppt-45-58">第三部分：状态估计理论 (PPT 45-58)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>知识点</th>
+<th>核心内容</th>
+<th>PPT页码</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>估计理论基础</strong></td>
+<td>最小方差估计、最大似然估计、贝叶斯估计</td>
+<td>P45-47</td>
+<td>★★★</td>
+</tr>
+<tr class="even">
+<td><strong>KF五方程</strong></td>
+<td>预测：状态预测、协方差预测；更新：增益、状态更新、协方差更新</td>
+<td>P48-52</td>
+<td>★★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>有色噪声处理</strong></td>
+<td>状态扩充法、差分法</td>
+<td>P53-58</td>
+<td>★★★★</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第四部分组合导航系统设计-ppt-59-91">第四部分：组合导航系统设计 (PPT 59-91)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>知识点</th>
+<th>核心内容</th>
+<th>PPT页码</th>
+<th>重要程度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>直接法vs间接法</strong></td>
+<td>直接法估计状态，间接法估计误差</td>
+<td>P59-62</td>
+<td>★★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>输出校正vs反馈校正</strong></td>
+<td>输出校正不修正INS，反馈校正修正INS</td>
+<td>P63-66</td>
+<td>★★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>松组合vs紧组合</strong></td>
+<td>松组合用GPS位置/速度，紧组合用伪距/伪距率</td>
+<td>P67-70</td>
+<td>★★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>INS/GPS松组合</strong></td>
+<td>15维状态：位置误差(3)+速度误差(3)+姿态误差(3)+陀螺零偏(3)+加计零偏(3)</td>
+<td>P71-78</td>
+<td>★★★★★</td>
+</tr>
+<tr class="odd">
+<td><strong>INS/GPS紧组合</strong></td>
+<td>17维状态：15维+GPS钟差(2)</td>
+<td>P79-84</td>
+<td>★★★★★</td>
+</tr>
+<tr class="even">
+<td><strong>INS/DVL组合</strong></td>
+<td>速度组合，DVL提供速度观测</td>
+<td>P85-91</td>
+<td>★★★★</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三重点公式速查卡">三、重点公式速查卡</h2>
+<h3 id="坐标系与变换-ppt-3-10">3.1 坐标系与变换 (PPT 3-10)</h3>
+<p><strong>方向余弦矩阵性质</strong>： <span class="math display">\[C_b^n (C_b^n)^T = I, \quad (C_b^n)^{-1} = (C_b^n)^T\]</span></p>
+<p><strong>欧拉角到DCM转换</strong>（3-2-1顺序：偏航<span class="math inline">\(\psi\)</span>-俯仰<span class="math inline">\(\theta\)</span>-横滚<span class="math inline">\(\phi\)</span>）： <span class="math display">\[C_b^n = \begin{bmatrix} 
+\cos\theta\cos\psi &amp; \sin\phi\sin\theta\cos\psi - \cos\phi\sin\psi &amp; \cos\phi\sin\theta\cos\psi + \sin\phi\sin\psi \\
+\cos\theta\sin\psi &amp; \sin\phi\sin\theta\sin\psi + \cos\phi\cos\psi &amp; \cos\phi\sin\theta\sin\psi - \sin\phi\cos\psi \\
+-\sin\theta &amp; \sin\phi\cos\theta &amp; \cos\phi\cos\theta 
+\end{bmatrix}\]</span></p>
+<p><strong>四元数与DCM转换</strong>： <span class="math display">\[C_b^n = \begin{bmatrix}
+q_0^2+q_1^2-q_2^2-q_3^2 &amp; 2(q_1q_2-q_0q_3) &amp; 2(q_1q_3+q_0q_2) \\
+2(q_1q_2+q_0q_3) &amp; q_0^2-q_1^2+q_2^2-q_3^2 &amp; 2(q_2q_3-q_0q_1) \\
+2(q_1q_3-q_0q_2) &amp; 2(q_2q_3+q_0q_1) &amp; q_0^2-q_1^2-q_2^2+q_3^2
+\end{bmatrix}\]</span></p>
+<hr />
+<h3 id="惯导基本方程-ppt-15-25">3.2 惯导基本方程 (PPT 15-25)</h3>
+<p><strong>比力方程</strong>（核心方程）： <span class="math display">\[\dot{v}^n = C_b^n f^b - (2\omega_{ie}^n + \omega_{en}^n) \times v^n + g^n\]</span></p>
+<p><strong>速度更新方程</strong>： <span class="math display">\[v_{k+1} = v_k + \int_{t_k}^{t_{k+1}} \left[ C_b^n f^b - (2\omega_{ie}^n + \omega_{en}^n) \times v^n + g^n \right] dt\]</span></p>
+<p><strong>位置更新方程</strong>： <span class="math display">\[\dot{L} = \frac{v_N}{R_M + h}, \quad \dot{\lambda} = \frac{v_E}{(R_N + h)\cos L}, \quad \dot{h} = -v_D\]</span></p>
+<p>其中：<span class="math inline">\(R_M\)</span>为子午圈曲率半径，<span class="math inline">\(R_N\)</span>为卯酉圈曲率半径。</p>
+<hr />
+<h3 id="姿态更新-ppt-26-36">3.3 姿态更新 (PPT 26-36)</h3>
+<p><strong>姿态矩阵微分方程</strong>： <span class="math display">\[\dot{C}_b^n = C_b^n (\omega_{nb}^b \times)\]</span></p>
+<p>其中<span class="math inline">\(\omega_{nb}^b = \omega_{ib}^b - C_n^b(\omega_{ie}^n + \omega_{en}^n)\)</span></p>
+<p><strong>四元数更新方程</strong>： <span class="math display">\[\dot{q} = \frac{1}{2} q \otimes \omega_{nb}^b\]</span></p>
+<p>矩阵形式： <span class="math display">\[\dot{q} = \frac{1}{2} \begin{bmatrix} 0 &amp; -\omega_x &amp; -\omega_y &amp; -\omega_z \\ \omega_x &amp; 0 &amp; \omega_z &amp; -\omega_y \\ \omega_y &amp; -\omega_z &amp; 0 &amp; \omega_x \\ \omega_z &amp; \omega_y &amp; -\omega_x &amp; 0 \end{bmatrix} q\]</span></p>
+<hr />
+<h3 id="卡尔曼滤波五方程-ppt-48-52">3.4 卡尔曼滤波五方程 (PPT 48-52)</h3>
+<p><strong>状态预测</strong>： <span class="math display">\[\hat{x}_{k|k-1} = \Phi_{k|k-1} \hat{x}_{k-1|k-1}\]</span></p>
+<p><strong>协方差预测</strong>： <span class="math display">\[P_{k|k-1} = \Phi_{k|k-1} P_{k-1|k-1} \Phi_{k|k-1}^T + Q_{k-1}\]</span></p>
+<p><strong>卡尔曼增益</strong>： <span class="math display">\[K_k = P_{k|k-1} H_k^T (H_k P_{k|k-1} H_k^T + R_k)^{-1}\]</span></p>
+<p><strong>状态更新</strong>： <span class="math display">\[\hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k (z_k - H_k \hat{x}_{k|k-1})\]</span></p>
+<p><strong>协方差更新</strong>： <span class="math display">\[P_{k|k} = (I - K_k H_k) P_{k|k-1}\]</span></p>
+<hr />
+<h3 id="insgps松组合状态方程-ppt-71-78">3.5 INS/GPS松组合状态方程 (PPT 71-78)</h3>
+<p><strong>15维状态向量</strong>： <span class="math display">\[x = [\delta p^T, \delta v^T, \delta \phi^T, \varepsilon^T, \nabla^T]^T\]</span></p>
+<ul>
+<li><span class="math inline">\(\delta p\)</span>：位置误差（3维）</li>
+<li><span class="math inline">\(\delta v\)</span>：速度误差（3维）</li>
+<li><span class="math inline">\(\delta \phi\)</span>：姿态误差角（3维）</li>
+<li><span class="math inline">\(\varepsilon\)</span>：陀螺零偏（3维）</li>
+<li><span class="math inline">\(\nabla\)</span>：加速度计零偏（3维）</li>
+</ul>
+<p><strong>状态转移矩阵结构</strong>： <span class="math display">\[\Phi = \begin{bmatrix} 
+I &amp; F_{pv} &amp; 0 &amp; 0 &amp; 0 \\
+F_{vp} &amp; F_{vv} &amp; F_{v\phi} &amp; 0 &amp; C_b^n \\
+0 &amp; F_{\phi v} &amp; F_{\phi\phi} &amp; -C_b^n &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; I &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; I 
+\end{bmatrix}\]</span></p>
+<p><strong>观测方程</strong>： <span class="math display">\[z = \begin{bmatrix} p_{INS} - p_{GPS} \\ v_{INS} - v_{GPS} \end{bmatrix} = H x + v\]</span></p>
+<hr />
+<h3 id="insgps紧组合状态方程-ppt-79-84">3.6 INS/GPS紧组合状态方程 (PPT 79-84)</h3>
+<p><strong>17维状态向量</strong>： <span class="math display">\[x = [\delta p^T, \delta v^T, \delta \phi^T, \varepsilon^T, \nabla^T, \delta t_u, \delta \dot{t}_u]^T\]</span></p>
+<p><strong>观测方程</strong>（伪距差）： <span class="math display">\[z_\rho = \rho_{INS} - \rho_{GPS} = H_\rho x + v_\rho\]</span></p>
+<p>其中<span class="math inline">\(\rho_{INS}\)</span>由INS位置推算得到。</p>
+<hr />
+<h3 id="gps伪距方程-ppt-39-42">3.7 GPS伪距方程 (PPT 39-42)</h3>
+<p><strong>伪距观测方程</strong>： <span class="math display">\[\rho = r + c \cdot \delta t_u + c \cdot \delta t_s + I + T + \varepsilon\]</span></p>
+<ul>
+<li><span class="math inline">\(r\)</span>：几何距离</li>
+<li><span class="math inline">\(\delta t_u\)</span>：接收机钟差</li>
+<li><span class="math inline">\(\delta t_s\)</span>：卫星钟差</li>
+<li><span class="math inline">\(I\)</span>：电离层延迟</li>
+<li><span class="math inline">\(T\)</span>：对流层延迟</li>
+<li><span class="math inline">\(\varepsilon\)</span>：多路径及测量噪声</li>
+</ul>
+<hr />
+<h3 id="dvl测速原理-ppt-47-50">3.8 DVL测速原理 (PPT 47-50)</h3>
+<p><strong>多普勒频移</strong>： <span class="math display">\[f_d = \frac{2f_0 v \cos\theta}{c}\]</span></p>
+<p><strong>速度计算</strong>： <span class="math display">\[v = \frac{f_d \cdot c}{2f_0 \cos\theta}\]</span></p>
+<hr />
+<h2 id="四易错点汇总10个高频易错点">四、易错点汇总（10个高频易错点）</h2>
+<h3 id="易错点1坐标系转换方向混淆">易错点1：坐标系转换方向混淆</h3>
+<p><strong>错误表现</strong>：混淆<span class="math inline">\(C_b^n\)</span>和<span class="math inline">\(C_n^b\)</span>的含义 <strong>正确理解</strong>：<span class="math inline">\(C_b^n\)</span>表示从b系到n系的变换，<span class="math inline">\(C_n^b = (C_b^n)^T\)</span> <strong>PPT页码</strong>：P7-10 <strong>应试技巧</strong>：记住下标规则：<span class="math inline">\(C_A^B\)</span>表示从A系到B系</p>
+<h3 id="易错点2比力方程中各项含义不清">易错点2：比力方程中各项含义不清</h3>
+<p><strong>错误表现</strong>：遗漏哥氏加速度或重力项 <strong>正确理解</strong>： - <span class="math inline">\(C_b^n f^b\)</span>：比力在导航系的投影 - <span class="math inline">\((2\omega_{ie}^n + \omega_{en}^n) \times v^n\)</span>：哥氏加速度 - <span class="math inline">\(g^n\)</span>：重力加速度 <strong>PPT页码</strong>：P15-18 <strong>应试技巧</strong>：记住“比力-哥氏+重力=加速度”</p>
+<h3 id="易错点3姿态矩阵微分方程符号错误">易错点3：姿态矩阵微分方程符号错误</h3>
+<p><strong>错误表现</strong>：<span class="math inline">\(\dot{C}_b^n\)</span>的符号写反 <strong>正确理解</strong>：<span class="math inline">\(\dot{C}_b^n = C_b^n(\omega_{nb}^b \times)\)</span>，注意<span class="math inline">\(\omega_{nb}^b\)</span>的定义 <strong>PPT页码</strong>：P33-36 <strong>应试技巧</strong>：记住角速度是“相对于n系在b系中的表示”</p>
+<h3 id="易错点4卡尔曼滤波五方程顺序混淆">易错点4：卡尔曼滤波五方程顺序混淆</h3>
+<p><strong>错误表现</strong>：先更新后预测，或增益计算错误 <strong>正确顺序</strong>：预测→计算增益→更新 <strong>PPT页码</strong>：P48-52 <strong>应试技巧</strong>：记住“预测两步、更新三步”</p>
+<h3 id="易错点5松组合与紧组合状态维数混淆">易错点5：松组合与紧组合状态维数混淆</h3>
+<p><strong>错误表现</strong>：松组合17维，紧组合15维 <strong>正确理解</strong>： - 松组合：15维（位置、速度、姿态、陀螺零偏、加计零偏） - 紧组合：17维（15维+GPS钟差2维） <strong>PPT页码</strong>：P71-84 <strong>应试技巧</strong>：紧组合需要估计GPS钟差，所以多2维</p>
+<h3 id="易错点6直接法与间接法概念混淆">易错点6：直接法与间接法概念混淆</h3>
+<p><strong>错误表现</strong>：认为直接法就是开环，间接法就是闭环 <strong>正确理解</strong>： - 直接法：估计导航参数本身 - 间接法：估计导航参数的误差 - 与输出/反馈校正是不同维度的概念 <strong>PPT页码</strong>：P59-66 <strong>应试技巧</strong>：直接法估计“真值”，间接法估计“误差”</p>
+<h3 id="易错点7输出校正与反馈校正混淆">易错点7：输出校正与反馈校正混淆</h3>
+<p><strong>错误表现</strong>：不清楚两者的区别和应用场景 <strong>正确理解</strong>： - 输出校正：KF估计误差后，只修正输出，不反馈给INS - 反馈校正：KF估计误差后，反馈修正INS内部状态 <strong>PPT页码</strong>：P63-66 <strong>应试技巧</strong>：输出校正=开环，反馈校正=闭环</p>
+<h3 id="易错点8四元数归一化条件遗漏">易错点8：四元数归一化条件遗漏</h3>
+<p><strong>错误表现</strong>：计算中忘记归一化，导致姿态漂移 <strong>正确理解</strong>：<span class="math inline">\(|q| = \sqrt{q_0^2+q_1^2+q_2^2+q_3^2} = 1\)</span> <strong>PPT页码</strong>：P29-32 <strong>应试技巧</strong>：每次更新后必须归一化</p>
+<h3 id="易错点9误差状态方程中矩阵元素遗漏">易错点9：误差状态方程中矩阵元素遗漏</h3>
+<p><strong>错误表现</strong>：状态转移矩阵<span class="math inline">\(\Phi\)</span>中遗漏某些耦合项 <strong>正确理解</strong>：<span class="math inline">\(\Phi\)</span>包含位置-速度、速度-姿态、姿态-陀螺等耦合 <strong>PPT页码</strong>：P41-44, P71-78 <strong>应试技巧</strong>：画出误差传播链，逐项检查</p>
+<h3 id="易错点10gps伪距方程各项符号错误">易错点10：GPS伪距方程各项符号错误</h3>
+<p><strong>错误表现</strong>：钟差、延迟项符号混淆 <strong>正确理解</strong>：伪距 = 真实距离 + 正的钟差和延迟 <strong>PPT页码</strong>：P39-42 <strong>应试技巧</strong>：伪距总是大于真实距离（延迟使距离变长）</p>
+<hr />
+<h2 id="五应试技巧与答题策略">五、应试技巧与答题策略</h2>
+<h3 id="概念题答题策略">5.1 概念题答题策略</h3>
+<p><strong>题型特点</strong>：名词解释、概念辨析、简答题</p>
+<p><strong>答题模板</strong>： 1. <strong>定义</strong>（1-2句话） 2. <strong>物理意义</strong>（1句话） 3. <strong>工程应用</strong>（1句话） 4. <strong>相关概念对比</strong>（如适用）</p>
+<p><strong>示例</strong>：解释“松组合” &gt; 松组合是指利用GPS输出的位置和速度信息作为观测量，与INS进行组合的导航方式。其特点是GPS接收机已完成定位解算，组合滤波器直接使用位置/速度观测值。松组合实现简单，但要求GPS必须至少接收到4颗卫星才能定位。状态向量通常为15维。</p>
+<h3 id="公式推导题答题策略">5.2 公式推导题答题策略</h3>
+<p><strong>题型特点</strong>：推导比力方程、姿态更新方程、KF方程等</p>
+<p><strong>答题步骤</strong>： 1. <strong>写出假设条件</strong> 2. <strong>列出已知方程/原理</strong> 3. <strong>逐步推导</strong>（每步写明理由） 4. <strong>给出最终结果</strong> 5. <strong>说明各变量物理意义</strong></p>
+<p><strong>评分要点</strong>： - 假设条件（10%） - 推导过程（60%） - 结果正确性（20%） - 变量说明（10%）</p>
+<h3 id="计算题答题策略">5.3 计算题答题策略</h3>
+<p><strong>题型特点</strong>：KF更新计算、坐标转换计算等</p>
+<p><strong>答题步骤</strong>： 1. <strong>列出已知条件</strong> 2. <strong>写出使用的公式</strong> 3. <strong>代入数值计算</strong>（保留中间结果） 4. <strong>给出最终答案</strong>（注意单位）</p>
+<p><strong>注意事项</strong>： - 角度单位统一（度/弧度） - 矩阵运算顺序 - 有效数字保留</p>
+<h3 id="分析题答题策略">5.4 分析题答题策略</h3>
+<p><strong>题型特点</strong>：误差分析、方案设计、对比分析</p>
+<p><strong>答题框架</strong>： 1. <strong>问题分析</strong>（明确要分析什么） 2. <strong>理论基础</strong>（涉及哪些原理） 3. <strong>具体分析</strong>（分点论述） 4. <strong>结论总结</strong></p>
+<p><strong>示例</strong>：分析松组合与紧组合的优缺点</p>
+<table>
+<thead>
+<tr class="header">
+<th>方面</th>
+<th>松组合</th>
+<th>紧组合</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>观测量</td>
+<td>GPS位置/速度</td>
+<td>GPS伪距/伪距率</td>
+</tr>
+<tr class="even">
+<td>状态维数</td>
+<td>15维</td>
+<td>17维</td>
+</tr>
+<tr class="odd">
+<td>可用性</td>
+<td>需≥4颗卫星</td>
+<td>可用&lt;4颗卫星</td>
+</tr>
+<tr class="even">
+<td>精度</td>
+<td>较低</td>
+<td>较高</td>
+</tr>
+<tr class="odd">
+<td>实现复杂度</td>
+<td>简单</td>
+<td>复杂</td>
+</tr>
+</tbody>
+</table>
+<h3 id="论述题答题策略">5.5 论述题答题策略</h3>
+<p><strong>题型特点</strong>：综合分析、方案设计</p>
+<p><strong>答题框架</strong>： 1. <strong>引言</strong>（背景、意义） 2. <strong>理论基础</strong>（相关原理） 3. <strong>方案设计</strong>（具体方法） 4. <strong>分析讨论</strong>（优缺点、适用条件） 5. <strong>结论</strong></p>
+<hr />
+<h2 id="六模拟考试题10道综合题">六、模拟考试题（10道综合题）</h2>
+<h3 id="题目1坐标系与变换基础题">题目1：坐标系与变换（基础题）</h3>
+<p><strong>题目</strong>：写出导航系n到载体系b的方向余弦矩阵<span class="math inline">\(C_n^b\)</span>（按3-2-1顺序，偏航<span class="math inline">\(\psi\)</span>-俯仰<span class="math inline">\(\theta\)</span>-横滚<span class="math inline">\(\phi\)</span>），并说明其正交性。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>步骤1：写出各轴旋转矩阵</strong></p>
+<p>绕z轴旋转<span class="math inline">\(\psi\)</span>（偏航）： <span class="math display">\[R_z(\psi) = \begin{bmatrix} \cos\psi &amp; \sin\psi &amp; 0 \\ -\sin\psi &amp; \cos\psi &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</span></p>
+<p>绕y轴旋转<span class="math inline">\(\theta\)</span>（俯仰）： <span class="math display">\[R_y(\theta) = \begin{bmatrix} \cos\theta &amp; 0 &amp; -\sin\theta \\ 0 &amp; 1 &amp; 0 \\ \sin\theta &amp; 0 &amp; \cos\theta \end{bmatrix}\]</span></p>
+<p>绕x轴旋转<span class="math inline">\(\phi\)</span>（横滚）： <span class="math display">\[R_x(\phi) = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; \cos\phi &amp; \sin\phi \\ 0 &amp; -\sin\phi &amp; \cos\phi \end{bmatrix}\]</span></p>
+<p><strong>步骤2：按3-2-1顺序组合</strong></p>
+<p><span class="math display">\[C_n^b = R_x(\phi) R_y(\theta) R_z(\psi)\]</span></p>
+<p><span class="math display">\[= \begin{bmatrix} 
+\cos\theta\cos\psi &amp; \cos\theta\sin\psi &amp; -\sin\theta \\
+\sin\phi\sin\theta\cos\psi - \cos\phi\sin\psi &amp; \sin\phi\sin\theta\sin\psi + \cos\phi\cos\psi &amp; \sin\phi\cos\theta \\
+\cos\phi\sin\theta\cos\psi + \sin\phi\sin\psi &amp; \cos\phi\sin\theta\sin\psi - \sin\phi\cos\psi &amp; \cos\phi\cos\theta 
+\end{bmatrix}\]</span></p>
+<p><strong>步骤3：正交性验证</strong></p>
+<p>正交矩阵满足：<span class="math inline">\(C_n^b (C_n^b)^T = I\)</span>，即任意两行（列）点积为0，每行（列）模为1。</p>
+<p><strong>评分要点</strong>： - 旋转矩阵正确（40%） - 组合顺序正确（30%） - 正交性说明（30%）</p>
+<p><strong>PPT页码</strong>：P7-10</p>
+<hr />
+<h3 id="题目2比力方程推导中等题">题目2：比力方程推导（中等题）</h3>
+<p><strong>题目</strong>：从惯性系下的运动方程出发，推导导航系下的比力方程，说明各项物理意义。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>步骤1：惯性系下的运动方程</strong></p>
+<p>在惯性系i中，载体的位置矢量为<span class="math inline">\(\mathbf{r}\)</span>，根据牛顿第二定律： <span class="math display">\[\left.\frac{d^2\mathbf{r}}{dt^2}\right|_i = \mathbf{a} = \mathbf{f} + \mathbf{g}\]</span></p>
+<p>其中<span class="math inline">\(\mathbf{f}\)</span>为比力，<span class="math inline">\(\mathbf{g}\)</span>为引力加速度。</p>
+<p><strong>步骤2：转换到导航系</strong></p>
+<p>利用哥氏定理，位置矢量在导航系n中的导数与惯性系的关系： <span class="math display">\[\left.\frac{d\mathbf{r}}{dt}\right|_i = \left.\frac{d\mathbf{r}}{dt}\right|_n + \omega_{in}^n \times \mathbf{r}\]</span></p>
+<p>对时间再求导： <span class="math display">\[\left.\frac{d^2\mathbf{r}}{dt^2}\right|_i = \left.\frac{d^2\mathbf{r}}{dt^2}\right|_n + 2\omega_{in}^n \times \left.\frac{d\mathbf{r}}{dt}\right|_n + \dot{\omega}_{in}^n \times \mathbf{r} + \omega_{in}^n \times (\omega_{in}^n \times \mathbf{r})\]</span></p>
+<p><strong>步骤3：整理得到比力方程</strong></p>
+<p>令<span class="math inline">\(\mathbf{v}^n = \left.\frac{d\mathbf{r}}{dt}\right|_n\)</span>，忽略<span class="math inline">\(\dot{\omega}_{in}^n\)</span>项，得到： <span class="math display">\[\dot{\mathbf{v}}^n = \mathbf{f}^n - (2\omega_{ie}^n + \omega_{en}^n) \times \mathbf{v}^n + \mathbf{g}^n\]</span></p>
+<p><strong>各项物理意义</strong>： - <span class="math inline">\(\dot{\mathbf{v}}^n\)</span>：导航系下的速度变化率 - <span class="math inline">\(\mathbf{f}^n = C_b^n \mathbf{f}^b\)</span>：比力在导航系的投影（加速度计测量值） - <span class="math inline">\((2\omega_{ie}^n + \omega_{en}^n) \times \mathbf{v}^n\)</span>：哥氏加速度 - <span class="math inline">\(2\omega_{ie}^n \times \mathbf{v}^n\)</span>：地球自转引起的哥氏加速度 - <span class="math inline">\(\omega_{en}^n \times \mathbf{v}^n\)</span>：导航系相对于地球运动引起的哥氏加速度 - <span class="math inline">\(\mathbf{g}^n\)</span>：重力加速度（引力+离心力）</p>
+<p><strong>评分要点</strong>： - 惯性系方程（20%） - 哥氏定理应用（40%） - 最终结果（20%） - 物理意义说明（20%）</p>
+<p><strong>PPT页码</strong>：P15-18</p>
+<hr />
+<h3 id="题目3卡尔曼滤波推导中等题">题目3：卡尔曼滤波推导（中等题）</h3>
+<p><strong>题目</strong>：对于线性离散系统<span class="math inline">\(x_k = \Phi_{k|k-1} x_{k-1} + w_{k-1}\)</span>，<span class="math inline">\(z_k = H_k x_k + v_k\)</span>，推导卡尔曼滤波的五方程。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>假设条件</strong>： - <span class="math inline">\(w_k \sim N(0, Q_k)\)</span>，<span class="math inline">\(v_k \sim N(0, R_k)\)</span> - 初始状态<span class="math inline">\(x_0 \sim N(\hat{x}_0, P_0)\)</span> - <span class="math inline">\(w_k\)</span>、<span class="math inline">\(v_k\)</span>、<span class="math inline">\(x_0\)</span>相互独立</p>
+<p><strong>步骤1：状态预测</strong></p>
+<p>根据状态方程，预测状态： <span class="math display">\[\hat{x}_{k|k-1} = E[x_k | z_{1:k-1}] = \Phi_{k|k-1} \hat{x}_{k-1|k-1}\]</span></p>
+<p><strong>步骤2：协方差预测</strong></p>
+<p>预测误差协方差： <span class="math display">\[P_{k|k-1} = E[(x_k - \hat{x}_{k|k-1})(x_k - \hat{x}_{k|k-1})^T]\]</span> <span class="math display">\[= \Phi_{k|k-1} P_{k-1|k-1} \Phi_{k|k-1}^T + Q_{k-1}\]</span></p>
+<p><strong>步骤3：卡尔曼增益</strong></p>
+<p>根据最小方差估计准则，最优增益为： <span class="math display">\[K_k = P_{k|k-1} H_k^T (H_k P_{k|k-1} H_k^T + R_k)^{-1}\]</span></p>
+<p><strong>步骤4：状态更新</strong></p>
+<p>利用观测<span class="math inline">\(z_k\)</span>更新状态估计： <span class="math display">\[\hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k (z_k - H_k \hat{x}_{k|k-1})\]</span></p>
+<p>其中<span class="math inline">\(z_k - H_k \hat{x}_{k|k-1}\)</span>称为新息（innovation）。</p>
+<p><strong>步骤5：协方差更新</strong></p>
+<p>更新误差协方差： <span class="math display">\[P_{k|k} = (I - K_k H_k) P_{k|k-1}\]</span></p>
+<p>或对称形式（数值更稳定）： <span class="math display">\[P_{k|k} = (I - K_k H_k) P_{k|k-1} (I - K_k H_k)^T + K_k R_k K_k^T\]</span></p>
+<p><strong>评分要点</strong>： - 假设条件（10%） - 预测方程（25%） - 增益推导（30%） - 更新方程（25%） - 公式正确性（10%）</p>
+<p><strong>PPT页码</strong>：P48-52</p>
+<hr />
+<h3 id="题目4insgps松组合设计综合题">题目4：INS/GPS松组合设计（综合题）</h3>
+<p><strong>题目</strong>：设计一个INS/GPS松组合导航系统，要求： 1. 写出15维状态向量 2. 画出系统框图 3. 说明观测方程</p>
+<p><strong>答案</strong>：</p>
+<p><strong>1. 15维状态向量</strong></p>
+<p><span class="math display">\[x = \begin{bmatrix} \delta p \\ \delta v \\ \delta \phi \\ \varepsilon \\ \nabla \end{bmatrix} \in \mathbb{R}^{15}\]</span></p>
+<p>其中： - <span class="math inline">\(\delta p = [\delta L, \delta \lambda, \delta h]^T\)</span>：位置误差（经度、纬度、高度） - <span class="math inline">\(\delta v = [\delta v_E, \delta v_N, \delta v_U]^T\)</span>：速度误差（东、北、天） - <span class="math inline">\(\delta \phi = [\delta \phi_E, \delta \phi_N, \delta \phi_U]^T\)</span>：姿态误差角 - <span class="math inline">\(\varepsilon = [\varepsilon_x, \varepsilon_y, \varepsilon_z]^T\)</span>：陀螺零偏 - <span class="math inline">\(\nabla = [\nabla_x, \nabla_y, \nabla_z]^T\)</span>：加速度计零偏</p>
+<p><strong>2. 系统框图</strong></p>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                         INS/GPS松组合系统                            │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ┌───────────┐      ┌───────────┐      ┌───────────┐              │
+│   │   IMU     │──────│   INS     │──────│  导航输出  │              │
+│   │ (陀螺/加计)│      │  力学编排  │      │ (p,v,φ)   │              │
+│   └───────────┘      └───────────┘      └───────────┘              │
+│                            │                   │                    │
+│                            │                   │                    │
+│                            ▼                   ▼                    │
+│                       ┌───────────┐      ┌───────────┐              │
+│                       │  误差状态  │◄─────│   减法器   │◄────┐       │
+│                       │   方程     │      │           │     │       │
+│                       └───────────┘      └───────────┘     │       │
+│                            │                   ▲           │       │
+│                            ▼                   │           │       │
+│                       ┌───────────┐      ┌───────────┐     │       │
+│                       │   卡尔曼   │──────│  观测方程  │     │       │
+│                       │   滤波器   │      │           │     │       │
+│                       └───────────┘      └───────────┘     │       │
+│                            │                   ▲           │       │
+│                            │                   │           │       │
+│                            ▼                   │           │       │
+│                       ┌───────────┐      ┌───────────┐     │       │
+│                       │  误差估计  │      │   GPS     │─────┘       │
+│                       │  (反馈校正) │      │ (p,v输出) │             │
+│                       └───────────┘      └───────────┘             │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<p><strong>3. 观测方程</strong></p>
+<p>观测量为INS与GPS的位置、速度之差： <span class="math display">\[z = \begin{bmatrix} p_{INS} - p_{GPS} \\ v_{INS} - v_{GPS} \end{bmatrix} = H x + v\]</span></p>
+<p>观测矩阵： <span class="math display">\[H = \begin{bmatrix} I_{3\times3} &amp; 0_{3\times3} &amp; 0_{3\times3} &amp; 0_{3\times3} &amp; 0_{3\times3} \\ 0_{3\times3} &amp; I_{3\times3} &amp; 0_{3\times3} &amp; 0_{3\times3} &amp; 0_{3\times3} \end{bmatrix}\]</span></p>
+<p>观测噪声<span class="math inline">\(v \sim N(0, R)\)</span>，<span class="math inline">\(R\)</span>由GPS定位精度决定。</p>
+<p><strong>评分要点</strong>： - 状态向量完整（30%） - 系统框图清晰（30%） - 观测方程正确（40%）</p>
+<p><strong>PPT页码</strong>：P71-78</p>
+<hr />
+<h3 id="题目5紧组合与松组合对比分析题">题目5：紧组合与松组合对比（分析题）</h3>
+<p><strong>题目</strong>：对比分析INS/GPS松组合与紧组合的优缺点，并说明各自适用场景。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>1. 结构对比</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>对比项</th>
+<th>松组合</th>
+<th>紧组合</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>观测量</td>
+<td>GPS位置/速度</td>
+<td>GPS伪距/伪距率</td>
+</tr>
+<tr class="even">
+<td>状态维数</td>
+<td>15维</td>
+<td>17维（+GPS钟差）</td>
+</tr>
+<tr class="odd">
+<td>GPS要求</td>
+<td>需完成定位解算</td>
+<td>直接使用原始观测</td>
+</tr>
+<tr class="even">
+<td>计算量</td>
+<td>较小</td>
+<td>较大</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 优缺点分析</strong></p>
+<p><strong>松组合优点</strong>： - 实现简单，只需GPS的定位结果 - 计算量小 - GPS与INS解耦，便于调试</p>
+<p><strong>松组合缺点</strong>： - GPS必须至少接收到4颗卫星才能定位 - GPS定位误差（如多路径）直接传递给组合系统 - 无法利用部分卫星信息</p>
+<p><strong>紧组合优点</strong>： - 可用卫星数&lt;4时仍能工作 - 直接使用伪距，避免了GPS定位误差 - 可同时估计接收机钟差 - 抗干扰能力更强</p>
+<p><strong>紧组合缺点</strong>： - 实现复杂，需要GPS原始观测 - 计算量大 - 需要卫星星历信息</p>
+<p><strong>3. 适用场景</strong></p>
+<p><strong>松组合适用于</strong>： - 开阔环境，GPS信号良好 - 对实时性要求高的场合 - 系统简单、成本敏感的应用</p>
+<p><strong>紧组合适用于</strong>： - 城市峡谷、隧道等遮挡环境 - 高精度导航需求 - 军事、航空等高可靠性要求</p>
+<p><strong>评分要点</strong>： - 对比全面（40%） - 优缺点分析准确（40%） - 适用场景合理（20%）</p>
+<p><strong>PPT页码</strong>：P67-84</p>
+<hr />
+<h3 id="题目6四元数姿态更新计算题">题目6：四元数姿态更新（计算题）</h3>
+<p><strong>题目</strong>：已知四元数<span class="math inline">\(q = [0.9, 0.1, 0.2, 0.3]^T\)</span>，角速度<span class="math inline">\(\omega = [0.01, 0.02, 0.03]^T\)</span> rad/s，时间步长<span class="math inline">\(\Delta t = 0.01\)</span>s。计算一步更新后的四元数。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>步骤1：验证初始四元数归一化</strong></p>
+<p><span class="math display">\[|q| = \sqrt{0.9^2 + 0.1^2 + 0.2^2 + 0.3^2} = \sqrt{0.81 + 0.01 + 0.04 + 0.09} = \sqrt{0.95} \approx 0.975\]</span></p>
+<p>需要先归一化： <span class="math display">\[q_{norm} = \frac{q}{|q|} = [0.923, 0.103, 0.205, 0.308]^T\]</span></p>
+<p><strong>步骤2：构造四元数微分方程矩阵</strong></p>
+<p><span class="math display">\[\Omega = \begin{bmatrix} 0 &amp; -0.01 &amp; -0.02 &amp; -0.03 \\ 0.01 &amp; 0 &amp; 0.03 &amp; -0.02 \\ 0.02 &amp; -0.03 &amp; 0 &amp; 0.01 \\ 0.03 &amp; 0.02 &amp; -0.01 &amp; 0 \end{bmatrix}\]</span></p>
+<p><strong>步骤3：计算更新矩阵</strong></p>
+<p><span class="math display">\[\dot{q} = \frac{1}{2}\Omega q\]</span></p>
+<p>离散化（一阶近似）： <span class="math display">\[q_{k+1} \approx q_k + \frac{\Delta t}{2}\Omega q_k = (I + \frac{\Delta t}{2}\Omega) q_k\]</span></p>
+<p><span class="math display">\[\frac{\Delta t}{2}\Omega = 0.005 \times \Omega = \begin{bmatrix} 0 &amp; -0.00005 &amp; -0.0001 &amp; -0.00015 \\ 0.00005 &amp; 0 &amp; 0.00015 &amp; -0.0001 \\ 0.0001 &amp; -0.00015 &amp; 0 &amp; 0.00005 \\ 0.00015 &amp; 0.0001 &amp; -0.00005 &amp; 0 \end{bmatrix}\]</span></p>
+<p><strong>步骤4：计算更新后四元数</strong></p>
+<p><span class="math display">\[q_{k+1} \approx \begin{bmatrix} 0.923 \\ 0.103 \\ 0.205 \\ 0.308 \end{bmatrix} + \begin{bmatrix} -0.00005 \times 0.103 - 0.0001 \times 0.205 - 0.00015 \times 0.308 \\ 0.00005 \times 0.923 + 0.00015 \times 0.205 - 0.0001 \times 0.308 \\ 0.0001 \times 0.923 - 0.00015 \times 0.103 + 0.00005 \times 0.308 \\ 0.00015 \times 0.923 + 0.0001 \times 0.205 - 0.00005 \times 0.103 \end{bmatrix}\]</span></p>
+<p><span class="math display">\[\approx \begin{bmatrix} 0.923 - 0.000072 \\ 0.103 + 0.000034 \\ 0.205 + 0.000089 \\ 0.308 + 0.000159 \end{bmatrix} = \begin{bmatrix} 0.9229 \\ 0.1030 \\ 0.2051 \\ 0.3082 \end{bmatrix}\]</span></p>
+<p><strong>步骤5：归一化</strong></p>
+<p><span class="math display">\[|q_{k+1}| = \sqrt{0.9229^2 + 0.1030^2 + 0.2051^2 + 0.3082^2} \approx 0.975\]</span></p>
+<p>归一化后： <span class="math display">\[q_{k+1} = [0.9229, 0.1030, 0.2051, 0.3082]^T / 0.975 \approx [0.946, 0.106, 0.210, 0.316]^T\]</span></p>
+<p><strong>评分要点</strong>： - 归一化处理（20%） - 微分方程正确（30%） - 离散化计算（30%） - 结果归一化（20%）</p>
+<p><strong>PPT页码</strong>：P29-32</p>
+<hr />
+<h3 id="题目7gps伪距定位计算题">题目7：GPS伪距定位（计算题）</h3>
+<p><strong>题目</strong>：GPS伪距定位中，已知某时刻接收机到4颗卫星的伪距分别为：<span class="math inline">\(\rho_1 = 20200000\)</span>m, <span class="math inline">\(\rho_2 = 20300000\)</span>m, <span class="math inline">\(\rho_3 = 20100000\)</span>m, <span class="math inline">\(\rho_4 = 20400000\)</span>m。卫星位置已知，写出定位方程并说明求解方法。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>步骤1：建立伪距方程</strong></p>
+<p>对于第<span class="math inline">\(i\)</span>颗卫星，伪距方程为： <span class="math display">\[\rho_i = \sqrt{(x-x_i)^2 + (y-y_i)^2 + (z-z_i)^2} + c \cdot \delta t_u\]</span></p>
+<p>其中<span class="math inline">\((x, y, z)\)</span>为接收机位置，<span class="math inline">\((x_i, y_i, z_i)\)</span>为卫星位置，<span class="math inline">\(\delta t_u\)</span>为接收机钟差。</p>
+<p><strong>步骤2：线性化</strong></p>
+<p>设接收机近似位置为<span class="math inline">\((x_0, y_0, z_0)\)</span>，钟差近似值为<span class="math inline">\(\delta t_0\)</span>。对伪距方程在近似点线性化：</p>
+<p><span class="math display">\[\rho_i \approx \rho_i^0 + \frac{\partial \rho_i}{\partial x}\Delta x + \frac{\partial \rho_i}{\partial y}\Delta y + \frac{\partial \rho_i}{\partial z}\Delta z + c \cdot \Delta \delta t\]</span></p>
+<p>其中： <span class="math display">\[\frac{\partial \rho_i}{\partial x} = \frac{x_0 - x_i}{\rho_i^0}, \quad \rho_i^0 = \sqrt{(x_0-x_i)^2 + (y_0-y_i)^2 + (z_0-z_i)^2}\]</span></p>
+<p><strong>步骤3：矩阵形式</strong></p>
+<p><span class="math display">\[\begin{bmatrix} \rho_1 - \rho_1^0 \\ \rho_2 - \rho_2^0 \\ \rho_3 - \rho_3^0 \\ \rho_4 - \rho_4^0 \end{bmatrix} = \begin{bmatrix} e_{1x} &amp; e_{1y} &amp; e_{1z} &amp; 1 \\ e_{2x} &amp; e_{2y} &amp; e_{2z} &amp; 1 \\ e_{3x} &amp; e_{3y} &amp; e_{3z} &amp; 1 \\ e_{4x} &amp; e_{4y} &amp; e_{4z} &amp; 1 \end{bmatrix} \begin{bmatrix} \Delta x \\ \Delta y \\ \Delta z \\ c \cdot \Delta \delta t \end{bmatrix}\]</span></p>
+<p>其中<span class="math inline">\(e_{i} = [(x_0-x_i)/\rho_i^0, (y_0-y_i)/\rho_i^0, (z_0-z_i)/\rho_i^0]^T\)</span>为方向余弦向量。</p>
+<p><strong>步骤4：求解</strong></p>
+<p><span class="math display">\[\Delta X = H^{-1} \Delta \rho\]</span></p>
+<p>迭代更新：<span class="math inline">\(X = X_0 + \Delta X\)</span>，直到收敛。</p>
+<p><strong>步骤5：精度评估</strong></p>
+<p>几何精度因子（GDOP）： <span class="math display">\[GDOP = \sqrt{tr[(H^T H)^{-1}]}\]</span></p>
+<p><strong>评分要点</strong>： - 伪距方程建立（30%） - 线性化推导（30%） - 矩阵形式（20%） - 求解方法说明（20%）</p>
+<p><strong>PPT页码</strong>：P39-42</p>
+<hr />
+<h3 id="题目8误差状态方程综合题">题目8：误差状态方程（综合题）</h3>
+<p><strong>题目</strong>：写出INS/GPS松组合的误差状态方程，说明状态转移矩阵<span class="math inline">\(\Phi\)</span>中各子矩阵的物理意义。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>1. 误差状态向量</strong></p>
+<p><span class="math display">\[x = [\delta p^T, \delta v^T, \delta \phi^T, \varepsilon^T, \nabla^T]^T\]</span></p>
+<p><strong>2. 误差状态方程</strong></p>
+<p><span class="math display">\[\dot{x} = F x + G w\]</span></p>
+<p>其中<span class="math inline">\(F\)</span>为系统矩阵，展开为：</p>
+<p><span class="math display">\[\begin{bmatrix} \delta \dot{p} \\ \delta \dot{v} \\ \delta \dot{\phi} \\ \dot{\varepsilon} \\ \dot{\nabla} \end{bmatrix} = \begin{bmatrix} F_{pp} &amp; F_{pv} &amp; 0 &amp; 0 &amp; 0 \\ F_{vp} &amp; F_{vv} &amp; F_{v\phi} &amp; 0 &amp; C_b^n \\ 0 &amp; F_{\phi v} &amp; F_{\phi\phi} &amp; -C_b^n &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix} \begin{bmatrix} \delta p \\ \delta v \\ \delta \phi \\ \varepsilon \\ \nabla \end{bmatrix} + G w\]</span></p>
+<p><strong>3. 各子矩阵物理意义</strong></p>
+<p><strong><span class="math inline">\(F_{pp}\)</span></strong>：位置误差对位置误差变化的影响 - 主要由地球曲率引起 - 通常较小，可近似为零</p>
+<p><strong><span class="math inline">\(F_{pv}\)</span></strong>：速度误差对位置误差变化的影响 - <span class="math inline">\(F_{pv} \approx \text{diag}(1/(R_M+h), 1/((R_N+h)\cos L), -1)\)</span> - 速度误差直接导致位置误差累积</p>
+<p><strong><span class="math inline">\(F_{vp}\)</span></strong>：位置误差对速度误差变化的影响 - 由重力随高度变化引起 - 主要影响垂直通道</p>
+<p><strong><span class="math inline">\(F_{vv}\)</span></strong>：速度误差对速度误差变化的影响 - 包含哥氏加速度项 - <span class="math inline">\(F_{vv} \approx -(2\omega_{ie}^n + \omega_{en}^n) \times\)</span></p>
+<p><strong><span class="math inline">\(F_{v\phi}\)</span></strong>：姿态误差对速度误差变化的影响 - <span class="math inline">\(F_{v\phi} \approx -(C_b^n f^b) \times\)</span> - 比力投影误差导致速度误差</p>
+<p><strong><span class="math inline">\(F_{\phi v}\)</span></strong>：速度误差对姿态误差变化的影响 - 由导航系旋转引起</p>
+<p><strong><span class="math inline">\(F_{\phi\phi}\)</span></strong>：姿态误差对姿态误差变化的影响 - <span class="math inline">\(F_{\phi\phi} \approx -(\omega_{ie}^n + \omega_{en}^n) \times\)</span> - 导航系旋转导致姿态误差传播</p>
+<p><strong><span class="math inline">\(-C_b^n\)</span></strong>（陀螺零偏对应）：陀螺零偏直接导致姿态误差</p>
+<p><strong><span class="math inline">\(C_b^n\)</span></strong>（加速度计零偏对应）：加速度计零偏直接导致速度误差</p>
+<p><strong>评分要点</strong>： - 状态方程完整（30%） - 矩阵结构正确（30%） - 物理意义解释（40%）</p>
+<p><strong>PPT页码</strong>：P41-44, P71-78</p>
+<hr />
+<h3 id="题目9有色噪声处理分析题">题目9：有色噪声处理（分析题）</h3>
+<p><strong>题目</strong>：卡尔曼滤波假设噪声为白噪声，实际系统中常遇到有色噪声。说明两种处理有色噪声的方法。</p>
+<p><strong>答案</strong>：</p>
+<p><strong>1. 有色噪声问题</strong></p>
+<p>标准卡尔曼滤波假设： - 过程噪声<span class="math inline">\(w_k \sim N(0, Q)\)</span>，白噪声 - 观测噪声<span class="math inline">\(v_k \sim N(0, R)\)</span>，白噪声</p>
+<p>实际系统中，噪声常具有相关性（有色噪声），如： - 陀螺零偏的随机游走 - GPS多路径误差的时间相关性</p>
+<p><strong>2. 方法一：状态扩充法</strong></p>
+<p><strong>原理</strong>：将有色噪声建模为马尔可夫过程，扩充到状态向量中。</p>
+<p><strong>步骤</strong>： 1. 对有色噪声建模，如一阶马尔可夫过程： <span class="math display">\[\xi_k = \Phi_\xi \xi_{k-1} + w_\xi\]</span></p>
+<ol start="2" type="1">
+<li><p>扩充状态向量： <span class="math display">\[x_{aug} = \begin{bmatrix} x \\ \xi \end{bmatrix}\]</span></p></li>
+<li><p>扩充状态方程： <span class="math display">\[\begin{bmatrix} x_k \\ \xi_k \end{bmatrix} = \begin{bmatrix} \Phi &amp; G \\ 0 &amp; \Phi_\xi \end{bmatrix} \begin{bmatrix} x_{k-1} \\ \xi_{k-1} \end{bmatrix} + \begin{bmatrix} w_{k-1} \\ w_\xi \end{bmatrix}\]</span></p></li>
+<li><p>观测方程相应修改： <span class="math display">\[z_k = \begin{bmatrix} H &amp; H_\xi \end{bmatrix} \begin{bmatrix} x_k \\ \xi_k \end{bmatrix} + v_k\]</span></p></li>
+</ol>
+<p><strong>优点</strong>：精确建模，估计效果好 <strong>缺点</strong>：状态维数增加，计算量增大</p>
+<p><strong>3. 方法二：差分法</strong></p>
+<p><strong>原理</strong>：通过观测差分消除观测噪声的相关性。</p>
+<p><strong>步骤</strong>： 1. 设观测方程为：<span class="math inline">\(z_k = H x_k + \eta_k\)</span>，其中<span class="math inline">\(\eta_k\)</span>为有色噪声</p>
+<ol start="2" type="1">
+<li><p>构造差分观测： <span class="math display">\[\tilde{z}_k = z_k - \alpha z_{k-1} = H(x_k - \alpha x_{k-1}) + (\eta_k - \alpha \eta_{k-1})\]</span></p></li>
+<li><p>当<span class="math inline">\(\eta_k = \alpha \eta_{k-1} + w_\eta\)</span>时，<span class="math inline">\(\eta_k - \alpha \eta_{k-1} = w_\eta\)</span>为白噪声</p></li>
+<li><p>对差分观测应用标准卡尔曼滤波</p></li>
+</ol>
+<p><strong>优点</strong>：不增加状态维数 <strong>缺点</strong>：仅适用于特定噪声模型，可能损失信息</p>
+<p><strong>4. 应用示例</strong></p>
+<p><strong>陀螺零偏建模</strong>（状态扩充法）： - 陀螺零偏<span class="math inline">\(\varepsilon\)</span>建模为随机常数+随机游走 - 扩充状态：<span class="math inline">\(x_{aug} = [\delta p, \delta v, \delta \phi, \varepsilon, \nabla]^T\)</span> - <span class="math inline">\(\varepsilon\)</span>作为状态估计，消除其对姿态的影响</p>
+<p><strong>GPS多路径误差</strong>（差分法）： - 多路径误差具有时间相关性 - 通过观测差分降低其影响</p>
+<p><strong>评分要点</strong>： - 有色噪声问题说明（20%） - 状态扩充法（35%） - 差分法（35%） - 应用示例（10%）</p>
+<p><strong>PPT页码</strong>：P53-58</p>
+<hr />
+<h3 id="题目10insdvl组合设计综合题">题目10：INS/DVL组合设计（综合题）</h3>
+<p><strong>题目</strong>：设计一个INS/DVL组合导航系统，说明： 1. 系统结构 2. 状态向量 3. 观测方程 4. 与INS/GPS组合的区别</p>
+<p><strong>答案</strong>：</p>
+<p><strong>1. 系统结构</strong></p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                      INS/DVL组合系统                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   ┌───────┐      ┌───────┐      ┌───────┐                  │
+│   │ IMU   │──────│ INS   │──────│导航输出│                  │
+│   └───────┘      └───────┘      └───────┘                  │
+│                      │               │                      │
+│                      │               │                      │
+│                      ▼               ▼                      │
+│                 ┌───────────┐  ┌───────────┐                │
+│                 │ 误差状态  │◄─│  减法器   │◄───┐            │
+│                 │   方程    │  └───────────┘    │            │
+│                 └───────────┘         ▲        │            │
+│                      │                │        │            │
+│                      ▼                │        │            │
+│                 ┌───────────┐  ┌───────────┐   │            │
+│                 │  卡尔曼   │──│  观测方程  │   │            │
+│                 │  滤波器   │  └───────────┘   │            │
+│                 └───────────┘         ▲        │            │
+│                      │                │        │            │
+│                      ▼                │        │            │
+│                 ┌───────────┐  ┌───────────┐   │            │
+│                 │ 误差估计  │  │   DVL     │───┘            │
+│                 │(反馈校正) │  │ (速度输出)│                │
+│                 └───────────┘  └───────────┘                │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+<p><strong>2. 状态向量</strong></p>
+<p>INS/DVL组合通常采用与松组合类似的误差状态：</p>
+<p><span class="math display">\[x = [\delta p^T, \delta v^T, \delta \phi^T, \varepsilon^T, \nabla^T]^T \in \mathbb{R}^{15}\]</span></p>
+<p>若需估计DVL误差，可扩充状态： <span class="math display">\[x_{aug} = [\delta p^T, \delta v^T, \delta \phi^T, \varepsilon^T, \nabla^T, \delta v_{DVL}^T, \delta \theta_{DVL}]^T\]</span></p>
+<p>其中<span class="math inline">\(\delta v_{DVL}\)</span>为DVL速度刻度因子误差，<span class="math inline">\(\delta \theta_{DVL}\)</span>为安装角误差。</p>
+<p><strong>3. 观测方程</strong></p>
+<p>DVL提供载体坐标系下的速度测量<span class="math inline">\(v_{DVL}^b\)</span>，INS提供的速度<span class="math inline">\(v_{INS}^n\)</span>需转换到b系：</p>
+<p><span class="math display">\[v_{INS}^b = C_n^b v_{INS}^n\]</span></p>
+<p>观测方程： <span class="math display">\[z = v_{INS}^b - v_{DVL}^b = H x + v\]</span></p>
+<p>观测矩阵： <span class="math display">\[H = \begin{bmatrix} 0_{3\times3} &amp; C_n^b &amp; H_\phi &amp; 0_{3\times3} &amp; 0_{3\times3} \end{bmatrix}\]</span></p>
+<p>其中<span class="math inline">\(H_\phi\)</span>为姿态误差对速度观测的影响矩阵。</p>
+<p><strong>4. 与INS/GPS组合的区别</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>对比项</th>
+<th>INS/GPS组合</th>
+<th>INS/DVL组合</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>观测量</td>
+<td>位置/速度（导航系）</td>
+<td>速度（载体系）</td>
+</tr>
+<tr class="even">
+<td>坐标系</td>
+<td>导航系n</td>
+<td>载体系b</td>
+</tr>
+<tr class="odd">
+<td>位置约束</td>
+<td>有（GPS位置）</td>
+<td>无（需其他传感器）</td>
+</tr>
+<tr class="even">
+<td>适用环境</td>
+<td>全环境（需卫星信号）</td>
+<td>水下（无GPS信号）</td>
+</tr>
+<tr class="odd">
+<td>误差可观测性</td>
+<td>位置、速度误差可观测</td>
+<td>速度误差可观测，位置误差需外部辅助</td>
+</tr>
+<tr class="even">
+<td>主要应用</td>
+<td>地面、航空导航</td>
+<td>水下导航</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键区别</strong>： 1. <strong>坐标系不同</strong>：GPS提供导航系下的位置/速度，DVL提供载体系下的速度 2. <strong>位置约束</strong>：GPS可约束位置误差，DVL仅约束速度，位置误差会累积 3. <strong>应用场景</strong>：DVL主要用于水下导航，GPS信号不可用</p>
+<p><strong>评分要点</strong>： - 系统结构清晰（25%） - 状态向量正确（25%） - 观测方程正确（25%） - 对比分析准确（25%）</p>
+<p><strong>PPT页码</strong>：P85-91</p>
+<hr />
+<h2 id="七考前一页纸总结">七、考前一页纸总结</h2>
+<h3 id="核心公式速记">核心公式速记</h3>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 27%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>公式名称</th>
+<th>公式</th>
+<th>页码</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>比力方程</td>
+<td><span class="math inline">\(\dot{v}^n = C_b^n f^b - (2\omega_{ie}^n + \omega_{en}^n) \times v^n + g^n\)</span></td>
+<td>P15</td>
+</tr>
+<tr class="even">
+<td>姿态更新</td>
+<td><span class="math inline">\(\dot{C}_b^n = C_b^n(\omega_{nb}^b \times)\)</span></td>
+<td>P33</td>
+</tr>
+<tr class="odd">
+<td>四元数更新</td>
+<td><span class="math inline">\(\dot{q} = \frac{1}{2} q \otimes \omega_{nb}^b\)</span></td>
+<td>P31</td>
+</tr>
+<tr class="even">
+<td>KF预测</td>
+<td><span class="math inline">\(\hat{x}_{k\|k-1} = \Phi \hat{x}_{k-1\|k-1}\)</span>, <span class="math inline">\(P_{k\|k-1} = \Phi P \Phi^T + Q\)</span></td>
+<td>P48</td>
+</tr>
+<tr class="odd">
+<td>KF更新</td>
+<td><span class="math inline">\(K = PH^T(HPH^T+R)^{-1}\)</span>, <span class="math inline">\(\hat{x} = \hat{x} + K(z-H\hat{x})\)</span></td>
+<td>P50</td>
+</tr>
+<tr class="even">
+<td>松组合状态</td>
+<td>15维：<span class="math inline">\(\delta p, \delta v, \delta \phi, \varepsilon, \nabla\)</span></td>
+<td>P71</td>
+</tr>
+<tr class="odd">
+<td>紧组合状态</td>
+<td>17维：15维 + GPS钟差2维</td>
+<td>P79</td>
+</tr>
+<tr class="even">
+<td>伪距方程</td>
+<td><span class="math inline">\(\rho = r + c\delta t_u + I + T + \varepsilon\)</span></td>
+<td>P39</td>
+</tr>
+<tr class="odd">
+<td>多普勒测速</td>
+<td><span class="math inline">\(f_d = \frac{2f_0 v \cos\theta}{c}\)</span></td>
+<td>P47</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键概念速记">关键概念速记</h3>
+<table>
+<thead>
+<tr class="header">
+<th>概念</th>
+<th>定义</th>
+<th>区别</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>直接法 vs 间接法</td>
+<td>估计状态本身 vs 估计误差</td>
+<td>估计对象不同</td>
+</tr>
+<tr class="even">
+<td>输出校正 vs 反馈校正</td>
+<td>开环 vs 闭环</td>
+<td>是否修正INS</td>
+</tr>
+<tr class="odd">
+<td>松组合 vs 紧组合</td>
+<td>用GPS位置/速度 vs 用伪距</td>
+<td>观测量不同</td>
+</tr>
+</tbody>
+</table>
+<h3 id="易错点速记">易错点速记</h3>
+<ol type="1">
+<li><span class="math inline">\(C_b^n\)</span>：b系→n系，<span class="math inline">\(C_n^b = (C_b^n)^T\)</span></li>
+<li>比力方程：比力 - 哥氏 + 重力 = 加速度</li>
+<li>松组合15维，紧组合17维（+钟差）</li>
+<li>四元数必须归一化</li>
+<li>KF五方程：预测2步 + 更新3步</li>
+</ol>
+<h3 id="状态向量速记">状态向量速记</h3>
+<p><strong>松组合15维</strong>：位(3) + 速(3) + 姿(3) + 陀(3) + 加(3) = 15</p>
+<p><strong>紧组合17维</strong>：15 + 钟差(1) + 钟漂(1) = 17</p>
+<hr />
+<blockquote>
+<p><strong>祝考试顺利！</strong></p>
+<p>记住：理解原理比死记公式更重要，推导过程要清晰，变量含义要明确。</p>
+</blockquote>
+
+        </div>
+    </section>
+
+</main>
     <footer class="footer">
         <p>组合导航课程 · 完整讲解版</p>
         <p>哈尔滨工程大学 智能学院 | 张勇刚、李宁</p>
