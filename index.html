@@ -593,11 +593,11 @@
   .mm-branch{max-width:320px}
 }
     
-/* ===== 电脑端侧边栏导航 ===== */
+/* ===== 侧边栏导航按钮（所有设备可见） ===== */
 .sidebar-toggle {
-    display: none;
+    display: flex;
     position: fixed;
-    top: 70px;
+    top: 16px;
     left: 16px;
     width: 44px;
     height: 44px;
@@ -607,24 +607,28 @@
     color: white;
     font-size: 20px;
     cursor: pointer;
-    z-index: 200;
+    z-index: 1100;
     box-shadow: 0 4px 16px rgba(102,126,234,0.35);
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: transparent;
 }
 .sidebar-toggle:hover {
     transform: scale(1.08);
     box-shadow: 0 6px 24px rgba(102,126,234,0.5);
+}
+.sidebar-toggle:active {
+    transform: scale(0.95);
 }
 [data-theme="dark"] .sidebar-toggle {
     background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
     box-shadow: 0 4px 16px rgba(246,211,101,0.35);
 }
 
-/* 侧边栏 */
+/* 侧边栏（默认隐藏） */
 .sidebar-nav {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -632,12 +636,13 @@
     height: 100vh;
     background: var(--card);
     border-right: 1px solid var(--border);
-    z-index: 150;
+    z-index: 1050;
     transform: translateX(-100%);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     overflow-x: hidden;
     box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    -webkit-overflow-scrolling: touch;
 }
 .sidebar-nav.open {
     transform: translateX(0);
@@ -748,7 +753,7 @@
     right: 0;
     bottom: 0;
     background: rgba(0,0,0,0.4);
-    z-index: 140;
+    z-index: 1040;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -788,25 +793,6 @@
     background: rgba(255,255,255,0.1);
 }
 
-/* 所有设备都显示侧边栏按钮 */
-.sidebar-toggle {
-    display: flex;
-    position: fixed;
-    top: 16px;
-    left: 16px;
-    z-index: 200;
-}
-/* 侧边栏默认隐藏，只有添加.open时才显示 */
-.sidebar-nav {
-    display: block;
-    top: 0;
-    padding-top: 60px;
-    transform: translateX(-100%);
-}
-.sidebar-nav.open {
-    transform: translateX(0);
-}
-
 /* 电脑端特殊样式 */
 @media (min-width: 1024px) {
     .sidebar-toggle {
@@ -831,6 +817,53 @@
     body:has(.sidebar-nav.open) .container.main-content {
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+/* ===== 手机端专属优化 ===== */
+@media (max-width: 1023px) {
+    .sidebar-toggle {
+        top: 12px;
+        left: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    .sidebar-nav {
+        width: 260px;
+    }
+    .sidebar-header {
+        padding: 16px 12px;
+        padding-top: 52px;
+    }
+    .sidebar-close {
+        top: 12px;
+        right: 12px;
+    }
+    .sidebar-link {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    .sidebar-group-header {
+        padding: 10px 14px;
+        font-size: 11px;
+    }
+    .search-container {
+        padding: 8px 12px;
+    }
+    .search-input {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    /* 防止iOS橡皮筋效果 */
+    .sidebar-nav.open {
+        position: fixed;
+        overflow-y: auto;
+    }
+    /* 手机端正文间距 */
+    .container.main-content {
+        padding-top: 60px;
     }
 }
 
