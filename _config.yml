@@ -1,0 +1,32 @@
+title: 组合导航课程
+description: 哈尔滨工程大学 组合导航系统 完整讲解版
+url: https://waowaohh.github.io
+baseurl: /navigation-course
+theme: minima
+markdown: kramdown
+math_engine: mathjax
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+lang: zh-CN
+
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: default
+
+sass:
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .github/
