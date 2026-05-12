@@ -13,7 +13,7 @@
         options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] }
     };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
     <style>
         :root {
             --primary: #1a365d;
@@ -592,9 +592,454 @@
   .mm-body{padding:24px}
   .mm-branch{max-width:320px}
 }
-    </style>
+    
+/* ===== 电脑端侧边栏导航 ===== */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 4px 16px rgba(102,126,234,0.35);
+    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 24px rgba(102,126,234,0.5);
+}
+[data-theme="dark"] .sidebar-toggle {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    box-shadow: 0 4px 16px rgba(246,211,101,0.35);
+}
+
+/* 侧边栏 */
+.sidebar-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    z-index: 150;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+}
+.sidebar-nav.open {
+    transform: translateX(0);
+}
+[data-theme="dark"] .sidebar-nav {
+    background: #0a0a0a;
+    border-right-color: #222;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+}
+
+/* 侧边栏头部 */
+.sidebar-header {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(102,126,234,0.08) 0%, rgba(118,75,162,0.05) 100%);
+}
+.sidebar-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+.sidebar-header p {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* 侧边栏分组 */
+.sidebar-group {
+    border-bottom: 1px solid var(--border);
+}
+.sidebar-group-header {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(0,0,0,0.02);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s;
+}
+.sidebar-group-header:hover {
+    background: rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .sidebar-group-header {
+    background: rgba(255,255,255,0.02);
+}
+[data-theme="dark"] .sidebar-group-header:hover {
+    background: rgba(255,255,255,0.04);
+}
+.sidebar-group-header .arrow {
+    transition: transform 0.3s;
+    font-size: 10px;
+}
+.sidebar-group.collapsed .sidebar-group-header .arrow {
+    transform: rotate(-90deg);
+}
+.sidebar-group.collapsed .sidebar-group-items {
+    display: none;
+}
+
+/* 侧边栏链接 */
+.sidebar-group-items {
+    padding: 4px 0;
+}
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px 10px 20px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+    gap: 10px;
+}
+.sidebar-link:hover {
+    background: rgba(102,126,234,0.08);
+    border-left-color: #667eea;
+    color: var(--accent);
+}
+.sidebar-link.active {
+    background: rgba(102,126,234,0.12);
+    border-left-color: #667eea;
+    color: #667eea;
+    font-weight: 600;
+}
+[data-theme="dark"] .sidebar-link:hover,
+[data-theme="dark"] .sidebar-link.active {
+    background: rgba(102,126,234,0.15);
+}
+.sidebar-link .icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+/* 侧边栏遮罩 */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 140;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.sidebar-overlay.show {
+    opacity: 1;
+}
+[data-theme="dark"] .sidebar-overlay {
+    background: rgba(0,0,0,0.7);
+}
+
+/* 关闭按钮 */
+.sidebar-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(0,0,0,0.05);
+    color: var(--text-light);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.sidebar-close:hover {
+    background: rgba(0,0,0,0.1);
+    color: var(--text);
+}
+[data-theme="dark"] .sidebar-close {
+    background: rgba(255,255,255,0.05);
+}
+[data-theme="dark"] .sidebar-close:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* 电脑端显示侧边栏按钮 */
+@media (min-width: 1024px) {
+    .sidebar-toggle {
+        display: flex;
+    }
+    .sidebar-nav {
+        display: block;
+    }
+    .toc-bar {
+        padding-left: 70px;
+    }
+    .container.main-content {
+        margin-left: 0;
+    }
+    .container.main-content.sidebar-open {
+        margin-left: 280px;
+    }
+}
+
+/* ===== 骨架屏加载动画 ===== */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 8px;
+}
+[data-theme="dark"] .skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+}
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* 章节加载状态 */
+.chapter-loading {
+    padding: 40px 20px;
+}
+.chapter-loading .skeleton-line {
+    height: 16px;
+    margin-bottom: 12px;
+}
+.chapter-loading .skeleton-line:nth-child(1) { width: 60%; }
+.chapter-loading .skeleton-line:nth-child(2) { width: 80%; }
+.chapter-loading .skeleton-line:nth-child(3) { width: 45%; }
+.chapter-loading .skeleton-line:nth-child(4) { width: 70%; }
+
+/* ===== 懒加载章节样式 ===== */
+.chapter {
+    min-height: 200px;
+}
+.chapter.lazy-loaded {
+    animation: fadeInUp 0.5s ease-out;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== 进度指示器 ===== */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    z-index: 1000;
+    width: 0%;
+    transition: width 0.1s;
+}
+
+/* ===== 快速跳转按钮 ===== */
+.quick-nav {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+}
+.quick-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--card);
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quick-nav-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    background: var(--accent);
+    color: white;
+}
+[data-theme="dark"] .quick-nav-btn {
+    background: #1a1a1a;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 600px) {
+    .quick-nav {
+        bottom: 80px;
+        right: 16px;
+    }
+    .quick-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* ===== 搜索功能 ===== */
+.search-container {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+.search-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.2s;
+}
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+[data-theme="dark"] .search-input {
+    background: #0a0a0a;
+}
+
+/* ===== 键盘快捷键提示 ===== */
+.keyboard-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.keyboard-hint.show {
+    opacity: 1;
+}
+</style>
 </head>
 <body>
+<!-- 进度条 -->
+<div class="progress-bar"></div>
+
+<!-- 侧边栏切换按钮 -->
+<button class="sidebar-toggle" title="打开导航菜单 (快捷键: ?)">☰</button>
+
+<!-- 侧边栏遮罩 -->
+<div class="sidebar-overlay"></div>
+
+<!-- 侧边栏导航 -->
+<nav class="sidebar-nav">
+    <button class="sidebar-close">×</button>
+    <div class="sidebar-header">
+        <h3>🧭 组合导航课程</h3>
+        <p>完整讲解版 · 应试冲刺</p>
+    </div>
+    
+    <!-- 搜索框 -->
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="🔍 搜索章节...">
+    </div>
+    
+    <!-- 基础理论 -->
+    <div class="sidebar-group">
+        <div class="sidebar-group-header">📚 基础理论 <span class="arrow">▼</span></div>
+        <div class="sidebar-group-items">
+            <a href="#chapter-0" class="sidebar-link"><span class="icon">🧭</span>基础理论合集（第1-2讲）</a>
+            <a href="#chapter-1" class="sidebar-link"><span class="icon">📖</span>第一讲 绪论</a>
+            <a href="#chapter-2" class="sidebar-link"><span class="icon">📐</span>第二讲 惯导系统基本方程</a>
+            <a href="#chapter-6" class="sidebar-link"><span class="icon">🌍</span>坐标系定义与转换</a>
+        </div>
+    </div>
+    
+    <!-- 惯导原理 -->
+    <div class="sidebar-group">
+        <div class="sidebar-group-header">⚙️ 惯导原理 <span class="arrow">▼</span></div>
+        <div class="sidebar-group-items">
+            <a href="#chapter-3" class="sidebar-link"><span class="icon">⚡</span>第三讲 惯导系统基本原理</a>
+            <a href="#chapter-4" class="sidebar-link"><span class="icon">🔢</span>第四讲 惯导系统计算方程</a>
+            <a href="#chapter-5" class="sidebar-link"><span class="icon">🔄</span>第五讲 姿态矩阵定义与更新</a>
+        </div>
+    </div>
+    
+    <!-- 卫星与误差 -->
+    <div class="sidebar-group">
+        <div class="sidebar-group-header">🛰️ 卫星与误差 <span class="arrow">▼</span></div>
+        <div class="sidebar-group-items">
+            <a href="#chapter-8" class="sidebar-link"><span class="icon">🛰️</span>第七讲 卫星导航</a>
+            <a href="#chapter-9" class="sidebar-link"><span class="icon">📊</span>第六讲 误差建模</a>
+        </div>
+    </div>
+    
+    <!-- 卡尔曼滤波 -->
+    <div class="sidebar-group">
+        <div class="sidebar-group-header">📊 卡尔曼滤波 <span class="arrow">▼</span></div>
+        <div class="sidebar-group-items">
+            <a href="#chapter-10" class="sidebar-link"><span class="icon">📊</span>第十讲 卡尔曼滤波</a>
+            <a href="#chapter-12" class="sidebar-link"><span class="icon">🔧</span>第11-12讲 KF应用</a>
+        </div>
+    </div>
+    
+    <!-- 应试冲刺 -->
+    <div class="sidebar-group">
+        <div class="sidebar-group-header">🎯 应试冲刺 <span class="arrow">▼</span></div>
+        <div class="sidebar-group-items">
+            <a href="#chapter-7" class="sidebar-link"><span class="icon">📝</span>基础概念与应试</a>
+            <a href="#chapter-11" class="sidebar-link"><span class="icon">🎯</span>课程总结冲刺</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 快速跳转按钮 -->
+<div class="quick-nav">
+    <button class="quick-nav-btn" onclick="scrollToTop()" title="回到顶部">↑</button>
+    <button class="quick-nav-btn" onclick="scrollToBottom()" title="滚动到底部">↓</button>
+</div>
+
+<!-- 键盘快捷键提示 -->
+<div class="keyboard-hint"></div>
+
     <!-- 章节导航（可横向滚动） -->
     <nav class="toc-bar">
         <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a><a href="#chapter-9" style="border-color:#D69E2E">📊 第六讲 误差建模</a>
@@ -605,7 +1050,7 @@
     </nav>
 
     <!-- 主内容 -->
-    <main class="container">
+    <main class="container main-content">
         
     <section class="chapter" id="chapter-0">
         <div class="chapter-header" style="border-left-color:#6B46C1; background:linear-gradient(135deg, #6B46C111 0%, #6B46C105 100%)">
@@ -6201,5 +6646,231 @@ GPS:         ↑              ↑
     })();
     </script>
 
+
+<script>
+// ===== 延迟加载MathJax =====
+let mathJaxLoaded = false;
+let mathJaxNeeded = false;
+
+function loadMathJax() {
+    if (mathJaxLoaded) return;
+    mathJaxLoaded = true;
+    
+    window.MathJax = {
+        tex: {
+            inlineMath: [["$", "$"], ["\\(", "\\)"]],
+            displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+        },
+        options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] },
+        startup: {
+            pageReady: () => {
+                return MathJax.startup.defaultPageReady().then(() => {
+                    console.log('MathJax loaded and rendered');
+                });
+            }
+        }
+    };
+    
+    const script = document.createElement('script');
+    script.id = 'MathJax-script';
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    script.async = true;
+    document.head.appendChild(script);
+}
+
+// 检测是否有公式需要渲染
+function checkMathJaxNeeded() {
+    if (mathJaxNeeded) return;
+    const content = document.body.innerText;
+    if (content.includes('$') || content.includes('\\(') || content.includes('\\[')) {
+        mathJaxNeeded = true;
+        loadMathJax();
+    }
+}
+
+// ===== 侧边栏功能 =====
+const sidebarToggle = document.querySelector('.sidebar-toggle');
+const sidebarNav = document.querySelector('.sidebar-nav');
+const sidebarOverlay = document.querySelector('.sidebar-overlay');
+const sidebarClose = document.querySelector('.sidebar-close');
+const mainContent = document.querySelector('.container.main-content');
+
+function openSidebar() {
+    sidebarNav.classList.add('open');
+    sidebarOverlay.classList.add('show');
+    if (mainContent) mainContent.classList.add('sidebar-open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSidebar() {
+    sidebarNav.classList.remove('open');
+    sidebarOverlay.classList.remove('show');
+    if (mainContent) mainContent.classList.remove('sidebar-open');
+    document.body.style.overflow = '';
+}
+
+if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+
+// 侧边栏链接点击后关闭
+document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', () => {
+        closeSidebar();
+        // 更新active状态
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+
+// 侧边栏分组折叠
+document.querySelectorAll('.sidebar-group-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const group = header.parentElement;
+        group.classList.toggle('collapsed');
+    });
+});
+
+// ===== 滚动进度条 =====
+const progressBar = document.querySelector('.progress-bar');
+function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    if (progressBar) progressBar.style.width = progress + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+
+// ===== 回到顶部/底部 =====
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+// ===== 键盘快捷键 =====
+const keyboardHint = document.querySelector('.keyboard-hint');
+function showKeyboardHint(text) {
+    if (keyboardHint) {
+        keyboardHint.textContent = text;
+        keyboardHint.classList.add('show');
+        setTimeout(() => keyboardHint.classList.remove('show'), 1500);
+    }
+}
+
+document.addEventListener('keydown', (e) => {
+    // 按 ? 显示帮助
+    if (e.key === '?' && !e.ctrlKey && !e.metaKey) {
+        showKeyboardHint('快捷键: ↑/↓ 滚动 | Home/Top 顶部 | End 底部 | Esc 关闭侧边栏');
+    }
+    // Esc 关闭侧边栏
+    if (e.key === 'Escape') {
+        closeSidebar();
+    }
+    // Ctrl+Home 回到顶部
+    if (e.key === 'Home' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        scrollToTop();
+        showKeyboardHint('回到顶部');
+    }
+    // Ctrl+End 到底部
+    if (e.key === 'End' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        scrollToBottom();
+        showKeyboardHint('滚动到底部');
+    }
+});
+
+// ===== 搜索功能 =====
+const searchInput = document.querySelector('.search-input');
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            const text = link.textContent.toLowerCase();
+            const group = link.closest('.sidebar-group');
+            if (query === '') {
+                link.style.display = '';
+                if (group) group.style.display = '';
+            } else if (text.includes(query)) {
+                link.style.display = '';
+                if (group) {
+                    group.style.display = '';
+                    group.classList.remove('collapsed');
+                }
+            } else {
+                link.style.display = 'none';
+            }
+        });
+        // 隐藏没有匹配项的分组
+        document.querySelectorAll('.sidebar-group').forEach(group => {
+            const visibleLinks = group.querySelectorAll('.sidebar-link:not([style*="display: none"])');
+            if (visibleLinks.length === 0 && query !== '') {
+                group.style.display = 'none';
+            }
+        });
+    });
+}
+
+// ===== 懒加载章节 =====
+const lazyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const chapter = entry.target;
+            if (!chapter.classList.contains('lazy-loaded')) {
+                chapter.classList.add('lazy-loaded');
+                // 检查是否需要加载MathJax
+                checkMathJaxNeeded();
+            }
+        }
+    });
+}, { rootMargin: '100px' });
+
+document.querySelectorAll('.chapter').forEach(chapter => {
+    lazyObserver.observe(chapter);
+});
+
+// ===== 高亮当前章节 =====
+const chapterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.id;
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}, { rootMargin: '-20% 0px -60% 0px' });
+
+document.querySelectorAll('.chapter').forEach(chapter => {
+    chapterObserver.observe(chapter);
+});
+
+// ===== 初始化 =====
+document.addEventListener('DOMContentLoaded', () => {
+    updateProgress();
+    // 延迟检查MathJax需求
+    setTimeout(checkMathJaxNeeded, 1000);
+});
+
+// ===== 性能优化：减少重绘 =====
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            updateProgress();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}, { passive: true });
+
+console.log('🚀 组合导航课程网站优化已加载');
+console.log('📖 快捷键: ? 显示帮助 | Esc 关闭侧边栏');
+</script>
 </body>
 </html>
