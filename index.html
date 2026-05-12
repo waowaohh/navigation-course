@@ -792,18 +792,34 @@
 @media (min-width: 1024px) {
     .sidebar-toggle {
         display: flex;
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 200;
     }
     .sidebar-nav {
         display: block;
+        top: 0;
+        padding-top: 60px;
     }
     .toc-bar {
         padding-left: 70px;
     }
+    /* 桌面端正文强制居中 - 始终居中不受侧边栏影响 */
     .container.main-content {
-        margin-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
     }
     .container.main-content.sidebar-open {
-        margin-left: 280px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
+    }
+    /* 侧边栏打开时，正文内容区域不变 */
+    body:has(.sidebar-nav.open) .container.main-content {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -6709,7 +6725,16 @@ function closeSidebar() {
     document.body.style.overflow = '';
 }
 
-if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+// 切换侧边栏显示/隐藏
+function toggleSidebar() {
+    if (sidebarNav.classList.contains('open')) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+}
+
+if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
 if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
 
