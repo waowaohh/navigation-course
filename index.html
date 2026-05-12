@@ -581,6 +581,17 @@
 .mm-note{padding:10px 12px;font-size:12px}
 }
 
+
+@media(min-width:1200px){
+  .chapter-body{max-width:960px;margin:0 auto;font-size:16px;line-height:1.85}
+  .chapter-body table{font-size:14px}
+  .chapter-body pre{font-size:13px}
+  .toc-bar{padding:0 40px;gap:4px}
+  .toc-bar a{padding:8px 16px;font-size:14px}
+  .mm{max-width:960px;margin-left:auto;margin-right:auto}
+  .mm-body{padding:24px}
+  .mm-branch{max-width:320px}
+}
     </style>
 </head>
 <body>
@@ -590,6 +601,7 @@
     
         <a href="#chapter-10" style="border-color:#38A169">📊 第十讲 卡尔曼滤波</a>
         <a href="#chapter-11" style="border-color:#E53E3E">🎯 课程总结冲刺</a>
+        <a href="#chapter-12" style="border-color:#805AD5">🔧 第11-12讲 KF应用</a>
     </nav>
 
     <!-- 主内容 -->
@@ -5338,6 +5350,798 @@ F_{vp} &amp; F_{vv} &amp; F_{v\phi} &amp; 0 &amp; C_b^n \\
 <p>记住：理解原理比死记公式更重要，推导过程要清晰，变量含义要明确。</p>
 </blockquote>
 
+        </div>
+    </section>
+    <section class="chapter" id="chapter-12">
+        <div class="chapter-header" style="border-left-color:#805AD5; background:linear-gradient(135deg, #805AD511 0%, #805AD505 100%)">
+            <h2 style="color:#805AD5">🔧 第11-12讲 卡尔曼滤波的应用</h2>
+        </div>
+        <div class="chapter-body">
+            <h1 id="第11-12讲-卡尔曼滤波的应用---详细讲解版">第11-12讲 卡尔曼滤波的应用 - 详细讲解版</h1>
+<blockquote>
+<p><strong>课程</strong>: 组合导航 | <strong>PPT页数</strong>: 37页 | <strong>难度</strong>: ★★★★☆ <strong>核心主题</strong>: 连续系统离散化、KF应用举例、组合导航中的KF、有色噪声处理、组合导航工作模式</p>
+</blockquote>
+<hr />
+<h2 id="一思维导图">一、思维导图</h2>
+<pre><code>卡尔曼滤波的应用（第11-12讲）
+│
+├── 1. 连续系统离散化 (PPT 3-4)
+│   ├── 连续系统模型: Ẋ=FX+Gw, Z=HX+v
+│   ├── 状态转移矩阵: Φ = I + FT + F²T²/2! + ...
+│   └── 等效离散噪声: ΓQΓᵀ = ∫ΦGQGᵀΦᵀdt
+│
+├── 2. 卡尔曼滤波应用举例 (PPT 5-16)
+│   ├── 运动体直线运动跟踪
+│   │   ├── 三状态模型: s, v, a
+│   │   ├── 状态方程（含加加速度jerk）
+│   │   ├── MATLAB仿真实现
+│   │   └── 滤波效果分析
+│   └── 稳态卡尔曼滤波
+│       ├── P_k = P_{k-1} = P
+│       └── 解代数Riccati方程
+│
+├── 3. 组合导航中的卡尔曼滤波 (PPT 18-25)
+│   ├── 直接法 vs 间接法
+│   │   ├── 直接法: 导航参数作状态
+│   │   └── 间接法: 误差量作状态 ★
+│   ├── 输出校正 vs 反馈校正
+│   │   ├── 输出校正: 估计值直接输出
+│   │   └── 反馈校正: 估计值反馈修正系统
+│   └── 两种方法对比分析
+│
+├── 4. 有色噪声条件下的卡尔曼滤波 (PPT 27-29) ★★★
+│   ├── 有色噪声概念
+│   ├── 白化方法: 一阶马尔可夫过程
+│   │   └── Ṅ(t) = -αN(t) + ξ(t)
+│   ├── 增广状态向量法
+│   │   ├── X̄ = [X; w]
+│   │   └── Φ̄ = [Φ, Γ; 0, π]
+│   └── 应试记忆法（三步走）
+│
+└── 5. 组合导航系统工作模式 (PPT 31-36)
+    ├── 重调法（GPS直接替代）
+    ├── 松组合（参数级融合）
+    └── 紧组合（测量级融合）</code></pre>
+<hr />
+<h2 id="二本章重点分析">二、本章重点分析</h2>
+<h3 id="学习目标">学习目标</h3>
+<ol type="1">
+<li>掌握连续系统离散化的方法和公式推导</li>
+<li>理解卡尔曼滤波在实际运动跟踪中的应用</li>
+<li>区分直接法与间接法、输出校正与反馈校正</li>
+<li><strong>重点掌握</strong>有色噪声条件下的卡尔曼滤波处理方法</li>
+<li>了解组合导航系统的三种工作模式</li>
+</ol>
+<h3 id="重点等级划分">重点等级划分</h3>
+<table>
+<thead>
+<tr class="header">
+<th>知识点</th>
+<th>重要程度</th>
+<th>考试频率</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>连续系统离散化</td>
+<td>★★★</td>
+<td>高</td>
+<td>中</td>
+</tr>
+<tr class="even">
+<td>KF应用举例（运动跟踪）</td>
+<td>★★★</td>
+<td>中</td>
+<td>中</td>
+</tr>
+<tr class="odd">
+<td>稳态卡尔曼滤波</td>
+<td>★★</td>
+<td>中</td>
+<td>低</td>
+</tr>
+<tr class="even">
+<td>直接法 vs 间接法</td>
+<td>★★★★</td>
+<td>高</td>
+<td>中</td>
+</tr>
+<tr class="odd">
+<td>输出校正 vs 反馈校正</td>
+<td>★★★★</td>
+<td>高</td>
+<td>中</td>
+</tr>
+<tr class="even">
+<td><strong>有色噪声KF</strong></td>
+<td><strong>★★★★★</strong></td>
+<td><strong>极高</strong></td>
+<td><strong>高</strong></td>
+</tr>
+<tr class="odd">
+<td>组合导航工作模式</td>
+<td>★★★</td>
+<td>高</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+<h3 id="学习路径建议">学习路径建议</h3>
+<pre><code>第一步: 复习标准KF基本方程（第10讲内容）
+    ↓
+第二步: 学习连续→离散的转换方法
+    ↓
+第三步: 通过运动跟踪例子理解KF实际应用
+    ↓
+第四步: 掌握直接法/间接法的区别（重点！）
+    ↓
+第五步: 攻克有色噪声处理（最难！）
+    ↓
+第六步: 了解三种组合导航工作模式</code></pre>
+<hr />
+<h2 id="三重点公式与原理分析">三、重点公式与原理分析</h2>
+<h3 id="连续系统离散化-ppt-3-4">3.1 连续系统离散化 (PPT 3-4)</h3>
+<h4 id="连续时间系统模型">3.1.1 连续时间系统模型</h4>
+<p>连续线性系统的状态方程和量测方程为：</p>
+<p><span class="math display">\[\dot{X}(t) = F(t)X(t) + G(t)w(t) \quad \text{(状态方程)}\]</span></p>
+<p><span class="math display">\[Z(t) = H(t)X(t) + v(t) \quad \text{(量测方程)}\]</span></p>
+<p>其中： - <span class="math inline">\(X(t)\)</span> 为 <span class="math inline">\(n \times 1\)</span> 状态向量 - <span class="math inline">\(F(t)\)</span> 为 <span class="math inline">\(n \times n\)</span> 系统矩阵 - <span class="math inline">\(G(t)\)</span> 为 <span class="math inline">\(n \times r\)</span> 噪声驱动矩阵 - <span class="math inline">\(w(t)\)</span> 为 <span class="math inline">\(r \times 1\)</span> 过程噪声（白噪声），<span class="math inline">\(E[w(t)w^T(\tau)] = Q(t)\delta(t-\tau)\)</span> - <span class="math inline">\(Z(t)\)</span> 为 <span class="math inline">\(m \times 1\)</span> 量测向量 - <span class="math inline">\(H(t)\)</span> 为 <span class="math inline">\(m \times n\)</span> 量测矩阵 - <span class="math inline">\(v(t)\)</span> 为 <span class="math inline">\(m \times 1\)</span> 量测噪声（白噪声）</p>
+<h4 id="状态转移矩阵的离散化">3.1.2 状态转移矩阵的离散化</h4>
+<p>连续系统的状态转移矩阵 <span class="math inline">\(\Phi(t, t_0)\)</span> 满足：</p>
+<p><span class="math display">\[\dot{\Phi}(t, t_0) = F(t)\Phi(t, t_0), \quad \Phi(t_0, t_0) = I\]</span></p>
+<p><strong>离散化后的状态转移矩阵</strong>（泰勒展开）：</p>
+<p><span class="math display">\[\Phi_{k,k-1} = I + FT + \frac{1}{2!}F^2T^2 + \frac{1}{3!}F^3T^3 + \cdots\]</span></p>
+<blockquote>
+<p><strong>PPT重点</strong>: 当 <span class="math inline">\(F\)</span> 为常矩阵（时不变系统）时，<span class="math inline">\(\Phi_{k,k-1} = e^{FT}\)</span></p>
+</blockquote>
+<p><strong>推导过程</strong>：</p>
+<p>由连续系统解的形式： <span class="math display">\[X(t) = \Phi(t, t_0)X(t_0) + \int_{t_0}^{t} \Phi(t, \tau)G(\tau)w(\tau)d\tau\]</span></p>
+<p>令 <span class="math inline">\(t = t_k\)</span>，<span class="math inline">\(t_0 = t_{k-1}\)</span>，采样周期 <span class="math inline">\(T = t_k - t_{k-1}\)</span>：</p>
+<p><span class="math display">\[X_k = \Phi_{k,k-1}X_{k-1} + \int_{t_{k-1}}^{t_k} \Phi(t_k, \tau)G(\tau)w(\tau)d\tau\]</span></p>
+<h4 id="等效离散噪声的计算">3.1.3 等效离散噪声的计算</h4>
+<p>离散化后的过程噪声协方差为：</p>
+<p><span class="math display">\[\Gamma_k Q_k \Gamma_k^T = \int_0^T \Phi(t) G(t) Q(t) G^T(t) \Phi^T(t) dt\]</span></p>
+<blockquote>
+<p><strong>简化情况</strong>: 当 <span class="math inline">\(F, G, Q\)</span> 均为常矩阵时： <span class="math display">\[\Gamma_k Q_k \Gamma_k^T \approx GQG^T \cdot T\]</span> （一阶近似，当 <span class="math inline">\(T\)</span> 足够小时成立）</p>
+</blockquote>
+<h4 id="离散化后的系统方程">3.1.4 离散化后的系统方程</h4>
+<p><span class="math display">\[X_k = \Phi_{k,k-1}X_{k-1} + \Gamma_{k-1}w_{k-1}\]</span></p>
+<p><span class="math display">\[Z_k = H_k X_k + v_k\]</span></p>
+<p>其中： - <span class="math inline">\(w_k \sim N(0, Q_k)\)</span>，<span class="math inline">\(v_k \sim N(0, R_k)\)</span> - <span class="math inline">\(E[w_k v_j^T] = 0\)</span></p>
+<hr />
+<h3 id="卡尔曼滤波应用举例-ppt-5-16">3.2 卡尔曼滤波应用举例 (PPT 5-16)</h3>
+<h4 id="运动体直线运动跟踪">3.2.1 运动体直线运动跟踪</h4>
+<p><strong>问题描述</strong>: 对沿直线运动的物体进行位置跟踪，观测量为含有噪声的位置测量值。</p>
+<p><strong>状态选取</strong>: 三状态模型</p>
+<p><span class="math display">\[X = \begin{bmatrix} s \\ v \\ a \end{bmatrix}\]</span></p>
+<p>其中 <span class="math inline">\(s\)</span> 为位置，<span class="math inline">\(v\)</span> 为速度，<span class="math inline">\(a\)</span> 为加速度。</p>
+<p><strong>状态方程</strong>:</p>
+<p>考虑加加速度（jerk）作为过程噪声的驱动源：</p>
+<p><span class="math display">\[\begin{bmatrix} \dot{s} \\ \dot{v} \\ \dot{a} \end{bmatrix} = \begin{bmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{bmatrix} \begin{bmatrix} s \\ v \\ a \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} w(t)\]</span></p>
+<p>即： <span class="math display">\[\dot{X}(t) = FX(t) + Gw(t)\]</span></p>
+<p>其中系统矩阵和噪声驱动矩阵为：</p>
+<p><span class="math display">\[F = \begin{bmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}, \quad G = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\]</span></p>
+<p><strong>离散化状态转移矩阵</strong>:</p>
+<p><span class="math display">\[\Phi = e^{FT} = I + FT + \frac{1}{2}F^2T^2 = \begin{bmatrix} 1 &amp; T &amp; \frac{T^2}{2} \\ 0 &amp; 1 &amp; T \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>推导</strong>: 注意 <span class="math inline">\(F^3 = 0\)</span>，所以泰勒展开到二阶即终止。</p>
+</blockquote>
+<p><strong>验证</strong>: - <span class="math inline">\(F^2 = \begin{bmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\)</span> - <span class="math inline">\(F^3 = 0\)</span>（三阶以上全为零）</p>
+<p><strong>量测方程</strong>:</p>
+<p><span class="math display">\[Z_k = HX_k + v_k = \begin{bmatrix} 1 &amp; 0 &amp; 0 \end{bmatrix} \begin{bmatrix} s_k \\ v_k \\ a_k \end{bmatrix} + v_k = s_k + v_k\]</span></p>
+<p>即只观测位置，<span class="math inline">\(H = [1 \quad 0 \quad 0]\)</span>。</p>
+<h4 id="matlab仿真要点-ppt-12-16">3.2.2 MATLAB仿真要点 (PPT 12-16)</h4>
+<p>仿真步骤： 1. <strong>生成真实轨迹</strong>: 设定初始状态 <span class="math inline">\(X_0 = [s_0, v_0, a_0]^T\)</span> 2. <strong>生成量测数据</strong>: <span class="math inline">\(Z_k = HX_k + v_k\)</span>，<span class="math inline">\(v_k \sim N(0, R)\)</span> 3. <strong>初始化滤波器</strong>: <span class="math inline">\(\hat{X}_0\)</span>，<span class="math inline">\(P_0\)</span> 4. <strong>运行卡尔曼滤波</strong>: 递推计算 <span class="math inline">\(\hat{X}_k\)</span>，<span class="math inline">\(P_k\)</span> 5. <strong>分析结果</strong>: 比较滤波估计值与真实值</p>
+<p><strong>关键参数设置</strong>: - 采样周期 <span class="math inline">\(T\)</span> 的选择影响离散化精度 - <span class="math inline">\(Q\)</span>（过程噪声方差）和 <span class="math inline">\(R\)</span>（量测噪声方差）的比值影响滤波性能 - <span class="math inline">\(Q\)</span> 大 → 更信任量测，响应快但估计粗糙 - <span class="math inline">\(R\)</span> 大 → 更信任模型，估计平滑但响应慢</p>
+<h4 id="稳态卡尔曼滤波-ppt-10-11">3.2.3 稳态卡尔曼滤波 (PPT 10-11)</h4>
+<p>当系统达到稳态时，误差协方差不再变化：</p>
+<p><span class="math display">\[P_k = P_{k-1} = P\]</span></p>
+<p>此时卡尔曼滤波的递推方程退化为<strong>代数方程</strong>，无需迭代更新。</p>
+<p><strong>稳态条件推导</strong>:</p>
+<p>由卡尔曼滤波基本方程： <span class="math display">\[P_{k|k-1} = \Phi P_{k-1}\Phi^T + \Gamma Q \Gamma^T\]</span> <span class="math display">\[K_k = P_{k|k-1}H^T(HP_{k|k-1}H^T + R)^{-1}\]</span> <span class="math display">\[P_k = (I - K_k H)P_{k|k-1}\]</span></p>
+<p>令 <span class="math inline">\(P_k = P_{k-1} = P\)</span>，<span class="math inline">\(K_k = K\)</span>，<span class="math inline">\(P_{k|k-1} = M\)</span>：</p>
+<p><span class="math display">\[M = \Phi P \Phi^T + \Gamma Q \Gamma^T\]</span> <span class="math display">\[K = MH^T(HMH^T + R)^{-1}\]</span> <span class="math display">\[P = (I - KH)M\]</span></p>
+<blockquote>
+<p><strong>考试要点</strong>: 稳态滤波的意义在于减少计算量，增益 <span class="math inline">\(K\)</span> 为常数矩阵，可离线计算。</p>
+</blockquote>
+<hr />
+<h3 id="利用卡尔曼滤波解决组合导航问题-ppt-18-25">3.3 利用卡尔曼滤波解决组合导航问题 (PPT 18-25)</h3>
+<h4 id="直接法-ppt-19-20">3.3.1 直接法 (PPT 19-20)</h4>
+<p><strong>定义</strong>: 直接以导航参数（位置、速度、姿态等）作为状态向量中的状态变量。</p>
+<p><strong>状态向量</strong>: <span class="math display">\[X = \begin{bmatrix} \text{位置} \\ \text{速度} \\ \text{姿态} \\ \vdots \end{bmatrix}\]</span></p>
+<p><strong>特点</strong>: - 状态方程直接描述导航参数的动态变化 - 状态维数高，计算量大 - 系统非线性强（姿态用欧拉角描述时） - 滤波器直接输出导航参数的最优估计</p>
+<p><strong>优缺点</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>概念直观</td>
+<td>状态维数高，计算量大</td>
+</tr>
+<tr class="even">
+<td>直接得到导航参数</td>
+<td>非线性问题突出</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>系统矩阵随载体运动变化大</td>
+</tr>
+</tbody>
+</table>
+<h4 id="间接法-ppt-21-22">3.3.2 间接法 (PPT 21-22) ★★★★</h4>
+<p><strong>定义</strong>: 以导航参数的<strong>误差</strong>作为状态向量中的状态变量。</p>
+<p><strong>状态向量</strong>: <span class="math display">\[X = \begin{bmatrix} \delta\text{位置} \\ \delta\text{速度} \\ \delta\text{姿态} \\ \text{传感器误差} \\ \vdots \end{bmatrix}\]</span></p>
+<p><strong>特点</strong>: - 状态方程描述误差的动态传播规律 - 误差量通常是小量，可以线性化处理 - 状态维数相对较低 - 需要将误差估计值反馈（或叠加）到导航参数上</p>
+<p><strong>优缺点</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>误差量小，易线性化</td>
+<td>需要额外步骤修正导航参数</td>
+</tr>
+<tr class="even">
+<td>计算量小</td>
+<td>概念不如直接法直观</td>
+</tr>
+<tr class="odd">
+<td>滤波器参数相对稳定</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>适用于大多数实际系统</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>考试重点</strong>: 间接法是组合导航中<strong>最常用</strong>的方法！</p>
+</blockquote>
+<h4 id="输出校正-ppt-23">3.3.3 输出校正 (PPT 23)</h4>
+<p><strong>原理</strong>: 将卡尔曼滤波器的估计值直接作为输出，与系统输出进行叠加。</p>
+<p><span class="math display">\[\hat{X}_{\text{最优}} = X_{\text{系统}} + \hat{X}_{\text{滤波}}\]</span></p>
+<p><strong>特点</strong>: - 滤波器与主系统<strong>并联</strong>工作 - 滤波器的估计值不反馈到主系统中 - 主系统（如INS）独立运行，不受滤波器影响 - 也称为“开环校正”</p>
+<pre><code>┌─────────┐     ┌──────────────┐
+│  INS系统 │────→│  -           │──→ 最优导航参数
+└─────────┘     │  卡尔曼滤波器  │
+┌─────────┐     │  (误差估计)   │
+│  GPS系统 │────→│  +           │
+└─────────┘     └──────────────┘</code></pre>
+<h4 id="反馈校正-ppt-24">3.3.4 反馈校正 (PPT 24) ★★★★</h4>
+<p><strong>原理</strong>: 将卡尔曼滤波器的估计值反馈到主系统内部，直接修正系统状态。</p>
+<p><span class="math display">\[X_{\text{系统}} \leftarrow X_{\text{系统}} - \hat{X}_{\text{误差}}\]</span></p>
+<p><strong>特点</strong>: - 滤波器与主系统构成<strong>闭环</strong> - 修正后系统误差被消除（理论上） - 滤波器估计的是修正后的残余误差 - 防止INS误差随时间发散 - 也称为“闭环校正”</p>
+<pre><code>┌──────────────────────────────┐
+│  ↓ 反馈修正                   │
+│  ┌─────────┐     ┌────────┐  │
+│  │  INS系统 │←────│ KF滤波 │  │
+│  └────┬────┘     └───┬────┘  │
+│       │              │       │
+│       └──────┬───────┘       │
+│              ↓               │
+│         最优导航参数           │
+│                              │
+│  ┌─────────┐                 │
+│  │  GPS系统 │────────────────→│
+│  └─────────┘                 │
+└──────────────────────────────┘</code></pre>
+<h4 id="输出校正-vs-反馈校正对比">3.3.5 输出校正 vs 反馈校正对比</h4>
+<table>
+<thead>
+<tr class="header">
+<th>比较项</th>
+<th>输出校正（开环）</th>
+<th>反馈校正（闭环）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>滤波器结构</td>
+<td>并联</td>
+<td>串联（闭环）</td>
+</tr>
+<tr class="even">
+<td>对主系统影响</td>
+<td>不影响</td>
+<td>修正主系统</td>
+</tr>
+<tr class="odd">
+<td>误差积累</td>
+<td>主系统误差持续积累</td>
+<td>误差被及时修正</td>
+</tr>
+<tr class="even">
+<td>滤波器模型</td>
+<td>需要描述大范围误差</td>
+<td>只需描述小范围误差</td>
+</tr>
+<tr class="odd">
+<td>线性化精度</td>
+<td>较低</td>
+<td>较高</td>
+</tr>
+<tr class="even">
+<td>可靠性</td>
+<td>主系统独立，可靠性高</td>
+<td>滤波器故障会影响主系统</td>
+</tr>
+<tr class="odd">
+<td>适用场景</td>
+<td>对可靠性要求高的场合</td>
+<td>对精度要求高的场合</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>考试技巧</strong>: 反馈校正更精确（因为误差始终是小量），但输出校正更安全（主系统独立运行）。</p>
+</blockquote>
+<hr />
+<h3 id="有色噪声条件下的卡尔曼滤波-ppt-27-29">3.4 有色噪声条件下的卡尔曼滤波 (PPT 27-29) ★★★★★</h3>
+<blockquote>
+<p><strong>这是本章最难、最重要的考点！务必重点掌握！</strong></p>
+</blockquote>
+<h4 id="什么是有色噪声">3.4.1 什么是有色噪声？</h4>
+<p><strong>白噪声</strong>: 功率谱密度为常数，不同时刻不相关 <span class="math display">\[E[w(t)w^T(\tau)] = Q\delta(t-\tau)\]</span></p>
+<p><strong>有色噪声</strong>: 功率谱密度不是常数，不同时刻<strong>相关</strong> <span class="math display">\[E[w(t)w^T(\tau)] \neq 0 \quad (t \neq \tau)\]</span></p>
+<blockquote>
+<p><strong>关键问题</strong>: 标准卡尔曼滤波要求过程噪声和量测噪声都是<strong>白噪声</strong>。当噪声为有色噪声时，不能直接使用标准KF！</p>
+</blockquote>
+<h4 id="有色噪声的白化处理">3.4.2 有色噪声的白化处理</h4>
+<p><strong>核心思想</strong>: 将有色噪声转化为白噪声，然后使用标准KF。</p>
+<p><strong>方法</strong>: 用一阶马尔可夫（Markov）过程来描述有色噪声。</p>
+<p>一阶马尔可夫过程满足微分方程：</p>
+<p><span class="math display">\[\dot{N}(t) = -\alpha N(t) + \xi(t)\]</span></p>
+<p>其中： - <span class="math inline">\(N(t)\)</span> 是有色噪声 - <span class="math inline">\(\alpha &gt; 0\)</span> 是反相关时间常数（<span class="math inline">\(\alpha\)</span> 越大，相关性越弱） - <span class="math inline">\(\xi(t)\)</span> 是白噪声（驱动噪声）</p>
+<blockquote>
+<p><strong>物理意义</strong>: 有色噪声当前值与过去值相关，相关程度由 <span class="math inline">\(\alpha\)</span> 决定。<span class="math inline">\(\alpha \to \infty\)</span> 时退化为白噪声。</p>
+</blockquote>
+<p><strong>离散化</strong>（采样周期 <span class="math inline">\(T\)</span>）：</p>
+<p><span class="math display">\[N_k = \pi_{k,k-1} N_{k-1} + \gamma_{k-1} \xi_{k-1}\]</span></p>
+<p>其中： <span class="math display">\[\pi_{k,k-1} = e^{-\alpha T}\]</span></p>
+<h4 id="状态向量增广法">3.4.3 状态向量增广法 ★★★★★</h4>
+<p><strong>核心思想</strong>: 将有色噪声作为额外的状态变量，扩充到状态向量中。</p>
+<p><strong>原系统</strong>（含有色过程噪声 <span class="math inline">\(w_k\)</span>）：</p>
+<p><span class="math display">\[X_k = \Phi_{k,k-1} X_{k-1} + \Gamma_{k-1} w_{k-1}\]</span></p>
+<p><span class="math display">\[w_k = \pi_{k,k-1} w_{k-1} + \gamma_{k-1} \xi_{k-1}\]</span></p>
+<p><strong>增广状态向量</strong>:</p>
+<p><span class="math display">\[\bar{X}_k = \begin{bmatrix} X_k \\ w_k \end{bmatrix}\]</span></p>
+<p><strong>增广后的系统方程</strong>:</p>
+<p><span class="math display">\[\bar{X}_k = \bar{\Phi}_{k,k-1} \bar{X}_{k-1} + \bar{\Gamma}_{k-1} \xi_{k-1}\]</span></p>
+<p>其中增广状态转移矩阵：</p>
+<p><span class="math display">\[\bar{\Phi}_{k,k-1} = \begin{bmatrix} \Phi_{k,k-1} &amp; \Gamma_{k-1} \\ 0 &amp; \pi_{k,k-1} \end{bmatrix}\]</span></p>
+<p>增广噪声驱动矩阵：</p>
+<p><span class="math display">\[\bar{\Gamma}_{k-1} = \begin{bmatrix} 0 \\ \gamma_{k-1} \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>关键</strong>: 增广后，新的过程噪声 <span class="math inline">\(\xi_{k-1}\)</span> 是白噪声！因此可以对增广系统使用标准卡尔曼滤波。</p>
+</blockquote>
+<p><strong>增广后的量测方程</strong>（假设量测噪声仍为白噪声）：</p>
+<p><span class="math display">\[Z_k = \bar{H}_k \bar{X}_k + v_k = \begin{bmatrix} H_k &amp; 0 \end{bmatrix} \begin{bmatrix} X_k \\ w_k \end{bmatrix} + v_k\]</span></p>
+<h4 id="完整推导过程">3.4.4 完整推导过程</h4>
+<p><strong>Step 1</strong>: 建立有色噪声的马尔可夫模型</p>
+<p><span class="math display">\[\dot{w}(t) = -\alpha w(t) + \xi(t)\]</span></p>
+<p><strong>Step 2</strong>: 将原系统与马尔可夫模型联立</p>
+<p><span class="math display">\[\begin{cases} \dot{X}(t) = F(t)X(t) + G(t)w(t) \\ \dot{w}(t) = -\alpha w(t) + \xi(t) \end{cases}\]</span></p>
+<p><strong>Step 3</strong>: 增广状态向量</p>
+<p><span class="math display">\[\bar{X}(t) = \begin{bmatrix} X(t) \\ w(t) \end{bmatrix}, \quad \bar{F} = \begin{bmatrix} F(t) &amp; G(t) \\ 0 &amp; -\alpha I \end{bmatrix}, \quad \bar{G} = \begin{bmatrix} 0 \\ I \end{bmatrix}\]</span></p>
+<p><span class="math display">\[\dot{\bar{X}}(t) = \bar{F}\bar{X}(t) + \bar{G}\xi(t)\]</span></p>
+<p><strong>Step 4</strong>: 离散化后使用标准KF</p>
+<p><span class="math display">\[\bar{X}_k = \bar{\Phi}_{k,k-1}\bar{X}_{k-1} + \bar{\Gamma}_{k-1}\xi_{k-1}\]</span></p>
+<p><span class="math display">\[Z_k = \bar{H}_k\bar{X}_k + v_k\]</span></p>
+<p>此时 <span class="math inline">\(\xi_k\)</span> 和 <span class="math inline">\(v_k\)</span> 均为白噪声，满足标准KF条件！</p>
+<hr />
+<h3 id="组合导航系统的工作模式-ppt-31-36">3.5 组合导航系统的工作模式 (PPT 31-36)</h3>
+<h4 id="重调法-ppt-32">3.5.1 重调法 (PPT 32)</h4>
+<p><strong>原理</strong>: 定期用GPS的导航参数直接替代INS的输出。</p>
+<p><strong>工作方式</strong>: 1. INS独立进行导航解算 2. 每隔一段时间，用GPS的位置/速度直接替换INS的对应参数 3. 替换后INS从新的初始条件重新开始积分</p>
+<p><strong>特点</strong>: - 实现最简单 - 没有使用卡尔曼滤波 - GPS可用时精度高，GPS失效时靠INS维持 - 参数跳变，不平滑</p>
+<pre><code>时间轴: ─────────────────────────────────→
+INS:    ─────┤跳变├──────┤跳变├──────
+GPS:         ↑              ↑
+         用GPS替换      用GPS替换</code></pre>
+<h4 id="松组合-ppt-33-34">3.5.2 松组合 (PPT 33-34)</h4>
+<p><strong>原理</strong>: INS和GPS各自独立工作，通过卡尔曼滤波器融合两者的导航参数。</p>
+<p><strong>结构</strong>: - INS: 独立解算位置、速度、姿态 - GPS: 独立解算位置、速度 - KF: 以两者的参数差作为量测输入，估计INS误差</p>
+<p><strong>量测方程</strong>:</p>
+<p><span class="math display">\[Z = X_{\text{INS}} - X_{\text{GPS}} = \delta X_{\text{INS}} - \delta X_{\text{GPS}} + \text{噪声}\]</span></p>
+<p><strong>特点</strong>: - 各子系统独立运行，互不影响 - 融合在<strong>导航参数级别</strong>（位置、速度） - GPS需要至少4颗卫星才能工作 - 结构简单，可靠性高</p>
+<pre><code>┌─────────┐     位置/速度     ┌──────────────┐
+│  INS    │─────────────────→│              │
+└─────────┘                  │  卡尔曼滤波器  │──→ 最优导航参数
+┌─────────┐     位置/速度     │  (参数级融合)  │
+│  GPS    │─────────────────→│              │
+└─────────┘                  └──────────────┘</code></pre>
+<h4 id="紧组合-ppt-35-36">3.5.3 紧组合 (PPT 35-36)</h4>
+<p><strong>原理</strong>: INS和GPS在原始测量数据级别进行融合。</p>
+<p><strong>结构</strong>: - INS: 解算位置、速度，并预测GPS伪距/伪距率 - GPS: 输出原始伪距、伪距率测量值 - KF: 以伪距/伪距率的差值作为量测输入</p>
+<p><strong>量测方程</strong>:</p>
+<p><span class="math display">\[Z = \rho_{\text{GPS测量}} - \rho_{\text{INS预测}}\]</span></p>
+<p><strong>特点</strong>: - 融合在<strong>原始测量级别</strong>（伪距、伪距率） - GPS只需1-2颗卫星也能工作（INS辅助） - 精度高于松组合 - 结构复杂，计算量大 - INS可以辅助GPS信号捕获和跟踪</p>
+<pre><code>┌─────────┐  预测伪距/伪距率  ┌──────────────┐
+│  INS    │─────────────────→│              │
+└─────────┘                  │  卡尔曼滤波器  │──→ 最优导航参数
+┌─────────┐  原始伪距/伪距率  │  (测量级融合)  │
+│  GPS    │─────────────────→│              │
+└─────────┘                  └──────────────┘</code></pre>
+<h4 id="三种模式对比">3.5.4 三种模式对比</h4>
+<table>
+<thead>
+<tr class="header">
+<th>比较项</th>
+<th>重调法</th>
+<th>松组合</th>
+<th>紧组合</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>融合级别</td>
+<td>无融合</td>
+<td>导航参数级</td>
+<td>原始测量级</td>
+</tr>
+<tr class="even">
+<td>是否使用KF</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr class="odd">
+<td>GPS最低卫星数</td>
+<td>4颗</td>
+<td>4颗</td>
+<td>1-2颗</td>
+</tr>
+<tr class="even">
+<td>精度</td>
+<td>低</td>
+<td>中</td>
+<td>高</td>
+</tr>
+<tr class="odd">
+<td>复杂度</td>
+<td>低</td>
+<td>中</td>
+<td>高</td>
+</tr>
+<tr class="even">
+<td>可靠性</td>
+<td>高</td>
+<td>高</td>
+<td>中</td>
+</tr>
+<tr class="odd">
+<td>信息利用率</td>
+<td>低</td>
+<td>中</td>
+<td>高</td>
+</tr>
+<tr class="even">
+<td>典型应用</td>
+<td>简单导航</td>
+<td>大多数场合</td>
+<td>高动态/干扰环境</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四-有色噪声卡尔曼滤波应试记忆法">四、🎯 有色噪声卡尔曼滤波应试记忆法</h2>
+<h3 id="脏水过滤器比喻-理解有色噪声白化">4.1 “脏水过滤器”比喻 —— 理解有色噪声白化</h3>
+<p>想象你有一个水过滤器： - <strong>白噪声</strong> = 纯净水中的随机杂质（每一滴水的杂质独立，互不影响） - <strong>有色噪声</strong> = 泥水（杂质有粘性，前后时刻的泥沙互相粘连）</p>
+<p>标准卡尔曼滤波只能处理“纯净水中的随机杂质”（白噪声），遇到“泥水”（有色噪声）就失效了。</p>
+<p><strong>白化处理</strong> = 先用一个“沉淀池”（马尔可夫模型），把泥水的规律找出来，把泥沙沉淀分离，变成清水+独立沉淀物（白噪声），然后再用标准过滤器处理。</p>
+<p><span class="math display">\[\text{泥水（有色噪声）} \xrightarrow{\text{马尔可夫沉淀池}} \text{清水规律} + \text{独立沉淀物（白噪声）}\]</span></p>
+<h3 id="俄罗斯套娃比喻-理解增广状态向量">4.2 “俄罗斯套娃”比喻 —— 理解增广状态向量</h3>
+<p>想象一套俄罗斯套娃： - <strong>最内层套娃</strong> = 原来的状态向量 <span class="math inline">\(X_k\)</span>（位置、速度等） - <strong>外层套娃</strong> = 有色噪声 <span class="math inline">\(w_k\)</span>（被包装成新的状态）</p>
+<p><strong>增广</strong> = 把有色噪声“套”进状态向量里面，让它也变成一个“状态”，这样就可以用处理状态的标准方法来处理它了。</p>
+<p><span class="math display">\[\underbrace{\begin{bmatrix} X_k \\ \hline w_k \end{bmatrix}}_{\text{大套娃（增广状态）}} = \underbrace{\begin{bmatrix} \text{原来的状态} \\ \hline \text{新加入的&quot;状态&quot;（其实是有色噪声）} \end{bmatrix}}_{\text{俄罗斯套娃}}\]</span></p>
+<h3 id="三步走口诀-白化过程记忆">4.3 “三步走”口诀 —— 白化过程记忆</h3>
+<p>看到“有色噪声”四个字，立刻默念<strong>三步走</strong>：</p>
+<pre><code>┌─────────────────────────────────────────────┐
+│  第一步：建模马尔可夫                         │
+│  &quot;有色噪声用马尔可夫，Ṅ = -αN + ξ&quot;           │
+│  → 把有色噪声写成微分方程形式                  │
+├─────────────────────────────────────────────┤
+│  第二步：增广状态向量                         │
+│  &quot;X̄ = [X; w]，Φ̄ = [Φ, Γ; 0, π]&quot;            │
+│  → 把有色噪声塞进状态向量                     │
+├─────────────────────────────────────────────┤
+│  第三步：标准KF                              │
+│  &quot;增广之后是白噪声，标准卡尔曼直接上&quot;           │
+│  → 对增广系统直接使用标准卡尔曼滤波方程         │
+└─────────────────────────────────────────────┘</code></pre>
+<p><strong>口诀</strong>: &gt; <strong>一建马尔可夫，二扩状态量，三上标准KF！</strong></p>
+<h3 id="对比表格白噪声kf-vs-有色噪声kf">4.4 对比表格：白噪声KF vs 有色噪声KF</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 37%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>比较项</th>
+<th>白噪声KF（标准）</th>
+<th>有色噪声KF（增广法）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>过程噪声</td>
+<td>白噪声 <span class="math inline">\(w_k\)</span></td>
+<td>有色噪声 <span class="math inline">\(N_k\)</span></td>
+</tr>
+<tr class="even">
+<td>噪声相关性</td>
+<td><span class="math inline">\(E[w_k w_j^T] = Q_k \delta_{kj}\)</span></td>
+<td><span class="math inline">\(E[N_k N_j^T] \neq 0\)</span></td>
+</tr>
+<tr class="odd">
+<td>能否直接用标准KF</td>
+<td><strong>能</strong></td>
+<td><strong>不能</strong></td>
+</tr>
+<tr class="even">
+<td>处理方法</td>
+<td>直接使用</td>
+<td>白化 → 增广 → 标准KF</td>
+</tr>
+<tr class="odd">
+<td>状态向量</td>
+<td><span class="math inline">\(X_k\)</span></td>
+<td><span class="math inline">\(\bar{X}_k = [X_k; N_k]\)</span></td>
+</tr>
+<tr class="even">
+<td>状态维数</td>
+<td><span class="math inline">\(n\)</span></td>
+<td><span class="math inline">\(n + p\)</span>（增加了有色噪声维数）</td>
+</tr>
+<tr class="odd">
+<td>状态转移矩阵</td>
+<td><span class="math inline">\(\Phi_{k,k-1}\)</span></td>
+<td><span class="math inline">\(\bar{\Phi} = \begin{bmatrix} \Phi &amp; \Gamma \\ 0 &amp; \pi \end{bmatrix}\)</span></td>
+</tr>
+<tr class="even">
+<td>计算量</td>
+<td>小</td>
+<td>大（维数增加）</td>
+</tr>
+<tr class="odd">
+<td>滤波精度</td>
+<td>高（模型匹配时）</td>
+<td>高（正确建模时）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="考试答题模板">4.5 考试答题模板</h3>
+<p>当考试中看到<strong>“有色噪声”</strong>关键词时，按以下模板作答：</p>
+<hr />
+<p><strong>【答题模板】</strong></p>
+<p><strong>题目</strong>: 某系统的过程噪声为有色噪声，如何使用卡尔曼滤波进行状态估计？</p>
+<p><strong>答案</strong>:</p>
+<p>有色噪声不满足标准卡尔曼滤波的白噪声假设，需要先进行白化处理。具体步骤如下：</p>
+<p><strong>第一步：建立有色噪声的马尔可夫模型</strong></p>
+<p>将有色噪声 <span class="math inline">\(N(t)\)</span> 建模为一阶马尔可夫过程：</p>
+<p><span class="math display">\[\dot{N}(t) = -\alpha N(t) + \xi(t)\]</span></p>
+<p>其中 <span class="math inline">\(\xi(t)\)</span> 为白噪声。离散化后：</p>
+<p><span class="math display">\[N_k = \pi_{k,k-1} N_{k-1} + \gamma_{k-1}\xi_{k-1}\]</span></p>
+<p><strong>第二步：增广状态向量</strong></p>
+<p>将有色噪声作为附加状态，构造增广状态向量：</p>
+<p><span class="math display">\[\bar{X}_k = \begin{bmatrix} X_k \\ N_k \end{bmatrix}\]</span></p>
+<p>增广状态转移矩阵为：</p>
+<p><span class="math display">\[\bar{\Phi}_{k,k-1} = \begin{bmatrix} \Phi_{k,k-1} &amp; \Gamma_{k-1} \\ 0 &amp; \pi_{k,k-1} \end{bmatrix}\]</span></p>
+<p><strong>第三步：对增广系统使用标准卡尔曼滤波</strong></p>
+<p>增广后的系统过程噪声 <span class="math inline">\(\xi_k\)</span> 为白噪声，满足标准KF条件，可直接应用卡尔曼滤波基本方程进行状态估计。</p>
+<hr />
+<blockquote>
+<p><strong>应试技巧</strong>: 无论题目怎么变，只要出现“有色噪声”，答题框架就是这三步。第一步写马尔可夫方程（2分），第二步写增广状态和增广矩阵（3分），第三步说明可用标准KF（1分）。</p>
+</blockquote>
+<hr />
+<h2 id="五易错点与应试技巧">五、易错点与应试技巧</h2>
+<h3 id="易错点1-离散化时泰勒展开的阶数">易错点1: 离散化时泰勒展开的阶数</h3>
+<p><strong>错误</strong>: 总是用 <span class="math inline">\(\Phi = I + FT\)</span> 做一阶近似</p>
+<p><strong>正确</strong>: 应根据系统矩阵 <span class="math inline">\(F\)</span> 的特性选择展开阶数。例如运动跟踪问题中 <span class="math inline">\(F^3 = 0\)</span>，二阶展开就是精确的。</p>
+<p><span class="math display">\[\Phi = I + FT + \frac{1}{2!}F^2T^2 + \cdots\]</span></p>
+<blockquote>
+<p><strong>判断方法</strong>: 计算 <span class="math inline">\(F^n\)</span>，找到使 <span class="math inline">\(F^n = 0\)</span> 的最小 <span class="math inline">\(n\)</span>，展开到 <span class="math inline">\(n-1\)</span> 阶即可。</p>
+</blockquote>
+<h3 id="易错点2-直接法与间接法的混淆">易错点2: 直接法与间接法的混淆</h3>
+<p><strong>错误</strong>: 认为直接法和间接法只是状态选取不同，效果一样</p>
+<p><strong>正确</strong>: 间接法利用了“误差是小量”这一关键特性，可以进行线性化，因此在组合导航中更为实用。直接法处理非线性问题更复杂。</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>直接法</th>
+<th>间接法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>状态</td>
+<td>导航参数本身</td>
+<td>导航参数的误差</td>
+</tr>
+<tr class="even">
+<td>线性化</td>
+<td>困难</td>
+<td>容易（误差是小量）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="易错点3-输出校正与反馈校正的混用">易错点3: 输出校正与反馈校正的混用</h3>
+<p><strong>错误</strong>: 认为输出校正和反馈校正可以随意切换</p>
+<p><strong>正确</strong>: 输出校正中滤波器估计的是全量误差（可能很大），反馈校正中滤波器估计的是残余误差（很小）。两者的滤波器参数设计不同。</p>
+<h3 id="易错点4-有色噪声增广时量测矩阵的写法">易错点4: 有色噪声增广时量测矩阵的写法</h3>
+<p><strong>错误</strong>: 增广后量测矩阵仍为 <span class="math inline">\(H_k\)</span></p>
+<p><strong>正确</strong>: 增广后量测矩阵需要相应扩展：</p>
+<p><span class="math display">\[\bar{H}_k = \begin{bmatrix} H_k &amp; 0 \end{bmatrix}\]</span></p>
+<p>因为量测 <span class="math inline">\(Z_k\)</span> 只与原状态 <span class="math inline">\(X_k\)</span> 有关，与有色噪声 <span class="math inline">\(w_k\)</span> 无直接关系。</p>
+<h3 id="易错点5-增广状态转移矩阵的写法">易错点5: 增广状态转移矩阵的写法</h3>
+<p><strong>错误</strong>: <span class="math inline">\(\bar{\Phi} = \begin{bmatrix} \Phi &amp; 0 \\ \Gamma &amp; \pi \end{bmatrix}\)</span>（位置写反）</p>
+<p><strong>正确</strong>:</p>
+<p><span class="math display">\[\bar{\Phi}_{k,k-1} = \begin{bmatrix} \Phi_{k,k-1} &amp; \Gamma_{k-1} \\ 0 &amp; \pi_{k,k-1} \end{bmatrix}\]</span></p>
+<blockquote>
+<p><strong>记忆方法</strong>: 原状态受有色噪声驱动（右上角有 <span class="math inline">\(\Gamma\)</span>），有色噪声只受自身驱动（左下角为 <span class="math inline">\(0\)</span>）。</p>
+</blockquote>
+<hr />
+<h2 id="六应试练习题">六、应试练习题</h2>
+<h3 id="练习题1-连续系统离散化">练习题1: 连续系统离散化</h3>
+<p><strong>题目</strong> (PPT 3-4):</p>
+<p>已知连续系统状态方程为： <span class="math display">\[\dot{X}(t) = \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix} X(t) + \begin{bmatrix} 0 \\ 1 \end{bmatrix} w(t)\]</span></p>
+<p>采样周期为 <span class="math inline">\(T\)</span>，求离散化后的状态转移矩阵 <span class="math inline">\(\Phi_{k,k-1}\)</span>。</p>
+<p><strong>答案</strong>:</p>
+<p><span class="math display">\[F = \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix}, \quad F^2 = \begin{bmatrix} 0 &amp; 0 \\ 0 &amp; 0 \end{bmatrix} = 0\]</span></p>
+<p>因此泰勒展开只需到一阶：</p>
+<p><span class="math display">\[\Phi_{k,k-1} = I + FT = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} + \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix} T = \begin{bmatrix} 1 &amp; T \\ 0 &amp; 1 \end{bmatrix}\]</span></p>
+<hr />
+<h3 id="练习题2-运动跟踪状态方程">练习题2: 运动跟踪状态方程</h3>
+<p><strong>题目</strong> (PPT 5-8):</p>
+<p>对匀加速直线运动的物体进行跟踪，选取状态向量 <span class="math inline">\(X = [s, v, a]^T\)</span>（位置、速度、加速度），考虑加速度的变化率（加加速度）为白噪声。写出连续系统状态方程和离散化后的状态转移矩阵。</p>
+<p><strong>答案</strong>:</p>
+<p>连续状态方程： <span class="math display">\[\dot{X} = \begin{bmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 \end{bmatrix} X + \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} w(t)\]</span></p>
+<p>离散状态转移矩阵（<span class="math inline">\(F^3 = 0\)</span>，展开到二阶）：</p>
+<p><span class="math display">\[\Phi = I + FT + \frac{1}{2}F^2T^2 = \begin{bmatrix} 1 &amp; T &amp; \frac{T^2}{2} \\ 0 &amp; 1 &amp; T \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]</span></p>
+<hr />
+<h3 id="练习题3-直接法与间接法">练习题3: 直接法与间接法</h3>
+<p><strong>题目</strong> (PPT 19-22):</p>
+<p>简述组合导航中直接法和间接法的区别，并说明为什么实际中多采用间接法。</p>
+<p><strong>答案</strong>:</p>
+<p><strong>直接法</strong>：以导航参数（位置、速度、姿态）本身作为状态变量。状态维数高，系统非线性强，计算量大。</p>
+<p><strong>间接法</strong>：以导航参数的误差作为状态变量。由于导航误差通常是小量，可以对系统方程进行线性化处理，状态维数相对较低，计算量小。</p>
+<p><strong>间接法更常用的原因</strong>： 1. 误差是小量，线性化精度高 2. 系统矩阵变化缓慢，滤波器参数稳定 3. 计算量小，实时性好 4. 适用于大多数实际组合导航场景</p>
+<hr />
+<h3 id="练习题4-输出校正与反馈校正">练习题4: 输出校正与反馈校正</h3>
+<p><strong>题目</strong> (PPT 23-24):</p>
+<p>比较输出校正和反馈校正的优缺点，并说明各自适用的场合。</p>
+<p><strong>答案</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>输出校正</th>
+<th>反馈校正</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>原理</td>
+<td>滤波估计值叠加到系统输出</td>
+<td>滤波估计值反馈修正系统内部状态</td>
+</tr>
+<tr class="even">
+<td>结构</td>
+<td>开环</td>
+<td>闭环</td>
+</tr>
+<tr class="odd">
+<td>优点</td>
+<td>主系统独立运行，可靠性高</td>
+<td>误差被及时修正，精度高</td>
+</tr>
+<tr class="even">
+<td>缺点</td>
+<td>主系统误差持续积累</td>
+<td>滤波器故障会影响主系统</td>
+</tr>
+<tr class="odd">
+<td>适用</td>
+<td>对可靠性要求高的场合</td>
+<td>对精度要求高的场合</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="练习题5-有色噪声处理核心重点">练习题5: 有色噪声处理（核心重点）</h3>
+<p><strong>题目</strong> (PPT 27-29):</p>
+<p>某离散系统的状态方程为： <span class="math display">\[X_k = \Phi_{k,k-1} X_{k-1} + \Gamma_{k-1} w_{k-1}\]</span></p>
+<p>其中过程噪声 <span class="math inline">\(w_k\)</span> 为有色噪声，可建模为一阶马尔可夫过程： <span class="math display">\[w_k = \pi_{k,k-1} w_{k-1} + \gamma_{k-1} \xi_{k-1}\]</span></p>
+<p>其中 <span class="math inline">\(\xi_k\)</span> 为白噪声。量测方程为 <span class="math inline">\(Z_k = H_k X_k + v_k\)</span>，<span class="math inline">\(v_k\)</span> 为白噪声。</p>
+<p>请写出增广状态向量和增广后的系统方程，并说明为什么增广后可以使用标准卡尔曼滤波。</p>
+<p><strong>答案</strong>:</p>
+<p><strong>增广状态向量</strong>：</p>
+<p><span class="math display">\[\bar{X}_k = \begin{bmatrix} X_k \\ w_k \end{bmatrix}\]</span></p>
+<p><strong>增广状态方程</strong>：</p>
+<p><span class="math display">\[\bar{X}_k = \bar{\Phi}_{k,k-1} \bar{X}_{k-1} + \bar{\Gamma}_{k-1} \xi_{k-1}\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[\bar{\Phi}_{k,k-1} = \begin{bmatrix} \Phi_{k,k-1} &amp; \Gamma_{k-1} \\ 0 &amp; \pi_{k,k-1} \end{bmatrix}, \quad \bar{\Gamma}_{k-1} = \begin{bmatrix} 0 \\ \gamma_{k-1} \end{bmatrix}\]</span></p>
+<p><strong>增广量测方程</strong>：</p>
+<p><span class="math display">\[Z_k = \bar{H}_k \bar{X}_k + v_k = \begin{bmatrix} H_k &amp; 0 \end{bmatrix} \begin{bmatrix} X_k \\ w_k \end{bmatrix} + v_k\]</span></p>
+<p><strong>可以使用标准KF的原因</strong>：增广后，系统的过程噪声变为 <span class="math inline">\(\xi_k\)</span>，它是白噪声；量测噪声 <span class="math inline">\(v_k\)</span> 也是白噪声。因此增广系统满足标准卡尔曼滤波的白噪声假设，可以直接应用标准KF方程。</p>
+<hr />
+<h3 id="练习题6-组合导航工作模式">练习题6: 组合导航工作模式</h3>
+<p><strong>题目</strong> (PPT 31-36):</p>
+<p>比较重调法、松组合和紧组合三种INS/GPS组合导航工作模式的特点。</p>
+<p><strong>答案</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>重调法</th>
+<th>松组合</th>
+<th>紧组合</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>原理</td>
+<td>GPS直接替换INS输出</td>
+<td>融合导航参数</td>
+<td>融合原始测量</td>
+</tr>
+<tr class="even">
+<td>融合级别</td>
+<td>无</td>
+<td>参数级</td>
+<td>测量级</td>
+</tr>
+<tr class="odd">
+<td>使用KF</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr class="even">
+<td>GPS最低卫星数</td>
+<td>4</td>
+<td>4</td>
+<td>1-2</td>
+</tr>
+<tr class="odd">
+<td>精度</td>
+<td>最低</td>
+<td>中等</td>
+<td>最高</td>
+</tr>
+<tr class="even">
+<td>复杂度</td>
+<td>最低</td>
+<td>中等</td>
+<td>最高</td>
+</tr>
+<tr class="odd">
+<td>可靠性</td>
+<td>高</td>
+<td>高</td>
+<td>中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>补充说明</strong>： - 重调法实现最简单但精度最差，且参数跳变不平滑 - 松组合是最常用的方案，平衡了精度和复杂度 - 紧组合在高动态环境和GPS信号受干扰时优势明显，因为即使可见卫星少于4颗也能工作</p>
+<hr />
+<blockquote>
+<p><strong>总结</strong>: 本章核心在于将卡尔曼滤波理论应用于实际组合导航系统。重点掌握：(1) 连续系统离散化方法；(2) 直接法与间接法的区别（间接法更常用）；(3) 输出校正与反馈校正的对比；(4) <strong>有色噪声的白化处理（增广状态向量法）</strong>——这是考试必考难点；(5) 三种组合导航工作模式的特点。</p>
+</blockquote>
         </div>
     </section>
 
