@@ -788,24 +788,30 @@
     background: rgba(255,255,255,0.1);
 }
 
-/* 电脑端显示侧边栏按钮 */
+/* 所有设备都显示侧边栏按钮 */
+.sidebar-toggle {
+    display: flex;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 200;
+}
+/* 侧边栏默认隐藏，只有添加.open时才显示 */
+.sidebar-nav {
+    display: block;
+    top: 0;
+    padding-top: 60px;
+    transform: translateX(-100%);
+}
+.sidebar-nav.open {
+    transform: translateX(0);
+}
+
+/* 电脑端特殊样式 */
 @media (min-width: 1024px) {
     .sidebar-toggle {
-        display: flex;
-        position: fixed;
         top: 16px;
         left: 16px;
-        z-index: 200;
-    }
-    /* 桌面端侧边栏默认隐藏，只有添加.open时才显示 */
-    .sidebar-nav {
-        display: block;
-        top: 0;
-        padding-top: 60px;
-        transform: translateX(-100%);
-    }
-    .sidebar-nav.open {
-        transform: translateX(0);
     }
     .toc-bar {
         padding-left: 70px;
@@ -978,6 +984,36 @@
 .keyboard-hint.show {
     opacity: 1;
 }
+
+/* 问答格式样式 */
+.qa-content h3 {
+    color: #E53E3E;
+    font-size: 1.3em;
+    margin-top: 2em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #E53E3E;
+}
+.qa-content h4 {
+    color: #2D3748;
+    font-size: 1.1em;
+    margin-top: 1.5em;
+    font-weight: 700;
+}
+.qa-content strong {
+    color: #C53030;
+}
+.qa-content pre {
+    background: #F7FAFC;
+    border-left: 4px solid #E53E3E;
+    padding: 1em;
+    overflow-x: auto;
+}
+.qa-content blockquote {
+    border-left: 4px solid #E53E3E;
+    background: #FFF5F5;
+    padding: 1em 1.5em;
+    margin: 1em 0;
+}
 </style>
 </head>
 <body>
@@ -1047,6 +1083,7 @@
         <div class="sidebar-group-header">🎯 应试冲刺 <span class="arrow">▼</span></div>
         <div class="sidebar-group-items">
             <a href="#chapter-7" class="sidebar-link"><span class="icon">📝</span>基础概念与应试</a>
+            <a href="#chapter-exam" class="sidebar-link" style="background:rgba(229,62,62,0.1); font-weight:700"><span class="icon">📝</span>考试重点问答</a>
             <a href="#chapter-11" class="sidebar-link"><span class="icon">🎯</span>课程总结冲刺</a>
             <a href="#chapter-13" class="sidebar-link"><span class="icon">🎯</span>第13-15讲 INS/GPS组合</a>
         </div>
@@ -1065,7 +1102,8 @@
 
     <!-- 章节导航（可横向滚动） -->
     <nav class="toc-bar">
-        <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a><a href="#chapter-9" style="border-color:#D69E2E">📊 第六讲 误差建模</a>
+        <a href="#chapter-exam" style="border-color:#E53E3E; background:#E53E3E11; font-weight:700">📝 考试重点问答</a>
+            <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a><a href="#chapter-9" style="border-color:#D69E2E">📊 第六讲 误差建模</a>
     
         <a href="#chapter-10" style="border-color:#38A169">📊 第十讲 卡尔曼滤波</a>
         <a href="#chapter-11" style="border-color:#E53E3E">🎯 课程总结冲刺</a>
@@ -7247,6 +7285,314 @@ L = L_I - \delta L
 </div>
 </div>
 </div>
+<hr />
+<p><strong>祝考试顺利！</strong> 🎯</p>
+
+        </div>
+    </section>
+
+    
+    <section class="chapter" id="chapter-exam">
+        <div class="chapter-header" style="border-left-color:#E53E3E; background:linear-gradient(135deg, #E53E3E11 0%, #E53E3E05 100%)">
+            <h2 style="color:#E53E3E">📝 考试重点问答（2020年真题）</h2>
+        </div>
+        <div class="chapter-body qa-content">
+            
+<h1 id="组合导航系统考试重点问答">组合导航系统考试重点问答</h1>
+<blockquote>
+<p><strong>来源</strong>：2020年春季学期考试真题 + 课程总结PPT重点内容 <strong>整理时间</strong>：2025年 <strong>适用课程</strong>：哈尔滨工程大学 组合导航系统（043502）</p>
+</blockquote>
+<hr />
+<h2 id="一简答题部分38分">一、简答题部分（38分）</h2>
+<h3 id="题目1请描述什么是导航列举五种常见的导航方式6分">题目1：请描述什么是导航？列举五种常见的导航方式。（6分）</h3>
+<p><strong>问：什么是导航？</strong></p>
+<p><strong>答</strong>：导航是指引导运载体（如船舶、飞机、车辆等）从出发点安全、准确地到达目的地的一门技术。它包括确定当前位置、航向、速度等信息，并规划航线。</p>
+<p><strong>问：列举五种常见的导航方式。</strong></p>
+<p><strong>答</strong>： 1. <strong>惯性导航（INS）</strong>：利用陀螺仪和加速度计测量载体运动，自主性强但误差随时间发散 2. <strong>卫星导航（GPS/GNSS）</strong>：利用卫星信号定位，全球覆盖、精度高但依赖外部信号 3. <strong>无线电导航</strong>：利用地面台站发射的无线电信号导航，如VOR、DME 4. <strong>天文导航</strong>：利用天体（太阳、星星）观测定位，古老但可靠 5. <strong>地文导航</strong>：利用地面标志物（陆标）定位，如船位线导航</p>
+<p><strong>评分要点</strong>：导航定义2分，五种导航方式各0.8分。</p>
+<hr />
+<h3 id="题目2请画出组合导航系统间接法反馈校正原理图5分">题目2：请画出组合导航系统间接法反馈校正原理图。（5分）</h3>
+<p><strong>问：什么是间接法反馈校正？</strong></p>
+<p><strong>答</strong>：间接法反馈校正是指： 1. 以<strong>各子系统的误差量</strong>作为状态 2. 通过卡尔曼滤波<strong>估计出误差</strong> 3. 将估计出的<strong>误差反馈到惯导系统</strong>中 4. <strong>校正惯导内部参数</strong>（陀螺、加速度计）</p>
+<p><strong>问：画出原理图并说明流程。</strong></p>
+<p><strong>答</strong>：</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                    组合导航系统                          │
+│                                                          │
+│   ┌─────────┐    导航输出    ┌─────────┐               │
+│   │  INS    │ ─────────────→ │         │               │
+│   │ (惯导)  │                │  卡尔曼 │ ← 量测：位置/ │
+│   └────┬────┘                │  滤波器 │    速度差值   │
+│        │                     │         │               │
+│        │ 误差估计值          └────┬────┘               │
+│        │ ←────────────────────────┘                    │
+│        │                                                │
+│   ┌────▼────┐                                           │
+│   │  反馈   │  ← 校正陀螺、加速度计                     │
+│   │  校正   │                                           │
+│   └─────────┘                                           │
+│                                                          │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<p><strong>流程说明</strong>： 1. INS和GPS各自输出导航参数 2. 计算两者差值作为量测量 3. 卡尔曼滤波估计INS误差 4. 将误差反馈校正INS内部参数</p>
+<p><strong>评分要点</strong>：原理图3分，流程说明2分。</p>
+<hr />
+<h3 id="题目3简述组合导航的基本思想6分">题目3：简述组合导航的基本思想。（6分）</h3>
+<p><strong>问：什么是组合导航？</strong></p>
+<p><strong>答</strong>：组合导航是指通过对<strong>两种或多种导航系统</strong>的测量或输出信息进行<strong>综合处理</strong>（应用卡尔曼滤波等数据处理技术），获得更高的导航精度和可靠性，集各个子系统的优点于一身。</p>
+<p><strong>问：组合导航的目的是什么？</strong></p>
+<p><strong>答</strong>： 1. <strong>提高导航精度</strong>：利用各系统的互补性 2. <strong>提高可靠性</strong>：单系统故障时仍有备份 3. <strong>优势互补</strong>：惯导短期精度高 + GPS长期稳定性好</p>
+<p><strong>问：组合导航的基本思想是什么？</strong></p>
+<p><strong>答</strong>： 1. <strong>比较</strong>：惯性导航系统的输出信号与独立测量的由其它导航系统导出的相同的量进行比较 2. <strong>估计</strong>：利用卡尔曼滤波估计INS的误差 3. <strong>校正</strong>：用估计出的误差校正INS输出或内部参数</p>
+<p><strong>类比理解</strong>： &gt; 就像两个人一起走路： &gt; - 惯导是“急性子”，走得快但容易跑偏 &gt; - GPS是“慢性子”，走得慢但方向准 &gt; - 组合导航就是让两人手拉手一起走，既快又准！</p>
+<p><strong>评分要点</strong>：组合导航定义2分，目的2分，基本思想2分。</p>
+<hr />
+<h3 id="题目4什么是伪距gps导航系统如何利用伪距定位7分">题目4：什么是伪距？GPS导航系统如何利用伪距定位？（7分）</h3>
+<p><strong>问：什么是伪距？</strong></p>
+<p><strong>答</strong>：伪距是指GPS接收机到卫星的<strong>观测距离</strong>，由于各种误差源的影响（如时钟误差、大气延迟等），并非真实的几何距离，而是<strong>含有误差的量测距离</strong>。</p>
+<p><strong>问：伪距的组成是什么？</strong></p>
+<p><strong>答</strong>： <span class="math display">\[
+\rho = r + c \cdot \delta t + \varepsilon
+\]</span> 其中： - <span class="math inline">\(r\)</span>：真实几何距离 - <span class="math inline">\(c \cdot \delta t\)</span>：时钟误差引起的距离误差 - <span class="math inline">\(\varepsilon\)</span>：其他误差（大气延迟、多路径等）</p>
+<p><strong>问：GPS如何利用伪距定位？</strong></p>
+<p><strong>答</strong>： 1. <strong>测距原理</strong>：测量卫星信号从发射到接收的传播时间<span class="math inline">\(\Delta t\)</span>，则伪距<span class="math inline">\(\rho = c \cdot \Delta t\)</span> 2. <strong>相关处理</strong>：接收机复制与卫星相同的测距码，通过时间延迟器使两者对齐，相关系数为1时的延迟即为传播时间 3. <strong>定位方程</strong>：对第<span class="math inline">\(i\)</span>颗卫星：<span class="math inline">\(\rho_i = \sqrt{(x_i-x)^2+(y_i-y)^2+(z_i-z)^2} + c \cdot \delta t\)</span> 4. <strong>解算位置</strong>：至少观测4颗卫星，解4个未知数（<span class="math inline">\(x, y, z, \delta t\)</span>）</p>
+<p><strong>评分要点</strong>：伪距定义3分，定位原理4分。</p>
+<hr />
+<h3 id="题目5什么是船位线简述地文导航中如何利用船位线定位7分">题目5：什么是船位线？简述地文导航中如何利用船位线定位？（7分）</h3>
+<p><strong>问：什么是船位线？</strong></p>
+<p><strong>答</strong>：船位线（Line of Position, LOP）是指在导航上，<strong>观测值相等点的轨迹</strong>。在导航定位中，等值线常称为位置线或船位线。</p>
+<p><strong>问：船位线有哪些类型？</strong></p>
+<p><strong>答</strong>： 1. <strong>方位船位线</strong>：观测物标的方位角相等点的轨迹（从物标出发的射线） 2. <strong>距离船位线</strong>：观测物标的距离相等点的轨迹（以物标为圆心的圆） 3. <strong>水平角船位线</strong>：两物标水平角相等点的轨迹（圆弧）</p>
+<p><strong>问：如何利用船位线定位？</strong></p>
+<p><strong>答</strong>： 1. <strong>基本原理</strong>：船舶航行时对某一物标进行观测，观测时的船位必然位于该船位线上的某一点 2. <strong>单条船位线</strong>：无法确定具体位置，只能确定船在某条线上 3. <strong>两条船位线交点</strong>：在同一时刻测得两条或两条以上船位线，它们的交点即为观测时的船位 4. <strong>多条船位线</strong>：提高定位精度和可靠性</p>
+<p><strong>评分要点</strong>：船位线定义2分，类型3分，定位原理2分。</p>
+<hr />
+<h3 id="题目6写出利用卡尔曼滤波解决组合导航问题的一般步骤7分">题目6：写出利用卡尔曼滤波解决组合导航问题的一般步骤。（7分）</h3>
+<p><strong>问：利用卡尔曼滤波解决组合导航问题的五步法是什么？</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>第1步：选取状态量，列写状态方程</strong> - 直接法：以各导航子系统的导航输出参数作为状态 - 间接法：以各子系统的误差量作为状态（推荐） - 状态方程：<span class="math inline">\(\dot{\mathbf{x}} = \mathbf{F}\mathbf{x} + \mathbf{G}\mathbf{w}\)</span></p>
+<p><strong>第2步：选取量测量，列写量测方程</strong> - 量测量：两个导航系统关于同一导航参数的差值 - 量测方程：<span class="math inline">\(\mathbf{z} = \mathbf{H}\mathbf{x} + \mathbf{v}\)</span></p>
+<p><strong>第3步：连续系统离散化</strong> - 状态转移矩阵：<span class="math inline">\(\Phi \approx \mathbf{I} + \mathbf{F}T\)</span> - 噪声矩阵：<span class="math inline">\(\Gamma \approx \mathbf{G}T\)</span></p>
+<p><strong>第4步：利用卡尔曼滤波方程递推估计出状态</strong> - 状态一步预测 - 一步预测均方差 - 滤波增益计算 - 状态估值计算 - 估计均方差方程</p>
+<p><strong>第5步：利用估计出的状态得到导航参数</strong> - 输出校正：将估计值作为校正量直接修正输出 - 反馈校正：将估计值反馈到惯导内部进行校正</p>
+<p><strong>记忆口诀</strong>：<strong>“选写离滤校”</strong></p>
+<p><strong>评分要点</strong>：5个步骤各1.4分。</p>
+<hr />
+<h2 id="二计算题部分15分">二、计算题部分（15分）</h2>
+<h3 id="题目请计算按如下顺序旋转的欧拉角矩阵">题目：请计算按如下顺序旋转的欧拉角矩阵。</h3>
+<p><strong>旋转顺序</strong>：绕 <span class="math inline">\(oz_I\)</span> 旋转 <span class="math inline">\(\psi\)</span> → 绕 <span class="math inline">\(ox_1\)</span> 旋转 <span class="math inline">\(\theta\)</span> → 绕 <span class="math inline">\(oy_2\)</span> 旋转 <span class="math inline">\(\gamma\)</span></p>
+<p><strong>问：写出各次旋转矩阵。</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>第1次旋转</strong>：绕 <span class="math inline">\(z\)</span> 轴旋转 <span class="math inline">\(\psi\)</span>（偏航角） <span class="math display">\[
+\mathbf{C}_1 = \begin{bmatrix} \cos\psi &amp; \sin\psi &amp; 0 \\ -\sin\psi &amp; \cos\psi &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}
+\]</span></p>
+<p><strong>第2次旋转</strong>：绕 <span class="math inline">\(x\)</span> 轴旋转 <span class="math inline">\(\theta\)</span>（俯仰角） <span class="math display">\[
+\mathbf{C}_2 = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; \cos\theta &amp; \sin\theta \\ 0 &amp; -\sin\theta &amp; \cos\theta \end{bmatrix}
+\]</span></p>
+<p><strong>第3次旋转</strong>：绕 <span class="math inline">\(y\)</span> 轴旋转 <span class="math inline">\(\gamma\)</span>（横滚角） <span class="math display">\[
+\mathbf{C}_3 = \begin{bmatrix} \cos\gamma &amp; 0 &amp; -\sin\gamma \\ 0 &amp; 1 &amp; 0 \\ \sin\gamma &amp; 0 &amp; \cos\gamma \end{bmatrix}
+\]</span></p>
+<p><strong>问：计算总旋转矩阵。</strong></p>
+<p><strong>答</strong>： <span class="math display">\[
+\mathbf{C} = \mathbf{C}_3 \cdot \mathbf{C}_2 \cdot \mathbf{C}_1
+\]</span></p>
+<p>展开计算（按题目要求的旋转顺序）：</p>
+<p><span class="math display">\[
+\mathbf{C} = \begin{bmatrix} 
+c\gamma c\psi + s\gamma s\theta s\psi &amp; c\gamma s\psi - s\gamma s\theta c\psi &amp; -s\gamma c\theta \\
+-c\theta s\psi &amp; c\theta c\psi &amp; s\theta \\
+s\gamma c\psi - c\gamma s\theta s\psi &amp; s\gamma s\psi + c\gamma s\theta c\psi &amp; c\gamma c\theta
+\end{bmatrix}
+\]</span></p>
+<p>其中：<span class="math inline">\(c = \cos\)</span>，<span class="math inline">\(s = \sin\)</span></p>
+<p><strong>评分要点</strong>：各次旋转矩阵各3分，总矩阵6分，共15分。</p>
+<hr />
+<h2 id="三论述题部分12分">三、论述题部分（12分）</h2>
+<h3 id="题目图示并描述捷联式惯导系统的基本原理">题目：图示并描述捷联式惯导系统的基本原理。</h3>
+<p><strong>问：什么是捷联式惯导系统？</strong></p>
+<p><strong>答</strong>：捷联式惯导系统（Strapdown INS）是指陀螺仪和加速度计<strong>直接固连在载体上</strong>，没有物理稳定平台的惯导系统。通过计算机实时计算姿态矩阵，将加速度计测量的比力从载体系转换到导航系。</p>
+<p><strong>问：画出捷联惯导系统原理图。</strong></p>
+<p><strong>答</strong>：</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                      运载体                             │
+│  ┌─────────┐    ┌─────────┐                            │
+│  │ 陀螺仪  │    │加速度计 │                            │
+│  │(测量ω)  │    │(测量f)  │                            │
+│  └────┬────┘    └────┬────┘                            │
+│       │              │                                  │
+│       └──────┬───────┘                                  │
+│              │                                          │
+│       ┌──────▼───────┐                                  │
+│       │   导航计算机  │                                  │
+│       │              │                                  │
+│       │  1. 姿态计算  │ ← 利用陀螺输出计算姿态矩阵C_b^n │
+│       │  2. 坐标转换  │ ← 将f^b转换为f^n               │
+│       │  3. 速度计算  │ ← 积分得速度                   │
+│       │  4. 位置计算  │ ← 积分得位置                   │
+│       └──────┬───────┘                                  │
+│              │                                          │
+│       ┌──────▼───────┐                                  │
+│       │   导航输出   │                                   │
+│       │ (V, L, λ, h) │                                   │
+│       └──────────────┘                                   │
+│                                                          │
+└─────────────────────────────────────────────────────────┘</code></pre>
+<p><strong>问：描述捷联惯导系统的基本原理。</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>1. 姿态更新</strong> - 陀螺仪测量载体相对于惯性系的角速度<span class="math inline">\(\omega_{ib}^b\)</span> - 利用姿态更新方程计算姿态矩阵<span class="math inline">\(\mathbf{C}_b^n\)</span> - 常用方法：四元数法（无奇点、计算高效）</p>
+<p><strong>2. 比力变换</strong> - 加速度计测量载体系下的比力<span class="math inline">\(\mathbf{f}^b\)</span> - 通过姿态矩阵变换到导航系：<span class="math inline">\(\mathbf{f}^n = \mathbf{C}_b^n \mathbf{f}^b\)</span></p>
+<p><strong>3. 速度更新</strong> - 在导航系下进行速度积分 - 考虑有害加速度（哥氏加速度、向心加速度）和重力补偿</p>
+<p><strong>4. 位置更新</strong> - 由速度积分得到位置（纬度、经度、高度）</p>
+<p><strong>与平台式惯导的区别</strong>： - 平台式：有物理稳定平台，机械复杂 - 捷联式：无物理平台，算法复杂，可靠性高</p>
+<p><strong>评分要点</strong>：原理图4分，姿态更新3分，比力变换2分，速度位置更新3分。</p>
+<hr />
+<h2 id="四综合题部分15分">四、综合题部分（15分）</h2>
+<h3 id="题目请写出卡尔曼滤波的模型以及当模型中系统噪声为有色噪声量测噪声为白噪声条件下的解决办法">题目：请写出卡尔曼滤波的模型，以及当模型中系统噪声为有色噪声，量测噪声为白噪声条件下的解决办法。</h3>
+<p><strong>问：卡尔曼滤波的模型是什么？</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>连续系统模型</strong>： <span class="math display">\[
+\begin{cases}
+\dot{\mathbf{x}}(t) = \mathbf{F}(t)\mathbf{x}(t) + \mathbf{G}(t)\mathbf{w}(t) &amp; \text{（状态方程）} \\
+\mathbf{z}(t) = \mathbf{H}(t)\mathbf{x}(t) + \mathbf{v}(t) &amp; \text{（量测方程）}
+\end{cases}
+\]</span></p>
+<p><strong>离散系统模型</strong>： <span class="math display">\[
+\begin{cases}
+\mathbf{x}_k = \Phi_{k,k-1}\mathbf{x}_{k-1} + \Gamma_{k-1}\mathbf{w}_{k-1} \\
+\mathbf{z}_k = \mathbf{H}_k\mathbf{x}_k + \mathbf{v}_k
+\end{cases}
+\]</span></p>
+<p><strong>噪声统计特性</strong>： - <span class="math inline">\(E[\mathbf{w}_k] = 0\)</span>，<span class="math inline">\(E[\mathbf{w}_k\mathbf{w}_j^T] = \mathbf{Q}_k\delta_{kj}\)</span> - <span class="math inline">\(E[\mathbf{v}_k] = 0\)</span>，<span class="math inline">\(E[\mathbf{v}_k\mathbf{v}_j^T] = \mathbf{R}_k\delta_{kj}\)</span> - <span class="math inline">\(E[\mathbf{w}_k\mathbf{v}_j^T] = 0\)</span></p>
+<p><strong>问：系统噪声为有色噪声，量测噪声为白噪声时的解决办法。</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>有色噪声定义</strong>：噪声的当前值与历史值相关，不满足白噪声的独立性假设。</p>
+<p><strong>解决办法（三步法）</strong>：</p>
+<p><strong>第1步：有色噪声白化</strong> - 将有色噪声表示为白噪声驱动的成形滤波器输出 - 例如一阶马尔可夫过程：<span class="math inline">\(\dot{\varepsilon} = -\frac{1}{T}\varepsilon + w\)</span>，其中<span class="math inline">\(w\)</span>为白噪声</p>
+<p><strong>第2步：增广状态向量</strong> - 将噪声状态扩充到原状态向量中 - 原状态：<span class="math inline">\(\mathbf{x}\)</span>，噪声状态：<span class="math inline">\(\varepsilon\)</span> - 增广状态：<span class="math inline">\(\mathbf{X} = [\mathbf{x}, \varepsilon]^T\)</span></p>
+<p><strong>第3步：对增广系统应用标准卡尔曼滤波</strong> - 增广后的系统噪声为白噪声 - 可以直接应用标准卡尔曼滤波方程</p>
+<p><strong>举例说明</strong>：</p>
+<p>假设陀螺漂移为有色噪声（一阶马尔可夫过程）： <span class="math display">\[
+\dot{\varepsilon} = -\frac{1}{T}\varepsilon + w
+\]</span></p>
+<p>增广状态向量： <span class="math display">\[
+\mathbf{X} = [\delta V_x, \delta V_y, \delta V_z, \delta L, \delta \lambda, \delta h, \phi_x, \phi_y, \phi_z, \varepsilon_x, \varepsilon_y, \varepsilon_z]^T
+\]</span></p>
+<p>增广后的状态方程： <span class="math display">\[
+\dot{\mathbf{X}} = \begin{bmatrix} \mathbf{F}_{INS} &amp; \mathbf{F}_{couple} \\ 0 &amp; \mathbf{F}_{noise} \end{bmatrix} \mathbf{X} + \begin{bmatrix} \mathbf{G}_{INS} &amp; 0 \\ 0 &amp; \mathbf{G}_{noise} \end{bmatrix} \begin{bmatrix} \mathbf{w}_{INS} \\ \mathbf{w}_{noise} \end{bmatrix}
+\]</span></p>
+<p><strong>评分要点</strong>：卡尔曼滤波模型7分，有色噪声解决办法8分。</p>
+<hr />
+<h2 id="五设计题部分20分">五、设计题部分（20分）</h2>
+<h3 id="题目请写出sinsgps位置松组合导航系统设计的基本步骤其中假设加速度计噪声和陀螺漂移均为有色噪声">题目：请写出SINS/GPS位置松组合导航系统设计的基本步骤，其中假设加速度计噪声和陀螺漂移均为有色噪声。</h3>
+<p><strong>问：SINS/GPS位置松组合导航系统设计的完整步骤是什么？</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>已知条件</strong>： - 松组合：利用位置和速度差作为量测 - 有色噪声：加速度计噪声和陀螺漂移均为一阶马尔可夫过程</p>
+<hr />
+<h3 id="第1步选取状态量间接法列写状态方程">第1步：选取状态量（间接法），列写状态方程</h3>
+<p><strong>问：状态变量如何选取？</strong></p>
+<p><strong>答</strong>：由于噪声为有色噪声，需要增广状态。</p>
+<p><strong>基本状态</strong>（9维导航误差）： <span class="math display">\[
+\mathbf{x}_{basic} = [\delta V_x, \delta V_y, \delta V_z, \delta L, \delta \lambda, \delta h, \phi_x, \phi_y, \phi_z]^T
+\]</span></p>
+<p><strong>噪声状态</strong>（6维有色噪声）： - 陀螺漂移（3维）：<span class="math inline">\(\varepsilon_x, \varepsilon_y, \varepsilon_z\)</span> - 加速度计零偏（3维）：<span class="math inline">\(\nabla_x, \nabla_y, \nabla_z\)</span></p>
+<p><strong>总状态向量</strong>（15维）： <span class="math display">\[
+\mathbf{x} = [\delta V_x, \delta V_y, \delta V_z, \delta L, \delta \lambda, \delta h, \phi_x, \phi_y, \phi_z, \varepsilon_x, \varepsilon_y, \varepsilon_z, \nabla_x, \nabla_y, \nabla_z]^T
+\]</span></p>
+<p><strong>噪声模型</strong>（一阶马尔可夫过程）： <span class="math display">\[
+\begin{cases}
+\dot{\varepsilon}_x = -\frac{1}{T_{gx}}\varepsilon_x + w_{gx} \\
+\dot{\varepsilon}_y = -\frac{1}{T_{gy}}\varepsilon_y + w_{gy} \\
+\dot{\varepsilon}_z = -\frac{1}{T_{gz}}\varepsilon_z + w_{gz}
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\begin{cases}
+\dot{\nabla}_x = -\frac{1}{T_{ax}}\nabla_x + w_{ax} \\
+\dot{\nabla}_y = -\frac{1}{T_{ay}}\nabla_y + w_{ay} \\
+\dot{\nabla}_z = -\frac{1}{T_{az}}\nabla_z + w_{az}
+\end{cases}
+\]</span></p>
+<p><strong>状态方程</strong>： <span class="math display">\[
+\dot{\mathbf{x}} = \mathbf{F}\mathbf{x} + \mathbf{G}\mathbf{w}
+\]</span></p>
+<p>其中系统矩阵<span class="math inline">\(\mathbf{F}\)</span>为<span class="math inline">\(15 \times 15\)</span>矩阵： <span class="math display">\[
+\mathbf{F} = \begin{bmatrix} \mathbf{F}_{INS} &amp; \mathbf{F}_{SG} \\ 0 &amp; \mathbf{F}_M \end{bmatrix}
+\]</span></p>
+<hr />
+<h3 id="第2步选取量测量列写量测方程">第2步：选取量测量，列写量测方程</h3>
+<p><strong>问：量测量如何选取？</strong></p>
+<p><strong>答</strong>：位置松组合，量测量为INS和GPS的位置差。</p>
+<p><strong>量测量</strong>（3维）： <span class="math display">\[
+\mathbf{z} = \begin{bmatrix} L_I - L_G \\ \lambda_I - \lambda_G \\ h_I - h_G \end{bmatrix}
+\]</span></p>
+<p><strong>量测方程</strong>： <span class="math display">\[
+\mathbf{z} = \mathbf{H}\mathbf{x} + \mathbf{v}
+\]</span></p>
+<p><strong>量测矩阵</strong>（<span class="math inline">\(3 \times 15\)</span>）： <span class="math display">\[
+\mathbf{H} = \begin{bmatrix} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}
+\]</span></p>
+<p><strong>物理意义</strong>：直接测量位置误差<span class="math inline">\(\delta L, \delta \lambda, \delta h\)</span>。</p>
+<hr />
+<h3 id="第3步连续系统离散化">第3步：连续系统离散化</h3>
+<p><strong>问：如何进行离散化？</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>状态转移矩阵</strong>： <span class="math display">\[
+\Phi_{k,k-1} \approx \mathbf{I} + \mathbf{F}(t_{k-1})T
+\]</span></p>
+<p><strong>噪声矩阵</strong>： <span class="math display">\[
+\Gamma_{k-1} \approx \mathbf{G}(t_{k-1})T
+\]</span></p>
+<p><strong>离散化后的系统</strong>： <span class="math display">\[
+\begin{cases}
+\mathbf{x}_k = \Phi_{k,k-1}\mathbf{x}_{k-1} + \Gamma_{k-1}\mathbf{w}_{k-1} \\
+\mathbf{z}_k = \mathbf{H}_k\mathbf{x}_k + \mathbf{v}_k
+\end{cases}
+\]</span></p>
+<hr />
+<h3 id="第4步应用离散卡尔曼滤波进行状态估计">第4步：应用离散卡尔曼滤波进行状态估计</h3>
+<p><strong>问：卡尔曼滤波方程是什么？</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>状态一步预测</strong>： <span class="math display">\[
+\hat{\mathbf{x}}_{k/k-1} = \Phi_{k,k-1}\hat{\mathbf{x}}_{k-1}
+\]</span></p>
+<p><strong>一步预测均方差</strong>： <span class="math display">\[
+\mathbf{P}_{k/k-1} = \Phi_{k,k-1}\mathbf{P}_{k-1}\Phi_{k,k-1}^T + \Gamma_{k-1}\mathbf{Q}_{k-1}\Gamma_{k-1}^T
+\]</span></p>
+<p><strong>滤波增益</strong>： <span class="math display">\[
+\mathbf{K}_k = \mathbf{P}_{k/k-1}\mathbf{H}_k^T(\mathbf{H}_k\mathbf{P}_{k/k-1}\mathbf{H}_k^T + \mathbf{R}_k)^{-1}
+\]</span></p>
+<p><strong>状态估值</strong>： <span class="math display">\[
+\hat{\mathbf{x}}_k = \hat{\mathbf{x}}_{k/k-1} + \mathbf{K}_k(\mathbf{z}_k - \mathbf{H}_k\hat{\mathbf{x}}_{k/k-1})
+\]</span></p>
+<p><strong>估计均方差</strong>： <span class="math display">\[
+\mathbf{P}_k = (\mathbf{I} - \mathbf{K}_k\mathbf{H}_k)\mathbf{P}_{k/k-1}
+\]</span></p>
+<hr />
+<h3 id="第5步利用输出校正或反馈校正修正惯导输出">第5步：利用输出校正或反馈校正修正惯导输出</h3>
+<p><strong>问：如何进行校正？</strong></p>
+<p><strong>答</strong>：</p>
+<p><strong>输出校正</strong>（开环）： <span class="math display">\[
+\begin{cases}
+L = L_I - \delta L \\
+\lambda = \lambda_I - \delta \lambda \\
+h = h_I - \delta h
+\end{cases}
+\]</span></p>
+<p><strong>反馈校正</strong>（闭环）： - 将估计出的陀螺漂移<span class="math inline">\(\hat{\varepsilon}_x, \hat{\varepsilon}_y, \hat{\varepsilon}_z\)</span>反馈校正陀螺输出 - 将估计出的加速度计零偏<span class="math inline">\(\hat{\nabla}_x, \hat{\nabla}_y, \hat{\nabla}_z\)</span>反馈校正加速度计输出</p>
+<p><strong>推荐</strong>：长期使用反馈校正，短期可用输出校正。</p>
+<hr />
+<h2 id="考试重点记忆口诀">考试重点记忆口诀</h2>
+<h3 id="组合导航五步法">组合导航五步法</h3>
+<blockquote>
+<p><strong>“选写离滤校”</strong> - 选：选状态 - 写：写量测 - 离：离散化 - 滤：滤波估计 - 校：校正输出</p>
+</blockquote>
+<h3 id="状态变量15维">状态变量15维</h3>
+<blockquote>
+<p><strong>“三速三位三姿态，三陀三加共十五”</strong> - 三速：<span class="math inline">\(\delta V_x, \delta V_y, \delta V_z\)</span> - 三位：<span class="math inline">\(\delta L, \delta \lambda, \delta h\)</span> - 三姿态：<span class="math inline">\(\phi_x, \phi_y, \phi_z\)</span> - 三陀：<span class="math inline">\(\varepsilon_x, \varepsilon_y, \varepsilon_z\)</span> - 三加：<span class="math inline">\(\nabla_x, \nabla_y, \nabla_z\)</span></p>
+</blockquote>
+<h3 id="有色噪声处理三步法">有色噪声处理三步法</h3>
+<blockquote>
+<p><strong>“白化-增广-滤波”</strong> 1. 白化：将有色噪声表示为白噪声驱动的成形滤波器 2. 增广：将噪声状态扩充到状态向量中 3. 滤波：对增广系统应用标准卡尔曼滤波</p>
+</blockquote>
 <hr />
 <p><strong>祝考试顺利！</strong> 🎯</p>
 
