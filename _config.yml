@@ -2,8 +2,10 @@ title: 组合导航课程
 description: 哈尔滨工程大学 组合导航系统 完整讲解版
 url: https://waowaohh.github.io
 baseurl: /navigation-course
-theme: minima
 markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
 math_engine: mathjax
 plugins:
   - jekyll-seo-tag
