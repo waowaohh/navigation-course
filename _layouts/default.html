@@ -6,123 +6,79 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ site.description }}">
   <meta name="generator" content="Jekyll">
-  {% seo title=false %}
 
-  <!-- Fonts -->
+  <!-- Preconnect for fonts (non-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- MathJax -->
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      }
-    };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Font loaded async with font-display:swap to avoid render blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
   <style>
-    /* ========== CSS Variables ========== */
     :root {
       --color-primary: #1a365d;
       --color-primary-light: #2a4a7f;
-      --color-primary-dark: #0f2440;
       --color-accent: #d69e2e;
       --color-accent-light: #ecc94b;
       --color-accent-dark: #b7791f;
-      --color-success: #38a169;
-      --color-info: #3182ce;
-
       --bg-body: #f7f8fa;
       --bg-sidebar: #ffffff;
-      --bg-content: #ffffff;
       --bg-card: #ffffff;
       --bg-code: #f0f2f5;
       --bg-blockquote: #fffbeb;
       --bg-search: #f0f2f5;
       --bg-toc: #fafbfc;
-      --bg-tag: #ebf4ff;
-
       --text-primary: #1a202c;
       --text-secondary: #4a5568;
       --text-muted: #718096;
       --text-sidebar: #2d3748;
       --text-sidebar-active: #1a365d;
       --text-link: #2b6cb0;
-      --text-link-hover: #1a365d;
-
       --border-color: #e2e8f0;
-      --border-sidebar: #e2e8f0;
-      --border-accent: #d69e2e;
-
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
       --shadow-sidebar: 2px 0 8px rgba(0,0,0,0.04);
-
       --sidebar-width: 300px;
-      --toc-width: 220px;
       --header-height: 56px;
       --progress-height: 3px;
       --radius: 8px;
       --radius-sm: 6px;
       --transition: 0.3s ease;
-
-      --font-heading: 'Noto Serif SC', 'Georgia', serif;
-      --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      --font-heading: 'Noto Serif SC', Georgia, 'Songti SC', serif;
+      --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      --font-mono: Consolas, 'Courier New', monospace;
     }
-
-    /* ========== Dark Theme ========== */
     [data-theme="dark"] {
       --bg-body: #0f1117;
       --bg-sidebar: #1a1d2e;
-      --bg-content: #1a1d2e;
       --bg-card: #222639;
       --bg-code: #2d3148;
       --bg-blockquote: #2d2a1f;
       --bg-search: #222639;
       --bg-toc: #1e2235;
-      --bg-tag: #1a2744;
-
       --text-primary: #e2e8f0;
       --text-secondary: #a0aec0;
       --text-muted: #718096;
       --text-sidebar: #cbd5e0;
       --text-sidebar-active: #ecc94b;
       --text-link: #63b3ed;
-      --text-link-hover: #90cdf4;
-
       --border-color: #2d3748;
-      --border-sidebar: #2d3748;
-
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
       --shadow-sidebar: 2px 0 8px rgba(0,0,0,0.2);
     }
-
-    /* ========== Reset & Base ========== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--font-body);
-      background-color: var(--bg-body);
+      background: var(--bg-body);
       color: var(--text-primary);
       line-height: 1.8;
       transition: background-color var(--transition), color var(--transition);
       overflow-x: hidden;
     }
-
-    /* ========== Scroll Progress Bar ========== */
     #progress-bar {
       position: fixed; top: 0; left: 0;
       height: var(--progress-height);
@@ -130,33 +86,30 @@
       width: 0%; z-index: 10000;
       transition: width 0.1s linear;
     }
-
-    /* ========== Header ========== */
     .site-header {
       position: fixed; top: var(--progress-height); left: 0; right: 0;
       height: var(--header-height);
-      background: var(--color-primary); color: #ffffff;
+      background: var(--color-primary); color: #fff;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 24px; z-index: 9000;
       box-shadow: var(--shadow-md);
     }
-    .site-header .header-left { display: flex; align-items: center; gap: 16px; }
+    .header-left { display: flex; align-items: center; gap: 16px; }
     .menu-toggle {
       display: none; background: none; border: none;
-      color: #ffffff; font-size: 24px; cursor: pointer;
-      padding: 4px; line-height: 1;
+      color: #fff; font-size: 24px; cursor: pointer; padding: 4px; line-height: 1;
     }
     .site-title {
       font-family: var(--font-heading);
       font-size: 1.2rem; font-weight: 700;
-      color: #ffffff; text-decoration: none; letter-spacing: 1px;
+      color: #fff; text-decoration: none; letter-spacing: 1px;
     }
     .site-title:hover { color: var(--color-accent-light); }
     .header-right { display: flex; align-items: center; gap: 8px; }
     .theme-toggle {
       background: rgba(255,255,255,0.15);
       border: 1px solid rgba(255,255,255,0.2);
-      color: #ffffff; width: 34px; height: 34px;
+      color: #fff; width: 34px; height: 34px;
       border-radius: 50%; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       font-size: 16px; transition: background var(--transition);
@@ -166,54 +119,42 @@
       color: rgba(255,255,255,0.85); text-decoration: none;
       font-size: 0.85rem; padding: 6px 12px;
       border-radius: var(--radius-sm);
-      transition: background var(--transition), color var(--transition);
+      transition: background var(--transition);
     }
-    .header-link:hover { background: rgba(255,255,255,0.15); color: #ffffff; }
+    .header-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
 
-    /* ========== Sidebar ========== */
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: calc(var(--progress-height) + var(--header-height));
       left: 0; bottom: 0;
       width: var(--sidebar-width);
       background: var(--bg-sidebar);
-      border-right: 1px solid var(--border-sidebar);
+      border-right: 1px solid var(--border-color);
       overflow-y: auto; z-index: 8000;
       padding: 16px 0;
       box-shadow: var(--shadow-sidebar);
       transition: transform var(--transition), background-color var(--transition);
     }
     .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-track { background: transparent; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
-
-    /* Search */
     .sidebar-search {
       padding: 0 16px 12px;
       position: sticky; top: 0;
       background: var(--bg-sidebar); z-index: 1;
     }
     .search-input-wrapper { position: relative; }
-    .search-icon {
-      position: absolute; left: 12px; top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted); font-size: 14px;
-    }
+    .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; }
     .search-input {
       width: 100%; padding: 8px 12px 8px 36px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       background: var(--bg-search); color: var(--text-primary);
       font-size: 0.85rem; font-family: var(--font-body);
-      outline: none; transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none; transition: border-color var(--transition);
     }
-    .search-input:focus {
-      border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px rgba(214,158,46,0.15);
-    }
+    .search-input:focus { border-color: var(--color-accent); }
     .search-input::placeholder { color: var(--text-muted); }
-
-    /* Nav groups */
     .nav-group { margin-bottom: 4px; }
     .nav-group-title {
       font-family: var(--font-heading);
@@ -224,10 +165,7 @@
       display: flex; align-items: center; gap: 6px;
     }
     .nav-group-title .group-icon { font-size: 13px; }
-    .nav-group-title::after {
-      content: ''; flex: 1; height: 1px;
-      background: var(--border-color); margin-left: 8px;
-    }
+    .nav-group-title::after { content: ''; flex: 1; height: 1px; background: var(--border-color); margin-left: 8px; }
     .nav-item {
       display: block; padding: 7px 20px 7px 28px;
       color: var(--text-sidebar); text-decoration: none;
@@ -235,29 +173,19 @@
       transition: all var(--transition);
       border-left: 3px solid transparent;
     }
-    .nav-item:hover {
-      background: var(--bg-search); color: var(--text-link);
-      border-left-color: var(--color-accent);
-    }
-    .nav-item.active {
-      background: rgba(214,158,46,0.08);
-      color: var(--text-sidebar-active);
-      border-left-color: var(--color-accent);
-      font-weight: 500;
-    }
+    .nav-item:hover { background: var(--bg-search); color: var(--text-link); border-left-color: var(--color-accent); }
+    .nav-item.active { background: rgba(214,158,46,0.08); color: var(--text-sidebar-active); border-left-color: var(--color-accent); font-weight: 500; }
     .nav-item .nav-order {
       display: inline-block; width: 20px; height: 20px;
       line-height: 20px; text-align: center;
       font-size: 0.7rem; border-radius: 50%;
       background: var(--bg-search); color: var(--text-muted);
-      margin-right: 8px; flex-shrink: 0;
+      margin-right: 8px;
     }
-    .nav-item.active .nav-order {
-      background: var(--color-accent); color: #ffffff;
-    }
+    .nav-item.active .nav-order { background: var(--color-accent); color: #fff; }
     .nav-item.hidden { display: none; }
 
-    /* ========== Main Content ========== */
+    /* Main Content */
     .main-content {
       margin-left: var(--sidebar-width);
       margin-top: calc(var(--progress-height) + var(--header-height));
@@ -267,7 +195,7 @@
     }
     .content-wrapper { max-width: 860px; margin: 0 auto; }
 
-    /* ========== Page Title ========== */
+    /* Page Title */
     .page-title {
       font-family: var(--font-heading);
       font-size: 1.85rem; font-weight: 700;
@@ -288,303 +216,102 @@
       color: var(--color-accent-dark);
       font-size: 0.8rem; font-weight: 500;
     }
-    [data-theme="dark"] .page-meta .category-tag {
-      background: rgba(214,158,46,0.2);
-      color: var(--color-accent-light);
-    }
-    .page-meta .meta-item {
-      display: flex; align-items: center; gap: 4px;
-    }
+    [data-theme="dark"] .page-meta .category-tag { background: rgba(214,158,46,0.2); color: var(--color-accent-light); }
 
-    /* ========== Table of Contents (TOC) ========== */
-    .toc-container {
-      background: var(--bg-toc);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 28px;
-    }
-    .toc-title {
-      font-family: var(--font-heading);
-      font-size: 0.9rem; font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 10px;
-      display: flex; align-items: center; gap: 6px;
-    }
+    /* TOC */
+    .toc-container { background: var(--bg-toc); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 28px; }
+    .toc-title { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
     .toc-list { list-style: none; padding: 0; margin: 0; }
     .toc-list li { margin-bottom: 4px; }
-    .toc-list a {
-      color: var(--text-secondary);
-      text-decoration: none; font-size: 0.85rem;
-      display: block; padding: 3px 0 3px 16px;
-      border-left: 2px solid var(--border-color);
-      transition: all var(--transition);
-    }
-    .toc-list a:hover,
-    .toc-list a.active {
-      color: var(--color-accent-dark);
-      border-left-color: var(--color-accent);
-    }
-    [data-theme="dark"] .toc-list a:hover,
-    [data-theme="dark"] .toc-list a.active {
-      color: var(--color-accent-light);
-    }
+    .toc-list a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; display: block; padding: 3px 0 3px 16px; border-left: 2px solid var(--border-color); transition: all var(--transition); }
+    .toc-list a:hover, .toc-list a.active { color: var(--color-accent-dark); border-left-color: var(--color-accent); }
+    [data-theme="dark"] .toc-list a:hover, [data-theme="dark"] .toc-list a.active { color: var(--color-accent-light); }
     .toc-list .toc-h3 { padding-left: 32px; font-size: 0.82rem; }
-    .toc-toggle {
-      background: none; border: none; color: var(--text-muted);
-      cursor: pointer; font-size: 0.8rem; margin-left: auto;
-      padding: 2px 8px;
-    }
-    .toc-toggle:hover { color: var(--text-primary); }
+    .toc-toggle { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.8rem; margin-left: auto; padding: 2px 8px; }
 
-    /* ========== Content Typography ========== */
-    .post-content h1, .post-content h2, .post-content h3,
-    .post-content h4, .post-content h5, .post-content h6 {
-      font-family: var(--font-heading);
-      color: var(--text-primary);
-      margin-top: 2em; margin-bottom: 0.8em;
-      line-height: 1.4;
-    }
+    /* Content Typography */
+    .post-content h1, .post-content h2, .post-content h3, .post-content h4 { font-family: var(--font-heading); color: var(--text-primary); margin-top: 2em; margin-bottom: 0.8em; line-height: 1.4; }
     .post-content h1 { font-size: 1.6rem; padding-bottom: 0.5em; border-bottom: 1px solid var(--border-color); }
     .post-content h2 { font-size: 1.4rem; padding-bottom: 0.3em; border-bottom: 1px solid var(--border-color); }
     .post-content h3 { font-size: 1.2rem; }
     .post-content h4 { font-size: 1.05rem; }
     .post-content p { margin-bottom: 1em; }
-    .post-content a {
-      color: var(--text-link); text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color var(--transition);
-    }
+    .post-content a { color: var(--text-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--transition); }
     .post-content a:hover { border-bottom-color: var(--text-link); }
     .post-content ul, .post-content ol { margin-bottom: 1em; padding-left: 2em; }
     .post-content li { margin-bottom: 0.4em; }
-    .post-content blockquote {
-      border-left: 4px solid var(--color-accent);
-      background: var(--bg-blockquote);
-      padding: 16px 20px; margin: 1.5em 0;
-      border-radius: 0 var(--radius) var(--radius) 0;
-    }
+    .post-content blockquote { border-left: 4px solid var(--color-accent); background: var(--bg-blockquote); padding: 16px 20px; margin: 1.5em 0; border-radius: 0 var(--radius) var(--radius) 0; }
     .post-content blockquote p:last-child { margin-bottom: 0; }
-    .post-content code {
-      font-family: var(--font-mono);
-      background: var(--bg-code); padding: 2px 6px;
-      border-radius: 4px; font-size: 0.9em;
-    }
-    .post-content pre {
-      background: var(--bg-code); padding: 16px 20px;
-      border-radius: var(--radius); overflow-x: auto;
-      margin: 1.5em 0; border: 1px solid var(--border-color);
-    }
-    .post-content pre code {
-      background: none; padding: 0;
-      font-size: 0.875rem; line-height: 1.6;
-    }
-    .post-content table {
-      width: 100%; border-collapse: collapse;
-      margin: 1.5em 0; font-size: 0.9rem;
-      display: block; overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
+    .post-content code { font-family: var(--font-mono); background: var(--bg-code); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .post-content pre { background: var(--bg-code); padding: 16px 20px; border-radius: var(--radius); overflow-x: auto; margin: 1.5em 0; border: 1px solid var(--border-color); }
+    .post-content pre code { background: none; padding: 0; font-size: 0.875rem; line-height: 1.6; }
+    .post-content table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.9rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .post-content thead { display: table-header-group; }
     .post-content tbody { display: table-row-group; }
     .post-content tr { display: table-row; }
-    .post-content th, .post-content td {
-      border: 1px solid var(--border-color);
-      padding: 10px 14px; text-align: left;
-      display: table-cell;
-    }
-    .post-content th {
-      background: var(--bg-search); font-weight: 600;
-      font-family: var(--font-heading);
-    }
+    .post-content th, .post-content td { border: 1px solid var(--border-color); padding: 10px 14px; text-align: left; display: table-cell; }
+    .post-content th { background: var(--bg-search); font-weight: 600; font-family: var(--font-heading); }
     .post-content tr:nth-child(even) { background: var(--bg-search); }
-    .post-content img {
-      max-width: 100%; height: auto;
-      border-radius: var(--radius); margin: 1em 0;
-    }
-    .post-content hr {
-      border: none; height: 1px;
-      background: var(--border-color); margin: 2em 0;
-    }
-    .post-content .MathJax-display {
-      margin: 1.5em 0; overflow-x: auto;
-    }
+    .post-content img { max-width: 100%; height: auto; border-radius: var(--radius); margin: 1em 0; }
+    .post-content hr { border: none; height: 1px; background: var(--border-color); margin: 2em 0; }
+    .post-content .MathJax-display { margin: 1.5em 0; overflow-x: auto; }
 
-    /* ========== Post Navigation (Prev/Next) ========== */
-    .post-nav {
-      display: flex; justify-content: space-between;
-      gap: 16px; margin-top: 48px;
-      padding-top: 24px; border-top: 1px solid var(--border-color);
-    }
-    .post-nav-item {
-      flex: 1; text-decoration: none;
-      padding: 16px; border-radius: var(--radius);
-      border: 1px solid var(--border-color);
-      transition: all var(--transition);
-      color: var(--text-primary);
-    }
-    .post-nav-item:hover {
-      border-color: var(--color-accent);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
-    }
+    /* Post Nav */
+    .post-nav { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+    .post-nav-item { flex: 1; text-decoration: none; padding: 16px; border-radius: var(--radius); border: 1px solid var(--border-color); transition: all var(--transition); color: var(--text-primary); }
+    .post-nav-item:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); transform: translateY(-1px); }
     .post-nav-item.next { text-align: right; }
-    .post-nav-label {
-      font-size: 0.78rem; color: var(--text-muted);
-      margin-bottom: 4px; display: block;
-    }
-    .post-nav-title {
-      font-family: var(--font-heading);
-      font-size: 0.95rem; font-weight: 600;
-      color: var(--text-primary);
-    }
+    .post-nav-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; display: block; }
+    .post-nav-title { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; }
 
-    /* ========== Home Page ========== */
+    /* Home */
     .home-hero {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, #2c5282 100%);
-      color: #ffffff; padding: 48px 40px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light), #2c5282);
+      color: #fff; padding: 48px 40px;
       border-radius: var(--radius);
       margin-bottom: 36px; box-shadow: var(--shadow-lg);
       position: relative; overflow: hidden;
     }
-    .home-hero::before {
-      content: ''; position: absolute;
-      top: -50%; right: -20%; width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(214,158,46,0.15) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .home-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem; margin-bottom: 12px;
-      color: #ffffff; border: none; position: relative;
-    }
-    .home-hero p {
-      font-size: 1.05rem; line-height: 1.8;
-      opacity: 0.92; position: relative;
-    }
-    .home-hero .hero-stats {
-      display: flex; gap: 32px; margin-top: 20px;
-      position: relative;
-    }
-    .hero-stat {
-      text-align: center;
-    }
-    .hero-stat .stat-num {
-      font-size: 1.8rem; font-weight: 700;
-      color: var(--color-accent-light);
-      font-family: var(--font-heading);
-    }
-    .hero-stat .stat-label {
-      font-size: 0.82rem; opacity: 0.8;
-    }
-
-    /* Category sections on home */
+    .home-hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(214,158,46,0.15) 0%, transparent 70%); border-radius: 50%; }
+    .home-hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 12px; color: #fff; border: none; position: relative; }
+    .home-hero p { font-size: 1.05rem; line-height: 1.8; opacity: 0.92; position: relative; }
+    .home-hero .hero-stats { display: flex; gap: 32px; margin-top: 20px; position: relative; }
+    .hero-stat { text-align: center; }
+    .hero-stat .stat-num { font-size: 1.8rem; font-weight: 700; color: var(--color-accent-light); font-family: var(--font-heading); }
+    .hero-stat .stat-label { font-size: 0.82rem; opacity: 0.8; }
     .home-category-section { margin-bottom: 32px; }
-    .home-category-title {
-      font-family: var(--font-heading);
-      font-size: 1.1rem; font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-color);
-      display: flex; align-items: center; gap: 8px;
-    }
+    .home-category-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 8px; }
     .home-category-title .cat-icon { font-size: 1.2rem; }
-
     .posts-grid { display: grid; gap: 12px; }
-    .post-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      transition: all var(--transition);
-      display: flex; align-items: center; gap: 14px;
-      text-decoration: none; color: inherit;
-    }
-    .post-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: var(--color-accent);
-      transform: translateY(-1px);
-    }
-    .post-card .card-order {
-      flex-shrink: 0; width: 34px; height: 34px;
-      line-height: 34px; text-align: center;
-      background: var(--color-primary); color: #ffffff;
-      border-radius: 50%; font-size: 0.78rem; font-weight: 600;
-    }
+    .post-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 16px 20px; transition: all var(--transition); display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
+    .post-card:hover { box-shadow: var(--shadow-md); border-color: var(--color-accent); transform: translateY(-1px); }
+    .post-card .card-order { flex-shrink: 0; width: 34px; height: 34px; line-height: 34px; text-align: center; background: var(--color-primary); color: #fff; border-radius: 50%; font-size: 0.78rem; font-weight: 600; }
     .post-card .card-body { flex: 1; min-width: 0; }
-    .post-card .card-title {
-      font-family: var(--font-heading);
-      font-size: 1rem; font-weight: 600;
-      color: var(--text-primary); margin-bottom: 3px;
-    }
-    .post-card .card-meta {
-      font-size: 0.78rem; color: var(--text-muted);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .post-card .card-category {
-      display: inline-block; padding: 1px 8px;
-      border-radius: 10px;
-      background: rgba(214,158,46,0.12);
-      color: var(--color-accent-dark);
-      font-size: 0.72rem;
-    }
-    [data-theme="dark"] .post-card .card-category {
-      background: rgba(214,158,46,0.2);
-      color: var(--color-accent-light);
-    }
+    .post-card .card-title { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
+    .post-card .card-meta { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+    .post-card .card-category { display: inline-block; padding: 1px 8px; border-radius: 10px; background: rgba(214,158,46,0.12); color: var(--color-accent-dark); font-size: 0.72rem; }
+    [data-theme="dark"] .post-card .card-category { background: rgba(214,158,46,0.2); color: var(--color-accent-light); }
 
-    /* ========== Back to Top ========== */
-    .back-to-top {
-      position: fixed; bottom: 32px; right: 32px;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--color-primary); color: #ffffff;
-      border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; box-shadow: var(--shadow-lg);
-      opacity: 0; visibility: hidden;
-      transform: translateY(10px);
-      transition: all var(--transition); z-index: 7000;
-    }
+    /* Back to Top */
+    .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; border-radius: 50%; background: var(--color-primary); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all var(--transition); z-index: 7000; }
     .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
     .back-to-top:hover { background: var(--color-primary-light); transform: translateY(-2px); }
 
-    /* ========== Sidebar Overlay (Mobile) ========== */
-    .sidebar-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5); z-index: 7999;
-      opacity: 0; transition: opacity var(--transition);
-    }
+    /* Overlay */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 7999; opacity: 0; transition: opacity var(--transition); }
     .sidebar-overlay.active { opacity: 1; display: block; }
 
-    /* ========== Reading Progress Indicator ========== */
-    .reading-indicator {
-      position: fixed; bottom: 32px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--bg-card); color: var(--text-muted);
-      padding: 6px 16px; border-radius: 20px;
-      font-size: 0.78rem; box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      z-index: 6000; opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
+    /* Reading indicator */
+    .reading-indicator { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: var(--bg-card); color: var(--text-muted); padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); z-index: 6000; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
     .reading-indicator.visible { opacity: 1; }
 
-    /* ========== Footer ========== */
-    .site-footer {
-      margin-top: 48px; padding: 24px 0;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      font-size: 0.82rem; color: var(--text-muted);
-    }
+    /* Footer */
+    .site-footer { margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.82rem; color: var(--text-muted); }
     .site-footer a { color: var(--text-link); text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
 
-    /* ========== Responsive ========== */
-    @media (max-width: 1024px) {
-      .main-content { padding: 24px 24px 60px; }
-    }
+    /* Responsive */
+    @media (max-width: 1024px) { .main-content { padding: 24px 24px 60px; } }
     @media (max-width: 768px) {
       .menu-toggle { display: block; }
       .sidebar { transform: translateX(-100%); z-index: 8500; }
@@ -594,7 +321,6 @@
       .page-title { font-size: 1.5rem; }
       .home-hero { padding: 28px 24px; }
       .home-hero h1 { font-size: 1.5rem; }
-      .home-hero .hero-stats { gap: 20px; }
       .hero-stat .stat-num { font-size: 1.4rem; }
       .post-content h1 { font-size: 1.35rem; }
       .post-content h2 { font-size: 1.2rem; }
@@ -608,20 +334,14 @@
       .post-card { padding: 12px 14px; }
       .home-hero .hero-stats { flex-wrap: wrap; gap: 16px; }
     }
-
-    /* ========== Print ========== */
     @media print {
-      .sidebar, .site-header, #progress-bar, .back-to-top,
-      .sidebar-overlay, .toc-container, .reading-indicator { display: none !important; }
+      .sidebar, .site-header, #progress-bar, .back-to-top, .sidebar-overlay, .toc-container, .reading-indicator { display: none !important; }
       .main-content { margin-left: 0; margin-top: 0; padding: 0; }
     }
   </style>
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
   <div id="progress-bar"></div>
-
-  <!-- Header -->
   <header class="site-header">
     <div class="header-left">
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
@@ -629,399 +349,171 @@
     </div>
     <div class="header-right">
       <a href="{{ site.baseurl }}/" class="header-link">Home</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Switch dark/light mode">
-        <span id="themeIcon">&#9790;</span>
-      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span id="themeIcon">&#9790;</span></button>
     </div>
   </header>
-
-  <!-- Sidebar Overlay -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-  <!-- Sidebar -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-search">
       <div class="search-input-wrapper">
         <span class="search-icon">&#128269;</span>
-        <input type="text" class="search-input" id="navSearch" placeholder="Search chapters...">
+        <input type="text" class="search-input" id="navSearch" placeholder="Search...">
       </div>
     </div>
     <div class="nav-section" id="navSection">
-      {% comment %} Group posts by category {% endcomment %}
-      {% assign category_order = "基础理论,惯导原理,卫星与误差,卡尔曼滤波,组合导航,应试冲刺" | split: "," %}
-      {% assign category_icons = "📘,🧭,🛰️,📊,🔗,📝" | split: "," %}
-
-      {% for cat in category_order %}
-        {% for post in site.posts %}
-          {% if post.category == cat %}
-            {% assign cat_found = true %}
-            {% break %}
-          {% endif %}
+{% assign category_order = "基础理论,惯导原理,卫星与误差,卡尔曼滤波,组合导航,应试冲刺" | split: "," %}
+{% assign category_icons = "📘,🧭,🛰️,📊,🔗,📝" | split: "," %}
+{% assign groups = site.posts | group_by: "category" %}
+{% for cat in category_order %}
+  {% for g in groups %}
+    {% if g.name == cat %}
+      <div class="nav-group">
+        <div class="nav-group-title">
+          <span class="group-icon">{{ category_icons[forloop.parentindex0] }}</span>
+          {{ cat }}
+        </div>
+        {% for post in g.items %}
+          <a href="{{ post.url | relative_url }}" class="nav-item{% if page.url == post.url %} active{% endif %}" data-title="{{ post.title | downcase }}">
+            <span class="nav-order">{{ post.nav_order }}</span>
+            {{ post.title }}
+          </a>
         {% endfor %}
-        {% if cat_found %}
-          <div class="nav-group" data-category="{{ cat }}">
-            <div class="nav-group-title">
-              {% assign icon_index = forloop.index0 %}
-              <span class="group-icon">{{ category_icons[icon_index] }}</span>
-              {{ cat }}
-            </div>
-            {% for post in site.posts %}
-              {% if post.category == cat %}
-                <a href="{{ post.url | relative_url }}" class="nav-item{% if page.url == post.url %} active{% endif %}" data-title="{{ post.title | downcase }}">
-                  <span class="nav-order">{{ post.nav_order }}</span>
-                  {{ post.title }}
-                </a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
-        {% assign cat_found = false %}
-      {% endfor %}
+      </div>
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
     </div>
   </nav>
-
-  <!-- Main Content -->
   <main class="main-content">
     <div class="content-wrapper">
-      {% if page.url == site.baseurl or page.url == "/" or page.url == "/index.html" %}
-        {% comment %} ===== HOME PAGE ===== {% endcomment %}
-        <div class="home-hero">
-          <h1>{{ site.title }}</h1>
-          <p>{{ site.description }}</p>
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <div class="stat-num">{{ site.posts.size }}</div>
-              <div class="stat-label">Articles</div>
-            </div>
-            <div class="hero-stat">
-              <div class="stat-num">6</div>
-              <div class="stat-label">Categories</div>
-            </div>
-            <div class="hero-stat">
-              <div class="stat-num">15</div>
-              <div class="stat-label">Lectures</div>
-            </div>
-          </div>
+{% if page.url == site.baseurl or page.url == "/" or page.url == "/index.html" %}
+      <div class="home-hero">
+        <h1>{{ site.title }}</h1>
+        <p>{{ site.description }}</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="stat-num">{{ site.posts.size }}</div><div class="stat-label">Articles</div></div>
+          <div class="hero-stat"><div class="stat-num">6</div><div class="stat-label">Categories</div></div>
+          <div class="hero-stat"><div class="stat-num">15</div><div class="stat-label">Lectures</div></div>
         </div>
-
-        {% assign category_order = "基础理论,惯导原理,卫星与误差,卡尔曼滤波,组合导航,应试冲刺" | split: "," %}
-        {% assign category_icons = "📘,🧭,🛰️,📊,🔗,📝" | split: "," %}
-
-        {% for cat in category_order %}
-          {% assign icon_index = forloop.index0 %}
-          {% assign has_posts = false %}
-          {% for post in site.posts %}
-            {% if post.category == cat %}
-              {% assign has_posts = true %}
-              {% break %}
-            {% endif %}
+      </div>
+{% assign groups = site.posts | group_by: "category" %}
+{% for cat in category_order %}
+  {% for g in groups %}
+    {% if g.name == cat %}
+      <div class="home-category-section">
+        <div class="home-category-title"><span class="cat-icon">{{ category_icons[forloop.parentindex0] }}</span>{{ cat }}</div>
+        <div class="posts-grid">
+          {% for post in g.items %}
+          <a href="{{ post.url | relative_url }}" class="post-card">
+            <div class="card-order">{{ post.nav_order }}</div>
+            <div class="card-body">
+              <div class="card-title">{{ post.title }}</div>
+              <div class="card-meta"><span class="card-category">{{ post.category }}</span></div>
+            </div>
+          </a>
           {% endfor %}
-          {% if has_posts %}
-            <div class="home-category-section">
-              <div class="home-category-title">
-                <span class="cat-icon">{{ category_icons[icon_index] }}</span>
-                {{ cat }}
-              </div>
-              <div class="posts-grid">
-                {% for post in site.posts %}
-                  {% if post.category == cat %}
-                    <a href="{{ post.url | relative_url }}" class="post-card">
-                      <div class="card-order">{{ post.nav_order }}</div>
-                      <div class="card-body">
-                        <div class="card-title">{{ post.title }}</div>
-                        <div class="card-meta">
-                          <span class="card-category">{{ post.category }}</span>
-                          <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-                        </div>
-                      </div>
-                    </a>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
-
-        <footer class="site-footer">
-          <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }} &middot; Built with <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> &middot; Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
-        </footer>
-
-      {% else %}
-        {% comment %} ===== POST PAGE ===== {% endcomment %}
-        <h1 class="page-title">{{ page.title }}</h1>
-        <div class="page-meta">
-          <span class="category-tag">{{ page.category }}</span>
-          <span class="meta-item">{{ page.date | date: "%Y-%m-%d" }}</span>
-          <span class="meta-item" id="readingTime"></span>
         </div>
-
-        <!-- Table of Contents -->
-        <div class="toc-container" id="tocContainer">
-          <div class="toc-title">
-            📑 Table of Contents
-            <button class="toc-toggle" id="tocToggle">Hide</button>
-          </div>
-          <ul class="toc-list" id="tocList"></ul>
-        </div>
-
-        <div class="post-content">
-          {{ content }}
-        </div>
-
-        <!-- Post Navigation -->
-        {% assign category_order = "基础理论,惯导原理,卫星与误差,卡尔曼滤波,组合导航,应试冲刺" | split: "," %}
-        {% assign all_sorted = "" | split: "" %}
-        {% for cat in category_order %}
-          {% for post in site.posts %}
-            {% if post.category == cat %}
-              {% assign all_sorted = all_sorted | push: post %}
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-
-        {% for current_post in all_sorted %}
-          {% if current_post.url == page.url %}
-            {% assign current_index = forloop.index0 %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
-        {% if current_index %}
-          <nav class="post-nav">
-            {% if current_index > 0 %}
-              {% assign prev_post = all_sorted[current_index | minus: 1] %}
-              <a href="{{ prev_post.url | relative_url }}" class="post-nav-item prev">
-                <span class="post-nav-label">&#8592; Previous</span>
-                <span class="post-nav-title">{{ prev_post.title }}</span>
-              </a>
-            {% else %}
-              <div></div>
-            {% endif %}
-            {% if current_index < all_sorted.size %}
-              {% assign next_post = all_sorted[current_index | plus: 1] %}
-              {% unless next_post.url == page.url %}
-                <a href="{{ next_post.url | relative_url }}" class="post-nav-item next">
-                  <span class="post-nav-label">Next &#8594;</span>
-                  <span class="post-nav-title">{{ next_post.title }}</span>
-                </a>
-              {% endunless %}
-            {% endif %}
-          </nav>
-        {% endif %}
-
-        <footer class="site-footer">
-          <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }} &middot; Built with <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a></p>
-        </footer>
-      {% endif %}
+      </div>
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+      <footer class="site-footer"><p>&copy; {{ site.time | date: "%Y" }} {{ site.title }} &middot; Built with <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a></p></footer>
+{% else %}
+      <h1 class="page-title">{{ page.title }}</h1>
+      <div class="page-meta">
+        <span class="category-tag">{{ page.category }}</span>
+        <span class="meta-item">{{ page.date | date: "%Y-%m-%d" }}</span>
+        <span class="meta-item" id="readingTime"></span>
+      </div>
+      <div class="toc-container" id="tocContainer">
+        <div class="toc-title">📑 Table of Contents <button class="toc-toggle" id="tocToggle">Hide</button></div>
+        <ul class="toc-list" id="tocList"></ul>
+      </div>
+      <div class="post-content">{{ content }}</div>
+{% assign groups = site.posts | group_by: "category" %}
+{% assign all_sorted = "" | split: "" %}
+{% for cat in category_order %}
+  {% for g in groups %}
+    {% if g.name == cat %}
+      {% for post in g.items %}{% assign all_sorted = all_sorted | push: post %}{% endfor %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+{% for p in all_sorted %}
+  {% if p.url == page.url %}{% assign ci = forloop.index0 %}{% break %}{% endif %}
+{% endfor %}
+{% if ci %}
+      <nav class="post-nav">
+        {% if ci > 0 %}{% assign pp = all_sorted[ci | minus: 1] %}
+        <a href="{{ pp.url | relative_url }}" class="post-nav-item prev"><span class="post-nav-label">&#8592; Previous</span><span class="post-nav-title">{{ pp.title }}</span></a>
+        {% else %}<div></div>{% endif %}
+        {% if ci < all_sorted.size %}{% assign np = all_sorted[ci | plus: 1] %}{% unless np.url == page.url %}
+        <a href="{{ np.url | relative_url }}" class="post-nav-item next"><span class="post-nav-label">Next &#8594;</span><span class="post-nav-title">{{ np.title }}</span></a>
+        {% endunless %}{% endif %}
+      </nav>
+{% endif %}
+      <footer class="site-footer"><p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}</p></footer>
+{% endif %}
     </div>
   </main>
-
-  <!-- Reading Time Indicator -->
   <div class="reading-indicator" id="readingIndicator"></div>
-
-  <!-- Back to Top -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">&#8593;</button>
-
-  <!-- JavaScript -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
   <script>
-    (function() {
-      'use strict';
+  (function(){
+    // Theme
+    var t=document.getElementById('themeToggle'),ti=document.getElementById('themeIcon'),h=document.documentElement;
+    function setT(v){h.setAttribute('data-theme',v);localStorage.setItem('theme',v);ti.innerHTML=v==='dark'?'&#9728;':'&#9790;'}
+    setT(localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+    t.onclick=function(){setT(h.getAttribute('data-theme')==='dark'?'light':'dark')};
 
-      // ========== Theme Toggle ==========
-      var themeToggle = document.getElementById('themeToggle');
-      var themeIcon = document.getElementById('themeIcon');
-      var html = document.documentElement;
+    // Progress + BackToTop + TOC highlight
+    var pb=document.getElementById('progress-bar'),bt=document.getElementById('backToTop'),ri=document.getElementById('readingIndicator');
+    function onScroll(){
+      var s=scrollY,dh=document.documentElement.scrollHeight-innerHeight;
+      pb.style.width=(dh>0?s/dh*100:0)+'%';
+      bt.classList.toggle('visible',s>300);
+      if(ri){if(dh>0&&s>200){ri.textContent=Math.round(s/dh*100)+'% read';ri.classList.add('visible')}else ri.classList.remove('visible')}
+      // TOC active
+      var hs=document.querySelectorAll('.post-content h2,.post-content h3'),ls=document.querySelectorAll('.toc-list a'),aid='';
+      hs.forEach(function(h){if(h.getBoundingClientRect().top<=100)aid=h.id});
+      ls.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+aid)});
+    }
+    bt.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+    var tk=false;
+    addEventListener('scroll',function(){if(!tk){requestAnimationFrame(function(){onScroll();tk=false});tk=true}});
 
-      function setTheme(theme) {
-        html.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        themeIcon.innerHTML = theme === 'dark' ? '&#9728;' : '&#9790;';
-      }
+    // Mobile sidebar
+    var mt=document.getElementById('menuToggle'),sb=document.getElementById('sidebar'),ov=document.getElementById('sidebarOverlay');
+    function openS(){sb.classList.add('open');ov.classList.add('active');document.body.style.overflow='hidden'}
+    function closeS(){sb.classList.remove('open');ov.classList.remove('active');document.body.style.overflow=''}
+    mt.onclick=function(){sb.classList.contains('open')?closeS():openS()};
+    ov.onclick=closeS;
 
-      var savedTheme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      setTheme(savedTheme);
+    // Search
+    var si=document.getElementById('navSearch'),ni=document.querySelectorAll('.nav-item');
+    si.oninput=function(){var q=this.value.toLowerCase().trim();ni.forEach(function(n){n.classList.toggle('hidden',q&&!((n.getAttribute('data-title')||'').includes(q)))});document.querySelectorAll('.nav-group').forEach(function(g){g.style.display=g.querySelectorAll('.nav-item:not(.hidden)').length?'':'none'})};
 
-      themeToggle.addEventListener('click', function() {
-        var current = html.getAttribute('data-theme');
-        setTheme(current === 'dark' ? 'light' : 'dark');
-      });
+    // Reading time
+    var rt=document.getElementById('readingTime');
+    if(rt){var c=document.querySelector('.post-content');if(c){var w=(c.innerText||'').replace(/\s+/g,'').length;rt.textContent='📖 '+Math.ceil(w/400)+' min read'}}
 
-      // ========== Scroll Progress Bar ==========
-      var progressBar = document.getElementById('progress-bar');
-      function updateProgress() {
-        var scrollTop = window.scrollY;
-        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = progress + '%';
-      }
+    // TOC
+    var tc=document.getElementById('tocContainer'),tl=document.getElementById('tocList'),tt=document.getElementById('tocToggle');
+    if(tl){var pc=document.querySelector('.post-content');if(pc){var hds=pc.querySelectorAll('h2,h3');if(hds.length){hds.forEach(function(h,i){h.id='h'+i;var li=document.createElement('li'),a=document.createElement('a');a.href='#h'+i;a.textContent=h.textContent;if(h.tagName==='H3')a.classList.add('toc-h3');a.onclick=function(e){e.preventDefault();var r=document.getElementById('h'+i).getBoundingClientRect();scrollTo({top:r.top+scrollY-80,behavior:'smooth'})};li.appendChild(a);tl.appendChild(li)})}else tc.style.display='none'}}
+    if(tt&&tl)tt.onclick=function(){var v=tl.style.display==='none';tl.style.display=v?'':'none';tt.textContent=v?'Hide':'Show'};
 
-      // ========== Back to Top ==========
-      var backToTop = document.getElementById('backToTop');
-      function toggleBackToTop() {
-        if (window.scrollY > 300) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-      backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+    // MathJax lazy load
+    if(document.querySelector('.post-content')&&(document.querySelector('.post-content').innerHTML.indexOf('$')>-1||document.querySelector('.post-content').innerHTML.indexOf('\\[')>-1)){
+      var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';s.async=true;
+      var c=document.createElement('script');c.textContent='MathJax={tex:{inlineMath:[[\'$\',\'$\'],[\'\\\\(\',\'\\\\)\']],displayMath:[[\'$$\',\'$$\'],[\'\\\\[\',\'\\\\]\']],processEscapes:true},options:{skipHtmlTags:[\'script\',\'noscript\',\'style\',\'textarea\',\'pre\']}}';
+      document.head.appendChild(c);document.head.appendChild(s);
+    }
 
-      // ========== Mobile Sidebar ==========
-      var menuToggle = document.getElementById('menuToggle');
-      var sidebar = document.getElementById('sidebar');
-      var sidebarOverlay = document.getElementById('sidebarOverlay');
-
-      function openSidebar() {
-        sidebar.classList.add('open');
-        sidebarOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeSidebar() {
-        sidebar.classList.remove('open');
-        sidebarOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      menuToggle.addEventListener('click', function() {
-        if (sidebar.classList.contains('open')) { closeSidebar(); }
-        else { openSidebar(); }
-      });
-      sidebarOverlay.addEventListener('click', closeSidebar);
-
-      // ========== Sidebar Search ==========
-      var searchInput = document.getElementById('navSearch');
-      var navItems = document.querySelectorAll('.nav-item');
-      searchInput.addEventListener('input', function() {
-        var query = this.value.toLowerCase().trim();
-        navItems.forEach(function(item) {
-          var title = item.getAttribute('data-title') || '';
-          if (!query || title.includes(query)) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
-        });
-        var groups = document.querySelectorAll('.nav-group');
-        groups.forEach(function(group) {
-          var visibleItems = group.querySelectorAll('.nav-item:not(.hidden)');
-          group.style.display = visibleItems.length > 0 ? '' : 'none';
-        });
-      });
-
-      // ========== Reading Time ==========
-      var readingTimeEl = document.getElementById('readingTime');
-      if (readingTimeEl) {
-        var content = document.querySelector('.post-content');
-        if (content) {
-          var text = content.innerText || content.textContent;
-          var wordCount = text.replace(/\s+/g, '').length;
-          var minutes = Math.ceil(wordCount / 400);
-          readingTimeEl.textContent = '📖 ' + minutes + ' min read';
-        }
-      }
-
-      // ========== Table of Contents ==========
-      var tocContainer = document.getElementById('tocContainer');
-      var tocList = document.getElementById('tocList');
-      var tocToggle = document.getElementById('tocToggle');
-
-      if (tocList) {
-        var postContent = document.querySelector('.post-content');
-        if (postContent) {
-          var headings = postContent.querySelectorAll('h2, h3');
-          if (headings.length > 0) {
-            headings.forEach(function(heading, index) {
-              var id = 'heading-' + index;
-              heading.id = id;
-              var li = document.createElement('li');
-              var a = document.createElement('a');
-              a.href = '#' + id;
-              a.textContent = heading.textContent;
-              if (heading.tagName === 'H3') {
-                a.classList.add('toc-h3');
-              }
-              a.addEventListener('click', function(e) {
-                e.preventDefault();
-                var target = document.getElementById(id);
-                if (target) {
-                  var offset = 80;
-                  var top = target.getBoundingClientRect().top + window.scrollY - offset;
-                  window.scrollTo({ top: top, behavior: 'smooth' });
-                }
-              });
-              li.appendChild(a);
-              tocList.appendChild(li);
-            });
-          } else {
-            tocContainer.style.display = 'none';
-          }
-        }
-      }
-
-      if (tocToggle && tocList) {
-        tocToggle.addEventListener('click', function() {
-          var isHidden = tocList.style.display === 'none';
-          tocList.style.display = isHidden ? '' : 'none';
-          tocToggle.textContent = isHidden ? 'Hide' : 'Show';
-        });
-      }
-
-      // ========== Active TOC highlight on scroll ==========
-      var readingIndicator = document.getElementById('readingIndicator');
-      function updateActiveToc() {
-        var headings = document.querySelectorAll('.post-content h2, .post-content h3');
-        var tocLinks = document.querySelectorAll('.toc-list a');
-        var activeId = '';
-
-        headings.forEach(function(heading) {
-          var rect = heading.getBoundingClientRect();
-          if (rect.top <= 100) {
-            activeId = heading.id;
-          }
-        });
-
-        tocLinks.forEach(function(link) {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + activeId) {
-            link.classList.add('active');
-          }
-        });
-
-        // Reading indicator
-        if (readingIndicator) {
-          var scrollTop = window.scrollY;
-          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          if (docHeight > 0 && scrollTop > 200) {
-            var pct = Math.round((scrollTop / docHeight) * 100);
-            readingIndicator.textContent = pct + '% read';
-            readingIndicator.classList.add('visible');
-          } else {
-            readingIndicator.classList.remove('visible');
-          }
-        }
-      }
-
-      // ========== Scroll Events ==========
-      var ticking = false;
-      window.addEventListener('scroll', function() {
-        if (!ticking) {
-          window.requestAnimationFrame(function() {
-            updateProgress();
-            toggleBackToTop();
-            updateActiveToc();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-
-      // Initial calls
-      updateProgress();
-      toggleBackToTop();
-      updateActiveToc();
-    })();
+    onScroll();
+  })();
   </script>
 </body>
 </html>
