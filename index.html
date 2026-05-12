@@ -797,10 +797,15 @@
         left: 16px;
         z-index: 200;
     }
+    /* 桌面端侧边栏默认隐藏，只有添加.open时才显示 */
     .sidebar-nav {
         display: block;
         top: 0;
         padding-top: 60px;
+        transform: translateX(-100%);
+    }
+    .sidebar-nav.open {
+        transform: translateX(0);
     }
     .toc-bar {
         padding-left: 70px;
