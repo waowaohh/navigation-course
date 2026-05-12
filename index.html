@@ -231,15 +231,23 @@
             padding: 10px 16px;
             padding-left: 64px;
             overflow-x: auto;
+            overflow-y: hidden;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 6px;
+            align-items: center;
+            min-height: 48px;
         }
-        .toc-bar::-webkit-scrollbar { display: none; }
+        .toc-bar::-webkit-scrollbar {
+            display: none;
+        }
         .toc-bar a {
+            flex-shrink: 0;
             display: inline-block;
             padding: 6px 14px;
-            margin-right: 6px;
             border-radius: 20px;
             font-size: 13px;
             text-decoration: none;
@@ -598,22 +606,23 @@
 .sidebar-toggle {
     display: flex;
     position: fixed;
-    top: 16px;
-    left: 16px;
-    width: 44px;
-    height: 44px;
+    top: 8px;
+    left: 8px;
+    width: 42px;
+    height: 42px;
     border-radius: 12px;
     border: none;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     font-size: 20px;
     cursor: pointer;
-    z-index: 1100;
-    box-shadow: 0 4px 16px rgba(102,126,234,0.35);
+    z-index: 600;
+    box-shadow: 0 2px 12px rgba(102,126,234,0.4);
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
     -webkit-tap-highlight-color: transparent;
+    pointer-events: auto;
 }
 .sidebar-toggle:hover {
     transform: scale(1.08);
@@ -747,7 +756,6 @@
 
 /* 侧边栏遮罩 */
 .sidebar-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -756,10 +764,12 @@
     background: rgba(0,0,0,0.4);
     z-index: 1040;
     opacity: 0;
-    transition: opacity 0.3s;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
 }
 .sidebar-overlay.show {
     opacity: 1;
+    visibility: visible;
 }
 [data-theme="dark"] .sidebar-overlay {
     background: rgba(0,0,0,0.7);
@@ -797,11 +807,11 @@
 /* 电脑端特殊样式 */
 @media (min-width: 1024px) {
     .sidebar-toggle {
-        top: 16px;
-        left: 16px;
+        top: 8px;
+        left: 8px;
     }
     .toc-bar {
-        padding-left: 70px;
+        padding-left: 58px;
     }
     /* 桌面端正文强制居中 - 始终居中不受侧边栏影响 */
     .container.main-content {
@@ -824,26 +834,26 @@
 /* ===== 手机端专属优化 ===== */
 @media (max-width: 1023px) {
     .sidebar-toggle {
-        top: 12px;
-        left: 12px;
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        top: 6px;
+        left: 6px;
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
         border-radius: 10px;
     }
     .sidebar-nav {
         width: 260px;
     }
     .sidebar-header {
-        padding: 16px 12px;
-        padding-top: 52px;
+        padding: 14px 12px;
+        padding-top: 48px;
     }
     .sidebar-close {
-        top: 12px;
-        right: 12px;
+        top: 10px;
+        right: 10px;
     }
     .sidebar-link {
-        padding: 12px 14px;
+        padding: 11px 14px;
         font-size: 14px;
     }
     .sidebar-group-header {
@@ -857,18 +867,20 @@
         padding: 8px 12px;
         font-size: 14px;
     }
+    .toc-bar {
+        padding-left: 52px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        min-height: 44px;
+    }
+    .toc-bar a {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
     /* 防止iOS橡皮筋效果 */
     .sidebar-nav.open {
         position: fixed;
         overflow-y: auto;
-    }
-    /* 手机端正文间距 - 防止被导航栏和按钮遮挡 */
-    .container.main-content {
-        padding-top: 8px;
-    }
-    /* 手机端导航栏左间距适配按钮 */
-    .toc-bar {
-        padding-left: 60px;
     }
 }
 
