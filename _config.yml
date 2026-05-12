@@ -9,7 +9,6 @@ kramdown:
 math_engine: mathjax
 plugins:
   - jekyll-seo-tag
-  - jekyll-sitemap
 lang: zh-CN
 
 collections:
