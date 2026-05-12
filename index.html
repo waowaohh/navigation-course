@@ -1083,6 +1083,7 @@
         <div class="sidebar-group-header">🎯 应试冲刺 <span class="arrow">▼</span></div>
         <div class="sidebar-group-items">
             <a href="#chapter-7" class="sidebar-link"><span class="icon">📝</span>基础概念与应试</a>
+            <a href="#chapter-loose-coupled" class="sidebar-link" style="background:rgba(229,62,62,0.15); font-weight:700"><span class="icon">🎯</span>松组合设计（PPT原版）</a>
             <a href="#chapter-exam-full" class="sidebar-link" style="background:rgba(128,90,213,0.1)"><span class="icon">📚</span>课程总结问答</a>
             <a href="#chapter-exam" class="sidebar-link" style="background:rgba(229,62,62,0.1)"><span class="icon">📝</span>考试真题问答</a>
             <a href="#chapter-exam-bank" class="sidebar-link"><span class="icon">📝</span>PPT题库（全题型）</a>
@@ -1104,7 +1105,8 @@
 
     <!-- 章节导航（可横向滚动） -->
     <nav class="toc-bar">
-        <a href="#chapter-exam-full" style="border-color:#805AD5; background:#805AD511">📚 课程总结问答</a>
+        <a href="#chapter-loose-coupled" style="border-color:#E53E3E; background:#E53E3E11; font-weight:700">🎯 松组合设计（PPT原版）</a>
+            <a href="#chapter-exam-full" style="border-color:#805AD5; background:#805AD511">📚 课程总结问答</a>
             <a href="#chapter-exam" style="border-color:#E53E3E; background:#E53E3E11">📝 考试真题问答</a>
             <a href="#chapter-exam-bank" style="border-color:#D69E2E; background:#D69E2E11">📝 PPT题库</a>
             <a href="#chapter-0" style="border-color:#6B46C1">🧭 基础理论合集（第1-2讲）</a><a href="#chapter-1" style="border-color:#2B6CB0">📖 第一讲 绪论</a><a href="#chapter-2" style="border-color:#2C7A7B">📐 第二讲 惯导系统基本方程</a><a href="#chapter-3" style="border-color:#2F855A">⚡ 第三讲 惯导系统基本原理</a><a href="#chapter-4" style="border-color:#C05621">🔢 第四讲 惯导系统计算方程</a><a href="#chapter-5" style="border-color:#9B2C2C">🔄 第五讲 姿态矩阵定义与更新</a><a href="#chapter-6" style="border-color:#553C9A">🌍 坐标系定义与转换</a><a href="#chapter-7" style="border-color:#E53E3E">&#x1F4DD; 基础概念与应试</a><a href="#chapter-8" style="border-color:#3182CE">🛰️ 第七讲 卫星导航</a><a href="#chapter-9" style="border-color:#D69E2E">📊 第六讲 误差建模</a>
@@ -8579,6 +8581,421 @@ m\mathbf{a}_i = m\mathbf{f} + m\mathbf{G}
 <p><strong>松组合</strong>： - 量测量：位置差、速度差 - 状态维数：15维 - GPS独立工作，需要至少4颗卫星 - 实现简单，计算量小 - 适用场景：卫星数充足、精度要求一般的场合</p>
 <p><strong>紧组合</strong>： - 量测量：伪距差 - 状态维数：17维（多2维时钟误差） - GPS与INS相互修正，可单星工作 - 实现复杂，计算量大 - 适用场景：卫星数不足（城市峡谷等）、精度要求高的场合</p>
 <p><strong>选择原则</strong>： - 一般场景选松组合（简单可靠） - 高动态或信号受限场景选紧组合（精度高、鲁棒性强）</p>
+<hr />
+<p><strong>祝考试顺利！</strong> 🎯</p>
+
+        </div>
+    </section>
+
+    
+    <section class="chapter" id="chapter-loose-coupled">
+        <div class="chapter-header" style="border-left-color:#E53E3E; background:linear-gradient(135deg, #E53E3E11 0%, #E53E3E05 100%)">
+            <h2 style="color:#E53E3E">🎯 INS/GPS松组合导航系统设计（PPT原版公式）</h2>
+        </div>
+        <div class="chapter-body loose-coupled">
+            
+<h1 id="insgps-松组合导航系统设计-详细讲解版">INS/GPS 松组合导航系统设计 —— 详细讲解版</h1>
+<blockquote>
+<p><strong>来源</strong>：课程总结PPT + 2020年考试真题 <strong>核心内容</strong>：15维状态、五步法设计流程、有色噪声处理 <strong>适用</strong>：期末考试、研究生入学考试</p>
+</blockquote>
+<hr />
+<h2 id="本章核心框架">本章核心框架</h2>
+<p>利用 Kalman 滤波解决 INS/GPS 松组合导航问题，基本步骤为：</p>
+<p><span class="math display">\[
+\boxed{
+\text{选状态} \rightarrow \text{写量测} \rightarrow \text{离散化} \rightarrow \text{滤波估计} \rightarrow \text{导航校正}
+}
+\]</span></p>
+<hr />
+<h2 id="一选取状态量列写状态方程">一、选取状态量，列写状态方程</h2>
+<h3 id="状态变量选取">1.1 状态变量选取</h3>
+<p>采用<strong>间接法</strong>组合导航，选择 <strong>15 维误差状态变量</strong>为：</p>
+<p><span class="math display">\[
+\boxed{
+X=
+[
+\phi_x,\phi_y,\phi_z,
+\delta V_x,\delta V_y,\delta V_z,
+\delta L,\delta \lambda,\delta h,
+\varepsilon_x^b,\varepsilon_y^b,\varepsilon_z^b,
+\nabla_x^b,\nabla_y^b,\nabla_z^b
+]^T
+}
+\]</span></p>
+<p>也可写成分块形式：</p>
+<p><span class="math display">\[
+\boxed{
+X=
+[
+\phi^n,
+\delta V^n,
+\delta P,
+\varepsilon^b,
+\nabla^b
+]^T
+}
+\]</span></p>
+<p>其中各分量的含义：</p>
+<p><span class="math display">\[
+\phi^n=[\phi_x,\phi_y,\phi_z]^T
+\]</span></p>
+<p>为<strong>平台失准角误差</strong>（姿态误差）；</p>
+<p><span class="math display">\[
+\delta V^n=[\delta V_x,\delta V_y,\delta V_z]^T
+\]</span></p>
+<p>为<strong>速度误差</strong>；</p>
+<p><span class="math display">\[
+\delta P=[\delta L,\delta \lambda,\delta h]^T
+\]</span></p>
+<p>为<strong>位置误差</strong>（纬度、经度、高度）；</p>
+<p><span class="math display">\[
+\varepsilon^b=[\varepsilon_x^b,\varepsilon_y^b,\varepsilon_z^b]^T
+\]</span></p>
+<p>为<strong>陀螺漂移</strong>；</p>
+<p><span class="math display">\[
+\nabla^b=[\nabla_x^b,\nabla_y^b,\nabla_z^b]^T
+\]</span></p>
+<p>为<strong>加速度计误差</strong>。</p>
+<p>因此状态向量可表示为：</p>
+<p>$$  $$</p>
+<h3 id="陀螺漂移与加速度计误差建模">1.2 陀螺漂移与加速度计误差建模</h3>
+<p><strong>PPT 原版假设</strong>：陀螺漂移、加速度计误差均为<strong>有色噪声</strong></p>
+<p>通常采用<strong>一阶马尔可夫过程</strong>建模。</p>
+<p><strong>陀螺漂移</strong>：</p>
+<p>$$  $$</p>
+<p>$$  $$</p>
+<p>$$  $$</p>
+<p><strong>加速度计误差</strong>：</p>
+<p>$$  $$</p>
+<p>$$  $$</p>
+<p>$$  $$</p>
+<p>噪声向量为：</p>
+<p><span class="math display">\[
+\boxed{
+W=
+[
+w_{gx},w_{gy},w_{gz},
+w_{ax},w_{ay},w_{az}
+]^T
+}
+\]</span></p>
+<h3 id="组合系统状态方程">1.3 组合系统状态方程</h3>
+<p>连续状态方程写为：</p>
+<p><span class="math display">\[
+\boxed{
+\dot X(t)=F(t)X(t)+G(t)W(t)
+}
+\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[
+\boxed{
+X(t)_{15\times1}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+F(t)_{15\times15}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+G(t)_{15\times6}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+W(t)_{6\times1}
+}
+\]</span></p>
+<p>即：</p>
+<p>$$  $$</p>
+<h3 id="状态矩阵分块形式">1.4 状态矩阵分块形式</h3>
+<p>按照 PPT 的写法：</p>
+<p><span class="math display">\[
+\boxed{
+F(t)=
+\begin{bmatrix}
+F_{INS}(t)_{9\times9} &amp; F_S(t)_{9\times6}\\
+0_{6\times9} &amp; F_M(t)_{6\times6}
+\end{bmatrix}_{15\times15}
+}
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(F_{INS}(t)\)</span> 表示姿态误差、速度误差、位置误差之间的耦合关系；</li>
+<li><span class="math inline">\(F_S(t)\)</span> 表示陀螺漂移、加速度计误差对导航误差的影响；</li>
+<li><span class="math inline">\(F_M(t)\)</span> 表示陀螺漂移和加速度计误差自身的马尔可夫动态。</li>
+</ul>
+<p>其中：</p>
+<p><span class="math display">\[
+\boxed{
+F_S(t)=
+\begin{bmatrix}
+-C_b^n &amp; 0_{3\times3}\\
+0_{3\times3} &amp; C_b^n\\
+0_{3\times3} &amp; 0_{3\times3}
+\end{bmatrix}_{9\times6}
+}
+\]</span></p>
+<p>含义是： - <span class="math inline">\(\varepsilon^b\)</span> 主要影响姿态误差方程； - <span class="math inline">\(\nabla^b\)</span> 主要影响速度误差方程。</p>
+<p>传感器误差动态矩阵为：</p>
+<p><span class="math display">\[
+\boxed{
+F_M(t)=
+\operatorname{diag}
+\left[
+-\frac{1}{T_{gx}},
+-\frac{1}{T_{gy}},
+-\frac{1}{T_{gz}},
+-\frac{1}{T_{ax}},
+-\frac{1}{T_{ay}},
+-\frac{1}{T_{az}}
+\right]
+}
+\]</span></p>
+<p>噪声驱动矩阵为：</p>
+<p><span class="math display">\[
+\boxed{
+G(t)=
+\begin{bmatrix}
+0_{9\times3} &amp; 0_{9\times3}\\
+I_3 &amp; 0_{3\times3}\\
+0_{3\times3} &amp; I_3
+\end{bmatrix}_{15\times6}
+}
+\]</span></p>
+<hr />
+<h2 id="二选取量测量列写量测方程">二、选取量测量，列写量测方程</h2>
+<p>INS/GPS 松组合采用两个导航系统关于同一导航参数的差值作为量测量。</p>
+<p>PPT 原版常用 <strong>速度 + 位置组合</strong>：</p>
+<p>$$  $$</p>
+<p>其中： - <span class="math inline">\(I\)</span> 表示 INS 输出； - <span class="math inline">\(G\)</span> 表示 GPS 输出。</p>
+<p>因为采用间接法，所以：</p>
+<p><span class="math display">\[
+V_{Ix}-V_{Gx}\approx \delta V_x
+\]</span></p>
+<p><span class="math display">\[
+V_{Iy}-V_{Gy}\approx \delta V_y
+\]</span></p>
+<p><span class="math display">\[
+V_{Iz}-V_{Gz}\approx \delta V_z
+\]</span></p>
+<p><span class="math display">\[
+L_I-L_G\approx \delta L
+\]</span></p>
+<p><span class="math display">\[
+\lambda_I-\lambda_G\approx \delta \lambda
+\]</span></p>
+<p><span class="math display">\[
+h_I-h_G\approx \delta h
+\]</span></p>
+<p>因此量测方程为：</p>
+<p><span class="math display">\[
+\boxed{
+Z(t)=H(t)X(t)+V(t)
+}
+\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[
+\boxed{
+Z(t)_{6\times1}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+H(t)_{6\times15}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+X(t)_{15\times1}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+V(t)_{6\times1}
+}
+\]</span></p>
+<p>由于状态顺序为：</p>
+<p><span class="math display">\[
+X=
+[
+\phi^n,
+\delta V^n,
+\delta P,
+\varepsilon^b,
+\nabla^b
+]^T
+\]</span></p>
+<p>所以量测矩阵为：</p>
+<p><span class="math display">\[
+\boxed{
+H(t)=
+\begin{bmatrix}
+0_{6\times3} &amp; I_{6\times6} &amp; 0_{6\times6}
+\end{bmatrix}_{6\times15}
+}
+\]</span></p>
+<p>也就是量测量直接对应状态中的：</p>
+<p><span class="math display">\[
+[
+\delta V^n,\delta P
+]^T
+\]</span></p>
+<hr />
+<h2 id="三连续系统离散化">三、连续系统离散化</h2>
+<p>连续系统为：</p>
+<p><span class="math display">\[
+\boxed{
+\dot X(t)=F(t)X(t)+G(t)W(t)
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+Z(t)=H(t)X(t)+V(t)
+}
+\]</span></p>
+<p>实际计算机中要离散化为：</p>
+<p><span class="math display">\[
+\boxed{
+X_k=\Phi_{k,k-1}X_{k-1}+\Gamma_{k-1}W_{k-1}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+Z_k=H_kX_k+V_k
+}
+\]</span></p>
+<p>其中状态转移矩阵为：</p>
+<p>$$  $$</p>
+<p>工程或考试中常用一阶近似：</p>
+<p><span class="math display">\[
+\boxed{
+\Phi_{k,k-1}\approx I+F(t_k)T
+}
+\]</span></p>
+<p>噪声驱动矩阵离散化为：</p>
+<p>$$  $$</p>
+<p>常用近似为：</p>
+<p><span class="math display">\[
+\boxed{
+\Gamma_{k-1}\approx G(t_k)T
+}
+\]</span></p>
+<hr />
+<h2 id="四利用离散-kalman-滤波递推估计状态">四、利用离散 Kalman 滤波递推估计状态</h2>
+<p>状态一步预测：</p>
+<p>$$  $$</p>
+<p>一步预测均方误差：</p>
+<p>$$  $$</p>
+<p>滤波增益：</p>
+<p><span class="math display">\[
+\boxed{
+K_k=
+P_{k/k-1}H_k^T
+\left(
+H_kP_{k/k-1}H_k^T+R_k
+\right)^{-1}
+}
+\]</span></p>
+<p>状态估值更新：</p>
+<p>$$  $$</p>
+<p>估计均方误差更新：</p>
+<p><span class="math display">\[
+\boxed{
+P_k=(I-K_kH_k)P_{k/k-1}
+}
+\]</span></p>
+<p>或者写成 Joseph 稳定形式：</p>
+<p><span class="math display">\[
+\boxed{
+P_k=
+(I-K_kH_k)P_{k/k-1}(I-K_kH_k)^T
++
+K_kR_kK_k^T
+}
+\]</span></p>
+<hr />
+<h2 id="五利用估计出的状态校正导航参数">五、利用估计出的状态校正导航参数</h2>
+<p>滤波得到：</p>
+<p><span class="math display">\[
+\boxed{
+\hat X_k=
+[
+\hat\phi^n,
+\delta \hat V^n,
+\delta \hat P,
+\hat\varepsilon^b,
+\hat\nabla^b
+]^T
+}
+\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[
+\delta \hat P=
+[
+\delta \hat L,
+\delta \hat \lambda,
+\delta \hat h
+]^T
+\]</span></p>
+<p><span class="math display">\[
+\delta \hat V^n=
+[
+\delta \hat V_x,
+\delta \hat V_y,
+\delta \hat V_z
+]^T
+\]</span></p>
+<p>采用输出校正时：</p>
+<p><span class="math display">\[
+\boxed{
+L=L_I-\delta \hat L
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\lambda=\lambda_I-\delta \hat \lambda
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+h=h_I-\delta \hat h
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+V_x=V_{Ix}-\delta \hat V_x
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+V_y=V_{Iy}-\delta \hat V_y
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+V_z=V_{Iz}-\delta \hat V_z
+}
+\]</span></p>
+<p>同时也可以利用 <span class="math inline">\(\hat\phi^n\)</span>、<span class="math inline">\(\hat\varepsilon^b\)</span>、<span class="math inline">\(\hat\nabla^b\)</span> 对 SINS 姿态、陀螺漂移和加速度计误差进行<strong>反馈校正</strong>。</p>
+<hr />
+<h2 id="应试记忆口诀">应试记忆口诀</h2>
+<p><span class="math display">\[
+\boxed{
+\text{十五维状态：三姿态、三速度、三位置、三陀螺、三加表；}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\text{量测取差值，写成 } Z=HX+V\text{；}
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\text{连续先离散，再用 Kalman 递推，最后校正 INS 输出。}
+}
+\]</span></p>
 <hr />
 <p><strong>祝考试顺利！</strong> 🎯</p>
 
