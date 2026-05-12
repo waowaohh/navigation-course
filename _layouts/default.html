@@ -14,6 +14,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
+  <!-- MathJax config (must be before library load) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
     :root {
       --color-primary: #1a365d;
@@ -504,13 +520,6 @@
     var tc=document.getElementById('tocContainer'),tl=document.getElementById('tocList'),tt=document.getElementById('tocToggle');
     if(tl){var pc=document.querySelector('.post-content');if(pc){var hds=pc.querySelectorAll('h2,h3');if(hds.length){hds.forEach(function(h,i){h.id='h'+i;var li=document.createElement('li'),a=document.createElement('a');a.href='#h'+i;a.textContent=h.textContent;if(h.tagName==='H3')a.classList.add('toc-h3');a.onclick=function(e){e.preventDefault();var r=document.getElementById('h'+i).getBoundingClientRect();scrollTo({top:r.top+scrollY-80,behavior:'smooth'})};li.appendChild(a);tl.appendChild(li)})}else tc.style.display='none'}}
     if(tt&&tl)tt.onclick=function(){var v=tl.style.display==='none';tl.style.display=v?'':'none';tt.textContent=v?'Hide':'Show'};
-
-    // MathJax lazy load
-    if(document.querySelector('.post-content')&&(document.querySelector('.post-content').innerHTML.indexOf('$')>-1||document.querySelector('.post-content').innerHTML.indexOf('\\[')>-1)){
-      var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';s.async=true;
-      var c=document.createElement('script');c.textContent='MathJax={tex:{inlineMath:[[\'$\',\'$\'],[\'\\\\(\',\'\\\\)\']],displayMath:[[\'$$\',\'$$\'],[\'\\\\[\',\'\\\\]\']],processEscapes:true},options:{skipHtmlTags:[\'script\',\'noscript\',\'style\',\'textarea\',\'pre\']}}';
-      document.head.appendChild(c);document.head.appendChild(s);
-    }
 
     onScroll();
   })();
