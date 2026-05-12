@@ -223,12 +223,13 @@
         .toc-bar {
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 500;
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             padding: 10px 16px;
+            padding-left: 64px;
             overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
@@ -861,9 +862,13 @@
         position: fixed;
         overflow-y: auto;
     }
-    /* 手机端正文间距 */
+    /* 手机端正文间距 - 防止被导航栏和按钮遮挡 */
     .container.main-content {
-        padding-top: 60px;
+        padding-top: 8px;
+    }
+    /* 手机端导航栏左间距适配按钮 */
+    .toc-bar {
+        padding-left: 60px;
     }
 }
 
